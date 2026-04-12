@@ -8,7 +8,6 @@
 
 [![🏠 Dashboard](https://img.shields.io/badge/🏠-Dashboard-111111?style=for-the-badge)](./DASHBOARD.md)
 [![🗂️ Index](https://img.shields.io/badge/🗂️-Index-333333?style=for-the-badge)](./INDEX.md)
-[![📥 Inbox](https://img.shields.io/badge/📥-Inbox-6f42c1?style=for-the-badge)](./INBOX.md)
 [![📝 Templates](https://img.shields.io/badge/📝-Templates-blue?style=for-the-badge)](./TEMPLATES.md)
 
 ---
