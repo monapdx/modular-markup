@@ -34,7 +34,6 @@
 | Dashboard | Main control center | [Open](./DASHBOARD.md) |
 | Index | Navigation map | [Open](./INDEX.md) |
 | Log | Timeline tracking | [Open](./LOG.md) |
-| Archive | Stored history | [Open](./ARCHIVE.md) |
 
 ---
 
