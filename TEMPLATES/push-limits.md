@@ -6,11 +6,7 @@
 
 ## 🚀 Quick Actions
 
-[![➕ New Task](https://img.shields.io/badge/➕%20New%20Task-blue?style=for-the-badge)](#-task-inbox)
-[![🧠 Brain Dump](https://img.shields.io/badge/🧠%20Brain%20Dump-purple?style=for-the-badge)](#-brain-dump)
-[![📅 Weekly Plan](https://img.shields.io/badge/📅%20Weekly%20Plan-green?style=for-the-badge)](#-weekly-planner)
-[![🎯 Goals](https://img.shields.io/badge/🎯%20Goals-orange?style=for-the-badge)](#-goals)
-[![📊 Review](https://img.shields.io/badge/📊%20Review-red?style=for-the-badge)](#-weekly-review)
+[![Monthly Review](https://img.shields.io/badge/%F0%9F%93%8B%20Monthly%20Review-2ea44f?style=for-the-badge)](.github/ISSUE_TEMPLATE/monthly-review.yml) [![Plan Week](https://img.shields.io/badge/%F0%9F%91%89%20Plan%20Week-2ea44f?style=for-the-badge)](.github/ISSUE_TEMPLATE/plan-week.yml) [![Project Work](https://img.shields.io/badge/%F0%9F%9B%A0%EF%B8%8F%20Project%20Work-2ea44f?style=for-the-badge)](.github/ISSUE_TEMPLATE/project-work.yml) [![Deploy](https://img.shields.io/badge/%F0%9F%9A%80%20Deploy-2ea44f?style=for-the-badge)](.github/ISSUE_TEMPLATE/deploy.yml) 
 
 ---
 
