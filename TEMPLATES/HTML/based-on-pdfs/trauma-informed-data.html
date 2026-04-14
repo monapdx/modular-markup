@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trauma-Informed Data + Policy Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f1f3;
+      --surface: #ffffff;
+      --surface-soft: #f7f3f8;
+      --ink: #2f2533;
+      --muted: #6f6474;
+      --line: #e6dde9;
+
+      --plum: #FF0095;
+      --plum-2: #C50260;
+      --plum-3: #C50260;
+      --lavender: #FF4DB5;
+      --lavender-2: #FF66D6;
+
+      --accent-dark: #482141;
+      --accent-soft: #f6eef8;
+
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+
+      --shadow-soft: 0 18px 40px rgba(69, 31, 62, 0.08);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f7f4f6 0%, #f2edf2 100%);
+      color: var(--ink);
+      font-family: "Inter", sans-serif;
+      line-height: 1.5;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 34px 0 56px;
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 14px;
+    }
+
+    .display-title {
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+      margin: 0 0 18px;
+      max-width: 9ch;
+      color: var(--accent-dark);
+    }
+
+    .hero-subtitle {
+      font-size: 1.12rem;
+      color: var(--muted);
+      max-width: 48ch;
+      margin: 0 0 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
+      min-height: 78vh;
+      padding-top: 28px;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(127,47,116,0.08);
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(6px);
+      max-width: 640px;
+    }
+
+    .hero-art {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(180deg, rgba(127,47,116,0.18), rgba(127,47,116,0.34)),
+        url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=80") center/cover;
+      min-height: 560px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,0.12), transparent 18%),
+        linear-gradient(180deg, rgba(90,25,82,0.10), rgba(90,25,82,0.30));
+    }
+
+    .hero-overlay-box {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2;
+      width: min(360px, calc(100% - 40px));
+      background: rgba(72, 33, 65, 0.84);
+      color: white;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-overlay-box h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-overlay-box p {
+      margin: 0;
+      color: rgba(255,255,255,0.86);
+      font-size: 0.98rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--plum);
+      color: #fff;
+    }
+
+    .button-secondary {
+      background: #fff;
+      color: var(--plum);
+      border: 1px solid rgba(127,47,116,0.14);
+    }
+
+    .stats-intro {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-top: 20px;
+      align-items: start;
+    }
+
+    .section-card {
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(127,47,116,0.08);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 0 0 14px;
+      font-weight: 800;
+      color: var(--accent-dark);
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0;
+      max-width: 62ch;
+    }
+
+    .big-stat-card {
+      background: linear-gradient(180deg, #fff 0%, var(--surface-soft) 100%);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(127,47,116,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .big-stat-card::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(198,125,188,0.14);
+    }
+
+    .big-stat-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .big-stat-number {
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      font-weight: 800;
+      letter-spacing: -0.07em;
+      line-height: 0.9;
+      color: var(--plum);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .big-stat-copy {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 26ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .metrics-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .metric {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      border: 1px solid rgba(127,47,116,0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .metric-value {
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+      color: var(--plum);
+      margin-bottom: 10px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--lavender);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--plum-2), var(--plum-3));
+      border-radius: 999px;
+    }
+
+    .metric-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .metric-text strong {
+      color: var(--accent-dark);
+    }
+
+    .policy-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .sidebar-panel {
+      background: linear-gradient(180deg, #fff 0%, var(--lavender-2) 100%);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      border: 1px solid rgba(127,47,116,0.08);
+      box-shadow: var(--shadow-soft);
+      position: sticky;
+      top: 22px;
+    }
+
+    .sidebar-panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.5rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--accent-dark);
+    }
+
+    .sidebar-panel p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .mini-item {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(127,47,116,0.08);
+      border-radius: 16px;
+      padding: 14px 14px;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .policy-card {
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(127,47,116,0.08);
+    }
+
+    .policy-card + .policy-card {
+      margin-top: 20px;
+    }
+
+    .policy-card h3 {
+      margin: 0 0 12px;
+      font-size: clamp(1.35rem, 2vw, 1.9rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      color: var(--accent-dark);
+    }
+
+    .policy-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .policy-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink);
+    }
+
+    .policy-list li + li {
+      margin-top: 10px;
+    }
+
+    .quote-strip {
+      margin-top: 26px;
+      background: linear-gradient(135deg, var(--accent-soft), #fff);
+      border-left: 6px solid var(--plum);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      padding: 24px 24px 24px 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .quote-strip blockquote {
+      margin: 0 0 10px;
+      font-size: clamp(1.15rem, 2vw, 1.6rem);
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .quote-strip .attribution {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .closing-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .callout {
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(127,47,116,0.08);
+    }
+
+    .callout h4 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      line-height: 1;
+      color: var(--accent-dark);
+      letter-spacing: -0.03em;
+    }
+
+    .callout p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      padding: 30px 0 60px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 1100px) {
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .stats-intro,
+      .policy-layout,
+      .closing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 420px;
+      }
+
+      .sidebar-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .section-card,
+      .big-stat-card,
+      .metric,
+      .sidebar-panel,
+      .policy-card,
+      .callout {
+        padding: 20px;
+      }
+
+      .hero-overlay-box {
+        right: 14px;
+        left: 14px;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="section hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Survey Report / Policy Brief / Advocacy Research</div>
+
+        <div class="hero-card">
+          <h1 class="display-title">Trauma-Informed Data + Policy Report</h1>
+          <p class="hero-subtitle">
+            A web-friendly editorial system for presenting sensitive research, survivor-informed data,
+            and policy recommendations with clarity, care, and persuasive structure.
+          </p>
+
+          <div class="button-row">
+            <a href="#data" class="button button-primary">View the data section</a>
+            <a href="#policy" class="button button-secondary">Jump to recommendations</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="hero-overlay-box">
+          <h3>Designed for difficult subjects</h3>
+          <p>
+            Soft visuals, readable hierarchy, and modular evidence blocks help serious material feel
+            accessible without making it feel trivial.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="data">
+      <div class="stats-intro">
+        <div class="section-card">
+          <div class="eyebrow">Executive summary</div>
+          <h2 class="section-title">Present the findings gently, but clearly.</h2>
+          <p class="lead">
+            This layout style is for topics that involve harm, coercion, health, inequality, or survivor
+            testimony. The goal is to reduce visual hostility while keeping the information legible,
+            serious, and actionable.
+          </p>
+        </div>
+
+        <div class="big-stat-card">
+          <div class="big-stat-label">Most urgent takeaway</div>
+          <div class="big-stat-number">42%</div>
+          <div class="big-stat-copy">
+            of respondents said they had never reached out for support, despite experiencing harm or coercion.
+          </div>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric">
+          <div class="metric-value">63%</div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:63%"></div>
+          </div>
+          <div class="metric-text">
+            said a current or former partner <strong>pressured or forced</strong> them into sexual activity.
+          </div>
+        </article>
+
+        <article class="metric">
+          <div class="metric-value">39%</div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:39%"></div>
+          </div>
+          <div class="metric-text">
+            said a partner <strong>threatened them if they said no</strong> to sex or sexual activity.
+          </div>
+        </article>
+
+        <article class="metric">
+          <div class="metric-value">23%</div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:23%"></div>
+          </div>
+          <div class="metric-text">
+            said a partner <strong>pressured them into pregnancy</strong>.
+          </div>
+        </article>
+
+        <article class="metric">
+          <div class="metric-value">32%</div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width:32%"></div>
+          </div>
+          <div class="metric-text">
+            said they <strong>did not have access</strong> to a trusted reproductive health provider.
+          </div>
+        </article>
+      </div>
+
+      <div class="quote-strip">
+        <blockquote>
+          “I wish someone had explained what was happening to me sooner.”
+        </blockquote>
+        <div class="attribution">
+          Use survivor quotes sparingly and give them generous breathing room. They should deepen the meaning, not become decoration.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="policy">
+      <div class="policy-layout">
+        <aside class="sidebar-panel">
+          <div class="eyebrow">Policy frame</div>
+          <h3>What this section should do</h3>
+          <p>
+            Shift from describing harm to naming structural responsibility. This is where the report
+            becomes more assertive, specific, and solution-oriented.
+          </p>
+
+          <div class="mini-list">
+            <div class="mini-item">Define the problem in system terms.</div>
+            <div class="mini-item">Name who is most affected and why.</div>
+            <div class="mini-item">Offer practical, enforceable recommendations.</div>
+            <div class="mini-item">Keep paragraphs short and skimmable.</div>
+          </div>
+        </aside>
+
+        <div>
+          <article class="policy-card">
+            <div class="eyebrow">Problem statement</div>
+            <h3>Platforms, institutions, and policies can intensify harm when they ignore gendered realities.</h3>
+            <p>
+              One-size-fits-all systems routinely fail the people they claim to protect. When policy,
+              moderation, reporting practices, or institutional procedures are built around a neutral
+              user who does not actually exist, the result is predictable: the most marginalized people
+              bear the greatest burden.
+            </p>
+            <p>
+              Effective policy design requires more than broad statements of principle. It requires
+              definitions that reflect lived experience, enforcement that can be trusted, and structures
+              that recognize the specific ways harm is distributed.
+            </p>
+          </article>
+
+          <article class="policy-card">
+            <div class="eyebrow">Recommendations</div>
+            <h3>Move from vague values to concrete operational rules.</h3>
+            <ul class="policy-list">
+              <li>Explicitly define gender-based coercion, harassment, and abuse in policy language rather than hiding them inside generic categories.</li>
+              <li>Center the experiences of survivors and marginalized groups when designing reporting, escalation, and support systems.</li>
+              <li>Distinguish between aggregated notification, support-oriented intervention, and punitive referral so that care systems do not become surveillance systems.</li>
+              <li>Require informed consent, transparency, and clear explanations whenever sensitive data collection or high-risk reporting pathways are involved.</li>
+              <li>Publish regular transparency reporting that shows not just overall enforcement, but disparate impacts across vulnerable populations.</li>
+            </ul>
+          </article>
+
+          <article class="policy-card">
+            <div class="eyebrow">Why this matters</div>
+            <h3>Design choices are never neutral when the subject is power.</h3>
+            <p>
+              Reports like this do more than summarize data. They shape what institutions are willing
+              to see, how the public understands harm, and whether people affected by that harm are
+              treated as credible. A trauma-informed report should lower the barrier to understanding
+              without lowering the seriousness of the issue.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="closing-grid">
+        <div class="callout">
+          <h4>Best use cases</h4>
+          <p>
+            Survey reports, public-interest research, advocacy explainers, health equity dashboards,
+            feminist policy briefs, domestic violence resources, and nonprofit annual research publications.
+          </p>
+        </div>
+
+        <div class="callout">
+          <h4>Visual logic</h4>
+          <p>
+            Soft background, restrained palette, rounded modules, short evidence blocks, and a gradual
+            transition from empathy-centered data storytelling into more direct policy argument.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      Replace the text and figures with your own material, but keep the tonal structure: gentle entry, clear evidence, then stronger policy language.
+    </p>
+  </main>
+</body>
+</html>

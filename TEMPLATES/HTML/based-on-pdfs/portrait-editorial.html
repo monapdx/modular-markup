@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editorial Portrait + Stats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=DM+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ece8e3;
+      --ink: #172033;
+      --blue: #27348b;
+      --cyan: #1ba9e1;
+      --white: #ffffff;
+      --muted: #6d7485;
+      --line: rgba(23, 32, 51, 0.12);
+      --max: 1200px;
+      --radius: 22px;
+      --shadow: 0 20px 50px rgba(0,0,0,0.10);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter", sans-serif;
+      line-height: 1.45;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 32px 0 56px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: stretch;
+      gap: 0;
+      background: var(--bg);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px clamp(20px, 4vw, 56px);
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 24px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-title {
+      font-family: "DM Sans", sans-serif;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      margin: 0 0 24px;
+      max-width: 6ch;
+      color: var(--blue);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      max-width: 32ch;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--blue);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.02);
+      mix-blend-mode: screen;
+      opacity: 0.95;
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(39,52,139,0.95), rgba(39,52,139,0.10) 55%, rgba(39,52,139,0.0));
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--white);
+    }
+
+    .split-copy {
+      padding: 40px;
+      background: var(--white);
+    }
+
+    .section-title {
+      font-family: "DM Sans", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      margin: 0 0 18px;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+
+    .section-copy {
+      max-width: 60ch;
+      margin: 0 0 16px;
+      color: var(--ink);
+    }
+
+    .highlight-line {
+      font-weight: 800;
+      color: var(--blue);
+      margin-top: 18px;
+    }
+
+    .split-art {
+      position: relative;
+      min-height: 460px;
+      background: var(--blue);
+      overflow: hidden;
+    }
+
+    .split-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      mix-blend-mode: screen;
+      opacity: 0.95;
+    }
+
+    .split-art::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.14), transparent 18%),
+        linear-gradient(to top, rgba(39,52,139,0.88), rgba(39,52,139,0.12));
+      pointer-events: none;
+    }
+
+    .stats-wrap {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .stats-left,
+    .stats-right {
+      padding: 34px;
+    }
+
+    .stats-left {
+      background: var(--cyan);
+      color: var(--white);
+    }
+
+    .stats-right {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .stats-label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      opacity: 0.9;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px 20px;
+    }
+
+    .stat {
+      border-top: 1px solid rgba(255,255,255,0.22);
+      padding-top: 14px;
+    }
+
+    .stat-number {
+      font-family: "DM Sans", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 6px;
+    }
+
+    .stat-desc {
+      font-size: 0.98rem;
+      max-width: 18ch;
+    }
+
+    .quote-panel {
+      margin-top: 28px;
+      padding: 34px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-top: 6px solid var(--blue);
+    }
+
+    .quote {
+      font-family: "DM Sans", sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin: 0 0 16px;
+      max-width: 18ch;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .quote-note {
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .split,
+      .stats-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image,
+      .split-art {
+        min-height: 420px;
+      }
+
+      .hero-title {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .split-copy,
+      .stats-left,
+      .stats-right,
+      .quote-panel {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="brand">Your Project / Annual Report / Editorial Feature</div>
+        <h1 class="hero-title">Here For A Reason</h1>
+        <p class="hero-sub">
+          A calm, image-led editorial layout with monochrome portraits, restrained type,
+          and stat-driven storytelling.
+        </p>
+      </div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80" alt="Portrait">
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="page">
+        <div class="split">
+          <div class="split-copy">
+            <div class="eyebrow">Health Care</div>
+            <h2 class="section-title">Portrait-led editorial storytelling</h2>
+            <p class="section-copy">
+              This structure works best when you want a publication to feel polished,
+              serious, and human at the same time. Use one concise section title,
+              a few short paragraphs, and let the image carry emotional weight.
+            </p>
+            <p class="section-copy">
+              Keep the layout disciplined: one dominant image field, one content field,
+              and just enough accent color to direct the eye.
+            </p>
+            <p class="highlight-line">
+              The emotional tone comes from the portrait. The authority comes from the grid.
+            </p>
+          </div>
+
+          <div class="split-art">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1400&q=80" alt="Portrait">
+          </div>
+        </div>
+
+        <div class="stats-wrap">
+          <div class="stats-left">
+            <div class="stats-label">By the numbers</div>
+            <div class="stats-grid">
+              <div class="stat">
+                <div class="stat-number">2.16M</div>
+                <div class="stat-desc">people served</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">8.65M</div>
+                <div class="stat-desc">services delivered</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">372K</div>
+                <div class="stat-desc">preventive screenings</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">4.45M</div>
+                <div class="stat-desc">tests and treatments</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-right">
+            <div class="stats-label">Telehealth / technology</div>
+            <div class="stats-grid">
+              <div class="stat">
+                <div class="stat-number">236K</div>
+                <div class="stat-desc">telehealth visits</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">42</div>
+                <div class="stat-desc">affiliates providing telehealth</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">65</div>
+                <div class="stat-desc">supported languages</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">1.9M</div>
+                <div class="stat-desc">appointments booked online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-panel">
+          <p class="quote">We’re here, in every pocket, in the palm of every hand.</p>
+          <p class="quote-note">
+            Use this closing block for a pull quote, executive statement, campaign line,
+            or a sharply distilled mission sentence.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

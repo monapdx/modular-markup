@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poster Urgency Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=League+Spartan:wght@700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --paper: #ffffff;
+      --ink: #0a0a0a;
+      --orange: #ee6a2c;
+      --gray: #dcdcdc;
+      --line: rgba(255,255,255,0.15);
+      --max: 1180px;
+      --shadow: 0 18px 44px rgba(0,0,0,0.25);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--paper);
+      font-family: "Inter", sans-serif;
+      line-height: 1.45;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03), transparent 18%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,0.02), transparent 22%),
+        radial-gradient(circle at 30% 80%, rgba(255,255,255,0.03), transparent 20%);
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 24px));
+      margin: 0 auto;
+      padding: 24px 0 52px;
+    }
+
+    .poster-hero {
+      position: relative;
+      min-height: 90vh;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 36%),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.00) 0,
+          rgba(255,255,255,0.00) 12px,
+          rgba(255,255,255,0.03) 12px,
+          rgba(255,255,255,0.03) 13px
+        ),
+        var(--bg);
+    }
+
+    .poster-brand {
+      position: absolute;
+      left: 22px;
+      top: 18px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--orange);
+      z-index: 3;
+    }
+
+    .poster-content {
+      position: relative;
+      z-index: 2;
+      padding: 88px 22px 32px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+      min-height: 90vh;
+      align-items: center;
+    }
+
+    .poster-title {
+      font-family: "League Spartan", sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+      max-width: 6ch;
+    }
+
+    .poster-title .accent {
+      color: var(--orange);
+      display: inline-block;
+    }
+
+    .scribble {
+      font-family: "Permanent Marker", cursive;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--paper);
+      margin-bottom: 18px;
+      transform: rotate(-2deg);
+    }
+
+    .poster-copy {
+      max-width: 38ch;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .panel {
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 250px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel.dark {
+      background: #111;
+      color: var(--paper);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .panel-title {
+      font-family: "League Spartan", sans-serif;
+      font-size: 1.55rem;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    .hand-note {
+      font-family: "Permanent Marker", cursive;
+      font-size: 1rem;
+      color: var(--orange);
+      margin-bottom: 12px;
+      display: inline-block;
+      transform: rotate(-1.5deg);
+    }
+
+    .panel p {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .stat-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .big-stat {
+      font-family: "League Spartan", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      color: var(--orange);
+      margin: 0 0 8px;
+    }
+
+    .divider {
+      height: 2px;
+      background: rgba(0,0,0,0.12);
+      margin: 14px 0;
+    }
+
+    .panel.dark .divider {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .bottom-strip {
+      margin-top: 18px;
+      border: 2px solid rgba(255,255,255,0.08);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.88);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .bottom-strip strong {
+      color: var(--orange);
+    }
+
+    @media (max-width: 900px) {
+      .poster-content,
+      .poster-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .poster-title {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="poster-hero">
+      <div class="poster-brand">Your Campaign / Action Toolkit</div>
+
+      <div class="poster-content">
+        <div>
+          <div class="scribble">Look at the signs.</div>
+          <h1 class="poster-title">
+            Poster <span class="accent">Urgency</span> Style
+          </h1>
+          <p class="poster-copy">
+            Use this direction when you want your design to feel immediate, public-facing,
+            movement-driven, and hard to ignore.
+          </p>
+        </div>
+
+        <div class="poster-grid">
+          <article class="panel dark">
+            <div class="hand-note">What’s happening?</div>
+            <h2 class="panel-title">Abortion access is getting harder to access</h2>
+            <p>
+              Use short, public-facing language. Keep the point blunt. Say the thing plainly.
+            </p>
+          </article>
+
+          <article class="panel stat-panel">
+            <div>
+              <div class="hand-note">Nearest provider</div>
+              <div class="big-stat">100<br>miles</div>
+            </div>
+            <p>Distance can become a barrier all by itself.</p>
+          </article>
+
+          <article class="panel">
+            <div class="hand-note">Take days off work</div>
+            <h2 class="panel-title">An abortion can cost a lot.</h2>
+            <div class="divider"></div>
+            <p>
+              Use illustrated or poster-like modules to break one big issue into smaller,
+              visible barriers.
+            </p>
+          </article>
+
+          <article class="panel dark stat-panel">
+            <div>
+              <div class="hand-note">The clock is ticking</div>
+              <div class="big-stat">24–72<br>hours</div>
+            </div>
+            <p>Time pressure should feel visual, not just verbal.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom-strip">
+      <div><strong>Bold type</strong> + stacked modules</div>
+      <div><strong>Black / white / orange</strong> only</div>
+      <div><strong>Handwritten accents</strong> for urgency</div>
+      <div><strong>Poster logic</strong>, not polished corporate logic</div>
+    </div>
+  </main>
+</body>
+</html>

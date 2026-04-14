@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> — </title>
+<style type="text/css">
+   
+:root {
+  --bg: #f6f1ea;
+  --paper: #fcf8f3;
+  --ink: #1f1c23;
+  --muted: #615b6c;
+  --grid: #ddd5e3;
+  --grid-bold: #c8bfd6;
+  --pink: #ff009c;
+  --purple: #7760ff;
+  --yellow: #ffe667;
+  --dark: #262231;
+  --line: #2a2633;
+  --shadow: 0 18px 50px rgba(31, 28, 35, .10);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(var(--grid-bold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-bold) 1px, transparent 1px),
+    var(--bg);
+  background-size: 36px 36px, 36px 36px, 144px 144px, 144px 144px, auto;
+}
+
+.page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto 72px;
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background: color-mix(in srgb, var(--paper) 92%, white 8%);
+  border: 3px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 18px;
+  padding: 28px;
+  overflow: hidden;
+}
+
+.eyebrow {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: .92;
+  margin: 0 0 14px;
+  letter-spacing: -.04em;
+  max-width: 8ch;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  line-height: 1.05;
+}
+
+.dek, p, li {
+  font-size: 1.04rem;
+  line-height: 1.55;
+}
+
+.dek { max-width: 38ch; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 18px; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 3px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--ink);
+  background: white;
+  font-weight: 700;
+}
+.button.primary { background: var(--pink); color: white; }
+.meta { display: flex; gap: 10px; padding: 0; margin: 0; list-style: none; flex-wrap: wrap; }
+.meta li {
+  border: 2px solid var(--line);
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: .92rem;
+}
+
+.hero-art {
+  position: relative;
+  min-height: 420px;
+}
+.stack {
+  position: absolute;
+  border-radius: 28px;
+  border: 3px solid var(--line);
+}
+.stack-a { inset: 52px 38px 92px 120px; background: var(--pink); transform: rotate(-7deg); }
+.stack-b { inset: 94px 90px 44px 64px; background: var(--purple); transform: rotate(5deg); }
+.stack-c { inset: 36px 12px 126px 176px; background: var(--yellow); transform: rotate(8deg); }
+.screen {
+  position: absolute;
+  inset: 18px 28px 18px 28px;
+  background: var(--paper);
+  border: 3px solid var(--line);
+  border-radius: 26px;
+  padding: 14px;
+}
+.window-bar {
+  height: 18px;
+  width: 120px;
+  border-radius: 999px;
+  background: var(--dark);
+  margin-bottom: 12px;
+}
+.screen-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 12px;
+  height: calc(100% - 30px);
+}
+.screen-grid aside {
+  background: var(--dark);
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.chip {
+  display: inline-block;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: .84rem;
+}
+.chip.hot { background: var(--pink); }
+.note {
+  min-height: 120px;
+  border: 3px solid var(--line);
+  border-radius: 18px;
+  background: white;
+}
+.note.yellow { background: var(--yellow); min-height: 88px; }
+.note.dark { background: var(--dark); }
+.pane-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.intro, .bullets { padding: 24px; }
+.quote {
+  grid-column: 1 / -1;
+  padding: 18px 24px;
+  background: var(--dark);
+  color: white;
+}
+.quote p { margin: 0; font-size: 1.4rem; }
+.section-head { padding: 24px 24px 0; }
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px 24px 24px;
+}
+.shot {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border: 3px solid var(--line);
+  border-radius: 20px;
+  padding: 14px;
+  display: flex;
+  align-items: end;
+  background-size: cover;
+  background-position: center;
+}
+.shot figcaption {
+  display: inline-block;
+  background: rgba(255,255,255,.88);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: .9rem;
+}
+.shot1 { background: linear-gradient(135deg, #1f1c23 0%, #6d5eff 100%); }
+.shot2 { background: linear-gradient(135deg, #ff009c 0%, #ffd965 100%); }
+.shot3 { background: linear-gradient(135deg, #f5f1ea 0%, #bfb2ff 100%); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.install, .notes, .footer-card { padding: 24px; }
+.shortdesc {
+  font-size: 1.1rem;
+  max-width: 70ch;
+}
+ul, ol { margin: 0; padding-left: 20px; }
+
+@media (max-width: 900px) {
+  .hero, .content-grid, .two-col { grid-template-columns: 1fr; }
+  .quote { grid-column: auto; }
+  .shots { grid-template-columns: 1fr; }
+  .hero-art { min-height: 360px; }
+}
+ 
+    
+    </style>
+</head>
+<body>
+  <div class="paper"></div>
+  <main class="page">
+    <section class="hero card">
+      <div class="hero-copy">
+        <p class="eyebrow"> /  / </p>
+        <h1></h1>
+        <p class="dek"></p>
+        <div class="cta-row">
+          <a class="button primary" href="#download"></a>
+          <a class="button" href="#screens"></a>
+        </div>
+        <ul class="meta">
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="hero-art">
+        <div class="stack stack-a"></div>
+        <div class="stack stack-b"></div>
+        <div class="stack stack-c"></div>
+        <div class="screen">
+          <div class="window-bar"></div>
+          <div class="screen-grid">
+            <aside>
+              <span class="chip hot"></span>
+              <span class="chip"></span>
+              <span class="chip"></span>
+            </aside>
+            <section>
+              <div class="note yellow"></div>
+              <div class="pane-row">
+                <div class="note"></div>
+                <div class="note dark"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="card intro">
+        <h2></h2>
+        <p></p>
+        <p></p>
+      </div>
+
+      <div class="card bullets">
+        <h2></h2>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+
+      <div class="card quote wide">
+        <p>""</p>
+      </div>
+    </section>
+
+    <section class="card" id="screens">
+      <div class="section-head">
+        <h2>Screenshots</h2>
+        <p></p>
+      </div>
+      <div class="shots">
+        <figure class="shot shot1"><figcaption></figcaption></figure>
+        <figure class="shot shot2"><figcaption></figcaption></figure>
+        <figure class="shot shot3"><figcaption></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="card install" id="download">
+        <h2>Download / install</h2>
+        <p></p>
+        <ol>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
+
+      <div class="card notes">
+        <h2>Notes</h2>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card footer-card">
+      <h2></h2>
+      <p class="shortdesc"></p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layered Card Editorial UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a3a2f;
+      --bg-deeper: #062b22;
+      --cream: #f3efe4;
+      --lime: #cce94a;
+      --green: #57c13d;
+      --mint: #b8d8b6;
+      --lavender: #d6bfd9;
+      --blue: #5a86c8;
+      --ink: #16332d;
+      --text: #17322c;
+      --white: #ffffff;
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.14);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 28%),
+        linear-gradient(180deg, var(--bg-dark), var(--bg-deeper));
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 56px 0;
+      position: relative;
+    }
+
+    .eyebrow {
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 12px;
+    }
+
+    .display {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .title {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px;
+    }
+
+    .section-label {
+      font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0 0 14px;
+      text-transform: uppercase;
+    }
+
+    .lede,
+    .body-text {
+      font-size: 1.02rem;
+      max-width: 68ch;
+      margin: 0;
+    }
+
+    .lede {
+      font-size: 1.1rem;
+    }
+
+    .hero-wrap {
+      position: relative;
+      padding-top: 40px;
+      padding-bottom: 34px;
+    }
+
+    .stack {
+      position: relative;
+      max-width: 900px;
+    }
+
+    .stack-layer {
+      border-radius: var(--radius-xl);
+      height: 34px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: -18px;
+    }
+
+    .stack-layer.layer-1 { background: var(--green); transform: translateY(0); }
+    .stack-layer.layer-2 { background: var(--lavender); transform: translateY(28px); width: 96%; }
+    .stack-layer.layer-3 { background: var(--lime); transform: translateY(56px); width: 92%; }
+    .stack-layer.layer-4 { background: var(--mint); transform: translateY(84px); width: 88%; }
+    .stack-layer.layer-5 { background: var(--blue); transform: translateY(112px); width: 84%; }
+
+    .hero-card {
+      position: relative;
+      background: var(--cream);
+      border-radius: var(--radius-xl);
+      padding: 34px 34px 40px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .hero-kicker {
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .hero-art {
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      width: 180px;
+      rotate: -10deg;
+      background: #dbe4df;
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 20px 18px 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      text-align: center;
+      font-size: 1.4rem;
+      line-height: 1.15;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 12px;
+      bottom: 12px;
+      width: 10px;
+      background:
+        radial-gradient(circle, rgba(0,0,0,0.45) 1.2px, transparent 1.4px);
+      background-size: 10px 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+
+    .editorial-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      min-height: 720px;
+      box-shadow: var(--shadow-soft);
+      background: linear-gradient(rgba(10, 58, 47, 0.66), rgba(10, 58, 47, 0.66)),
+        url("https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80") center/cover;
+      padding: 28px;
+    }
+
+    .floating-card {
+      border-radius: var(--radius-lg);
+      padding: 26px 24px;
+      box-shadow: var(--shadow-soft);
+      margin-top: 18px;
+    }
+
+    .cream { background: var(--cream); }
+    .lime { background: var(--lime); }
+    .mint { background: var(--mint); }
+    .lavender { background: var(--lavender); }
+
+    .offset-right {
+      width: 88%;
+      margin-left: auto;
+    }
+
+    .offset-left {
+      width: 92%;
+      margin-right: auto;
+    }
+
+    .split-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .recipe-card {
+      background: var(--cream);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .recipe-card img {
+      height: 260px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .recipe-band {
+      background: var(--lime);
+      padding: 26px 22px;
+    }
+
+    .recipe-body {
+      padding: 22px;
+    }
+
+    .recipe-title {
+      font-family: "DM Serif Display", serif;
+      font-size: 2rem;
+      line-height: 0.95;
+      margin: 0;
+    }
+
+    .recipe-body ul {
+      padding-left: 18px;
+      margin: 0 0 16px;
+    }
+
+    .recipe-body li + li {
+      margin-top: 10px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      margin: 20px 0 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 16px 18px;
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .checklist li strong {
+      color: var(--lime);
+    }
+
+    .dark-card {
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--lime);
+      color: var(--ink);
+    }
+
+    .button-secondary {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      background: var(--cream);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat-number {
+      font-family: "DM Serif Display", serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .footer-note {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      padding: 20px 0 50px;
+    }
+
+    @media (max-width: 960px) {
+      .grid-2,
+      .split-cards,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .editorial-panel {
+        min-height: auto;
+      }
+
+      .hero-art {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 28px;
+        rotate: -6deg;
+      }
+
+      .stack-layer.layer-4,
+      .stack-layer.layer-5 {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 36px 0;
+      }
+
+      .hero-card,
+      .floating-card,
+      .dark-card,
+      .stat,
+      .recipe-body,
+      .recipe-band {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .editorial-panel {
+        padding: 18px;
+      }
+
+      .stack-layer.layer-3,
+      .stack-layer.layer-4,
+      .stack-layer.layer-5 {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="section hero-wrap">
+      <div class="stack">
+        <div class="hero-card">
+          <div class="hero-kicker">How-To Guide</div>
+          <h1 class="display">Layered Card<br>Editorial System</h1>
+          <p class="lede">
+            A soft, bold layout style built from stacked rounded panels, high-contrast type,
+            tinted backgrounds, and clean content blocks.
+          </p>
+
+          <div class="button-row">
+            <a class="button button-primary" href="#components">View components</a>
+            <a class="button button-secondary" href="#layout">See layout rules</a>
+          </div>
+
+          <div class="hero-art">
+            JOIN<br>THE<br>FIGHT!
+          </div>
+        </div>
+
+        <div class="stack-layer layer-1"></div>
+        <div class="stack-layer layer-2"></div>
+        <div class="stack-layer layer-3"></div>
+        <div class="stack-layer layer-4"></div>
+        <div class="stack-layer layer-5"></div>
+      </div>
+    </section>
+
+    <section class="section" id="layout">
+      <div class="grid-2">
+        <div class="editorial-panel">
+          <div class="floating-card cream offset-left">
+            <h2 class="section-label">Who this style is for</h2>
+            <p class="body-text">
+              Great for toolkits, landing pages, guides, activism resources, app explainers,
+              and GitHub project pages that need warmth and structure.
+            </p>
+          </div>
+
+          <div class="floating-card lime offset-right">
+            <h2 class="section-label">What makes it work</h2>
+            <p class="body-text">
+              Rounded panels. Big type. Layered depth. Limited palette. Tinted imagery.
+              Repetition without feeling stiff.
+            </p>
+          </div>
+
+          <div class="floating-card mint offset-left">
+            <h2 class="section-label">Core rule</h2>
+            <p class="body-text">
+              Build every section like a stack of friendly UI cards instead of a flat document.
+            </p>
+          </div>
+        </div>
+
+        <div class="dark-card">
+          <div class="eyebrow">Layout rules</div>
+          <h2 class="title">Use cards, not boxes.</h2>
+          <p class="body-text">
+            Think in layers. A large base card, a second offset card, then a highlight card.
+            Keep corners generous and spacing roomy.
+          </p>
+
+          <ul class="checklist">
+            <li><strong>Radius:</strong> 20–30px for nearly everything</li>
+            <li><strong>Spacing:</strong> 24px minimum inside content blocks</li>
+            <li><strong>Hierarchy:</strong> 1 giant headline, 1 section title, 1 body style</li>
+            <li><strong>Palette:</strong> one dark anchor, one cream neutral, 2–4 accent colors</li>
+            <li><strong>Images:</strong> always tint or darken them for cohesion</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="components">
+      <div class="eyebrow">Reusable components</div>
+      <h2 class="title" style="color: var(--white);">Split content cards</h2>
+
+      <div class="split-cards">
+        <article class="recipe-card">
+          <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=1200&q=80" alt="Drink example">
+          <div class="recipe-band">
+            <h3 class="recipe-title">Peach<br>Lemonade<br>Slushies</h3>
+          </div>
+          <div class="recipe-body">
+            <ul>
+              <li>1 mint sprig</li>
+              <li>3 sliced peaches</li>
+              <li>1 cup ice</li>
+              <li>12 oz lemonade concentrate</li>
+              <li>24 oz water</li>
+            </ul>
+            <p>Blend until smooth and garnish with mint.</p>
+          </div>
+        </article>
+
+        <article class="recipe-card">
+          <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1200&q=80" alt="Smoothie example">
+          <div class="recipe-band">
+            <h3 class="recipe-title">Vanilla<br>Matcha<br>Smoothie</h3>
+          </div>
+          <div class="recipe-body">
+            <ul>
+              <li>Vanilla matcha powder</li>
+              <li>Pineapple chunks</li>
+              <li>Coconut milk</li>
+              <li>Pineapple juice</li>
+              <li>Sweetener</li>
+            </ul>
+            <p>Serve cold, immediately after blending.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="dark-card">
+        <div class="eyebrow">Quick starter tokens</div>
+        <h2 class="title">Steal these defaults</h2>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number">24px</div>
+            <div>Default internal padding</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">30px</div>
+            <div>Large card border radius</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">3</div>
+            <div>Ideal visible layer count</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">
+      Swap the colors, fonts, and images, but keep the stacked-card logic intact and the style stays strong.
+    </p>
+  </main>
+</body>
+</html>
