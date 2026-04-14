@@ -38,25 +38,6 @@
 
 ---
 
-## ⚡ Quick Actions
-
-- [➕ New Entry](./TEMPLATES/TEMPLATE_ENTRY.md)
-- [🧠 New Note](./TEMPLATES/TEMPLATE_NOTE.md)
-- [📊 New Log](./TEMPLATES/TEMPLATE_LOG.md)
-
----
-
-## 🧩 Domains
-
-- [📖 Book](./DOMAINS/BOOK/)
-- [🏥 Health](./DOMAINS/HEALTH/)
-- [💰 Finance](./DOMAINS/FINANCE/)
-- [✈️ Travel](./DOMAINS/TRAVEL/)
-- [🔬 Research](./DOMAINS/RESEARCH/)
-- [🎬 Tracking](./DOMAINS/TRACKING/)
-
----
-
 <details>
 <summary>How to use</summary>
 
