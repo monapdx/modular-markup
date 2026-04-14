@@ -234,6 +234,18 @@ a:hover {
   text-decoration: underline;
 }
   </style>
+
+<style>
+.editable-cell {
+  cursor: text;
+}
+.editable-cell:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  background: #fff8c5;
+}
+</style>
+
 </head>
 <body>
 <h1 id="dashboard">🏠 Dashboard</h1>
@@ -321,5 +333,16 @@ Recent Pages
 <li><a href="./PAGES/PAGE_02.md">PAGE_02</a></li>
 </ul>
 </details>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('table td, table th').forEach(function (cell) {
+    cell.setAttribute('contenteditable', 'true');
+    cell.setAttribute('spellcheck', 'false');
+    cell.classList.add('editable-cell');
+  });
+});
+</script>
+
 </body>
 </html>

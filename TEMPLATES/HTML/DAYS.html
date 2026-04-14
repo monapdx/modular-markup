@@ -234,6 +234,29 @@ a:hover {
   text-decoration: underline;
 }
   </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('table td, table th').forEach(function (cell) {
+    cell.setAttribute('contenteditable', 'true');
+    cell.setAttribute('spellcheck', 'false');
+  });
+});
+</script>
+<style>
+table td[contenteditable="true"],
+table th[contenteditable="true"] {
+  cursor: text;
+}
+
+table td[contenteditable="true"]:focus,
+table th[contenteditable="true"]:focus {
+  outline: 2px solid #8a2be2;
+  outline-offset: -2px;
+  background: #fff8d6;
+}
+</style>
+
 </head>
 <body>
 <h1 id="day-1">📅 Day 1</h1>

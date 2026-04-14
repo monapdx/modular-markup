@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Notes-Templates</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>Notes-Templates</title>
+<style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -234,68 +235,31 @@ a:hover {
   text-decoration: underline;
 }
   </style>
-</head>
+<style>
+/* Editable table cells */
+table th[contenteditable="true"],
+table td[contenteditable="true"] {
+  cursor: text;
+}
+
+table th[contenteditable="true"]:focus,
+table td[contenteditable="true"]:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  background: #fff8c5;
+}
+</style></head>
 <body>
 <h1 id="templates">🧩 Templates</h1>
-<p><a href="TEMPLATES/DASHBOARD.md"><img
-src="https://img.shields.io/badge/%F0%9F%A7%AE%20Dashboard-8a2be2?style=for-the-badge"
-alt="Dashboard" /></a> <a href="TEMPLATES/INDEX.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%81%20Index-8a2be2?style=for-the-badge"
-alt="Index" /></a> <a href="TEMPLATES/TEMPLATES.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%9A%20Templates-8a2be2?style=for-the-badge"
-alt="Templates" /></a> <a href="TEMPLATES/APP_SHELL_TEMPLATE.md"><img
-src="https://img.shields.io/badge/%F0%9F%92%96%20App-8a2be2?style=for-the-badge"
-alt="App" /></a></p>
-<hr />
-<p><a href="TEMPLATES/LOG.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%8A%20Log-1f6feb?style=for-the-badge"
-alt="Log" /></a> <a href="TEMPLATES/BUDGET.md"><img
-src="https://img.shields.io/badge/%F0%9F%92%B8%20Budget-1f6feb?style=for-the-badge"
-alt="Budget" /></a> <a href="TEMPLATES/calendar.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%86%20Calendar-1f6feb?style=for-the-badge"
-alt="Calendar" /></a> <a href="TEMPLATES/CHECKLIST.md"><img
-src="https://img.shields.io/badge/%E2%9C%85%20Checklist-1f6feb?style=for-the-badge"
-alt="Checklist" /></a> <a href="TEMPLATES/ENTRY.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%8C%20Entry-1f6feb?style=for-the-badge"
-alt="Entry" /></a> <a href="TEMPLATES/ER_VISITS.md"><img
-src="https://img.shields.io/badge/%F0%9F%8F%A5%20ER%20Visits-1f6feb?style=for-the-badge"
-alt="ER Visits" /></a> <a href="TEMPLATES/FLIGHTS.md"><img
-src="https://img.shields.io/badge/%E2%9C%88%EF%B8%8F%20Flights-1f6feb?style=for-the-badge"
-alt="Flights" /></a> <a href="TEMPLATES/HOTEL.md"><img
-src="https://img.shields.io/badge/%F0%9F%8F%A8%20Hotel-1f6feb?style=for-the-badge"
-alt="Hotel" /></a> <a href="TEMPLATES/DOCTOR_APPOINTMENTS.md"><img
-src="https://img.shields.io/badge/%F0%9F%A9%BA%20Doctor%20Appointments-1f6feb?style=for-the-badge"
-alt="Doctor Appointments" /></a> <a href="TEMPLATES/IDEA.md"><img
-src="https://img.shields.io/badge/%E2%AD%90%20Idea-1f6feb?style=for-the-badge"
-alt="Idea" /></a> <a href="TEMPLATES/MOVIES.md"><img
-src="https://img.shields.io/badge/%F0%9F%8D%BF%20Movies-1f6feb?style=for-the-badge"
-alt="Movies" /></a> <a href="TEMPLATES/health.md"><img
-src="https://img.shields.io/badge/%F0%9F%92%8A%20Health-1f6feb?style=for-the-badge"
-alt="Health" /></a> <a href="TEMPLATES/QUOTE_LOG.md"><img
-src="https://img.shields.io/badge/%F0%9F%92%AC%20Quote%20Log-1f6feb?style=for-the-badge"
-alt="Quote Log" /></a> <a href="TEMPLATES/PROJECT.md"><img
-src="https://img.shields.io/badge/%F0%9F%91%89%20Project-1f6feb?style=for-the-badge"
-alt="Project" /></a> <a href="TEMPLATES/EXPENSES.md"><img
-src="https://img.shields.io/badge/%F0%9F%92%B0%20Expenses-1f6feb?style=for-the-badge"
-alt="Expenses" /></a> <a href="TEMPLATES/BOOK_METADATA.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%96%20Book%20Metadata-1f6feb?style=for-the-badge"
-alt="Book Metadata" /></a> <a href="TEMPLATES/PROGRESS.md"><img
-src="https://img.shields.io/badge/%E2%9C%A8%20Progress-1f6feb?style=for-the-badge"
-alt="Progress" /></a> <a href="TEMPLATES/KNOWLEDGE_MAP.md"><img
-src="https://img.shields.io/badge/%F0%9F%A7%A9%20Knowledge%20Map-1f6feb?style=for-the-badge"
-alt="Knowledge Map" /></a> <a href="TEMPLATES/SYMPTOMS.md"><img
-src="https://img.shields.io/badge/%F0%9F%92%89%20Symptoms-1f6feb?style=for-the-badge"
-alt="Symptoms" /></a> <a href="TEMPLATES/DAYS.md"><img
-src="https://img.shields.io/badge/%E2%9C%85%20Days-1f6feb?style=for-the-badge"
-alt="Days" /></a> <a href="TEMPLATES/INDEX.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%81%20Index-1f6feb?style=for-the-badge"
-alt="Index" /></a></p>
+<p><a href="TEMPLATES/DASHBOARD.md"><img alt="Dashboard" src="https://img.shields.io/badge/%F0%9F%A7%AE%20Dashboard-8a2be2?style=for-the-badge"/></a> <a href="TEMPLATES/INDEX.md"><img alt="Index" src="https://img.shields.io/badge/%F0%9F%93%81%20Index-8a2be2?style=for-the-badge"/></a> <a href="TEMPLATES/TEMPLATES.md"><img alt="Templates" src="https://img.shields.io/badge/%F0%9F%93%9A%20Templates-8a2be2?style=for-the-badge"/></a> <a href="TEMPLATES/APP_SHELL_TEMPLATE.md"><img alt="App" src="https://img.shields.io/badge/%F0%9F%92%96%20App-8a2be2?style=for-the-badge"/></a></p>
+<hr/>
+<p><a href="TEMPLATES/LOG.md"><img alt="Log" src="https://img.shields.io/badge/%F0%9F%93%8A%20Log-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/BUDGET.md"><img alt="Budget" src="https://img.shields.io/badge/%F0%9F%92%B8%20Budget-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/calendar.md"><img alt="Calendar" src="https://img.shields.io/badge/%F0%9F%93%86%20Calendar-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/CHECKLIST.md"><img alt="Checklist" src="https://img.shields.io/badge/%E2%9C%85%20Checklist-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/ENTRY.md"><img alt="Entry" src="https://img.shields.io/badge/%F0%9F%93%8C%20Entry-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/ER_VISITS.md"><img alt="ER Visits" src="https://img.shields.io/badge/%F0%9F%8F%A5%20ER%20Visits-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/FLIGHTS.md"><img alt="Flights" src="https://img.shields.io/badge/%E2%9C%88%EF%B8%8F%20Flights-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/HOTEL.md"><img alt="Hotel" src="https://img.shields.io/badge/%F0%9F%8F%A8%20Hotel-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/DOCTOR_APPOINTMENTS.md"><img alt="Doctor Appointments" src="https://img.shields.io/badge/%F0%9F%A9%BA%20Doctor%20Appointments-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/IDEA.md"><img alt="Idea" src="https://img.shields.io/badge/%E2%AD%90%20Idea-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/MOVIES.md"><img alt="Movies" src="https://img.shields.io/badge/%F0%9F%8D%BF%20Movies-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/health.md"><img alt="Health" src="https://img.shields.io/badge/%F0%9F%92%8A%20Health-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/QUOTE_LOG.md"><img alt="Quote Log" src="https://img.shields.io/badge/%F0%9F%92%AC%20Quote%20Log-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/PROJECT.md"><img alt="Project" src="https://img.shields.io/badge/%F0%9F%91%89%20Project-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/EXPENSES.md"><img alt="Expenses" src="https://img.shields.io/badge/%F0%9F%92%B0%20Expenses-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/BOOK_METADATA.md"><img alt="Book Metadata" src="https://img.shields.io/badge/%F0%9F%93%96%20Book%20Metadata-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/PROGRESS.md"><img alt="Progress" src="https://img.shields.io/badge/%E2%9C%A8%20Progress-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/KNOWLEDGE_MAP.md"><img alt="Knowledge Map" src="https://img.shields.io/badge/%F0%9F%A7%A9%20Knowledge%20Map-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/SYMPTOMS.md"><img alt="Symptoms" src="https://img.shields.io/badge/%F0%9F%92%89%20Symptoms-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/DAYS.md"><img alt="Days" src="https://img.shields.io/badge/%E2%9C%85%20Days-1f6feb?style=for-the-badge"/></a> <a href="TEMPLATES/INDEX.md"><img alt="Index" src="https://img.shields.io/badge/%F0%9F%93%81%20Index-1f6feb?style=for-the-badge"/></a></p>
 <h2 id="available-templates">Available Templates</h2>
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 33%"/>
+<col style="width: 33%"/>
+<col style="width: 33%"/>
 </colgroup>
 <thead>
 <tr>
@@ -342,7 +306,7 @@ alt="Index" /></a></p>
 </tr>
 </tbody>
 </table>
-<hr />
+<hr/>
 <h2 id="suggested-workflow">Suggested Workflow</h2>
 <ol type="1">
 <li>Open a template</li>
@@ -350,8 +314,18 @@ alt="Index" /></a></p>
 <li>Save as a new markdown file</li>
 <li>Add link to <code>INDEX.md</code> or <code>DASHBOARD.md</code></li>
 </ol>
-<hr />
+<hr/>
 <p><a href="./DASHBOARD.md">← Dashboard</a> | <a href="./INDEX.md">↑
 Index</a> | <a href="./ARCHIVE.md">Archive →</a></p>
-</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("table").forEach(function (table) {
+    table.querySelectorAll("th, td").forEach(function (cell) {
+      cell.setAttribute("contenteditable", "true");
+      cell.setAttribute("spellcheck", "false");
+      cell.setAttribute("tabindex", "0");
+    });
+  });
+});
+</script></body>
 </html>

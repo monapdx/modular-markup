@@ -233,6 +233,18 @@ a {
 a:hover {
   text-decoration: underline;
 }
+  
+/* Editable table cells */
+.editable-cell {
+  cursor: text;
+}
+
+.editable-cell:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  background: #fffef0;
+}
+
   </style>
 </head>
 <body>
@@ -264,5 +276,22 @@ a:hover {
 </blockquote>
 <p>Analysis below.</p>
 </details>
+
+<script>
+(function () {
+  function makeTablesEditable() {
+    document.querySelectorAll("table").forEach((table) => {
+      table.querySelectorAll("td, th").forEach((cell) => {
+        cell.setAttribute("contenteditable", "true");
+        cell.setAttribute("spellcheck", "false");
+        cell.classList.add("editable-cell");
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", makeTablesEditable);
+})();
+</script>
+
 </body>
 </html>

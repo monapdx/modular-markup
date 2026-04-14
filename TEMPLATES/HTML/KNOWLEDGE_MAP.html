@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>KNOWLEDGE_MAP</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>KNOWLEDGE_MAP</title>
+<style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -235,7 +236,20 @@ a:hover {
 }
     
   </style>
-</head>
+<style>
+/* Editable table cells */
+table th[contenteditable="true"],
+table td[contenteditable="true"] {
+  cursor: text;
+}
+
+table th[contenteditable="true"]:focus,
+table td[contenteditable="true"]:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  background: #fff8c5;
+}
+</style></head>
 <body>
 <h1 id="knowledge-map">🧠 Knowledge Map</h1>
 <h2 id="nodes">🔵 Nodes</h2>
@@ -261,7 +275,7 @@ a:hover {
 </tr>
 </tbody>
 </table>
-<hr />
+<hr/>
 <h2 id="edges">🔗 Edges</h2>
 <table>
 <thead>
@@ -284,12 +298,22 @@ a:hover {
 </tr>
 </tbody>
 </table>
-<hr />
+<hr/>
 <details>
 <summary>
 📌 Notes
 </summary>
 <p>Explain relationships and logic here.</p>
 </details>
-</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("table").forEach(function (table) {
+    table.querySelectorAll("th, td").forEach(function (cell) {
+      cell.setAttribute("contenteditable", "true");
+      cell.setAttribute("spellcheck", "false");
+      cell.setAttribute("tabindex", "0");
+    });
+  });
+});
+</script></body>
 </html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>PROJECT</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>PROJECT</title>
+<style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -234,18 +235,41 @@ a:hover {
   text-decoration: underline;
 }
   </style>
-</head>
+<style>
+/* Editable table cells */
+table th[contenteditable="true"],
+table td[contenteditable="true"] {
+  cursor: text;
+}
+
+table th[contenteditable="true"]:focus,
+table td[contenteditable="true"]:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  background: #fff8c5;
+}
+</style></head>
 <body>
 <h1 id="project">🚀 Project</h1>
 <h2 id="overview">Overview</h2>
-<hr />
+<hr/>
 <h2 id="tasks">Tasks</h2>
 <ul class="task-list">
-<li><label><input type="checkbox" />Task 1</label></li>
-<li><label><input type="checkbox" />Task 2</label></li>
+<li><label><input type="checkbox"/>Task 1</label></li>
+<li><label><input type="checkbox"/>Task 2</label></li>
 </ul>
-<hr />
+<hr/>
 <h2 id="progress">Progress</h2>
 <p><code>████░░░░░ 40%</code></p>
-</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("table").forEach(function (table) {
+    table.querySelectorAll("th, td").forEach(function (cell) {
+      cell.setAttribute("contenteditable", "true");
+      cell.setAttribute("spellcheck", "false");
+      cell.setAttribute("tabindex", "0");
+    });
+  });
+});
+</script></body>
 </html>

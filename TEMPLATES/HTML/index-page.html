@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>INDEX</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>INDEX</title>
+<style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -234,20 +235,25 @@ a:hover {
   text-decoration: underline;
 }
   </style>
-</head>
+<style>
+/* Editable table cells */
+table th[contenteditable="true"],
+table td[contenteditable="true"] {
+  cursor: text;
+}
+
+table th[contenteditable="true"]:focus,
+table td[contenteditable="true"]:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  background: #fff8c5;
+}
+</style></head>
 <body>
 <h1 id="index">🗂️ Index</h1>
-<img src="https://raw.githubusercontent.com/monapdx/life-os/refs/heads/main/TEMPLATES/HTML/index.gif">
-<p><a href="TEMPLATES/DASHBOARD.md"><img
-src="https://img.shields.io/badge/%F0%9F%A7%AE%20Dashboard-8a2be2?style=for-the-badge"
-alt="Dashboard" /></a> <a href="TEMPLATES/INDEX.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%81%20Index-8a2be2?style=for-the-badge"
-alt="Index" /></a> <a href="TEMPLATES/TEMPLATES.md"><img
-src="https://img.shields.io/badge/%F0%9F%93%9A%20Templates-8a2be2?style=for-the-badge"
-alt="Templates" /></a> <a href="TEMPLATES/APP_SHELL_TEMPLATE.md"><img
-src="https://img.shields.io/badge/%F0%9F%92%96%20App-8a2be2?style=for-the-badge"
-alt="App" /></a></p>
-<hr />
+<img src="https://raw.githubusercontent.com/monapdx/life-os/refs/heads/main/TEMPLATES/HTML/index.gif"/>
+<p><a href="TEMPLATES/DASHBOARD.md"><img alt="Dashboard" src="https://img.shields.io/badge/%F0%9F%A7%AE%20Dashboard-8a2be2?style=for-the-badge"/></a> <a href="TEMPLATES/INDEX.md"><img alt="Index" src="https://img.shields.io/badge/%F0%9F%93%81%20Index-8a2be2?style=for-the-badge"/></a> <a href="TEMPLATES/TEMPLATES.md"><img alt="Templates" src="https://img.shields.io/badge/%F0%9F%93%9A%20Templates-8a2be2?style=for-the-badge"/></a> <a href="TEMPLATES/APP_SHELL_TEMPLATE.md"><img alt="App" src="https://img.shields.io/badge/%F0%9F%92%96%20App-8a2be2?style=for-the-badge"/></a></p>
+<hr/>
 <h2 id="core">Core</h2>
 <ul>
 <li><a href="./DASHBOARD.md">Dashboard</a></li>
@@ -255,7 +261,7 @@ alt="App" /></a></p>
 <li><a href="./LOG.md">Log</a></li>
 <li><a href="./ARCHIVE.md">Archive</a></li>
 </ul>
-<hr />
+<hr/>
 <h2 id="templates">Templates</h2>
 <ul>
 <li><a href="./TEMPLATES.md">Templates</a></li>
@@ -263,11 +269,21 @@ alt="App" /></a></p>
 <li><a href="./TEMPLATES/TEMPLATE_NOTE.md">Note</a></li>
 <li><a href="./TEMPLATES/TEMPLATE_LOG.md">Log</a></li>
 </ul>
-<hr />
+<hr/>
 <h2 id="pages">Pages</h2>
 <ul>
 <li><a href="./PAGES/PAGE_01.md">PAGE_01</a></li>
 <li><a href="./PAGES/PAGE_02.md">PAGE_02</a></li>
 </ul>
-</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("table").forEach(function (table) {
+    table.querySelectorAll("th, td").forEach(function (cell) {
+      cell.setAttribute("contenteditable", "true");
+      cell.setAttribute("spellcheck", "false");
+      cell.setAttribute("tabindex", "0");
+    });
+  });
+});
+</script></body>
 </html>
