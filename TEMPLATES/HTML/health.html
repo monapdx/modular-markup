@@ -295,23 +295,44 @@ alt="App" /></a></p>
 </table>
 <hr />
 <h2 id="status">Status</h2>
-<table>
-<thead>
-<tr>
-<th>Area</th>
-<th>Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Symptoms</td>
-<td>🟡</td>
-</tr>
-<tr>
-<td>Appointments</td>
-<td>🟢</td>
-</tr>
-</tbody>
-</table>
+<div class="item">
+  <label>Health: <span>70%</span></label>
+  <input type="range" value="70">
+</div>
+
+<div class="item">
+  <label>Energy: <span>40%</span></label>
+  <input type="range" value="40">
+</div>
+
+<style>
+  .item {
+    max-width: 400px;
+    margin-bottom: 20px;
+    font-family: Arial;
+  }
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".item").forEach(item => {
+    const slider = item.querySelector("input");
+    const label = item.querySelector("span");
+
+    slider.addEventListener("input", () => {
+      label.textContent = slider.value + "%";
+    });
+  });
+</script>
 </body>
 </html>

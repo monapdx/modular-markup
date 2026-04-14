@@ -260,7 +260,73 @@ table td[contenteditable="true"]:focus {
 </ul>
 <hr/>
 <h2 id="progress">Progress</h2>
-<p><code>████░░░░░ 40%</code></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Styled Slider</title>
+
+<style>
+  body {
+    font-family: Arial;
+    padding: 30px;
+  }
+
+  .slider-wrap {
+    max-width: 500px;
+  }
+
+  .value {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    appearance: none;
+    height: 14px;
+    border-radius: 999px;
+    background: linear-gradient(to right, #4caf50 50%, #ddd 50%);
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #333;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="slider-wrap">
+  <div class="value" id="val">50%</div>
+  <input type="range" min="0" max="100" value="50" id="range">
+</div>
+
+<script>
+  const range = document.getElementById("range");
+  const val = document.getElementById("val");
+
+  function update() {
+    const v = range.value;
+    val.textContent = v + "%";
+    range.style.background = `linear-gradient(to right, #4caf50 ${v}%, #ddd ${v}%)`;
+  }
+
+  range.addEventListener("input", update);
+  update();
+</script>
+
+</body>
+</html>
+
+</body>
+</html>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("table").forEach(function (table) {

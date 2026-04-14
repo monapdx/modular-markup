@@ -278,7 +278,45 @@ alt="App" /></a></p>
 <summary>
 Extra details
 </summary>
-<p>More content here.</p>
+<div class="item">
+  <label>Health: <span>70%</span></label>
+  <input type="range" value="70">
+</div>
+
+<div class="item">
+  <label>Energy: <span>40%</span></label>
+  <input type="range" value="40">
+</div>
+
+<style>
+  .item {
+    max-width: 400px;
+    margin-bottom: 20px;
+    font-family: Arial;
+  }
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".item").forEach(item => {
+    const slider = item.querySelector("input");
+    const label = item.querySelector("span");
+
+    slider.addEventListener("input", () => {
+      label.textContent = slider.value + "%";
+    });
+  });
+</script>
 </details>
 <hr />
 <h2 id="related">Related</h2>
