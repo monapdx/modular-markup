@@ -1,4 +1,0 @@
-# 🎯 Goal
-
-- Goal:
-- Deadline:

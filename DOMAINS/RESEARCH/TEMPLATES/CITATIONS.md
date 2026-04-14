@@ -1,3 +1,0 @@
-# 📚 Citations
-
-- Author, Title, Year

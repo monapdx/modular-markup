@@ -1,4 +1,0 @@
-# 🏦 Bank Accounts
-
-- Bank:
-- Balance:

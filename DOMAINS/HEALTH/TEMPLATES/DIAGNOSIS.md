@@ -1,5 +1,0 @@
-# 📄 Diagnosis
-
-- Condition:
-- Date:
-- Notes:

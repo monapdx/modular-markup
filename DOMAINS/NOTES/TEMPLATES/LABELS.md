@@ -1,5 +1,0 @@
-# 🏷️ Labels
-
-- #idea
-- #important
-- #todo

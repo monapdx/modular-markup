@@ -1,3 +1,0 @@
-# 📚 Books
-
-- Title — Progress — Notes

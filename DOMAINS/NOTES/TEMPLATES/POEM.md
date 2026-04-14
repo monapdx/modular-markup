@@ -1,5 +1,0 @@
-# 📝 Poem
-
-Title
-
-Text here.

@@ -1,4 +1,0 @@
-# 💳 Credit Cards
-
-- Card:
-- Balance:

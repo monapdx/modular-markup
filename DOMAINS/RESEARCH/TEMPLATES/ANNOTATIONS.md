@@ -1,4 +1,0 @@
-# 📝 Annotations
-
-- Note:
-- Source:

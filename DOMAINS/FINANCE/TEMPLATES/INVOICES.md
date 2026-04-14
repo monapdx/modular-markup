@@ -1,5 +1,0 @@
-# 🧾 Invoices
-
-- Client:
-- Amount:
-- Status:

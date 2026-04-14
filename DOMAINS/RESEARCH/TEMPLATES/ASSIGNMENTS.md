@@ -1,4 +1,0 @@
-# 📝 Assignments
-
-- Task:
-- Due:

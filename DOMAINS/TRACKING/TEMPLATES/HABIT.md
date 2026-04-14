@@ -1,5 +1,0 @@
-# 🔁 Habit
-
-- Habit:
-- Frequency:
-- Notes:

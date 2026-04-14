@@ -1,5 +1,0 @@
-# 💊 Prescriptions
-
-- Medication:
-- Dose:
-- Notes:

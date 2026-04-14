@@ -1,3 +1,0 @@
-# 📚 Resources
-
-- Title — Link — Notes
