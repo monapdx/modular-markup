@@ -29,12 +29,7 @@
 
 ## 🧩 Domains
 
-- [📖 Book](./DOMAINS/BOOK/)
-- [🏥 Health](./DOMAINS/HEALTH/)
-- [💰 Finance](./DOMAINS/FINANCE/)
-- [✈️ Travel](./DOMAINS/TRAVEL/)
-- [🔬 Research](./DOMAINS/RESEARCH/)
-- [🎬 Tracking](./DOMAINS/TRACKING/)
+
 
 ---
 
