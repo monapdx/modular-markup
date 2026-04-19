@@ -2,8 +2,6 @@
 
 > A GitHub-based personal system for notes, tracking, planning, and data ownership.
 
-![My Screenshot](https://raw.githubusercontent.com/monapdx/life-os/refs/heads/main/TEMPLATES/HTML/Life-OS-4-14-2026.gif)
-
 ---
 
 ## Main
