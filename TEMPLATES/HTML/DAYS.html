@@ -233,6 +233,181 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+     
+      color: #1b1b1b;
+    }
+
+    .container {
+      width: 100%;
+      min-height: 100vh;
+      padding: 20px 12px;
+      
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .categories_item {
+      flex: 1 1 calc(25% - 12px);
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 2px solid navy;
+      border-radius: 16px;
+      padding: 24px 18px;
+      color: #111;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .categories_item span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#a1::before,
+#b1::before,
+#c1::before,
+#d1::before,
+#e1::before,
+#f1::before,
+#g1::before,
+#h1::before,
+#i1::before {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #111;
+}
+
+#a1::before { content: "🍴 Eat"; }
+#b1::before { content: "📌 Work"; }
+#c1::before { content: "💤 Rest"; }
+#d1::before { content: "✈️ Travel"; }
+#e1::before { content: "🧼 Clean"; }
+#f1::before { content: "🌍 Online"; }
+#g1::before { content: "✍🏻 Write"; }
+#h1::before { content: "💡 Idea"; }
+#i1::before { content: "✨ Code"; }
+
+    .categories_item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      filter: brightness(1.03);
+    }
+
+    .categories_item:active {
+      transform: scale(0.98);
+    }
+
+    .button-wrap {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    #button1 {
+      background: linear-gradient(135deg, #4caf50, #2e8b57);
+      border: none;
+      color: white;
+      padding: 16px 28px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 6px 16px rgba(76, 175, 80, 0.3);
+    }
+
+    #button1:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(76, 175, 80, 0.35);
+      filter: brightness(1.05);
+    }
+
+    #button1:active {
+      transform: scale(0.97);
+    }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .categories_item {
+        flex: 1 1 calc(50% - 12px);
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .container {
+        padding: 14px 10px;
+      }
+
+      .content {
+        padding: 16px;
+        border-radius: 14px;
+      }
+
+      .categories {
+        gap: 10px;
+      }
+
+      .categories_item {
+        flex: 1 1 100%;
+        min-width: unset;
+        padding: 18px 14px;
+        font-size: 1rem;
+      }
+
+      #button1 {
+        width: 100%;
+        padding: 16px;
+      }
+    }
+    
+    .categories_item span:first-child {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.categories_item span:last-child {
+  font-size: 1.6rem;
+  color: #333;
   </style>
 
 <script>
@@ -260,6 +435,7 @@ table th[contenteditable="true"]:focus {
 </head>
 <body>
 <h1 id="day-1">📅 Day 1</h1>
+
 <h2 id="plan">🗺️ Plan</h2>
 <table>
 <thead>
