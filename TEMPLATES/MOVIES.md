@@ -10,3 +10,4 @@
 |------|--------|--------|------|
 | *Three Billboards Outside Ebbing, Missouri*     | ⭐⭐⭐⭐ |[![Seen](https://img.shields.io/badge/%F0%9F%8D%BFSeen-111111?style=for-the-badge)](#)|  2017    |
 | *Florence Foster Jenkins*     | ⭐⭐⭐⭐ |[![Seen](https://img.shields.io/badge/%F0%9F%8D%BFSeen-111111?style=for-the-badge)](#)|  2016    |
+| *Wonder Woman*     | ⭐⭐⭐⭐ |[![Seen](https://img.shields.io/badge/%F0%9F%8D%BFSeen-111111?style=for-the-badge)](#)|  2017    |

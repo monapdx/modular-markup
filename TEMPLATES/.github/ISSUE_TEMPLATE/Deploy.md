@@ -1,0 +1,37 @@
+
+name: 🚀 Deploy
+description: Track a deployment or release
+title: "🚀 Deploy: "
+labels: ["deploy"]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Project
+      placeholder: Repo or app name
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: What changed?
+      placeholder: Summary of updates
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-Deploy Checklist
+      options:
+        - label: ✅ Code tested
+        - label: 📄 README updated
+        - label: 🔗 Links working
+        - label: 🚫 No obvious errors
+
+  - type: textarea
+    id: result
+    attributes:
+      label: Result
+      placeholder: Success? Errors? Notes?
+
+#yml #issue #template 

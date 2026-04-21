@@ -1,0 +1,95 @@
+
+name: 🧩 Experiment / Prototype
+description: Share a parser idea, syntax experiment, mock implementation, or prototype.
+title: "[Experiment]: "
+labels:
+  - experiment
+  - prototype
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to share an experiment, prototype, parser idea, or test implementation for **re:imagined**.
+
+        This can be rough. Early explorations are welcome.
+
+  - type: input
+    id: link
+    attributes:
+      label: Link to code, gist, demo, or branch
+      description: Paste a GitHub link, gist, CodePen, screenshot link, or repo link.
+      placeholder: https://github.com/...
+    validations:
+      required: false
+
+  - type: textarea
+    id: concept
+    attributes:
+      label: What did you build or test?
+      description: Describe the experiment clearly.
+      placeholder: I built a small parser prototype to test labeled spacing declarations.
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: What were you trying to learn?
+      description: What question was this experiment meant to answer?
+      placeholder: Whether explicit labels can stay readable while still being parsed simply.
+    validations:
+      required: true
+
+  - type: textarea
+    id: findings
+    attributes:
+      label: What did you find?
+      description: Share results, observations, surprises, and failures.
+      placeholder: |
+        - Parsing was straightforward
+        - Normalization rules became clearer than expected
+        - Nested refinements felt clumsy
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Example input/output
+      description: Include sample syntax, parsed output, or transformations.
+      placeholder: |
+        Input:
+        padding x: 2rem
+        padding y: 1rem
+
+        Output:
+        { padding: { x: "2rem", y: "1rem" } }
+    validations:
+      required: false
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Experiment status
+      options:
+        - Very rough idea
+        - Partial prototype
+        - Working proof of concept
+        - Parser experiment
+        - Needs feedback
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: help_needed
+    attributes:
+      label: Feedback wanted
+      options:
+        - label: Syntax feedback
+        - label: Parsing feedback
+        - label: Naming feedback
+        - label: Documentation help
+        - label: Edge cases
+        - label: General critique
+
+#yml #issue #template 

@@ -1,0 +1,65 @@
+name: Add annotation candidate
+description: Suggest a word, phrase, or reference that may need a footnote
+title: "[Entry]: "
+labels: ["submission", "needs-review"]
+
+body:
+  - type: input
+    id: term
+    attributes:
+      label: Term or phrase
+      description: The word or phrase you encountered
+      placeholder: e.g. "a living"
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source text (Project Gutenberg link preferred)
+      description: Where did you encounter this?
+      placeholder: https://www.gutenberg.org/ebooks/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why might this need a footnote?
+      description: What might confuse a modern reader?
+      placeholder: This term refers to a church benefice, which may not be obvious today.
+    validations:
+      required: true
+
+  - type: textarea
+    id: gloss
+    attributes:
+      label: Suggested explanation (optional)
+      description: A short gloss or definition
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example sentence (optional)
+      description: Paste a sentence from the text if helpful
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category (optional)
+      options:
+        - archaic word
+        - semantic shift
+        - historical phrase
+        - historical reference
+        - religious
+        - legal
+        - social custom
+        - other
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes (optional)
+
+#template #github
