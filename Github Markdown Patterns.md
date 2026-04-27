@@ -9,7 +9,7 @@ Hidden content here.
 
 ### Callout Blockquotes
 
-> [!NOTE]
+
 > Important note here.
 
 ### Dashboard Tables
