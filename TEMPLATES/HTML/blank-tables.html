@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Editable Table Template</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.5;
+    }
+
+    h1, h2 {
+      margin-top: 32px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 32px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f2f2f2;
+      font-weight: bold;
+    }
+
+    td[contenteditable="true"] {
+      background: #fff;
+      cursor: text;
+    }
+
+    td[contenteditable="true"]:focus {
+      outline: 2px solid #ff00aa;
+      background: #fff;
+    }
+	
+	tbody tr:nth-child(even) td {
+  background:#fffbe6; /* or whatever color you want */
+}
+
+select {
+  width: 100%;
+  padding: 8px 36px 8px 10px;
+  font: inherit;
+  border: 2px solid #000;
+
+  background: #ff00aa; /* neon pink */
+  color: #000;
+
+  color: #fff;
+
+  appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 20 20' width='20'><path d='M5 7l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+
+  box-shadow: 3px 3px 0 #000;
+}
+
+/* hover = subtle shift */
+select:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* active press */
+select:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+/* focus */
+select:focus {
+  outline: 2px solid #ff00aa;
+}
+
+    details {
+      border: 1px solid #ccc;
+      padding: 12px 16px;
+      margin-top: 24px;
+      background: #fafafa;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Concepts -->
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td>
+<select>
+<option>concept</option>
+<option>entity</option>
+<option>event</option>
+<option>process</option>
+<option>tag</option>
+<option>source</option>
+</select>
+</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+</tbody>
+</table>
+
+<!-- Relationships -->
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td>
+<select>
+<option>causes</option>
+<option>depends_on</option>
+<option>contradicts</option>
+</select>
+</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+</tbody>
+</table>
+
+<!-- Generic 2-column table -->
+<table>
+<thead>
+<tr>
+<th>col_1</th>
+<th>col_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+</tbody>
+</table>
+
+<script>
+const typeOptions = ["concept", "entity", "event", "process", "tag", "source"];
+const relationshipOptions = ["causes", "depends_on", "contradicts"];
+
+function createSelect(options) {
+  const select = document.createElement("select");
+
+  options.forEach(value => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = value;
+    select.appendChild(option);
+  });
+
+  return select;
+}
+
+function addRow(table, tableIndex) {
+  const tbody = table.querySelector("tbody");
+  const firstRow = tbody.querySelector("tr");
+  const cellCount = firstRow.children.length;
+  const row = document.createElement("tr");
+
+  for (let i = 0; i < cellCount; i++) {
+    const td = document.createElement("td");
+
+    // First table, 4th column = type dropdown
+    if (tableIndex === 0 && i === 3) {
+      td.appendChild(createSelect(typeOptions));
+    }
+
+    // Second table, 4th column = relationship_type dropdown
+    else if (tableIndex === 1 && i === 3) {
+      td.appendChild(createSelect(relationshipOptions));
+    }
+
+    // Everything else = editable blank cell
+    else {
+      td.contentEditable = "true";
+      td.textContent = "";
+    }
+
+    row.appendChild(td);
+  }
+
+  tbody.appendChild(row);
+}
+
+document.querySelectorAll("table").forEach((table, tableIndex) => {
+  const btn = document.createElement("button");
+  btn.textContent = "+ Add row";
+  btn.className = "add-row-button";
+  btn.addEventListener("click", () => addRow(table, tableIndex));
+  table.after(btn);
+});
+</script>
+
+</body>
+</html>

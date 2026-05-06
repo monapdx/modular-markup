@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Knowledge Map</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.5;
+    }
+
+    h1, h2 {
+      margin-top: 32px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 32px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f2f2f2;
+      font-weight: bold;
+    }
+
+    td[contenteditable="true"] {
+      background: #fff;
+      cursor: text;
+    }
+
+    td[contenteditable="true"]:focus {
+      outline: 2px solid #ff00aa;
+      background: #fff;
+    }
+	
+	tbody tr:nth-child(even) td {
+  background:#fffbe6; /* or whatever color you want */
+}
+
+select {
+  width: 100%;
+  padding: 8px 36px 8px 10px;
+  font: inherit;
+  border: 2px solid #000;
+
+  background: #ff00aa; /* neon pink */
+  color: #000;
+
+  color: #fff;
+
+  appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 20 20' width='20'><path d='M5 7l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+
+  box-shadow: 3px 3px 0 #000;
+}
+
+/* hover = subtle shift */
+select:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* active press */
+select:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+/* focus */
+select:focus {
+  outline: 2px solid #ff00aa;
+}
+
+    details {
+      border: 1px solid #ccc;
+      padding: 12px 16px;
+      margin-top: 24px;
+      background: #fafafa;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 Knowledge Map</h1>
+
+  <h2>Concepts</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>description</th>
+        <th>type</th>
+        <th>created_at</th>
+        <th>updated_at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Photosynthesis</td>
+        <td contenteditable="true">Process where plants convert light into chemical energy</td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">Sunlight</td>
+        <td contenteditable="true">Light energy emitted by the sun</td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">Chlorophyll</td>
+        <td contenteditable="true">Pigment that absorbs light in plants</td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">Plant Cell</td>
+        <td contenteditable="true">Basic structural unit of plants</td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Relationships</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>source_id</th>
+        <th>target_id</th>
+        <th>relationship_type</th>
+        <th>weight</th>
+        <th>direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">2</td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option selected>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true">0.95</td>
+        <td contenteditable="true">TRUE</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">1</td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true">0.90</td>
+        <td contenteditable="true">TRUE</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">3</td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true">0.85</td>
+        <td contenteditable="true">TRUE</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">4</td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true">0.80</td>
+        <td contenteditable="true">TRUE</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Tags</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Biology</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">Botany</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">Energy</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Concept Tags</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>concept_id</th>
+        <th>tag_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">1</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">2</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">3</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">2</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Hierarchy</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>parent_id</th>
+        <th>child_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">3</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Sources</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Basic Plant Biology</td>
+        <td contenteditable="true">https://example.com/plant-biology</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">Introduction to Photosynthesis</td>
+        <td contenteditable="true">https://example.com/photosynthesis</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Concept Sources</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>concept_id</th>
+        <th>source_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">2</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">1</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">1</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <details>
+    <summary>📌 Notes</summary>
+    <p contenteditable="true">Explain relationships and logic here.</p>
+  </details>
+<script>
+  const typeOptions = ["concept", "entity", "event", "process", "tag", "source"];
+  const relationshipOptions = ["causes", "depends_on", "contradicts"];
+
+  function createSelect(options, selectedValue = options[0]) {
+    const select = document.createElement("select");
+
+    options.forEach(optionValue => {
+      const option = document.createElement("option");
+      option.value = optionValue;
+      option.textContent = optionValue;
+
+      if (optionValue === selectedValue) {
+        option.selected = true;
+      }
+
+      select.appendChild(option);
+    });
+
+    return select;
+  }
+
+  function makeEditableCell(value = "") {
+    const td = document.createElement("td");
+    td.contentEditable = "true";
+    td.textContent = value;
+    return td;
+  }
+
+  function addRow(table) {
+    const tbody = table.querySelector("tbody");
+    const headers = [...table.querySelectorAll("thead th")];
+    const newRow = document.createElement("tr");
+
+    headers.forEach(header => {
+      const columnName = header.textContent.trim();
+
+      const td = document.createElement("td");
+
+      if (columnName === "type") {
+        td.appendChild(createSelect(typeOptions));
+      } else if (columnName === "relationship_type") {
+        td.appendChild(createSelect(relationshipOptions));
+      } else {
+        td.contentEditable = "true";
+        td.textContent = "";
+      }
+
+      newRow.appendChild(td);
+    });
+
+    tbody.appendChild(newRow);
+  }
+
+  function addButtonsToTables() {
+    const tables = document.querySelectorAll("table");
+
+    tables.forEach(table => {
+      const button = document.createElement("button");
+      button.textContent = "+ Add row";
+      button.className = "add-row-button";
+
+      button.addEventListener("click", () => addRow(table));
+
+      table.insertAdjacentElement("afterend", button);
+    });
+  }
+
+  addButtonsToTables();
+</script>
+</body>
+</html>
