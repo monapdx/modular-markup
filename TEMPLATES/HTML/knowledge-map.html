@@ -96,6 +96,37 @@ select:focus {
       cursor: pointer;
       font-weight: bold;
     }
+    
+    /* Let tables size columns more intelligently */
+table {
+  table-layout: auto;
+}
+
+/* Prevent dropdown columns from collapsing */
+table:nth-of-type(1) th:nth-child(4),
+table:nth-of-type(1) td:nth-child(4) {
+  min-width: 120px;
+  width: 120px;
+}
+
+table:nth-of-type(2) th:nth-child(4),
+table:nth-of-type(2) td:nth-child(4) {
+  min-width: 180px;
+  width: 180px;
+}
+
+/* Let description column absorb extra space */
+table:nth-of-type(1) th:nth-child(3),
+table:nth-of-type(1) td:nth-child(3) {
+  width: 55%;
+}
+
+/* Ensure dropdown never clips its text */
+select {
+  min-width: max-content;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
   </style>
 </head>
 <body>
@@ -118,8 +149,8 @@ select:focus {
     <tbody>
       <tr>
         <td contenteditable="true">1</td>
-        <td contenteditable="true">Photosynthesis</td>
-        <td contenteditable="true">Process where plants convert light into chemical energy</td>
+        <td contenteditable="true">Public Domain</td>
+        <td contenteditable="true">Public domain works are creative materials not restricted by copyright, allowing free use, sharing, and modification without permission or royalties. They include expired copyrights, works never under copyright, and U.S. government materials. </td>
         <td>
           <select>
             <option selected>concept</option>
@@ -135,8 +166,8 @@ select:focus {
       </tr>
       <tr>
         <td contenteditable="true">2</td>
-        <td contenteditable="true">Sunlight</td>
-        <td contenteditable="true">Light energy emitted by the sun</td>
+        <td contenteditable="true">Copyright Law</td>
+        <td contenteditable="true">Copyright law protects original works of authorship—including literary, musical, and artistic works—the moment they are fixed in a tangible medium, granting creators exclusive rights to reproduce, distribute, and display their work.</td>
         <td>
           <select>
             <option selected>concept</option>
@@ -152,8 +183,8 @@ select:focus {
       </tr>
       <tr>
         <td contenteditable="true">3</td>
-        <td contenteditable="true">Chlorophyll</td>
-        <td contenteditable="true">Pigment that absorbs light in plants</td>
+        <td contenteditable="true">Consumer Protection</td>
+        <td contenteditable="true">Consumer protection laws and agencies (like the FTC and CFPB) safeguard buyers against unfair, deceptive, or fraudulent business practices. These regulations cover product safety, privacy, and financial services, enforcing rights through lawsuits, rule-making, and education.</td>
         <td>
           <select>
             <option selected>concept</option>
@@ -169,8 +200,8 @@ select:focus {
       </tr>
       <tr>
         <td contenteditable="true">4</td>
-        <td contenteditable="true">Plant Cell</td>
-        <td contenteditable="true">Basic structural unit of plants</td>
+        <td contenteditable="true">Federal Trade Commission</td>
+        <td contenteditable="true">The Federal Trade Commission (FTC) is an independent U.S. government agency that protects consumers and promotes competition by preventing unfair, deceptive, or fraudulent business practices.</td>
         <td>
           <select>
             <option selected>concept</option>
@@ -202,9 +233,9 @@ select:focus {
     </thead>
     <tbody>
       <tr>
-        <td contenteditable="true">1</td>
-        <td contenteditable="true">1</td>
-        <td contenteditable="true">2</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
         <td>
           <select>
             <option>causes</option>
@@ -212,13 +243,13 @@ select:focus {
             <option>contradicts</option>
           </select>
         </td>
-        <td contenteditable="true">0.95</td>
-        <td contenteditable="true">TRUE</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
       </tr>
       <tr>
-        <td contenteditable="true">2</td>
-        <td contenteditable="true">3</td>
-        <td contenteditable="true">1</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
         <td>
           <select>
             <option>causes</option>
@@ -226,13 +257,13 @@ select:focus {
             <option>contradicts</option>
           </select>
         </td>
-        <td contenteditable="true">0.90</td>
-        <td contenteditable="true">TRUE</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
       </tr>
       <tr>
-        <td contenteditable="true">3</td>
-        <td contenteditable="true">4</td>
-        <td contenteditable="true">3</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
         <td>
           <select>
             <option>causes</option>
@@ -240,13 +271,13 @@ select:focus {
             <option>contradicts</option>
           </select>
         </td>
-        <td contenteditable="true">0.85</td>
-        <td contenteditable="true">TRUE</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
       </tr>
       <tr>
-        <td contenteditable="true">4</td>
-        <td contenteditable="true">1</td>
-        <td contenteditable="true">4</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
         <td>
           <select>
             <option>causes</option>
@@ -254,8 +285,8 @@ select:focus {
             <option>contradicts</option>
           </select>
         </td>
-        <td contenteditable="true">0.80</td>
-        <td contenteditable="true">TRUE</td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
       </tr>
     </tbody>
   </table>
@@ -272,15 +303,15 @@ select:focus {
     <tbody>
       <tr>
         <td contenteditable="true">1</td>
-        <td contenteditable="true">Biology</td>
+        <td contenteditable="true">Law</td>
       </tr>
       <tr>
         <td contenteditable="true">2</td>
-        <td contenteditable="true">Botany</td>
+        <td contenteditable="true">Intellectual Property</td>
       </tr>
       <tr>
         <td contenteditable="true">3</td>
-        <td contenteditable="true">Energy</td>
+        <td contenteditable="true">Consumers</td>
       </tr>
     </tbody>
   </table>
@@ -352,13 +383,13 @@ select:focus {
     <tbody>
       <tr>
         <td contenteditable="true">1</td>
-        <td contenteditable="true">Basic Plant Biology</td>
-        <td contenteditable="true">https://example.com/plant-biology</td>
+        <td contenteditable="true">Public domain</td>
+        <td contenteditable="true">https://en.wikipedia.org/wiki/Public_domain</td>
       </tr>
       <tr>
         <td contenteditable="true">2</td>
-        <td contenteditable="true">Introduction to Photosynthesis</td>
-        <td contenteditable="true">https://example.com/photosynthesis</td>
+        <td contenteditable="true">What is copyright?</td>
+        <td contenteditable="true">https://www.copyright.gov/what-is-copyright/</td>
       </tr>
     </tbody>
   </table>
