@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Playground</title>
+  <link rel="stylesheet" href="style-pink.css">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+</style>
+
+<style type="text/css">
+	    #table-container {
+      margin-top: 1.25rem;
+    }
+    .grid-table {
+      display: grid;
+      border: 1px solid #dcdcdc; /* 1px solid border for the table */
+    }
+    .grid-table div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid #dcdcdc; /* 1px solid border for each cell */
+    }
+    .editable {
+      cursor: pointer;
+    }
+    .grid-table .header-cell {
+      font-weight: bold;
+      background-color: #dcdcdc; /* First row background color */
+    }
+	
+	
+	
+	</style>
+  <script  src="script.js"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="dashboard">
+
+	<div class="profile">
+		<h2>Dashboard</h2>
+		<p></p>
+
+	</div>
+
+	<div class="schedule-table">
+		<h2></h2>
+		<div class="table-wrap">
+			 
+		</div>
+	</div>
+
+	<div class="exercise-table">
+		<h2>HTML List Generator</h2>
+		<div class="table-wrap">
+			<div id="html-list-generator">
+
+
+  <label>
+    URL
+    <input type="url" id="list-url" placeholder="https://example.com">
+  </label>
+
+  <label>
+    Anchor text
+    <input type="text" id="list-text" placeholder="Example link">
+  </label>
+
+  <label>
+    Custom marker image
+    <input type="file" id="marker-upload" accept="image/*">
+  </label>
+
+  <button type="button" id="add-list-item">+ Add List Item</button>
+  <button type="button" id="download-html">Download HTML</button>
+
+  <h4>Preview</h4>
+  <div id="list-preview"></div>
+
+  <h4>Generated HTML</h4>
+  <textarea id="generated-html" rows="10" readonly></textarea>
+</div>
+
+<script>
+(() => {
+  const items = [];
+  let markerDataUrl = "";
+
+  const urlInput = document.getElementById("list-url");
+  const textInput = document.getElementById("list-text");
+  const markerUpload = document.getElementById("marker-upload");
+  const addButton = document.getElementById("add-list-item");
+  const downloadButton = document.getElementById("download-html");
+  const preview = document.getElementById("list-preview");
+  const output = document.getElementById("generated-html");
+
+  function escapeHtml(value) {
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
+
+  function generateHtml() {
+    const style = markerDataUrl
+      ? `<style>
+ul.generated-link-list {
+  list-style: none;
+  padding-left: 0;
+}
+ul.generated-link-list li {
+  background-image: url("${markerDataUrl}");
+  background-repeat: no-repeat;
+  background-position: 0 0.25em;
+  background-size: 1em 1em;
+  padding-left: 1.4em;
+}
+</style>
+
+`
+      : "";
+
+    const listItems = items
+      .map(item => `  <li><a href="${escapeHtml(item.url)}">${escapeHtml(item.text)}</a></li>`)
+      .join("\n");
+
+    return `${style}<ul class="generated-link-list">
+${listItems}
+</ul>`;
+  }
+
+  function render() {
+    const html = generateHtml();
+    preview.innerHTML = html;
+    output.value = html;
+  }
+
+  markerUpload.addEventListener("change", () => {
+    const file = markerUpload.files[0];
+    if (!file) {
+      markerDataUrl = "";
+      render();
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = event => {
+      markerDataUrl = event.target.result;
+      render();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  addButton.addEventListener("click", () => {
+    const url = urlInput.value.trim();
+    const text = textInput.value.trim();
+
+    if (!url || !text) {
+      alert("Please enter both a URL and anchor text.");
+      return;
+    }
+
+    items.push({ url, text });
+
+    urlInput.value = "";
+    textInput.value = "";
+    render();
+  });
+
+  downloadButton.addEventListener("click", () => {
+    const html = `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Generated Link List</title>
+</head>
+<body>
+${generateHtml()}
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "generated-link-list.html";
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+
+  render();
+})();
+</script>
+    
+
+		</div>
+	</div>
+
+	<div class="calories">
+		<h2>Notes</h2>
+		<label for="title">Title</label>
+    <input type="text" id="title" placeholder="Enter title">
+    <label for="snippet">Snippet</label>
+    <textarea id="snippet" placeholder="Enter your snippet"></textarea><br><br>
+    <button id="save-btn" class="save">Save</button>
+
+    <div class="snippet-container" id="snippet-container"></div>
+<script>
+        const titleInput = document.getElementById('title');
+        const snippetInput = document.getElementById('snippet');
+        const saveButton = document.getElementById('save-btn');
+        const snippetContainer = document.getElementById('snippet-container');
+
+        // Load saved snippets from localStorage on page load
+        const loadSnippets = () => {
+            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+            snippets.forEach(({ title, snippet }, index) => addSnippetToDOM(title, snippet, index));
+        };
+
+        // Save snippet to localStorage
+        const saveSnippet = () => {
+            const title = titleInput.value.trim();
+            const snippet = snippetInput.value.trim();
+
+            if (!title || !snippet) {
+                alert('Both Title and Snippet are required.');
+                return;
+            }
+
+            const snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+            snippets.push({ title, snippet });
+            localStorage.setItem('snippets', JSON.stringify(snippets));
+
+            addSnippetToDOM(title, snippet, snippets.length - 1);
+            titleInput.value = '';
+            snippetInput.value = '';
+        };
+
+        // Add snippet to the DOM
+        const addSnippetToDOM = (title, snippet, index) => {
+            const snippetDiv = document.createElement('div');
+            snippetDiv.className = 'snippet';
+            snippetDiv.setAttribute('data-index', index); // Track index for deletion
+
+            const titleField = document.createElement('input');
+            titleField.type = 'text';
+            titleField.value = title;
+            titleField.readOnly = true;
+
+            const snippetField = document.createElement('textarea');
+            snippetField.value = snippet;
+            snippetField.readOnly = true;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-btn';
+            deleteButton.onclick = () => deleteSnippet(index);
+
+            snippetDiv.appendChild(titleField);
+            snippetDiv.appendChild(snippetField);
+            snippetDiv.appendChild(deleteButton);
+            snippetContainer.appendChild(snippetDiv);
+        };
+
+        // Delete snippet from localStorage and DOM
+        const deleteSnippet = (index) => {
+            let snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+            snippets.splice(index, 1); // Remove snippet at index
+            localStorage.setItem('snippets', JSON.stringify(snippets)); // Update storage
+
+            // Refresh the DOM to reflect changes
+            snippetContainer.innerHTML = '';
+            loadSnippets(); // Reload all snippets
+        };
+
+        saveButton.addEventListener('click', saveSnippet);
+
+        // Load snippets on page load
+        loadSnippets();
+    </script>
+
+	</div>
+
+	<div class="personal-bests">
+		<h2></h2>
+		 
+
+
+  <!-- Include JavaScript here -->
+
+
+	</div>
+
+	<div class="challenges">
+		<h2>Voice Recorder</h2>
+<button id="startButton">Start Recording</button>
+  <button id="stopButton" disabled>Stop Recording</button>
+  <br>
+ <center> <audio id="audioPlayback" controls></audio>
+  <br>
+  <a id="downloadButton" download="voice-memo.webm">Download Recording</a>
+
+
+  <script type="text/javascript">const startButton = document.getElementById("startButton");
+const stopButton = document.getElementById("stopButton");
+const audioPlayback = document.getElementById("audioPlayback");
+const downloadButton = document.getElementById("downloadButton");
+
+let mediaRecorder;
+let audioChunks = [];
+
+// Request microphone access and start recording
+startButton.addEventListener("click", async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    audioChunks = []; // Reset audio chunks
+
+    mediaRecorder.addEventListener("dataavailable", (event) => {
+      audioChunks.push(event.data);
+    });
+
+    mediaRecorder.addEventListener("stop", () => {
+      const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+      const audioURL = URL.createObjectURL(audioBlob);
+      
+      // Set the audio playback source
+      audioPlayback.src = audioURL;
+      
+      // Enable the download button
+      downloadButton.href = audioURL;
+      downloadButton.style.display = "inline-block";
+    });
+
+    mediaRecorder.start();
+    startButton.disabled = true;
+    stopButton.disabled = false;
+    downloadButton.style.display = "none"; // Hide download button while recording
+  } catch (error) {
+    alert("Could not access your microphone. Please check your permissions.");
+    console.error("Microphone access error:", error);
+  }
+});
+
+// Stop recording
+stopButton.addEventListener("click", () => {
+  mediaRecorder.stop();
+  startButton.disabled = false;
+  stopButton.disabled = true;
+});
+
+</script>
+
+
+	</div>
+
+	<div class="activity-feed">
+<h2>Editable Table Generator</h2>
+  <form id="tableForm">
+    <label for="columns">Number of Columns:</label>
+    <input type="number" id="columns" min="1" value="3" required><br><br>
+
+    <label for="rows">Number of Rows:</label>
+    <input type="number" id="rows" min="1" value="10" required><br><br>
+
+    <label for="headings">Column Headings (comma-separated):</label>
+    <input type="text" id="headings" value="Column 1, Column 2, Column 3"><br><br>
+
+    <button type="button" id="generateTable">Generate Table</button>
+  </form>
+
+  <div id="table-container"></div>
+
+  <script>
+    document.getElementById('generateTable').addEventListener('click', () => {
+      const columns = parseInt(document.getElementById('columns').value, 10);
+      const rows = parseInt(document.getElementById('rows').value, 10);
+      const headings = document.getElementById('headings').value.split(',');
+
+      const tableContainer = document.getElementById('table-container');
+      tableContainer.innerHTML = ''; // Clear the container before generating a new table
+
+      // Create table wrapper
+      const table = document.createElement('div');
+      table.className = 'grid-table';
+      table.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+
+      // Add headings as the first row
+      headings.forEach((heading, index) => {
+        if (index < columns) {
+          const cell = document.createElement('div');
+          cell.textContent = heading.trim(); // Heading text
+          styleCell(cell, 0); // Apply styling for header
+          cell.classList.add('header-cell');
+          table.appendChild(cell);
+        }
+      });
+
+      // Fill remaining cells with empty content
+      for (let r = 1; r < rows + 1; r++) {
+        for (let c = 0; c < columns; c++) {
+          const cell = document.createElement('div');
+          cell.textContent = ''; // Empty cell
+          styleCell(cell, r); // Apply styling for regular cells
+          makeEditable(cell);
+          table.appendChild(cell);
+        }
+      }
+
+      tableContainer.appendChild(table);
+
+      // Function to style cells
+      function styleCell(cell, row) {
+        cell.style.padding = '5px'; // Apply 5px padding
+        // Set background color for the first row (headings) and the rest (white)
+        cell.style.backgroundColor = row === 0 ? '#dcdcdc' : 'white';
+      }
+
+      // Make the cell editable
+      function makeEditable(cell) {
+        cell.classList.add('editable');
+        cell.contentEditable = true;
+        cell.addEventListener('click', () => {
+          cell.focus(); // Focus the cell when clicked
+        });
+      }
+    });
+  </script>
+
+
+
+
+	</div>
+    
+    	<div id="footer" class="static">
+	<i>Credit: <a href="https://codepen.io/carterfromsl/pen/QWYMjBW">Carter Lovelace @ codepen.io</a></i>
+		
+	
+
+	</div>
+
+</div>
+<!-- partial -->
+  <script  src="script.js"></script>
+
+</body>
+</html>
