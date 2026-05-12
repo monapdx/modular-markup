@@ -23,3 +23,9 @@
 - **Topic Cluster Mindmap** — A lightweight animated mindmapping tool that lets users create branching idea networks around a central concept with draggable visual node layouts.
 
 - **Worksheet Template** — A printable neo-brutalist worksheet and productivity tracker featuring progress bars, checklist systems, editable tables, and dashboard-style organization panels.
+
+- **Sticker Sheet Template** — A collectible-style sticker sheet layout with responsive grid organization, bold neo-brutalist labels, and customizable image slots for galleries, assets, fandom collections, or digital merch displays. 
+
+- **Dashboard Layout Template** — A modular dark-mode dashboard shell featuring draggable-style panel sections, widget-ready containers, and a flexible foundation for building productivity apps, admin tools, or creator workspaces. 
+
+- **Frontend Widget Dashboard** — A bundled productivity dashboard packed with reusable frontend utilities including a progress bar generator, FAQ builder, HTML list creator, editable tables, localStorage notes, and voice recording tools. 
