@@ -183,7 +183,97 @@ body.chat-archive { overflow: hidden; }
 .role.user { background: var(--sky-blue); color: var(--ink); }
 .role.assistant { background: var(--electric-lime); color: var(--ink); }
 .role.system { background: var(--purple); color: var(--paper); }
-.msg-body { white-space: pre-wrap; color: var(--paper); }
+.msg-body { color: var(--paper); }
+.msg-body.markdown-body {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+.msg-body.markdown-body :first-child { margin-top: 0; }
+.msg-body.markdown-body :last-child { margin-bottom: 0; }
+.msg-body.markdown-body p { margin: 0.55em 0; color: var(--paper); }
+.msg-body.markdown-body h1,
+.msg-body.markdown-body h2,
+.msg-body.markdown-body h3,
+.msg-body.markdown-body h4 {
+  margin: 0.85em 0 0.45em;
+  line-height: 1.15;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  text-shadow: none;
+  font-size: 1.05rem;
+  color: var(--paper);
+  border: none;
+}
+.msg-body.markdown-body h2 { font-size: 1.15rem; }
+.msg-body.markdown-body h1 { font-size: 1.25rem; }
+.msg-body.markdown-body strong { font-weight: 900; color: var(--paper); }
+.msg-body.markdown-body em { font-style: italic; color: var(--muted); }
+.msg-body.markdown-body code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.88em;
+  padding: 0.12em 0.35em;
+  border-radius: 6px;
+  background: #000;
+  color: var(--electric-lime);
+  border: 2px solid var(--line);
+}
+.msg-body.markdown-body pre {
+  margin: 0.65em 0;
+  padding: 12px 14px;
+  overflow: auto;
+  border-radius: 12px;
+  border: var(--border);
+  background: var(--void);
+  color: var(--paper);
+  box-shadow: 4px 4px 0 #000;
+}
+.msg-body.markdown-body pre code {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 0.85rem;
+}
+.msg-body.markdown-body ul,
+.msg-body.markdown-body ol { margin: 0.5em 0; padding-left: 1.35em; color: var(--paper); }
+.msg-body.markdown-body a {
+  color: var(--electric-lime);
+  font-weight: 800;
+  word-break: break-word;
+}
+.msg-body.markdown-body a:hover { color: var(--ink); background: var(--electric-lime); }
+.msg-body.markdown-body blockquote {
+  margin: 0.65em 0;
+  padding: 0.35em 0 0.35em 0.85em;
+  border-left: 4px solid var(--hot-pink);
+  color: var(--muted);
+}
+.msg-body.markdown-body hr {
+  border: none;
+  border-top: 2px solid var(--line);
+  margin: 1em 0;
+}
+.msg-body.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.65em 0;
+  font-size: 0.88rem;
+}
+.msg-body.markdown-body th,
+.msg-body.markdown-body td {
+  border: 2px solid #000;
+  padding: 6px 8px;
+  text-align: left;
+}
+.msg-body.markdown-body th { background: var(--panel-2); color: var(--paper); }
+.msg-body.markdown-body .md-fallback {
+  white-space: pre-wrap;
+  margin: 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
+}
 .kbd { background: #000; color: var(--electric-lime); border: 2px solid var(--line); padding: 2px 6px; border-radius: 6px; }
 
 /* Quiz builder + generated quiz */

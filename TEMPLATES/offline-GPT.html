@@ -8,7 +8,10 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
 
-<link href="neo-brutalist.css" rel="stylesheet"/></head>
+<link href="neo-brutalist.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js" crossorigin="anonymous"></script>
+</head>
 <body class="chat-archive">
 <header>
 <h1>Chat Archive Viewer</h1>
@@ -114,6 +117,27 @@
       .replaceAll('>', '&gt;');
   }
 
+  /** Markdown → safe HTML (bold, italics, headers, lists, code, links, etc.) */
+  function renderMarkdown(text) {
+    const raw = String(text ?? '');
+    if (!raw.trim()) return '';
+    if (typeof marked === 'undefined' || typeof DOMPurify === 'undefined') {
+      return '<pre class="md-fallback">' + escapeHtml(raw) + '</pre>';
+    }
+    try {
+      const html = marked.parse(raw, {
+        breaks: true,
+        gfm: true,
+      });
+      return DOMPurify.sanitize(html, {
+        ADD_ATTR: ['target', 'rel'],
+        ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto):|[^a-z]|[a-z+.-]+(?:[^a-z+.\-:]|$))/i,
+      });
+    } catch (e) {
+      return '<pre class="md-fallback">' + escapeHtml(raw) + '</pre>';
+    }
+  }
+
   function nodeTime(n) {
     return n?.message?.create_time ?? n?.create_time ?? 0;
   }
@@ -184,7 +208,7 @@
             <div class="role ${role}">${role}</div>
             <div class="msg-meta">${when || ''}</div>
           </div>
-          <div class="msg-body">${escapeHtml(text)}</div>
+          <div class="msg-body markdown-body">${renderMarkdown(text)}</div>
         `;
         list.appendChild(el);
       });
