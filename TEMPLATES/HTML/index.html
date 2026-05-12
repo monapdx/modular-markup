@@ -81,6 +81,16 @@
       color: var(--text);
     }
 
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-weight: 800;
+      font-size: 0.95em;
+      background: var(--bg-elevated);
+      border: 2px solid var(--outline);
+      padding: 0.1em 0.35em;
+      box-shadow: 2px 2px 0 var(--outline);
+    }
+
     a:not(.card) {
       color: var(--outline);
       font-weight: 800;
@@ -361,17 +371,25 @@
     .card.red:hover .desc {
       color: var(--text-muted);
     }
+
+    h2.folder {
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    }
+
+    h2.folder:first-of-type {
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
 <body>
 
   <h1>📚 Template Library</h1>
-  <p>Select a template to view:</p>
+  <p>Everything in this folder: root templates, shared styles, and subfolders <code>dashboard/</code> and <code>sticker-sheet/</code>.</p>
 
+  <h2 class="folder">Root</h2>
   <div class="grid">
-
-    <!-- .html files in this folder (and sticker-sheet/); matches disk; excludes index.html -->
-
     <a class="card" href="activities.html"><div class="title">Activities</div><div class="desc">Odoo front-end worksheet (document title).</div></a>
     <a class="card" href="blank-tables.html"><div class="title">Blank Tables</div><div class="desc">Editable blank tables template.</div></a>
     <a class="card" href="CHECKLIST.html"><div class="title">Checklist</div><div class="desc">CHECKLIST.html</div></a>
@@ -381,6 +399,7 @@
     <a class="card" href="EXPENSES.html"><div class="title">Expenses</div><div class="desc">EXPENSES table template.</div></a>
     <a class="card" href="health.html"><div class="title">Health</div><div class="desc">Health hub with multiple sections.</div></a>
     <a class="card" href="IDEA.html"><div class="title">Idea</div><div class="desc">IDEA capture template.</div></a>
+    <a class="card" href="index.html"><div class="title">index.html</div><div class="desc">This template library page.</div></a>
     <a class="card" href="knowledge-map.html"><div class="title">Knowledge Map</div><div class="desc">Nodes and edges for a knowledge map.</div></a>
     <a class="card" href="landing-page.html"><div class="title">Landing Page</div><div class="desc">Landing / marketing-style layout.</div></a>
     <a class="card" href="LOG.html"><div class="title">Log</div><div class="desc">LOG table template.</div></a>
@@ -390,13 +409,38 @@
     <a class="card" href="push-limits.html"><div class="title">Push Limits</div><div class="desc">Training / limits worksheet.</div></a>
     <a class="card" href="QUOTE_LOG.html"><div class="title">Quote Log</div><div class="desc">QUOTE_LOG research quotes.</div></a>
     <a class="card" href="sandbox.html"><div class="title">Sandbox</div><div class="desc">Experiment layout.</div></a>
-    <a class="card" href="sticker-sheet/sticker-sheet.html"><div class="title">Sticker Sheet</div><div class="desc">Neo-brutalist sticker grid (subfolder).</div></a>
+    <a class="card green" href="style.css"><div class="title">style.css</div><div class="desc">Shared stylesheet for templates in this folder.</div></a>
     <a class="card" href="SUBSCRIPTIONS.html"><div class="title">Subscriptions</div><div class="desc">SUBSCRIPTIONS tracker.</div></a>
     <a class="card" href="SYMPTOMS.html"><div class="title">Symptoms</div><div class="desc">SYMPTOMS log template.</div></a>
     <a class="card" href="table-template.html"><div class="title">Table Template</div><div class="desc">Editable table starter (distinct from blank-tables).</div></a>
     <a class="card" href="TASKS.html"><div class="title">Tasks</div><div class="desc">TASKS to-do template.</div></a>
     <a class="card" href="worksheet.html"><div class="title">Worksheet</div><div class="desc">General worksheet layout.</div></a>
+  </div>
 
+  <h2 class="folder">dashboard/</h2>
+  <div class="grid">
+    <a class="card" href="dashboard/faq-generator.html"><div class="title">FAQ Generator</div><div class="desc">dashboard/faq-generator.html</div></a>
+    <a class="card" href="dashboard/index.html"><div class="title">Dashboard index</div><div class="desc">dashboard/index.html</div></a>
+    <a class="card" href="dashboard/progress-bar-generator.html"><div class="title">Progress bar generator</div><div class="desc">dashboard/progress-bar-generator.html</div></a>
+    <a class="card orange" href="dashboard/script.js"><div class="title">script.js</div><div class="desc">Dashboard JavaScript.</div></a>
+    <a class="card green" href="dashboard/style-pink.css"><div class="title">style-pink.css</div><div class="desc">Pink dashboard theme stylesheet.</div></a>
+    <a class="card" href="dashboard/with-widgets.html"><div class="title">With widgets</div><div class="desc">dashboard/with-widgets.html</div></a>
+  </div>
+
+  <h2 class="folder">sticker-sheet/</h2>
+  <div class="grid">
+    <a class="card" href="sticker-sheet/sticker-sheet.html"><div class="title">Sticker Sheet</div><div class="desc">Neo-brutalist sticker grid page.</div></a>
+    <a class="card" href="sticker-sheet/abortion-finder.gif"><div class="title">abortion-finder.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/abortion-healthcare.gif"><div class="title">abortion-healthcare.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/abortion-justice.gif"><div class="title">abortion-justice.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/abortion-pills.gif"><div class="title">abortion-pills.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/abortions-normal.gif"><div class="title">abortions-normal.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/all-same-fight.gif"><div class="title">all-same-fight.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/any-reason.gif"><div class="title">any-reason.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/hello-had-an-abortion.gif"><div class="title">hello-had-an-abortion.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/love-abortion-providers.gif"><div class="title">love-abortion-providers.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/many-reasons.gif"><div class="title">many-reasons.gif</div><div class="desc">Sticker asset (GIF).</div></a>
+    <a class="card" href="sticker-sheet/our-bodies.gif"><div class="title">our-bodies.gif</div><div class="desc">Sticker asset (GIF).</div></a>
   </div>
 
 </body>
