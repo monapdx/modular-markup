@@ -262,41 +262,6 @@ document.addEventListener('DOMContentLoaded', function () {
       text.focus();
     });
   }
-
-  const taskTable = document.getElementById('tasks-table');
-  if (taskTable) {
-    const headerCells = taskTable.querySelectorAll('thead tr th');
-    let colCount = headerCells.length;
-    if (!colCount) {
-      const firstRow = taskTable.querySelector('tbody tr');
-      if (firstRow) {
-        colCount = firstRow.querySelectorAll('td').length;
-      }
-    }
-    if (colCount) {
-      const rowBtn = document.createElement('button');
-      rowBtn.type = 'button';
-      rowBtn.className = 'add-table-row-btn';
-      rowBtn.textContent = '+ add row';
-      taskTable.insertAdjacentElement('afterend', rowBtn);
-
-      rowBtn.addEventListener('click', function () {
-        let tbody = taskTable.querySelector('tbody');
-        if (!tbody) {
-          tbody = taskTable.appendChild(document.createElement('tbody'));
-        }
-        const tr = document.createElement('tr');
-        for (let i = 0; i < colCount; i++) {
-          const td = document.createElement('td');
-          td.setAttribute('contenteditable', 'true');
-          td.setAttribute('spellcheck', 'false');
-          td.classList.add('editable-cell');
-          tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-      });
-    }
-  }
 });
 </script>
 <style>
@@ -326,23 +291,6 @@ document.addEventListener('DOMContentLoaded', function () {
   background: #eaeef2;
 }
 
-.add-table-row-btn {
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 8px 0 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  background: #f6f8fa;
-  color: #24292f;
-}
-
-.add-table-row-btn:hover {
-  background: #eaeef2;
-}
-
 .add-task-wrap {
   margin: 0.5rem 0 0;
 }
@@ -362,8 +310,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
 @media print {
-  .add-task-btn,
-  .add-table-row-btn {
+  .add-task-btn {
     display: none !important;
   }
 }
@@ -380,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <button type="button" id="add-task-btn" class="add-task-btn">+ add task</button>
 </p>
 <ul class="task-list" id="task-list-items"></ul>
-<table id="tasks-table">
+<table>
 <thead>
 <tr>
 <th>Task</th>
