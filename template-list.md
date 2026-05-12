@@ -1,6 +1,6 @@
 # Modular Markup
 
-[![Buy Now](https://img.shields.io/badge/%F0%9F%92%96Buy%20Now-111111?style=for-the-badge)](https://ashpdx.gumroad.com/l/modular-markup)
+<a href=""><img src="assets/gumroad.svg"></a> | <a href=""><img src="assets/paypal.svg"></a> | <a href=""><img src="stripe.svg"></a> | <a href=""><img src="itch.io.svg"></a>
 
 ## Premium Templates
 
