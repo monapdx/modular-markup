@@ -237,10 +237,94 @@ a:hover {
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  var expenseTable = document.getElementById('expenses-table');
+
   document.querySelectorAll('table td, table th').forEach(function (cell) {
     cell.setAttribute('contenteditable', 'true');
     cell.setAttribute('spellcheck', 'false');
   });
+
+  function colIndexByHeader(table, label) {
+    var ths = table.querySelectorAll('thead tr th');
+    var want = String(label).toLowerCase();
+    for (var i = 0; i < ths.length; i++) {
+      if (ths[i].textContent.trim().toLowerCase() === want) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  function parseMoney(text) {
+    var raw = String(text == null ? '' : text).replace(/,/g, '');
+    var n = parseFloat(raw.replace(/[^0-9.\-]/g, ''));
+    return isFinite(n) ? n : 0;
+  }
+
+  function parseYearMonth(dateStr) {
+    var s = String(dateStr == null ? '' : dateStr).trim();
+    if (!s) {
+      return null;
+    }
+    var m = s.match(/\b(20\d{2}|19\d{2})[-/](\d{1,2})(?:[-/](\d{1,2}))?\b/);
+    if (m) {
+      return m[1] + '-' + ('0' + m[2]).slice(-2);
+    }
+    m = s.match(/\b(\d{1,2})[-/](\d{1,2})[-/](20\d{2}|19\d{2})\b/);
+    if (m) {
+      return m[3] + '-' + ('0' + m[1]).slice(-2);
+    }
+    return null;
+  }
+
+  function formatMoney(n) {
+    return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD' }).format(n);
+  }
+
+  function updateExpenseSummary() {
+    if (!expenseTable) {
+      return;
+    }
+    var amountCol = colIndexByHeader(expenseTable, 'Amount');
+    var dateCol = colIndexByHeader(expenseTable, 'Date');
+    if (amountCol < 0) {
+      amountCol = expenseTable.querySelectorAll('thead tr th').length - 1;
+    }
+    if (dateCol < 0) {
+      dateCol = 0;
+    }
+
+    var rows = expenseTable.querySelectorAll('tbody tr');
+    var total = 0;
+    var monthsSeen = {};
+
+    for (var r = 0; r < rows.length; r++) {
+      var cells = rows[r].querySelectorAll('td');
+      if (cells.length <= amountCol) {
+        continue;
+      }
+      var amt = parseMoney(cells[amountCol].textContent);
+      total += amt;
+      if (amt !== 0 && cells[dateCol]) {
+        var ym = parseYearMonth(cells[dateCol].textContent);
+        if (ym) {
+          monthsSeen[ym] = true;
+        }
+      }
+    }
+
+    var monthCount = Object.keys(monthsSeen).length;
+    var monthly = monthCount > 0 ? total / monthCount : total / 12;
+
+    var totalEl = document.getElementById('expense-summary-total');
+    var avgEl = document.getElementById('expense-summary-monthly');
+    if (totalEl) {
+      totalEl.textContent = formatMoney(total);
+    }
+    if (avgEl) {
+      avgEl.textContent = formatMoney(monthly);
+    }
+  }
 
   document.querySelectorAll('table').forEach(function (table) {
     var headerCells = table.querySelectorAll('thead tr th');
@@ -274,8 +358,17 @@ document.addEventListener('DOMContentLoaded', function () {
         tr.appendChild(td);
       }
       tbody.appendChild(tr);
+      if (table === expenseTable) {
+        updateExpenseSummary();
+      }
     });
   });
+
+  if (expenseTable) {
+    expenseTable.addEventListener('input', updateExpenseSummary);
+  }
+
+  updateExpenseSummary();
 });
 </script>
 <style>
@@ -318,7 +411,7 @@ table th[contenteditable="true"]:focus {
 </head>
 <body>
 <h1 id="expenses">💸 Expenses</h1>
-<table>
+<table id="expenses-table">
 <thead>
 <tr>
 <th>Date</th>
@@ -339,8 +432,8 @@ table th[contenteditable="true"]:focus {
 <hr />
 <h2 id="summary">📊 Summary</h2>
 <ul>
-<li>Total:</li>
-<li>Monthly Avg:</li>
+<li>Total: <span id="expense-summary-total">$0.00</span></li>
+<li>Monthly Avg: <span id="expense-summary-monthly">$0.00</span></li>
 </ul>
 </body>
 </html>
