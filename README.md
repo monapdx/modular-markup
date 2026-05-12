@@ -23,7 +23,7 @@ Designed for indie hackers, creators, tinkerers, non-coders, and developers who 
 
 - **Kanban Board** — A fully frontend task management board with drag-and-drop cards, editable workflows, search, priorities, modal editing, and persistent localStorage saving.
 
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/gif/kanban.gif" width="">
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/gif/kanban.gif" width="533">
 
 - **Knowledge Map Template** — A structured editable knowledge database for mapping concepts, relationships, tags, and entities using clean relational-style tables and linked data workflows.
 
@@ -49,11 +49,11 @@ Designed for indie hackers, creators, tinkerers, non-coders, and developers who 
 
 - **Worksheet Template** — A printable neo-brutalist worksheet and productivity tracker featuring progress bars, checklist systems, editable tables, and dashboard-style organization panels.
 
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/gif/worksheet.gif" width="">
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/gif/worksheet.gif" width="533">
 
 - **Sticker Sheet Template** — A collectible-style sticker sheet layout with responsive grid organization, bold neo-brutalist labels, and customizable image slots for galleries, assets, fandom collections, or digital merch displays.
 
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/gif/sticker-sheet.gif" width="">
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/gif/sticker-sheet.gif" width="542">
 
 - **Dashboard Layout Template** — A modular dark-mode dashboard shell featuring draggable-style panel sections, widget-ready containers, and a flexible foundation for building productivity apps, admin tools, or creator workspaces.
 
