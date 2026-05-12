@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Editable Mindmap</title>
+
+<style>
+  :root {
+    --bg: #0f0f12;
+    --card: #18181d;
+    --line: #ff4fb8;
+    --node: #ffffff;
+    --text: #111;
+    --accent: #ff4fb8;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at center, #24242c, var(--bg));
+    color: white;
+    overflow: hidden;
+  }
+
+  .toolbar {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    background: var(--card);
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 12px;
+    display: flex;
+    gap: 8px;
+    box-shadow: 6px 6px 0 #000;
+  }
+
+  .toolbar input,
+  .toolbar button {
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-weight: bold;
+  }
+
+  .toolbar button {
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
+  }
+
+  .toolbar button:hover {
+    transform: translateY(-2px);
+  }
+
+  .mindmap {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  line {
+    stroke: var(--line);
+    stroke-width: 3;
+    stroke-dasharray: 8;
+    animation: dash 1.8s linear infinite;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -32;
+    }
+  }
+
+  .node {
+    position: absolute;
+    min-width: 120px;
+    max-width: 180px;
+    min-height: 70px;
+    padding: 12px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    background: var(--node);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-weight: 800;
+    box-shadow: 6px 6px 0 #000;
+    cursor: text;
+    animation: popIn 0.35s ease both;
+  }
+
+  .node[contenteditable="true"]:focus {
+    outline: 4px solid var(--accent);
+  }
+
+  .core {
+    width: 180px;
+    height: 180px;
+    font-size: 1.2rem;
+    background: var(--accent);
+    color: white;
+  }
+
+  .child {
+    width: 140px;
+    height: 90px;
+  }
+
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.4);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="toolbar">
+  <input id="childText" placeholder="New child node..." />
+  <button id="addNode">Add Node</button>
+</div>
+
+<div class="mindmap" id="mindmap">
+  <svg id="lines"></svg>
+
+  <div class="node core" id="core" contenteditable="true">
+    Main Idea
+  </div>
+</div>
+
+<script>
+  const mindmap = document.getElementById("mindmap");
+  const core = document.getElementById("core");
+  const lines = document.getElementById("lines");
+  const addBtn = document.getElementById("addNode");
+  const childInput = document.getElementById("childText");
+
+  let nodes = [];
+
+  function centerCore() {
+    core.style.left = `${window.innerWidth / 2 - core.offsetWidth / 2}px`;
+    core.style.top = `${window.innerHeight / 2 - core.offsetHeight / 2}px`;
+  }
+
+  function addNode(text = "New Idea") {
+    const node = document.createElement("div");
+    node.className = "node child";
+    node.contentEditable = "true";
+    node.textContent = text;
+
+    mindmap.appendChild(node);
+    nodes.push(node);
+
+    arrangeNodes();
+  }
+
+  function arrangeNodes() {
+    centerCore();
+    lines.innerHTML = "";
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const radius = Math.min(window.innerWidth, window.innerHeight) * 0.34;
+
+    nodes.forEach((node, index) => {
+      const angle = (index / nodes.length) * Math.PI * 2 - Math.PI / 2;
+
+      const x = centerX + Math.cos(angle) * radius - node.offsetWidth / 2;
+      const y = centerY + Math.sin(angle) * radius - node.offsetHeight / 2;
+
+      node.style.left = `${x}px`;
+      node.style.top = `${y}px`;
+
+      const nodeCenterX = x + node.offsetWidth / 2;
+      const nodeCenterY = y + node.offsetHeight / 2;
+
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("x1", centerX);
+      line.setAttribute("y1", centerY);
+      line.setAttribute("x2", nodeCenterX);
+      line.setAttribute("y2", nodeCenterY);
+
+      lines.appendChild(line);
+    });
+  }
+
+  addBtn.addEventListener("click", () => {
+    const text = childInput.value.trim() || "New Idea";
+    addNode(text);
+    childInput.value = "";
+  });
+
+  childInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      addBtn.click();
+    }
+  });
+
+  window.addEventListener("resize", arrangeNodes);
+
+  centerCore();
+
+  ["Character", "Setting", "Conflict", "Theme", "Scene", "Ending"].forEach(addNode);
+</script>
+
+</body>
+</html>
