@@ -47,8 +47,97 @@
 	</div>
 
 	<div class="schedule-table">
-		<h2></h2>
+		<h2>Progress Bar Generator</h2>
 		<div class="table-wrap">
+		<div id="progress-bar-generator">
+
+
+  <label>
+    Label
+    <input type="text" id="progress-label" placeholder="Project Completion">
+  </label>
+
+  <label>
+    Percentage
+    <input type="number" id="progress-percent" min="0" max="100" value="50">
+  </label>
+
+  <label>
+    Fill Color
+    <input type="text" id="progress-color" placeholder="lime">
+  </label>
+
+  <label>
+    Show Percentage Text
+    <input type="checkbox" id="show-percent" checked>
+  </label>
+
+  <button type="button" id="generate-progress">
+    Generate
+  </button>
+
+  <h4>Preview</h4>
+  <div id="progress-preview"></div>
+
+  <h4>Generated HTML</h4>
+  <textarea id="generated-progress-html" rows="12" readonly></textarea>
+</div>
+
+<script>
+(() => {
+  const labelInput = document.getElementById("progress-label");
+  const percentInput = document.getElementById("progress-percent");
+  const colorInput = document.getElementById("progress-color");
+  const showPercentInput = document.getElementById("show-percent");
+
+  const preview = document.getElementById("progress-preview");
+  const output = document.getElementById("generated-progress-html");
+
+  const generateButton = document.getElementById("generate-progress");
+
+  function escapeHtml(value) {
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
+
+  function generateHtml() {
+    const label = escapeHtml(labelInput.value.trim());
+    const percent = Math.max(
+      0,
+      Math.min(100, Number(percentInput.value) || 0)
+    );
+
+    const color = colorInput.value.trim() || "lime";
+    const showPercent = showPercentInput.checked;
+
+    return `
+<div>
+  <div>${label}</div>
+
+  <div style="width:100%; border:1px solid black;">
+    <div style="width:${percent}%; background:${color};">
+      ${showPercent ? percent + "%" : ""}
+    </div>
+  </div>
+</div>
+`.trim();
+  }
+
+  function render() {
+    const html = generateHtml();
+
+    preview.innerHTML = html;
+    output.value = html;
+  }
+
+  generateButton.addEventListener("click", render);
+
+  render();
+})();
+</script>
 			 
 		</div>
 	</div>
@@ -199,7 +288,7 @@ ${generateHtml()}
 		</div>
 	</div>
 
-	<div class="calories">
+	<div class="save notes">
 		<h2>Notes</h2>
 		<label for="title">Title</label>
     <input type="text" id="title" placeholder="Enter title">
@@ -284,8 +373,102 @@ ${generateHtml()}
 
 	</div>
 
-	<div class="personal-bests">
-		<h2></h2>
+	<div class="generate FAQs">
+		<div id="faq-generator">
+  <h2>Accordion FAQ Generator</h2>
+
+  <label>
+    Question
+    <input type="text" id="faq-question" placeholder="What is this?">
+  </label>
+
+  <label>
+    Answer
+    <textarea id="faq-answer" rows="4" placeholder="This is the answer."></textarea>
+  </label>
+
+  <button type="button" id="add-faq">+ Add FAQ Item</button>
+  <button type="button" id="download-faq-html">Download HTML</button>
+
+  <h4>Preview</h4>
+  <div id="faq-preview"></div>
+
+  <h4>Generated HTML</h4>
+  <textarea id="generated-faq-html" rows="12" readonly></textarea>
+</div>
+
+<script>
+(() => {
+  const items = [];
+
+  const questionInput = document.getElementById("faq-question");
+  const answerInput = document.getElementById("faq-answer");
+  const addButton = document.getElementById("add-faq");
+  const downloadButton = document.getElementById("download-faq-html");
+  const preview = document.getElementById("faq-preview");
+  const output = document.getElementById("generated-faq-html");
+
+  function escapeHtml(value) {
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
+
+  function generateHtml() {
+    return items.map(item => `
+<details>
+  <summary>${escapeHtml(item.question)}</summary>
+  <p>${escapeHtml(item.answer)}</p>
+</details>`.trim()).join("\n\n");
+  }
+
+  function render() {
+    const html = generateHtml();
+    preview.innerHTML = html;
+    output.value = html;
+  }
+
+  addButton.addEventListener("click", () => {
+    const question = questionInput.value.trim();
+    const answer = answerInput.value.trim();
+
+    if (!question || !answer) {
+      alert("Please enter both a question and an answer.");
+      return;
+    }
+
+    items.push({ question, answer });
+
+    questionInput.value = "";
+    answerInput.value = "";
+    render();
+  });
+
+  downloadButton.addEventListener("click", () => {
+    const html = `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Generated FAQ</title>
+</head>
+<body>
+${generateHtml()}
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "generated-faq.html";
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+
+  render();
+})();
+</script>
 		 
 
 

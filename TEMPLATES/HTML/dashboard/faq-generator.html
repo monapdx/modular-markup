@@ -1,0 +1,95 @@
+<div id="faq-generator">
+  <h3>Accordion FAQ Generator</h3>
+
+  <label>
+    Question
+    <input type="text" id="faq-question" placeholder="What is this?">
+  </label>
+
+  <label>
+    Answer
+    <textarea id="faq-answer" rows="4" placeholder="This is the answer."></textarea>
+  </label>
+
+  <button type="button" id="add-faq">+ Add FAQ Item</button>
+  <button type="button" id="download-faq-html">Download HTML</button>
+
+  <h4>Preview</h4>
+  <div id="faq-preview"></div>
+
+  <h4>Generated HTML</h4>
+  <textarea id="generated-faq-html" rows="12" readonly></textarea>
+</div>
+
+<script>
+(() => {
+  const items = [];
+
+  const questionInput = document.getElementById("faq-question");
+  const answerInput = document.getElementById("faq-answer");
+  const addButton = document.getElementById("add-faq");
+  const downloadButton = document.getElementById("download-faq-html");
+  const preview = document.getElementById("faq-preview");
+  const output = document.getElementById("generated-faq-html");
+
+  function escapeHtml(value) {
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
+
+  function generateHtml() {
+    return items.map(item => `
+<details>
+  <summary>${escapeHtml(item.question)}</summary>
+  <p>${escapeHtml(item.answer)}</p>
+</details>`.trim()).join("\n\n");
+  }
+
+  function render() {
+    const html = generateHtml();
+    preview.innerHTML = html;
+    output.value = html;
+  }
+
+  addButton.addEventListener("click", () => {
+    const question = questionInput.value.trim();
+    const answer = answerInput.value.trim();
+
+    if (!question || !answer) {
+      alert("Please enter both a question and an answer.");
+      return;
+    }
+
+    items.push({ question, answer });
+
+    questionInput.value = "";
+    answerInput.value = "";
+    render();
+  });
+
+  downloadButton.addEventListener("click", () => {
+    const html = `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Generated FAQ</title>
+</head>
+<body>
+${generateHtml()}
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "generated-faq.html";
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+
+  render();
+})();
+</script>

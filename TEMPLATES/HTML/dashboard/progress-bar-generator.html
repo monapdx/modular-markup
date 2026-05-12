@@ -1,0 +1,89 @@
+<div id="progress-bar-generator">
+  <h3>Progress Bar Generator</h3>
+
+  <label>
+    Label
+    <input type="text" id="progress-label" placeholder="Project Completion">
+  </label>
+
+  <label>
+    Percentage
+    <input type="number" id="progress-percent" min="0" max="100" value="50">
+  </label>
+
+  <label>
+    Fill Color
+    <input type="text" id="progress-color" placeholder="lime">
+  </label>
+
+  <label>
+    Show Percentage Text
+    <input type="checkbox" id="show-percent" checked>
+  </label>
+
+  <button type="button" id="generate-progress">
+    Generate
+  </button>
+
+  <h4>Preview</h4>
+  <div id="progress-preview"></div>
+
+  <h4>Generated HTML</h4>
+  <textarea id="generated-progress-html" rows="12" readonly></textarea>
+</div>
+
+<script>
+(() => {
+  const labelInput = document.getElementById("progress-label");
+  const percentInput = document.getElementById("progress-percent");
+  const colorInput = document.getElementById("progress-color");
+  const showPercentInput = document.getElementById("show-percent");
+
+  const preview = document.getElementById("progress-preview");
+  const output = document.getElementById("generated-progress-html");
+
+  const generateButton = document.getElementById("generate-progress");
+
+  function escapeHtml(value) {
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
+
+  function generateHtml() {
+    const label = escapeHtml(labelInput.value.trim());
+    const percent = Math.max(
+      0,
+      Math.min(100, Number(percentInput.value) || 0)
+    );
+
+    const color = colorInput.value.trim() || "lime";
+    const showPercent = showPercentInput.checked;
+
+    return `
+<div>
+  <div>${label}</div>
+
+  <div style="width:100%; border:1px solid black;">
+    <div style="width:${percent}%; background:${color};">
+      ${showPercent ? percent + "%" : ""}
+    </div>
+  </div>
+</div>
+`.trim();
+  }
+
+  function render() {
+    const html = generateHtml();
+
+    preview.innerHTML = html;
+    output.value = html;
+  }
+
+  generateButton.addEventListener("click", render);
+
+  render();
+})();
+</script>
