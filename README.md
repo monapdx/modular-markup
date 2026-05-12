@@ -1,49 +1,25 @@
-# 🌐 Life OS Template
+## Modular Markup
 
-> A GitHub-based personal system for notes, tracking, planning, and data ownership.
 
----
 
-## Main
+- **Calendar Template** — A responsive neo-brutalist monthly calendar with editable events, dynamic day controls, and a clean layout designed for planners, dashboards, and productivity tools.
 
-[![Dashboard](https://img.shields.io/badge/%F0%9F%93%8ADashboard-1f6feb?style=for-the-badge)](#) [![Index](https://img.shields.io/badge/%F0%9F%93%81Index-1f6feb?style=for-the-badge)](#) [![Templates](https://img.shields.io/badge/%F0%9F%93%9ATemplates-1f6feb?style=for-the-badge)](#) [![App](https://img.shields.io/badge/%F0%9F%9B%A0%EF%B8%8FApp-1f6feb?style=for-the-badge)](#)
+- **UX Card Sorting Challenge** — An interactive drag-and-drop UX pattern sorting game with scoring, timers, streak tracking, and polished frontend game mechanics built entirely in vanilla JavaScript.
 
-## Actions
+- **MBOX Email Viewer** — A sleek offline Gmail-style MBOX browser that parses real email exports locally with search, labels, attachments, mailbox filtering, and threaded message viewing.
 
-[![Monthly Review](https://img.shields.io/badge/%F0%9F%93%8CMonthly%20Review-1f6feb?style=for-the-badge)](#) [![Plan Week](https://img.shields.io/badge/%F0%9F%91%89Plan%20Week-1f6feb?style=for-the-badge)](#) [![New Project](https://img.shields.io/badge/%E2%AD%90New%20Project-1f6feb?style=for-the-badge)](#) [![Deploy](https://img.shields.io/badge/%F0%9F%9A%80Deploy-1f6feb?style=for-the-badge)](#)
+- **Kanban Board** — A fully frontend task management board with drag-and-drop cards, editable workflows, search, priorities, modal editing, and persistent localStorage saving.
 
-## Notes
+- **Knowledge Map Template** — A structured editable knowledge database for mapping concepts, relationships, tags, and entities using clean relational-style tables and linked data workflows.
 
-[![Journal Entry](https://img.shields.io/badge/%F0%9F%93%9DJournal%20Entry-111111?style=for-the-badge)](#) [![Idea](https://img.shields.io/badge/%F0%9F%92%A1Idea-111111?style=for-the-badge)](#) [![Project](https://img.shields.io/badge/%F0%9F%9B%A0%EF%B8%8FProject-111111?style=for-the-badge)](#) [![Log](https://img.shields.io/badge/%F0%9F%93%8ALog-111111?style=for-the-badge)](#) [![List](https://img.shields.io/badge/%E2%9C%85List-111111?style=for-the-badge)](#) [![Email](https://img.shields.io/badge/%F0%9F%93%A7Email-111111?style=for-the-badge)](#) [![Event](https://img.shields.io/badge/%F0%9F%93%85Event-111111?style=for-the-badge)](#) [![Books](https://img.shields.io/badge/%F0%9F%93%96Books-111111?style=for-the-badge)](#) [![Links](https://img.shields.io/badge/%F0%9F%93%8CLinks-111111?style=for-the-badge)](#) [![Chats](https://img.shields.io/badge/%F0%9F%92%ACChats-111111?style=for-the-badge)](#) [![FAQ](https://img.shields.io/badge/%E2%9D%93FAQ-111111?style=for-the-badge)](#) [![Calls](https://img.shields.io/badge/%E2%98%8E%EF%B8%8FCalls-111111?style=for-the-badge)](#) [![Searches](https://img.shields.io/badge/%F0%9F%94%8DSearches-111111?style=for-the-badge)](#) [![Emails](https://img.shields.io/badge/%F0%9F%93%A7Emails-111111?style=for-the-badge)](#) [![Alerts](https://img.shields.io/badge/%F0%9F%94%94Alerts-111111?style=for-the-badge)](#) [![Products](https://img.shields.io/badge/%F0%9F%9B%92Products-111111?style=for-the-badge)](#) 
+- **Chat Archive Viewer** — A polished local ChatGPT export browser that loads conversation JSON files into a searchable flat-view interface with markdown rendering and fast navigation.
 
-## Health
+- **Quiz Builder** — A standalone quiz generator that instantly converts answer lists into downloadable HTML quiz games with progress tracking, validation, and interactive scoring.
 
-[![ER Visits](https://img.shields.io/badge/%F0%9F%A9%BAER%20Visits-111111?style=for-the-badge)](#) [![Medications](https://img.shields.io/badge/%F0%9F%92%8AMedications-111111?style=for-the-badge)](#) [![Symptoms](https://img.shields.io/badge/%F0%9F%8F%A5Symptoms-111111?style=for-the-badge)](#) [![Conditions](https://img.shields.io/badge/%E2%9A%95%EF%B8%8FConditions-111111?style=for-the-badge)](#) [![Lab Results](https://img.shields.io/badge/%F0%9F%A7%AALab%20Results-111111?style=for-the-badge)](#) 
+- **Quote Graphic Generator** — A responsive quote image creator with live canvas rendering, custom fonts, gradient backgrounds, and one-click export for social graphics and branding assets.
 
-## Finance
+- **Editable Table Template** — A flexible frontend table system with editable cells, dynamic row generation, dropdown relationships, and reusable structures for data organization projects.
 
-[![Budget](https://img.shields.io/badge/%F0%9F%92%B8Budget-111111?style=for-the-badge)](#) [![Expenses](https://img.shields.io/badge/%F0%9F%AA%99Expenses-111111?style=for-the-badge)](#) [![Subscriptions](https://img.shields.io/badge/%E2%9C%85Subscriptions-111111?style=for-the-badge)](#) [![Savings](https://img.shields.io/badge/%F0%9F%92%B2Savings-111111?style=for-the-badge)](#) 
+- **Topic Cluster Mindmap** — A lightweight animated mindmapping tool that lets users create branching idea networks around a central concept with draggable visual node layouts.
 
----
-
-## 🧠 System Overview
-
-| Area | Purpose | Link |
-|---|---|---|
-| Dashboard | Main control center | [Open](./DASHBOARD.md) |
-| Index | Navigation map | [Open](./INDEX.md) |
-| Log | Timeline tracking | [Open](./LOG.md) |
-| Archive | Stored history | [Open](./ARCHIVE.md) |
-
----
-
-<details>
-<summary>How to use</summary>
-
-1. Start in Dashboard  
-2. Capture in Inbox  
-3. Use Templates  
-4. Link everything  
-5. Archive old content  
-
-</details>
+- **Worksheet Template** — A printable neo-brutalist worksheet and productivity tracker featuring progress bars, checklist systems, editable tables, and dashboard-style organization panels.
