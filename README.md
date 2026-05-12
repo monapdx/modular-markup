@@ -1,6 +1,8 @@
 ## Modular Markup
 
 
+[![Buy Now](https://img.shields.io/badge/%F0%9F%92%96Buy%20Now-111111?style=for-the-badge)](https://ashpdx.gumroad.com/l/modular-markup)
+
 
 - **Calendar Template** — A responsive neo-brutalist monthly calendar with editable events, dynamic day controls, and a clean layout designed for planners, dashboards, and productivity tools.
 
