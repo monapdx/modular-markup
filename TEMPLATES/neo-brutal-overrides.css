@@ -1580,532 +1580,6 @@ html.page-calendar .add-event-btn:active{
 
 
 
-/* ===== health.html (page-health) ===== */
-
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-health{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-health body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-health body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-health h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-health{
-        background-color: white;
-      }
-      html.page-health body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-health p, html.page-health h2, html.page-health h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-health h2, html.page-health h3, html.page-health h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-health p{
-      margin: 1em 0;
-    }
-    html.page-health a{
-      color: #1a1a1a;
-    }
-    html.page-health a:visited{
-      color: #1a1a1a;
-    }
-    html.page-health img{
-      max-width: 100%;
-    }
-    html.page-health svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-health h1, html.page-health h2, html.page-health h3, html.page-health h4, html.page-health h5, html.page-health h6{
-      margin-top: 1.4em;
-    }
-    html.page-health h5, html.page-health h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-health h6{
-      font-weight: normal;
-    }
-    html.page-health ol, html.page-health ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-health li > ol, html.page-health li > ul{
-      margin-top: 0;
-    }
-    html.page-health blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-health code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-health pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-health pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-health .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-health hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-health table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-health table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-health tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-health th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-health td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-health header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-health #TOC li{
-      list-style: none;
-    }
-    html.page-health #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-health #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-health #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-health span.smallcaps{font-variant: small-caps;}
-    html.page-health div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-health div.column{flex: auto; overflow-x: auto;}
-    html.page-health div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-health ul.task-list[class]{list-style: none;}
-    html.page-health ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-health .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    
-    html.page-health body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
-
-/* Headings */
-html.page-health h1, html.page-health h2, html.page-health h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-health table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-health th, html.page-health td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-health th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-health tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-health pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-health code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-health a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-health a:hover{
-  text-decoration: underline;
-}
-  
-
-
-html.page-health table td[contenteditable="true"], html.page-health table th[contenteditable="true"]{
-  cursor: text;
-}
-
-html.page-health table td[contenteditable="true"]:focus, html.page-health table th[contenteditable="true"]:focus{
-  outline: 2px solid #8a2be2;
-  outline-offset: -2px;
-  background: #fff8d6;
-}
-
-
-
-  html.page-health .item{
-    max-width: 400px;
-    margin-bottom: 20px;
-    font-family: Arial;
-  }
-
-  html.page-health label{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-    font-weight: bold;
-  }
-
-  html.page-health input[type="range"]{
-    width: 100%;
-  }
-
-
-/* ===== EXPENSES.html (page-expenses) ===== */
-
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-expenses{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-expenses body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-expenses body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-expenses h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-expenses{
-        background-color: white;
-      }
-      html.page-expenses body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-expenses p, html.page-expenses h2, html.page-expenses h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-expenses h2, html.page-expenses h3, html.page-expenses h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-expenses p{
-      margin: 1em 0;
-    }
-    html.page-expenses a{
-      color: #1a1a1a;
-    }
-    html.page-expenses a:visited{
-      color: #1a1a1a;
-    }
-    html.page-expenses img{
-      max-width: 100%;
-    }
-    html.page-expenses svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-expenses h1, html.page-expenses h2, html.page-expenses h3, html.page-expenses h4, html.page-expenses h5, html.page-expenses h6{
-      margin-top: 1.4em;
-    }
-    html.page-expenses h5, html.page-expenses h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-expenses h6{
-      font-weight: normal;
-    }
-    html.page-expenses ol, html.page-expenses ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-expenses li > ol, html.page-expenses li > ul{
-      margin-top: 0;
-    }
-    html.page-expenses blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-expenses code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-expenses pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-expenses pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-expenses .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-expenses hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-expenses table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-expenses table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-expenses tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-expenses th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-expenses td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-expenses header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-expenses #TOC li{
-      list-style: none;
-    }
-    html.page-expenses #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-expenses #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-expenses #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-expenses span.smallcaps{font-variant: small-caps;}
-    html.page-expenses div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-expenses div.column{flex: auto; overflow-x: auto;}
-    html.page-expenses div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-expenses ul.task-list[class]{list-style: none;}
-    html.page-expenses ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-expenses .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    
-    html.page-expenses body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
-
-/* Headings */
-html.page-expenses h1, html.page-expenses h2, html.page-expenses h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-expenses table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-expenses th, html.page-expenses td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-expenses th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-expenses tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-expenses pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-expenses code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-expenses a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-expenses a:hover{
-  text-decoration: underline;
-}
-  
-
-
-html.page-expenses table td[contenteditable="true"], html.page-expenses table th[contenteditable="true"]{
-  cursor: text;
-}
-
-html.page-expenses table td[contenteditable="true"]:focus, html.page-expenses table th[contenteditable="true"]:focus{
-  outline: 2px solid #8a2be2;
-  outline-offset: -2px;
-  background: #fff8d6;
-}
-
-html.page-expenses .add-table-row-btn{
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 8px 0 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  background: #f6f8fa;
-  color: #24292f;
-}
-
-html.page-expenses .add-table-row-btn:hover{
-  background: #eaeef2;
-}
-
-@media print{
-  html.page-expenses .add-table-row-btn{
-    display: none !important;
-  }
-}
 
 
 /* ===== MOVIES.html (page-movies) ===== */
@@ -2373,274 +1847,6 @@ html.page-movies .add-table-row-btn:hover{
 }
 
   
-
-/* ===== SYMPTOMS.html (page-symptoms) ===== */
-
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-symptoms{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-symptoms body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-symptoms body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-symptoms h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-symptoms{
-        background-color: white;
-      }
-      html.page-symptoms body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-symptoms p, html.page-symptoms h2, html.page-symptoms h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-symptoms h2, html.page-symptoms h3, html.page-symptoms h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-symptoms p{
-      margin: 1em 0;
-    }
-    html.page-symptoms a{
-      color: #1a1a1a;
-    }
-    html.page-symptoms a:visited{
-      color: #1a1a1a;
-    }
-    html.page-symptoms img{
-      max-width: 100%;
-    }
-    html.page-symptoms svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-symptoms h1, html.page-symptoms h2, html.page-symptoms h3, html.page-symptoms h4, html.page-symptoms h5, html.page-symptoms h6{
-      margin-top: 1.4em;
-    }
-    html.page-symptoms h5, html.page-symptoms h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-symptoms h6{
-      font-weight: normal;
-    }
-    html.page-symptoms ol, html.page-symptoms ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-symptoms li > ol, html.page-symptoms li > ul{
-      margin-top: 0;
-    }
-    html.page-symptoms blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-symptoms code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-symptoms pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-symptoms pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-symptoms .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-symptoms hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-symptoms table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-symptoms table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-symptoms tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-symptoms th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-symptoms td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-symptoms header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-symptoms #TOC li{
-      list-style: none;
-    }
-    html.page-symptoms #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-symptoms #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-symptoms #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-symptoms span.smallcaps{font-variant: small-caps;}
-    html.page-symptoms div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-symptoms div.column{flex: auto; overflow-x: auto;}
-    html.page-symptoms div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-symptoms ul.task-list[class]{list-style: none;}
-    html.page-symptoms ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-symptoms .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    html.page-symptoms body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
-
-/* Headings */
-html.page-symptoms h1, html.page-symptoms h2, html.page-symptoms h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-symptoms table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-symptoms th, html.page-symptoms td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-symptoms th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-symptoms tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-symptoms pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-symptoms code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-symptoms a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-symptoms a:hover{
-  text-decoration: underline;
-}
-    
-  
-/* Editable table cells */
-html.page-symptoms .editable-cell{
-  cursor: text;
-}
-
-html.page-symptoms .editable-cell:focus{
-  outline: 2px solid #0969da;
-  outline-offset: -2px;
-  background: #fffef0;
-}
-
-html.page-symptoms .add-table-row-btn{
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 8px 0 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  background: #f6f8fa;
-  color: #24292f;
-}
-
-html.page-symptoms .add-table-row-btn:hover{
-  background: #eaeef2;
-}
-
-@media print{
-  html.page-symptoms .add-table-row-btn{
-    display: none !important;
-  }
-}
-
-  
-
-
 
 
 /* ===== table-template.html (page-table-template) ===== */
@@ -4016,7 +3222,7 @@ html.page-checklist a:hover{
   }
 
 
-/* ===== neo-dark-doc (TASKS, PROJECT, LOG, QUOTE_LOG, PROGRESS, episode-template, knowledge-map, worksheet) ===== */
+/* ===== neo-dark-doc (TASKS, PROJECT, LOG, QUOTE_LOG, PROGRESS, episode-template, knowledge-map, worksheet, SYMPTOMS, EXPENSES, health) ===== */
 /* Load neo-brutalist.css before this file; add class "neo-dark-doc" on <html> alongside page-*. */
 
 html.neo-dark-doc body {
@@ -4354,6 +3560,27 @@ html.neo-dark-doc.page-worksheet .marquee-container {
   color: var(--electric-lime);
   border-top: var(--border);
   margin-top: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 4px 0;
+}
+
+html.neo-dark-doc.page-worksheet .marquee-text {
+  display: inline-block;
+  padding: 6px 24px 6px 0;
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  animation: marquee 15s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.neo-dark-doc.page-worksheet .marquee-text {
+    animation: none;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 
 html.neo-dark-doc.page-worksheet .progress-wrapper {
@@ -4370,11 +3597,20 @@ html.neo-dark-doc.page-worksheet .progress-bar-container {
   background: var(--void);
   border: 3px solid #000;
   border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
 }
 
 html.neo-dark-doc.page-worksheet .progress-bar-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  min-height: 24px;
+  box-sizing: border-box;
   background: linear-gradient(90deg, var(--hot-pink), var(--electric-lime));
   border-right: 3px solid #000;
+  transition: width 0.25s ease;
 }
 
 html.neo-dark-doc.page-worksheet .grid {
@@ -4385,6 +3621,8 @@ html.neo-dark-doc.page-worksheet .grid {
 }
 
 html.neo-dark-doc.page-worksheet .card {
+  display: flex;
+  flex-direction: column;
   border: var(--border);
   border-radius: var(--radius);
   background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
@@ -4398,6 +3636,16 @@ html.neo-dark-doc.page-worksheet .card:hover {
 }
 
 html.neo-dark-doc.page-worksheet .card-header {
+  flex-shrink: 0;
+  padding: 16px 18px;
+  min-height: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.08rem;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
   border-bottom: var(--border);
   font-weight: 900;
   text-transform: uppercase;
@@ -4418,8 +3666,25 @@ html.neo-dark-doc.page-worksheet .p3-header {
   color: var(--ink);
 }
 
+html.neo-dark-doc.page-worksheet header h1 {
+  font-size: clamp(1.65rem, 4.5vw, 2.65rem);
+  line-height: 1.08;
+  margin: 0 0 0.35rem;
+  text-shadow: 4px 4px 0 #000;
+}
+
 html.neo-dark-doc.page-worksheet .task-item {
+  display: flex;
+  align-items: flex-start;
   border-bottom: 1px solid var(--line);
+  padding: 14px 16px;
+  gap: 12px;
+}
+
+html.neo-dark-doc.page-worksheet .task-list {
+  flex: 1;
+  margin: 0;
+  padding: 0;
 }
 
 html.neo-dark-doc.page-worksheet .task-item:hover {
