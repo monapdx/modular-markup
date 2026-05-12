@@ -245,6 +245,29 @@ a:hover {
   background: #fffef0;
 }
 
+.add-table-row-btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #24292f;
+}
+
+.add-table-row-btn:hover {
+  background: #eaeef2;
+}
+
+@media print {
+  .add-table-row-btn {
+    display: none !important;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -299,7 +322,47 @@ alt="Science Fiction" /></a></p>
     });
   }
 
-  document.addEventListener("DOMContentLoaded", makeTablesEditable);
+  function addTableRowButtons() {
+    document.querySelectorAll("table").forEach((table) => {
+      let colCount = table.querySelectorAll("thead tr th").length;
+      if (!colCount) {
+        const firstRow = table.querySelector("tbody tr");
+        if (firstRow) {
+          colCount = firstRow.querySelectorAll("td").length;
+        }
+      }
+      if (!colCount) {
+        return;
+      }
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "add-table-row-btn";
+      btn.textContent = "+ table row";
+      table.insertAdjacentElement("afterend", btn);
+
+      btn.addEventListener("click", () => {
+        let tbody = table.querySelector("tbody");
+        if (!tbody) {
+          tbody = table.appendChild(document.createElement("tbody"));
+        }
+        const tr = document.createElement("tr");
+        for (let i = 0; i < colCount; i++) {
+          const td = document.createElement("td");
+          td.setAttribute("contenteditable", "true");
+          td.setAttribute("spellcheck", "false");
+          td.classList.add("editable-cell");
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    makeTablesEditable();
+    addTableRowButtons();
+  });
 })();
 </script>
 

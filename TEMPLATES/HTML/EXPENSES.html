@@ -241,6 +241,41 @@ document.addEventListener('DOMContentLoaded', function () {
     cell.setAttribute('contenteditable', 'true');
     cell.setAttribute('spellcheck', 'false');
   });
+
+  document.querySelectorAll('table').forEach(function (table) {
+    var headerCells = table.querySelectorAll('thead tr th');
+    var colCount = headerCells.length;
+    if (!colCount) {
+      var firstRow = table.querySelector('tbody tr');
+      if (firstRow) {
+        colCount = firstRow.querySelectorAll('td').length;
+      }
+    }
+    if (!colCount) {
+      return;
+    }
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-table-row-btn';
+    btn.textContent = '+ table row';
+    table.insertAdjacentElement('afterend', btn);
+
+    btn.addEventListener('click', function () {
+      var tbody = table.querySelector('tbody');
+      if (!tbody) {
+        tbody = table.appendChild(document.createElement('tbody'));
+      }
+      var tr = document.createElement('tr');
+      for (var i = 0; i < colCount; i++) {
+        var td = document.createElement('td');
+        td.setAttribute('contenteditable', 'true');
+        td.setAttribute('spellcheck', 'false');
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    });
+  });
 });
 </script>
 <style>
@@ -254,6 +289,29 @@ table th[contenteditable="true"]:focus {
   outline: 2px solid #8a2be2;
   outline-offset: -2px;
   background: #fff8d6;
+}
+
+.add-table-row-btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 8px 0 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #24292f;
+}
+
+.add-table-row-btn:hover {
+  background: #eaeef2;
+}
+
+@media print {
+  .add-table-row-btn {
+    display: none !important;
+  }
 }
 </style>
 
