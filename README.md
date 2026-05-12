@@ -61,8 +61,31 @@ Designed for indie hackers, creators, tinkerers, non-coders, and developers who 
 
 - **Dashboard With Widgets** — A bundled productivity dashboard packed with reusable frontend utilities including a progress bar generator, FAQ builder, HTML list creator, editable tables, localStorage notes, and voice recording tools.
 
+    - **Widgets**
 
+      - **Progress Bar Generator**
+     
+      <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/progress-bar-generator.png" width="471">
+  
+      - **Voice Recorder**
+     
 
+      <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/voice-recorder.png" width="476">
+
+      - **Note Saver**
+     
+      <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/notes.png" width="476">
+     
+      - **FAQ Generator**
+     
+      <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/faq-generator.png" width="476">
+     
+      - **Table Generator**
+     
+      <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/table-generator.png" width="476">
+     
+  
+---
 
 ## Tablular Templates
 
