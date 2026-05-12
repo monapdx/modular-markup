@@ -1,6 +1,8 @@
 # Modular Markup
 
-<a href=""><img src="assets/gumroad.svg"></a> | <a href=""><img src="assets/paypal.svg"></a> | <a href=""><img src="stripe.svg"></a> | <a href=""><img src="itch.io.svg"></a>
+<a href=""><img src="assets/gumroad.svg"></a> | <a href=""><img src="assets/paypal.svg"></a> | <a href=""><img src="stripe.svg"></a> | <a href="https://monapdx.itch.io/modular-markup-pack"><img src="itch.io.svg"></a>
+
+---
 
 ## Premium Templates
 
