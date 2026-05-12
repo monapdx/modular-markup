@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="nb-skin" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quote Graphic Generator</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&amp;family=Oswald:wght@200..700&amp;family=Fjalla+One&amp;family=Bebas+Neue&amp;family=Sofia&amp;display=swap" rel="stylesheet"/>
+
+<link href="neo-brutalist.css" rel="stylesheet"/></head>
+<body class="quote-generator">
+<div class="app">
+<div class="shell">
+<section class="panel">
+<h1 class="title">Quote Graphic Generator</h1>
+<p class="hint">Edits redraw instantly. Canvas auto-resizes to fit your screen while keeping a 3:2 ratio.</p>
+<div class="controls">
+<label>Gradient Start Color
+            <input id="startColor" type="color" value="#ff78d0"/>
+</label>
+<label>Gradient End Color
+            <input id="endColor" type="color" value="#fa02a3"/>
+</label>
+<label>Font Color
+            <input id="fontColor" type="color" value="#ffffff"/>
+</label>
+<label>Font
+            <select id="font">
+<option value="Lobster">Lobster</option>
+<option selected="" value="Oswald">Oswald</option>
+<option value="Fjalla One">Fjalla One</option>
+<option value="Bebas Neue">Bebas Neue</option>
+<option value="Sofia">Sofia</option>
+</select>
+</label>
+<label>Quote Text
+            <input id="quoteText" placeholder="Enter your quote" type="text"/>
+</label>
+<div class="btnRow">
+<button id="generate" type="button">Generate</button>
+<button id="save" type="button">Save Image</button>
+</div>
+</div>
+</section>
+<section class="panel">
+<div class="previewTop">
+<h2 class="title">Preview</h2>
+<div class="meta" id="meta"></div>
+</div>
+<div class="canvasWrap" id="canvasWrap">
+<canvas id="canvas"></canvas>
+</div>
+</section>
+</div>
+</div>
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const canvasWrap = document.getElementById('canvasWrap');
+    const meta = document.getElementById('meta');
+
+    const startColor = document.getElementById('startColor');
+    const endColor = document.getElementById('endColor');
+    const fontColor = document.getElementById('fontColor');
+    const font = document.getElementById('font');
+    const quoteText = document.getElementById('quoteText');
+    const generate = document.getElementById('generate');
+    const save = document.getElementById('save');
+
+    // Stable aspect ratio (3:2 like the original 600x400)
+    const ASPECT_W = 3;
+    const ASPECT_H = 2;
+
+    function debounce(fn, ms = 80) {
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), ms);
+      };
+    }
+
+    function getCssSizeFromContainer() {
+      // getBoundingClientRect avoids some rounding issues that cause 1px overflow on mobile
+      const rect = canvasWrap.getBoundingClientRect();
+      const cssWidth = rect.width;
+      const cssHeight = cssWidth * (ASPECT_H / ASPECT_W);
+      return { cssWidth, cssHeight };
+    }
+
+    function setCanvasSizeToContainer() {
+      const { cssWidth, cssHeight } = getCssSizeFromContainer();
+
+      // HiDPI scaling for crisp text/images
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+
+      // Let CSS handle element sizing (prevents sideways scroll from rounding)
+      canvas.style.width = '100%';
+      canvas.style.height = 'auto';
+
+      // Set internal buffer size
+      canvas.width = Math.round(cssWidth * dpr);
+      canvas.height = Math.round(cssHeight * dpr);
+
+      // Normalize drawing coords to CSS pixels
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      meta.textContent = `${Math.round(cssWidth)}×${Math.round(cssHeight)} (display) • DPR ${dpr.toFixed(2)}`;
+    }
+
+    function wrapTextLines(context, text, maxWidth) {
+      const words = text.trim().split(/\s+/);
+      const lines = [];
+      let line = '';
+
+      for (let i = 0; i < words.length; i++) {
+        const test = line ? (line + ' ' + words[i]) : words[i];
+        const w = context.measureText(test).width;
+
+        if (w <= maxWidth) {
+          line = test;
+        } else {
+          if (line) lines.push(line);
+          line = words[i];
+        }
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    async function drawCanvas() {
+      setCanvasSizeToContainer();
+
+      const { cssWidth, cssHeight } = getCssSizeFromContainer();
+
+      const text = (quoteText.value && quoteText.value.trim()) ? quoteText.value.trim() : "Your Quote Here";
+      const selectedFont = `"${font.value}"`;
+
+      // Responsive font sizing based on canvas width
+      const fontSize = Math.max(22, Math.min(52, Math.round(cssWidth * 0.07)));
+      const lineHeight = Math.round(fontSize * 1.25);
+
+      // Wait for font to load so measurements are accurate
+      try {
+        await document.fonts.load(`${fontSize}px ${selectedFont}`);
+      } catch (e) {
+        // ignore
+      }
+
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, cssWidth, cssHeight);
+      gradient.addColorStop(0, startColor.value);
+      gradient.addColorStop(1, endColor.value);
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, cssWidth, cssHeight);
+
+      // Text styles
+      ctx.fillStyle = fontColor.value;
+      ctx.font = `${fontSize}px ${selectedFont}`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      const padding = Math.max(18, Math.round(cssWidth * 0.06));
+      const maxWidth = cssWidth - padding * 2;
+
+      const lines = wrapTextLines(ctx, text, maxWidth);
+
+      // Vertically center block of lines
+      const blockHeight = lines.length * lineHeight;
+      let y = (cssHeight / 2) - (blockHeight / 2) + (lineHeight / 2);
+
+      for (const line of lines) {
+        ctx.fillText(line, cssWidth / 2, y);
+        y += lineHeight;
+      }
+    }
+
+    const drawDebounced = debounce(drawCanvas, 100);
+
+    // Events: redraw on changes
+    [startColor, endColor, fontColor, font].forEach(el => el.addEventListener('input', drawDebounced));
+    quoteText.addEventListener('input', drawDebounced);
+
+    generate.addEventListener('click', drawCanvas);
+
+    save.addEventListener('click', () => {
+      // Export at a higher resolution while keeping same aspect ratio
+      const exportW = 1200;
+      const exportH = Math.round(exportW * (ASPECT_H / ASPECT_W));
+
+      const tmp = document.createElement('canvas');
+      tmp.width = exportW;
+      tmp.height = exportH;
+      const tctx = tmp.getContext('2d');
+
+      const selectedFont = `"${font.value}"`;
+      const text = (quoteText.value && quoteText.value.trim()) ? quoteText.value.trim() : "Your Quote Here";
+
+      const gradient = tctx.createLinearGradient(0, 0, exportW, exportH);
+      gradient.addColorStop(0, startColor.value);
+      gradient.addColorStop(1, endColor.value);
+      tctx.fillStyle = gradient;
+      tctx.fillRect(0, 0, exportW, exportH);
+
+      const fontSize = Math.round(exportW * 0.07);
+      const lineHeight = Math.round(fontSize * 1.25);
+      const padding = Math.round(exportW * 0.06);
+      const maxWidth = exportW - padding * 2;
+
+      tctx.fillStyle = fontColor.value;
+      tctx.font = `${fontSize}px ${selectedFont}`;
+      tctx.textAlign = 'center';
+      tctx.textBaseline = 'middle';
+
+      const words = text.trim().split(/\s+/);
+      const lines = [];
+      let line = '';
+      for (let i = 0; i < words.length; i++) {
+        const test = line ? (line + ' ' + words[i]) : words[i];
+        const w = tctx.measureText(test).width;
+        if (w <= maxWidth) line = test;
+        else { if (line) lines.push(line); line = words[i]; }
+      }
+      if (line) lines.push(line);
+
+      const blockHeight = lines.length * lineHeight;
+      let y = (exportH / 2) - (blockHeight / 2) + (lineHeight / 2);
+      for (const l of lines) {
+        tctx.fillText(l, exportW / 2, y);
+        y += lineHeight;
+      }
+
+      const link = document.createElement('a');
+      link.download = 'quote-graphic.png';
+      link.href = tmp.toDataURL('image/png');
+      link.click();
+    });
+
+    // Resize observer keeps canvas responsive when layout changes
+    const ro = new ResizeObserver(() => drawDebounced());
+    ro.observe(canvasWrap);
+
+    // Initial draw
+    document.fonts.ready.then(() => drawCanvas());
+  </script>
+</body>
+</html>
