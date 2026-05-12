@@ -4,7 +4,7 @@ A growing collection of dark neo-brutalist frontend templates, generators, dashb
 
 Designed for indie hackers, creators, tinkerers, non-coders, and developers who want visually bold interfaces without heavy frameworks.
 
-<a href="https://ashpdx.gumroad.com/l/modular-markup"><img src="assets/gumroad.svg"></a>  <a href=""><img src="assets/paypal.svg"></a> 
+
 ---
 
 ## Premium Templates
