@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" class="page-project">
+<html xmlns="http://www.w3.org/1999/xhtml" class="page-project neo-dark-doc">
 <head>
 <meta charset="utf-8"/>
+  <link rel="stylesheet" href="neo-brutalist.css" />
   <link rel="stylesheet" href="neo-brutal-overrides.css" />
 <meta content="pandoc" name="generator"/>
 <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
@@ -95,7 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateProgressSlider() {
       var v = range.value;
       val.textContent = v + "%";
-      range.style.background = "linear-gradient(to right, #4caf50 " + v + "%, #ddd " + v + "%)";
+      range.style.background =
+        "linear-gradient(to right, #b8ff24 " + v + "%, #2a2a35 " + v + "%)";
     }
     range.addEventListener("input", updateProgressSlider);
     updateProgressSlider();

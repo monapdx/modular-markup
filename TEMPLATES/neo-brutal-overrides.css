@@ -1577,847 +1577,7 @@ html.page-calendar .add-event-btn:active{
   }
 
 
-/* ===== TASKS.html (page-tasks) ===== */
 
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-tasks{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-tasks body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-tasks body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-tasks h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-tasks{
-        background-color: white;
-      }
-      html.page-tasks body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-tasks p, html.page-tasks h2, html.page-tasks h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-tasks h2, html.page-tasks h3, html.page-tasks h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-tasks p{
-      margin: 1em 0;
-    }
-    html.page-tasks a{
-      color: #1a1a1a;
-    }
-    html.page-tasks a:visited{
-      color: #1a1a1a;
-    }
-    html.page-tasks img{
-      max-width: 100%;
-    }
-    html.page-tasks svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-tasks h1, html.page-tasks h2, html.page-tasks h3, html.page-tasks h4, html.page-tasks h5, html.page-tasks h6{
-      margin-top: 1.4em;
-    }
-    html.page-tasks h5, html.page-tasks h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-tasks h6{
-      font-weight: normal;
-    }
-    html.page-tasks ol, html.page-tasks ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-tasks li > ol, html.page-tasks li > ul{
-      margin-top: 0;
-    }
-    html.page-tasks blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-tasks code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-tasks pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-tasks pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-tasks .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-tasks hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-tasks table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-tasks table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-tasks tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-tasks th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-tasks td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-tasks header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-tasks #TOC li{
-      list-style: none;
-    }
-    html.page-tasks #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-tasks #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-tasks #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-tasks span.smallcaps{font-variant: small-caps;}
-    html.page-tasks div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-tasks div.column{flex: auto; overflow-x: auto;}
-    html.page-tasks div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-tasks ul.task-list[class]{list-style: none;}
-    html.page-tasks ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-tasks .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    
-    html.page-tasks body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
-
-/* Headings */
-html.page-tasks h1, html.page-tasks h2, html.page-tasks h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-tasks table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-tasks th, html.page-tasks td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-tasks th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-tasks tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-tasks pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-tasks code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-tasks a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-tasks a:hover{
-  text-decoration: underline;
-}
-  
-
-
-html.page-tasks .editable-cell{
-  cursor: text;
-}
-html.page-tasks .editable-cell:focus{
-  outline: 2px solid #0969da;
-  outline-offset: -2px;
-  background: #fff8c5;
-}
-
-html.page-tasks .add-task-btn{
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 0 0 12px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  background: #f6f8fa;
-  color: #24292f;
-}
-
-html.page-tasks .add-task-btn:hover{
-  background: #eaeef2;
-}
-
-html.page-tasks .add-task-wrap{
-  margin: 0.5rem 0 0;
-}
-
-html.page-tasks .task-list li span[contenteditable="true"]{
-  cursor: text;
-  min-width: 1ch;
-  display: inline-block;
-  outline: none;
-}
-
-html.page-tasks .task-list li span[contenteditable="true"]:focus{
-  outline: 2px solid #0969da;
-  outline-offset: 1px;
-  border-radius: 2px;
-  background: #fff8c5;
-}
-
-@media print{
-  html.page-tasks .add-task-btn{
-    display: none !important;
-  }
-}
-
-
-/* ===== PROJECT.html (page-project) ===== */
-
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-project{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-project body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-project body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-project h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-project{
-        background-color: white;
-      }
-      html.page-project body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-project p, html.page-project h2, html.page-project h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-project h2, html.page-project h3, html.page-project h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-project p{
-      margin: 1em 0;
-    }
-    html.page-project a{
-      color: #1a1a1a;
-    }
-    html.page-project a:visited{
-      color: #1a1a1a;
-    }
-    html.page-project img{
-      max-width: 100%;
-    }
-    html.page-project svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-project h1, html.page-project h2, html.page-project h3, html.page-project h4, html.page-project h5, html.page-project h6{
-      margin-top: 1.4em;
-    }
-    html.page-project h5, html.page-project h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-project h6{
-      font-weight: normal;
-    }
-    html.page-project ol, html.page-project ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-project li > ol, html.page-project li > ul{
-      margin-top: 0;
-    }
-    html.page-project blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-project code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-project pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-project pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-project .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-project hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-project table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-project table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-project tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-project th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-project td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-project header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-project #TOC li{
-      list-style: none;
-    }
-    html.page-project #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-project #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-project #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-project span.smallcaps{font-variant: small-caps;}
-    html.page-project div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-project div.column{flex: auto; overflow-x: auto;}
-    html.page-project div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-project ul.task-list[class]{list-style: none;}
-    html.page-project ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-project .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    
-    html.page-project body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
-
-/* Headings */
-html.page-project h1, html.page-project h2, html.page-project h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-project table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-project th, html.page-project td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-project th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-project tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-project pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-project code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-project a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-project a:hover{
-  text-decoration: underline;
-}
-  
-
-
-/* Editable table cells */
-html.page-project table th[contenteditable="true"], html.page-project table td[contenteditable="true"]{
-  cursor: text;
-}
-
-html.page-project table th[contenteditable="true"]:focus, html.page-project table td[contenteditable="true"]:focus{
-  outline: 2px solid #0969da;
-  outline-offset: -2px;
-  background: #fff8c5;
-}
-
-html.page-project .add-table-row-btn{
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 8px 0 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  background: #f6f8fa;
-  color: #24292f;
-}
-
-html.page-project .add-table-row-btn:hover{
-  background: #eaeef2;
-}
-
-@media print{
-  html.page-project .add-table-row-btn{
-    display: none !important;
-  }
-}
-
-html.page-project .project-progress-slider .slider-wrap{
-  max-width: 500px;
-}
-
-html.page-project .project-progress-slider .value{
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-html.page-project .project-progress-slider input[type="range"]{
-  width: 100%;
-  appearance: none;
-  height: 14px;
-  border-radius: 999px;
-  background: linear-gradient(to right, #4caf50 50%, #ddd 50%);
-  outline: none;
-}
-
-html.page-project .project-progress-slider input[type="range"]::-webkit-slider-thumb{
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  background: #333;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-
-/* ===== LOG.html (page-log) ===== */
-
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-log{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-log body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-log body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-log h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-log{
-        background-color: white;
-      }
-      html.page-log body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-log p, html.page-log h2, html.page-log h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-log h2, html.page-log h3, html.page-log h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-log p{
-      margin: 1em 0;
-    }
-    html.page-log a{
-      color: #1a1a1a;
-    }
-    html.page-log a:visited{
-      color: #1a1a1a;
-    }
-    html.page-log img{
-      max-width: 100%;
-    }
-    html.page-log svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-log h1, html.page-log h2, html.page-log h3, html.page-log h4, html.page-log h5, html.page-log h6{
-      margin-top: 1.4em;
-    }
-    html.page-log h5, html.page-log h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-log h6{
-      font-weight: normal;
-    }
-    html.page-log ol, html.page-log ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-log li > ol, html.page-log li > ul{
-      margin-top: 0;
-    }
-    html.page-log blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-log code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-log pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-log pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-log .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-log hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-log table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-log table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-log tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-log th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-log td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-log header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-log #TOC li{
-      list-style: none;
-    }
-    html.page-log #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-log #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-log #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-log span.smallcaps{font-variant: small-caps;}
-    html.page-log div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-log div.column{flex: auto; overflow-x: auto;}
-    html.page-log div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-log ul.task-list[class]{list-style: none;}
-    html.page-log ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-log .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    
-    html.page-log body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
-
-/* Headings */
-html.page-log h1, html.page-log h2, html.page-log h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-log table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-log th, html.page-log td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-log th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-log tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-log pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-log code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-log a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-log a:hover{
-  text-decoration: underline;
-}
-  
-
-
-html.page-log table td[contenteditable="true"], html.page-log table th[contenteditable="true"]{
-  cursor: text;
-}
-
-html.page-log table td[contenteditable="true"]:focus, html.page-log table th[contenteditable="true"]:focus{
-  outline: 2px solid #8a2be2;
-  outline-offset: -2px;
-  background: #fff8d6;
-}
-
-html.page-log .add-table-row-btn{
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 8px 0 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  background: #f6f8fa;
-  color: #24292f;
-}
-
-html.page-log .add-table-row-btn:hover{
-  background: #eaeef2;
-}
-
-@media print{
-  html.page-log .add-table-row-btn{
-    display: none !important;
-  }
-}
 
 
 /* ===== health.html (page-health) ===== */
@@ -3480,730 +2640,8 @@ html.page-symptoms .add-table-row-btn:hover{
 
   
 
-/* ===== QUOTE_LOG.html (page-quote-log) ===== */
 
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-quote-log{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-quote-log body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-quote-log body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-quote-log h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-quote-log{
-        background-color: white;
-      }
-      html.page-quote-log body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-quote-log p, html.page-quote-log h2, html.page-quote-log h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-quote-log h2, html.page-quote-log h3, html.page-quote-log h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-quote-log p{
-      margin: 1em 0;
-    }
-    html.page-quote-log a{
-      color: #1a1a1a;
-    }
-    html.page-quote-log a:visited{
-      color: #1a1a1a;
-    }
-    html.page-quote-log img{
-      max-width: 100%;
-    }
-    html.page-quote-log svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-quote-log h1, html.page-quote-log h2, html.page-quote-log h3, html.page-quote-log h4, html.page-quote-log h5, html.page-quote-log h6{
-      margin-top: 1.4em;
-    }
-    html.page-quote-log h5, html.page-quote-log h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-quote-log h6{
-      font-weight: normal;
-    }
-    html.page-quote-log ol, html.page-quote-log ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-quote-log li > ol, html.page-quote-log li > ul{
-      margin-top: 0;
-    }
-    html.page-quote-log blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-quote-log code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-quote-log pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-quote-log pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-quote-log .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-quote-log hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-quote-log table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-quote-log table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-quote-log tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-quote-log th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-quote-log td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-quote-log header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-quote-log #TOC li{
-      list-style: none;
-    }
-    html.page-quote-log #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-quote-log #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-quote-log #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-quote-log span.smallcaps{font-variant: small-caps;}
-    html.page-quote-log div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-quote-log div.column{flex: auto; overflow-x: auto;}
-    html.page-quote-log div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-quote-log ul.task-list[class]{list-style: none;}
-    html.page-quote-log ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-quote-log .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    
-    html.page-quote-log body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
 
-/* Headings */
-html.page-quote-log h1, html.page-quote-log h2, html.page-quote-log h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-quote-log table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-quote-log th, html.page-quote-log td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-quote-log th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-quote-log tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-quote-log pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-quote-log code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-quote-log a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-quote-log a:hover{
-  text-decoration: underline;
-}
-  
-/* Editable table cells */
-html.page-quote-log .editable-cell{
-  cursor: text;
-}
-
-html.page-quote-log .editable-cell:focus{
-  outline: 2px solid #0969da;
-  outline-offset: -2px;
-  background: #fffef0;
-}
-
-html.page-quote-log .add-table-row-btn{
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 8px 0 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid #d0d7de;
-  border-radius: 6px;
-  background: #f6f8fa;
-  color: #24292f;
-}
-
-html.page-quote-log .add-table-row-btn:hover{
-  background: #eaeef2;
-}
-
-@media print{
-  html.page-quote-log .add-table-row-btn{
-    display: none !important;
-  }
-}
-
-  
-
-/* ===== episode-template.html (page-episode-template) ===== */
-
-    html.page-episode-template body{
-      font-family: Arial, sans-serif;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.5;
-      background: #fff;
-      color: #111;
-    }
-
-    html.page-episode-template h1, html.page-episode-template h2{
-      margin-top: 32px;
-    }
-
-    html.page-episode-template table{
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0 12px;
-      table-layout: auto;
-    }
-
-    html.page-episode-template th, html.page-episode-template td{
-      border: 1px solid #ccc;
-      padding: 8px 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    html.page-episode-template th{
-      background: #f2f2f2;
-      font-weight: bold;
-    }
-
-    html.page-episode-template td[contenteditable="true"]{
-      background: #fff;
-      cursor: text;
-    }
-
-    html.page-episode-template td[contenteditable="true"]:focus{
-      outline: 2px solid #ff00aa;
-      background: #fff;
-    }
-
-    html.page-episode-template tbody tr:nth-child(even) td{
-      background: #fffbe6;
-    }
-
-    html.page-episode-template select, html.page-episode-template .topic-input{
-      width: 100%;
-      padding: 8px 36px 8px 10px;
-      font: inherit;
-      border: 2px solid #000;
-      background: #ff00aa;
-      color: #fff;
-      appearance: none;
-      box-shadow: 3px 3px 0 #000;
-      box-sizing: border-box;
-    }
-
-    html.page-episode-template select{
-      background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 20 20' width='20'><path d='M5 7l5 5 5-5z'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      min-width: max-content;
-      white-space: nowrap;
-    }
-
-    html.page-episode-template select:hover, html.page-episode-template .topic-input:hover, html.page-episode-template button:hover{
-      transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0 #000;
-    }
-
-    html.page-episode-template select:active, html.page-episode-template .topic-input:active, html.page-episode-template button:active{
-      transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0 #000;
-    }
-
-    html.page-episode-template select:focus, html.page-episode-template .topic-input:focus{
-      outline: 2px solid #ff00aa;
-    }
-
-    html.page-episode-template button{
-      font: inherit;
-      font-weight: bold;
-      border: 2px solid #000;
-      background: #00d9ff;
-      color: #000;
-      padding: 8px 12px;
-      box-shadow: 3px 3px 0 #000;
-      cursor: pointer;
-      margin: 0 0 24px;
-    }
-
-    html.page-episode-template .topic-picker{
-      min-width: 260px;
-    }
-
-    html.page-episode-template .topic-controls{
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    html.page-episode-template .topic-controls button{
-      margin: 0;
-      white-space: nowrap;
-      background: #b6ff00;
-    }
-
-    html.page-episode-template .topic-tags{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      min-height: 32px;
-    }
-
-    html.page-episode-template .topic-tag{
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 2px solid #000;
-      background: #fffbe6;
-      color: #000;
-      padding: 3px 7px;
-      font-size: 0.9rem;
-      box-shadow: 2px 2px 0 #000;
-    }
-
-    html.page-episode-template .topic-tag button{
-      margin: 0;
-      padding: 0 4px;
-      border: 1px solid #000;
-      box-shadow: none;
-      background: #ff00aa;
-      color: #fff;
-      line-height: 1.1;
-    }
-
-    html.page-episode-template .topic-tag button:hover, html.page-episode-template .topic-tag button:active{
-      transform: none;
-      box-shadow: none;
-    }
-
-    html.page-episode-template table th:nth-child(1), html.page-episode-template table td:nth-child(1){
-      width: 36%;
-    }
-
-    html.page-episode-template table th:nth-child(2), html.page-episode-template table td:nth-child(2){
-      width: 150px;
-      min-width: 150px;
-    }
-
-    html.page-episode-template table th:nth-child(3), html.page-episode-template table td:nth-child(3){
-      width: 120px;
-      min-width: 120px;
-    }
-
-    html.page-episode-template table th:nth-child(4), html.page-episode-template table td:nth-child(4){
-      width: 34%;
-      min-width: 260px;
-    }
-
-    html.page-episode-template details{
-      border: 1px solid #ccc;
-      padding: 12px 16px;
-      margin-top: 24px;
-      background: #fafafa;
-    }
-
-    html.page-episode-template summary{
-      cursor: pointer;
-      font-weight: bold;
-    }
-  
-html.page-episode-template .topic-input::placeholder{
-  color: #ffffff;
-  opacity: 1;
-}
-
-
-
-/* ===== worksheet.html (page-worksheet) ===== */
-
-        /* --- NEO-BRUTALISM CORE STYLES --- */
-        html.page-worksheet{
-            --bg-color: #f0f0f0;
-            --main-accent: #ff006f; /* Safety Yellow */
-            --secondary-accent: #ff90e8; /* Hot Pink */
-            --tertiary-accent: #02a6f7; /* Cyan */
-            --text-color: #000000;
-            --border-width: 3px;
-            --shadow-offset: 6px;
-        }
-
-        html.page-worksheet *{
-            box-sizing: border-box;
-        }
-
-        html.page-worksheet body{
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: "Courier New", Courier, monospace; /* Raw Monospace */
-            margin: 0;
-            padding: 20px;
-            line-height: 1.5;
-        }
-
-        /* --- LAYOUT CONTAINERS --- */
-        html.page-worksheet .container{
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        html.page-worksheet header{
-            background-color: #fff;
-            border: var(--border-width) solid #000;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px #000;
-            padding: 20px;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
-
-        html.page-worksheet h1{
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: -2px;
-        }
-
-        html.page-worksheet .marquee-container{
-            background: #000;
-            color: #fff;
-            padding: 5px 0;
-            margin-top: 10px;
-            border-top: var(--border-width) solid #000;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        html.page-worksheet .marquee-text{
-            display: inline-block;
-            animation: marquee 15s linear infinite;
-            font-weight: bold;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* --- PROGRESS BAR --- */
-        html.page-worksheet .progress-wrapper{
-            margin-bottom: 30px;
-            border: var(--border-width) solid #000;
-            background: #fff;
-            padding: 5px;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px #000;
-        }
-
-        html.page-worksheet .progress-label{
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        html.page-worksheet .progress-bar-container{
-            height: 30px;
-            background: #fff;
-            border: 2px solid #000;
-            position: relative;
-        }
-
-        html.page-worksheet .progress-bar-fill{
-            height: 100%;
-            background-color: var(--secondary-accent);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-right: 2px solid #000;
-        }
-
-        /* --- PHASE CARDS --- */
-        html.page-worksheet .grid{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        html.page-worksheet .card{
-            background: #fff;
-            border: var(--border-width) solid #000;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px #000;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.1s;
-        }
-
-        html.page-worksheet .card:hover{
-            transform: translate(-2px, -2px);
-            box-shadow: 8px 8px 0px 0px #000;
-        }
-
-        html.page-worksheet .card-header{
-            padding: 15px;
-            border-bottom: var(--border-width) solid #000;
-            font-weight: 900;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-        html.page-worksheet .p1-header{ background-color: var(--main-accent); }
-        html.page-worksheet .p2-header{ background-color: var(--tertiary-accent); }
-        html.page-worksheet .p3-header{ background-color: #f7ba02; }
-
-        html.page-worksheet .task-list{
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        html.page-worksheet .task-item{
-            padding: 15px;
-            border-bottom: 1px solid #000;
-            display: flex;
-            align-items: flex-start;
-            cursor: pointer;
-        }
-
-        html.page-worksheet .task-item:last-child{
-            border-bottom: none;
-        }
-
-        html.page-worksheet .task-item:hover{
-            background-color: #f9f9f9;
-        }
-
-        /* --- CUSTOM CHECKBOX --- */
-        html.page-worksheet .checkbox-brutal{
-            appearance: none;
-            min-width: 25px;
-            height: 25px;
-            border: 3px solid #000;
-            margin-right: 15px;
-            position: relative;
-            cursor: pointer;
-            background: #fff;
-        }
-
-        html.page-worksheet .checkbox-brutal:checked{
-            background: #000;
-        }
-
-        html.page-worksheet .checkbox-brutal:checked::after{
-            content: "✓";
-            color: #fff;
-            font-size: 20px;
-            position: absolute;
-            top: -4px;
-            left: 2px;
-            font-weight: 900;
-        }
-
-        html.page-worksheet .task-content{
-            flex-grow: 1;
-        }
-
-        html.page-worksheet .task-title{
-            font-weight: bold;
-            display: block;
-        }
-
-        html.page-worksheet .task-desc{
-            font-size: 0.85rem;
-            color: #444;
-            margin-top: 4px;
-            display: block;
-        }
-
-        /* --- WORKSHOP TRACKER TABLE --- */
-        html.page-worksheet .tracker-section{
-            background: #fff;
-            border: var(--border-width) solid #000;
-            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px 0px #000;
-            padding: 20px;
-            margin-bottom: 40px;
-        }
-
-        html.page-worksheet table{
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            margin-top: 15px;
-        }
-
-        html.page-worksheet th, html.page-worksheet td{
-            border: 2px solid #000;
-            padding: 10px;
-            text-align: left;
-        }
-
-        html.page-worksheet th{
-            background-color: #000;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        /* --- BUTTONS --- */
-        html.page-worksheet .btn-reset{
-            background: #fff;
-            border: 3px solid #000;
-            padding: 10px 20px;
-            font-family: inherit;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 4px 4px 0px 0px #000;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
-        html.page-worksheet .btn-reset:active{
-            box-shadow: 2px 2px 0px 0px #000;
-            transform: translate(2px, 2px);
-        }
-
-        html.page-worksheet .worksheet-header-meta{
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-
-        html.page-worksheet .worksheet-tracker-h2{
-            margin: 0;
-            text-transform: uppercase;
-            border-bottom: 3px solid #000;
-            padding-bottom: 10px;
-        }
-
-        html.page-worksheet .worksheet-tracker-note{
-            margin-top: 15px;
-            font-size: 0.8rem;
-            font-style: italic;
-        }
-
-        html.page-worksheet .worksheet-site-footer{
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        html.page-worksheet .worksheet-site-footer-lead{
-            font-weight: bold;
-        }
-
-    
 
 /* ===== table-template.html (page-table-template) ===== */
 
@@ -4453,129 +2891,6 @@ html.page-blank-tables select{
 }
   
 
-/* ===== knowledge-map.html (page-knowledge-map) ===== */
-
-    html.page-knowledge-map body{
-      font-family: Arial, sans-serif;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.5;
-    }
-
-    html.page-knowledge-map h1, html.page-knowledge-map h2{
-      margin-top: 32px;
-    }
-
-    html.page-knowledge-map table{
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0 32px;
-    }
-
-    html.page-knowledge-map th, html.page-knowledge-map td{
-      border: 1px solid #ccc;
-      padding: 8px 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    html.page-knowledge-map th{
-      background: #f2f2f2;
-      font-weight: bold;
-    }
-
-    html.page-knowledge-map td[contenteditable="true"]{
-      background: #fff;
-      cursor: text;
-    }
-
-    html.page-knowledge-map td[contenteditable="true"]:focus{
-      outline: 2px solid #ff00aa;
-      background: #fff;
-    }
-	
-	html.page-knowledge-map tbody tr:nth-child(even) td{
-  background:#fffbe6; /* or whatever color you want */
-}
-
-html.page-knowledge-map select{
-  width: 100%;
-  padding: 8px 36px 8px 10px;
-  font: inherit;
-  border: 2px solid #000;
-
-  background: #ff00aa; /* neon pink */
-  color: #000;
-
-  color: #fff;
-
-  appearance: none;
-
-  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 20 20' width='20'><path d='M5 7l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-
-  box-shadow: 3px 3px 0 #000;
-}
-
-/* hover = subtle shift */
-html.page-knowledge-map select:hover{
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 #000;
-}
-
-/* active press */
-html.page-knowledge-map select:active{
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0 #000;
-}
-
-/* focus */
-html.page-knowledge-map select:focus{
-  outline: 2px solid #ff00aa;
-}
-
-    html.page-knowledge-map details{
-      border: 1px solid #ccc;
-      padding: 12px 16px;
-      margin-top: 24px;
-      background: #fafafa;
-    }
-
-    html.page-knowledge-map summary{
-      cursor: pointer;
-      font-weight: bold;
-    }
-    
-    /* Let tables size columns more intelligently */
-html.page-knowledge-map table{
-  table-layout: auto;
-}
-
-/* Prevent dropdown columns from collapsing */
-html.page-knowledge-map table:nth-of-type(1) th:nth-child(4), html.page-knowledge-map table:nth-of-type(1) td:nth-child(4){
-  min-width: 120px;
-  width: 120px;
-}
-
-html.page-knowledge-map table:nth-of-type(2) th:nth-child(4), html.page-knowledge-map table:nth-of-type(2) td:nth-child(4){
-  min-width: 180px;
-  width: 180px;
-}
-
-/* Let description column absorb extra space */
-html.page-knowledge-map table:nth-of-type(1) th:nth-child(3), html.page-knowledge-map table:nth-of-type(1) td:nth-child(3){
-  width: 55%;
-}
-
-/* Ensure dropdown never clips its text */
-html.page-knowledge-map select{
-  min-width: max-content;
-  box-sizing: border-box;
-  white-space: nowrap;
-}
-  
 
 /* ===== landing-page.html (page-landing-page) ===== */
 
@@ -5282,248 +3597,6 @@ html.page-push-limits .editable-cell:focus{
 }
 
 
-/* ===== PROGRESS.html (page-progress) ===== */
-
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html.page-progress{
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    html.page-progress body{
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media(max-width: 600px){
-      html.page-progress body{
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      html.page-progress h1{
-        font-size: 1.8em;
-      }
-    }
-    @media print{
-      html.page-progress{
-        background-color: white;
-      }
-      html.page-progress body{
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      html.page-progress p, html.page-progress h2, html.page-progress h3{
-        orphans: 3;
-        widows: 3;
-      }
-      html.page-progress h2, html.page-progress h3, html.page-progress h4{
-        page-break-after: avoid;
-      }
-    }
-    html.page-progress p{
-      margin: 1em 0;
-    }
-    html.page-progress a{
-      color: #1a1a1a;
-    }
-    html.page-progress a:visited{
-      color: #1a1a1a;
-    }
-    html.page-progress img{
-      max-width: 100%;
-    }
-    html.page-progress svg{
-      height: auto;
-      max-width: 100%;
-    }
-    html.page-progress h1, html.page-progress h2, html.page-progress h3, html.page-progress h4, html.page-progress h5, html.page-progress h6{
-      margin-top: 1.4em;
-    }
-    html.page-progress h5, html.page-progress h6{
-      font-size: 1em;
-      font-style: italic;
-    }
-    html.page-progress h6{
-      font-weight: normal;
-    }
-    html.page-progress ol, html.page-progress ul{
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    html.page-progress li > ol, html.page-progress li > ul{
-      margin-top: 0;
-    }
-    html.page-progress blockquote{
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    html.page-progress code{
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    html.page-progress pre{
-      margin: 1em 0;
-      overflow: auto;
-    }
-    html.page-progress pre code{
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    html.page-progress .sourceCode{
-     background-color: transparent;
-     overflow: visible;
-    }
-    html.page-progress hr{
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    html.page-progress table{
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    html.page-progress table caption{
-      margin-bottom: 0.75em;
-    }
-    html.page-progress tbody{
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    html.page-progress th{
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    html.page-progress td{
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    html.page-progress header{
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    html.page-progress #TOC li{
-      list-style: none;
-    }
-    html.page-progress #TOC ul{
-      padding-left: 1.3em;
-    }
-    html.page-progress #TOC > ul{
-      padding-left: 0;
-    }
-    html.page-progress #TOC a:not(:hover){
-      text-decoration: none;
-    }
-    html.page-progress span.smallcaps{font-variant: small-caps;}
-    html.page-progress div.columns{display: flex; gap: min(4vw, 1.5em);}
-    html.page-progress div.column{flex: auto; overflow-x: auto;}
-    html.page-progress div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    html.page-progress ul.task-list[class]{list-style: none;}
-    html.page-progress ul.task-list li input[type="checkbox"]{
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    html.page-progress .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    
-    html.page-progress body{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-  background: #ffffff;
-  color: #24292f;
-}
-
-/* Headings */
-html.page-progress h1, html.page-progress h2, html.page-progress h3{
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
-
-/* Tables */
-html.page-progress table{
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-size: 14px;
-}
-
-html.page-progress th, html.page-progress td{
-  border: 1px solid #d0d7de;
-  padding: 8px 12px;
-  text-align: left;
-}
-
-html.page-progress th{
-  background-color: #f6f8fa;
-  font-weight: 600;
-}
-
-/* Zebra striping */
-html.page-progress tr:nth-child(even){
-  background-color: #f6f8fa;
-}
-
-/* Code blocks */
-html.page-progress pre{
-  background: #f6f8fa;
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 6px;
-}
-
-html.page-progress code{
-  background: #f6f8fa;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Links */
-html.page-progress a{
-  color: #0969da;
-  text-decoration: none;
-}
-
-html.page-progress a:hover{
-  text-decoration: underline;
-}
-  
-/* Editable table cells */
-html.page-progress .editable-cell{
-  cursor: text;
-}
-
-html.page-progress .editable-cell:focus{
-  outline: 2px solid #0969da;
-  outline-offset: -2px;
-  background: #fffef0;
-}
-
-  
 
 /* ===== CHECKLIST.html (page-checklist) ===== */
 
@@ -5942,3 +4015,467 @@ html.page-checklist a:hover{
     }
   }
 
+
+/* ===== neo-dark-doc (TASKS, PROJECT, LOG, QUOTE_LOG, PROGRESS, episode-template, knowledge-map, worksheet) ===== */
+/* Load neo-brutalist.css before this file; add class "neo-dark-doc" on <html> alongside page-*. */
+
+html.neo-dark-doc body {
+  max-width: 56rem;
+  margin-inline: auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 3vw, 1.75rem) 3rem;
+}
+
+html.neo-dark-doc h1 {
+  margin-top: 0.25em;
+}
+
+html.neo-dark-doc h2 {
+  margin-top: 1.25em;
+}
+
+html.neo-dark-doc hr {
+  border: none;
+  border-top: 3px solid #000;
+  margin: 1.5rem 0;
+  opacity: 0.55;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html.neo-dark-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.95rem;
+}
+
+html.neo-dark-doc th,
+html.neo-dark-doc td {
+  border: 2px solid #000;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  color: var(--paper);
+}
+
+html.neo-dark-doc th {
+  background: var(--panel-2);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+html.neo-dark-doc tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html.neo-dark-doc td[contenteditable="true"],
+html.neo-dark-doc th[contenteditable="true"],
+html.neo-dark-doc .editable-cell {
+  cursor: text;
+  background: transparent;
+}
+
+html.neo-dark-doc td[contenteditable="true"]:focus,
+html.neo-dark-doc th[contenteditable="true"]:focus,
+html.neo-dark-doc .editable-cell:focus {
+  outline: 3px solid var(--electric-lime);
+  outline-offset: 2px;
+  background: rgba(184, 255, 36, 0.12);
+}
+
+html.neo-dark-doc ul.task-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+html.neo-dark-doc ul.task-list li {
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+html.neo-dark-doc ul.task-list label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--paper);
+  font-weight: 700;
+}
+
+html.neo-dark-doc .task-list li span[contenteditable="true"] {
+  cursor: text;
+  min-width: 1ch;
+  display: inline-block;
+  outline: none;
+  color: var(--paper);
+}
+
+html.neo-dark-doc .task-list li span[contenteditable="true"]:focus {
+  outline: 2px solid var(--electric-lime);
+  outline-offset: 2px;
+  border-radius: 4px;
+  background: rgba(184, 255, 36, 0.1);
+}
+
+html.neo-dark-doc .add-task-wrap {
+  margin: 0.5rem 0 0;
+}
+
+@media print {
+  html.neo-dark-doc body {
+    background: #fff !important;
+    color: #000 !important;
+    max-width: none;
+  }
+
+  html.neo-dark-doc .add-task-btn {
+    display: none !important;
+  }
+
+  html.neo-dark-doc table,
+  html.neo-dark-doc th,
+  html.neo-dark-doc td {
+    color: #000 !important;
+    border-color: #000 !important;
+    background: #fff !important;
+  }
+
+  html.neo-dark-doc .add-table-row-btn {
+    display: none !important;
+  }
+}
+
+html.neo-dark-doc .add-table-row-btn {
+  margin: 8px 0 20px;
+}
+
+html.neo-dark-doc blockquote {
+  margin: 1em 0 1em 1.25rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--hot-pink);
+  background: var(--panel);
+  color: var(--muted);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  box-shadow: var(--shadow-sm);
+}
+
+html.neo-dark-doc details {
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-top: 1.5rem;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+}
+
+html.neo-dark-doc summary {
+  cursor: pointer;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+}
+
+html.neo-dark-doc details p {
+  margin-top: 0.75rem;
+}
+
+/* PROJECT progress slider */
+html.neo-dark-doc .project-progress-slider .slider-wrap {
+  max-width: 500px;
+  margin-top: 0.5rem;
+}
+
+html.neo-dark-doc .project-progress-slider .value {
+  margin-bottom: 10px;
+  font-weight: 900;
+  color: var(--electric-lime);
+}
+
+html.neo-dark-doc .project-progress-slider input[type="range"] {
+  width: 100%;
+  appearance: none;
+  height: 14px;
+  border-radius: 999px;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  outline: none;
+}
+
+html.neo-dark-doc .project-progress-slider input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--electric-lime);
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #000;
+}
+
+html.neo-dark-doc .project-progress-slider input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--electric-lime);
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Episode template — topic picker (buttons inherit neo-brutalist; tighten embeds) */
+html.neo-dark-doc .topic-picker {
+  min-width: 260px;
+}
+
+html.neo-dark-doc .topic-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+html.neo-dark-doc .topic-controls .topic-input {
+  flex: 1;
+  min-width: 140px;
+  margin: 0;
+}
+
+html.neo-dark-doc .topic-controls button {
+  margin: 0;
+  white-space: nowrap;
+}
+
+html.neo-dark-doc .topic-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 36px;
+}
+
+html.neo-dark-doc .topic-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: var(--border);
+  border-radius: 999px;
+  background: var(--panel-2);
+  color: var(--paper);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 3px 3px 0 #000;
+}
+
+html.neo-dark-doc .topic-tag button {
+  min-height: 28px;
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  line-height: 1;
+  margin: 0;
+}
+
+html.neo-dark-doc .add-row-button {
+  margin-top: 8px;
+}
+
+html.neo-dark-doc #episodes-table th:nth-child(1),
+html.neo-dark-doc #episodes-table td:nth-child(1) {
+  width: 36%;
+}
+
+html.neo-dark-doc #episodes-table th:nth-child(2),
+html.neo-dark-doc #episodes-table td:nth-child(2) {
+  width: 150px;
+  min-width: 150px;
+}
+
+html.neo-dark-doc #episodes-table th:nth-child(3),
+html.neo-dark-doc #episodes-table td:nth-child(3) {
+  width: 120px;
+  min-width: 120px;
+}
+
+html.neo-dark-doc #episodes-table th:nth-child(4),
+html.neo-dark-doc #episodes-table td:nth-child(4) {
+  width: 34%;
+  min-width: 260px;
+}
+
+html.neo-dark-doc .topic-input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+/* Knowledge map — wide tables + selects inside cells */
+html.neo-dark-doc.page-knowledge-map body {
+  max-width: 1100px;
+}
+
+html.neo-dark-doc.page-knowledge-map table {
+  table-layout: auto;
+}
+
+html.neo-dark-doc.page-knowledge-map td select {
+  margin: 0;
+  width: 100%;
+  min-width: 8rem;
+}
+
+/* Worksheet — dark neo-brutalist layout */
+html.neo-dark-doc.page-worksheet .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+html.neo-dark-doc.page-worksheet header {
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+html.neo-dark-doc.page-worksheet .worksheet-header-meta {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+html.neo-dark-doc.page-worksheet .marquee-container {
+  background: #000;
+  color: var(--electric-lime);
+  border-top: var(--border);
+  margin-top: 12px;
+}
+
+html.neo-dark-doc.page-worksheet .progress-wrapper {
+  margin-bottom: 28px;
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+  padding: 12px;
+}
+
+html.neo-dark-doc.page-worksheet .progress-bar-container {
+  height: 30px;
+  background: var(--void);
+  border: 3px solid #000;
+  border-radius: 8px;
+}
+
+html.neo-dark-doc.page-worksheet .progress-bar-fill {
+  background: linear-gradient(90deg, var(--hot-pink), var(--electric-lime));
+  border-right: 3px solid #000;
+}
+
+html.neo-dark-doc.page-worksheet .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-bottom: 36px;
+}
+
+html.neo-dark-doc.page-worksheet .card {
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+html.neo-dark-doc.page-worksheet .card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+
+html.neo-dark-doc.page-worksheet .card-header {
+  border-bottom: var(--border);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+html.neo-dark-doc.page-worksheet .p1-header {
+  background: var(--hot-pink);
+  color: var(--ink);
+}
+
+html.neo-dark-doc.page-worksheet .p2-header {
+  background: var(--sky-blue);
+  color: var(--ink);
+}
+
+html.neo-dark-doc.page-worksheet .p3-header {
+  background: var(--electric-lime);
+  color: var(--ink);
+}
+
+html.neo-dark-doc.page-worksheet .task-item {
+  border-bottom: 1px solid var(--line);
+}
+
+html.neo-dark-doc.page-worksheet .task-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+html.neo-dark-doc.page-worksheet .task-desc {
+  color: var(--muted);
+}
+
+html.neo-dark-doc.page-worksheet .checkbox-brutal {
+  border: 3px solid #000;
+  background: var(--panel-2);
+  accent-color: var(--hot-pink);
+}
+
+html.neo-dark-doc.page-worksheet .checkbox-brutal:checked {
+  background: var(--electric-lime);
+}
+
+html.neo-dark-doc.page-worksheet .checkbox-brutal:checked::after {
+  color: var(--ink);
+}
+
+html.neo-dark-doc.page-worksheet .tracker-section {
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  margin-bottom: 36px;
+}
+
+html.neo-dark-doc.page-worksheet .worksheet-tracker-h2 {
+  color: var(--paper);
+  border-bottom-color: #000;
+}
+
+html.neo-dark-doc.page-worksheet .tracker-section table th {
+  background: var(--panel-2);
+  color: var(--paper);
+}
+
+html.neo-dark-doc.page-worksheet .worksheet-tracker-note {
+  color: var(--muted);
+}
+
+html.neo-dark-doc.page-worksheet .worksheet-site-footer-lead {
+  color: var(--paper);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
