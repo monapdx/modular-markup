@@ -1,6 +1,10 @@
 # Modular Markup
 
-[![Buy Now](https://img.shields.io/badge/%F0%9F%92%96Buy%20Now-111111?style=for-the-badge)](https://ashpdx.gumroad.com/l/modular-markup)
+A growing collection of dark neo-brutalist frontend templates, generators, dashboards, and interactive UI tools built entirely with HTML, CSS, and JavaScript.
+
+Designed for indie hackers, creators, tinkerers, non-coders, and developers who want visually bold interfaces without heavy frameworks.
+
+---
 
 ## Premium Templates
 
