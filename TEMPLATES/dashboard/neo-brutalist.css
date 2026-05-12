@@ -1,20 +1,26 @@
-/* Ashly-style Neo-Brutalist Dashboard
-   Loud, chunky, readable, and aggressively un-delicate. */
+/* Ashly-style Unified Dark Neo-Brutalist Dashboard
+   Darker, sleeker, and more aligned with the premium interactive templates. */
 
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Oswald:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=IBM+Plex+Mono:wght@400;500;700&display=swap");
 
 :root {
-  --ink: #111111;
-  --paper: #fffaf0;
-  --white: #ffffff;
-  --hot-pink: #ff2ea6;
-  --electric-lime: #c6ff00;
-  --sky-blue: #00d9ff;
+  --ink: #050508;
+  --void: #0b0b10;
+  --panel: #17171f;
+  --panel-2: #20202a;
+  --panel-3: #111118;
+  --paper: #f7f5ef;
+  --muted: #b9b7c6;
+  --hot-pink: #ff45bd;
+  --electric-lime: #b8ff24;
+  --sky-blue: #6ee7ff;
   --purple: #9b5cff;
-  --shadow: 8px 8px 0 var(--ink);
-  --shadow-sm: 5px 5px 0 var(--ink);
-  --border: 4px solid var(--ink);
-  --radius: 0;
+  --line: rgba(255, 255, 255, 0.18);
+  --shadow: 10px 10px 0 #000;
+  --shadow-sm: 6px 6px 0 #000;
+  --border: 3px solid #000;
+  --soft-border: 1px solid var(--line);
+  --radius: 18px;
 }
 
 *,
@@ -30,16 +36,16 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  color: var(--ink);
-  font-family: "IBM Plex Mono", monospace;
+  color: var(--paper);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.55;
   background:
-    linear-gradient(90deg, rgba(17, 17, 17, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(17, 17, 17, 0.08) 1px, transparent 1px),
-    linear-gradient(135deg, var(--hot-pink) 0%, var(--sky-blue) 52%, var(--electric-lime) 100%);
-  background-size: 28px 28px, 28px 28px, cover;
-  padding: 28px;
+    radial-gradient(circle at 10% 5%, rgba(184, 255, 36, 0.18), transparent 22rem),
+    radial-gradient(circle at 95% 8%, rgba(255, 69, 189, 0.26), transparent 25rem),
+    radial-gradient(circle at 80% 92%, rgba(110, 231, 255, 0.16), transparent 24rem),
+    linear-gradient(135deg, #050508 0%, #11111a 48%, #17101f 100%);
+  padding: 32px;
 }
 
 ::selection {
@@ -48,26 +54,32 @@ body {
 }
 
 a {
-  color: var(--ink);
-  font-weight: 800;
+  color: var(--electric-lime);
+  font-weight: 900;
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-underline-offset: 4px;
 }
 
 a:hover {
+  color: var(--ink);
   background: var(--electric-lime);
 }
 
 .dashboard {
-  width: min(1120px, 100%);
+  width: min(1160px, 100%);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 22px;
   padding: 24px;
   border: var(--border);
-  background: var(--paper);
+  border-radius: 22px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    rgba(10, 10, 15, 0.92);
+  background-size: 36px 36px, 36px 36px, cover;
   box-shadow: var(--shadow);
 }
 
@@ -75,10 +87,10 @@ a:hover {
   position: relative;
   grid-column: 1 / -1;
   min-height: 150px;
-  padding: 18px;
+  padding: 22px;
   border: var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
@@ -86,49 +98,63 @@ a:hover {
 .dashboard > div::before {
   content: attr(class);
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 4px 10px;
-  border-left: var(--border);
-  border-bottom: var(--border);
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  padding: 6px 10px;
+  border: 2px solid #000;
+  border-radius: 999px;
   background: var(--electric-lime);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  color: var(--ink);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
+  box-shadow: 3px 3px 0 #000;
 }
 
 .dashboard > div:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0 var(--ink);
+  box-shadow: 10px 10px 0 #000;
 }
 
 .profile {
-  min-height: 190px;
+  min-height: 210px;
   text-align: left;
   background:
-    radial-gradient(circle at 92% 22%, var(--electric-lime) 0 18%, transparent 19%),
-    linear-gradient(135deg, var(--hot-pink), var(--sky-blue)) !important;
+    radial-gradient(circle at 91% 36%, rgba(184, 255, 36, 0.82) 0 18%, transparent 18.6%),
+    radial-gradient(circle at 84% 70%, rgba(184, 255, 36, 0.2), transparent 22%),
+    linear-gradient(135deg, rgba(255, 69, 189, 0.95), rgba(110, 231, 255, 0.78) 64%, rgba(155, 92, 255, 0.52)) !important;
 }
 
 .profile h2 {
   max-width: 760px;
   margin: 0;
-  font-size: clamp(2.8rem, 7vw, 6rem);
-  line-height: 0.9;
-  letter-spacing: -0.06em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  font-size: clamp(3.2rem, 8vw, 6.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.075em;
   text-transform: uppercase;
-  text-shadow: 4px 4px 0 var(--paper);
+  text-shadow: 6px 6px 0 #000;
+  box-shadow: none;
 }
 
 .profile p:empty::before {
   content: "Panels, notes, voice tools, experiments, chaos.";
   display: inline-block;
-  margin-top: 16px;
-  padding: 8px 12px;
-  border: 3px solid var(--ink);
+  margin-top: 18px;
+  padding: 9px 13px;
+  border: 3px solid #000;
+  border-radius: 10px;
   background: var(--paper);
-  font-weight: 800;
+  color: var(--ink);
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 900;
+  box-shadow: 5px 5px 0 #000;
 }
 
 h1,
@@ -137,37 +163,59 @@ h3,
 button,
 label,
 th {
-  font-family: "Oswald", Impact, sans-serif;
+  font-family: "Inter", Impact, sans-serif;
 }
 
 h1,
 h2 {
   margin: 0 0 18px;
   line-height: 0.95;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
 }
 
 h2 {
   display: inline-block;
-  padding: 8px 12px 10px;
+  padding: 9px 13px 10px;
   border: var(--border);
+  border-radius: 10px;
   background: var(--hot-pink);
   color: var(--ink);
-  box-shadow: 5px 5px 0 var(--ink);
-  font-size: clamp(1.35rem, 2vw, 2rem);
+  box-shadow: 5px 5px 0 #000;
+  font-size: clamp(1.35rem, 2vw, 2.1rem);
+  font-weight: 900;
 }
 
 h2:empty::before {
   content: "Panel";
 }
 
-.table-wrap {
+h4,
+label {
+  color: var(--muted);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+label {
+  display: block;
+  margin: 0 0 14px;
+  font-size: 0.82rem;
+}
+
+.table-wrap,
+#progress-preview,
+#list-preview,
+#faq-preview,
+#table-container,
+.snippet-container {
   max-width: 100%;
   overflow-x: auto;
-  padding: 12px;
-  border: 3px dashed var(--ink);
-  background: rgba(255, 255, 255, 0.65);
+  padding: 14px;
+  border: 2px dashed rgba(255, 255, 255, 0.32);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
 }
 
 .table-wrap:empty::before,
@@ -178,39 +226,47 @@ h2:empty::before {
   content: "Drop content here";
   display: block;
   padding: 18px;
-  border: 3px dashed var(--ink);
-  background: var(--paper);
-  font-weight: 800;
+  border: 2px dashed rgba(255, 255, 255, 0.34);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font-weight: 900;
   text-transform: uppercase;
 }
 
-table {
+table,
+.grid-table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--white);
+  background: var(--panel-2);
+  color: var(--paper);
 }
 
 th,
-td {
+td,
+.grid-table div {
   padding: 12px;
-  border: 3px solid var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   text-align: left;
   vertical-align: top;
 }
 
-th {
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 1rem;
+th,
+.grid-table .header-cell {
+  background: #000 !important;
+  color: var(--electric-lime) !important;
+  font-size: 0.9rem;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
-tr:nth-child(even) td {
-  background: #f4f4f4;
+tr:nth-child(even) td,
+.grid-table div:nth-child(even) {
+  background: rgba(255, 255, 255, 0.04) !important;
 }
 
 tr:hover td {
-  background: var(--electric-lime);
+  background: rgba(184, 255, 36, 0.16) !important;
 }
 
 ul,
@@ -218,24 +274,32 @@ ol {
   padding-left: 1.25rem;
 }
 
-li {
-  margin-bottom: 8px;
-  padding: 8px;
-  border: 2px solid var(--ink);
-  background: var(--paper);
+li,
+details {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 900;
 }
 
 input,
 textarea,
 select {
   width: 100%;
+  margin-top: 6px;
   padding: 12px 14px;
-  border: var(--border);
-  border-radius: 0;
-  background: var(--white);
+  border: 3px solid #000;
+  border-radius: 12px;
+  background: var(--paper);
   color: var(--ink);
-  font: inherit;
-  box-shadow: 4px 4px 0 var(--ink);
+  font: 500 0.95rem/1.45 "IBM Plex Mono", monospace;
+  box-shadow: 5px 5px 0 #000;
 }
 
 textarea {
@@ -243,11 +307,30 @@ textarea {
   resize: vertical;
 }
 
+input::placeholder,
+textarea::placeholder {
+  color: #62616c;
+  opacity: 1;
+}
+
 input:focus,
 textarea:focus,
 select:focus {
   outline: 4px solid var(--electric-lime);
   outline-offset: 3px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  min-width: 22px;
+  height: 22px;
+  margin-right: 8px;
+  accent-color: var(--hot-pink);
+  box-shadow: none;
+}
+
+input[type="file"] {
+  background: #ffffff;
 }
 
 button,
@@ -264,20 +347,20 @@ button,
   align-items: center;
   justify-content: center;
   width: auto;
-  min-width: 150px;
+  min-width: 148px;
   min-height: 44px;
   margin: 10px 10px 0 0;
   padding: 10px 16px;
-  border: var(--border);
-  border-radius: 0;
+  border: 3px solid #000;
+  border-radius: 999px;
   background: var(--electric-lime);
   color: var(--ink);
-  font-size: 1rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+  font-weight: 900;
+  text-transform: none;
+  letter-spacing: -0.01em;
   cursor: pointer;
-  box-shadow: 5px 5px 0 var(--ink);
+  box-shadow: 5px 5px 0 #000;
   transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
 }
 
@@ -293,24 +376,32 @@ button:hover,
 #checkword:hover {
   transform: translate(-2px, -2px);
   background: var(--sky-blue);
-  box-shadow: 8px 8px 0 var(--ink);
+  box-shadow: 8px 8px 0 #000;
 }
 
 button:active {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--ink);
+  box-shadow: 2px 2px 0 #000;
+}
+
+button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  transform: none;
 }
 
 img,
 canvas,
+audio,
 .movie-container,
 .snippet,
 #app-container,
 .audio-player {
   max-width: 100%;
-  border: var(--border) !important;
-  border-radius: 0 !important;
-  background: var(--white) !important;
+  border: 3px solid #000 !important;
+  border-radius: 14px !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
   box-shadow: var(--shadow-sm) !important;
 }
 
@@ -321,12 +412,38 @@ canvas,
   padding: 18px !important;
 }
 
+.snippet input,
+.snippet textarea {
+  margin-bottom: 10px;
+}
+
+#progress-preview > div,
+#list-preview > *,
+#faq-preview > *,
+#table-container > * {
+  color: var(--paper);
+}
+
+#progress-preview [style*="border:1px solid black"] {
+  border: 2px solid rgba(255, 255, 255, 0.22) !important;
+  background: #000 !important;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#progress-preview [style*="background:"] {
+  min-height: 28px;
+  padding-left: 10px;
+  color: #000;
+  font-weight: 900;
+}
+
 .word-header,
 .definition,
 .example,
 .word-type,
 #result {
-  border-color: var(--ink) !important;
+  border-color: #000 !important;
 }
 
 .definition strong,
@@ -347,12 +464,13 @@ canvas,
   list-style: none;
   margin: 0;
   background: var(--electric-lime);
+  color: var(--ink);
 }
 
 #footer {
   min-height: auto;
   text-align: center;
-  background: var(--ink) !important;
+  background: #000 !important;
   color: var(--paper);
 }
 
@@ -369,12 +487,15 @@ canvas,
     grid-column: 1 / -1;
   }
 
-  .dashboard .schedule-table {
-    grid-column: 1 / 7;
-  }
-
-  .dashboard .exercise-table {
-    grid-column: 7 / -1;
+  .dashboard .schedule-table,
+  .dashboard .exercise-table,
+  .dashboard .progress.bar.generator,
+  .dashboard .list.generator,
+  .dashboard .save.notes,
+  .dashboard .generate.FAQs,
+  .dashboard .audio.notes,
+  .dashboard .table.generator {
+    grid-column: 1 / -1;
   }
 
   .dashboard .calories {
@@ -402,19 +523,25 @@ canvas,
   .dashboard {
     gap: 16px;
     padding: 14px;
-    box-shadow: 5px 5px 0 var(--ink);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 #000;
   }
 
   .dashboard > div {
     min-height: 120px;
-    padding: 14px;
-    box-shadow: 4px 4px 0 var(--ink);
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 #000;
   }
 
   .dashboard > div::before {
     position: static;
     display: inline-block;
     margin: -4px 0 12px;
-    border: 3px solid var(--ink);
+    border: 2px solid #000;
+  }
+
+  .profile h2 {
+    font-size: clamp(2.5rem, 16vw, 4rem);
   }
 }
