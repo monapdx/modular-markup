@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Episode Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.5;
+      background: #fff;
+      color: #111;
+    }
+
+    h1, h2 {
+      margin-top: 32px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 12px;
+      table-layout: auto;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f2f2f2;
+      font-weight: bold;
+    }
+
+    td[contenteditable="true"] {
+      background: #fff;
+      cursor: text;
+    }
+
+    td[contenteditable="true"]:focus {
+      outline: 2px solid #ff00aa;
+      background: #fff;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #fffbe6;
+    }
+
+    select,
+    .topic-input {
+      width: 100%;
+      padding: 8px 36px 8px 10px;
+      font: inherit;
+      border: 2px solid #000;
+      background: #ff00aa;
+      color: #fff;
+      appearance: none;
+      box-shadow: 3px 3px 0 #000;
+      box-sizing: border-box;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='20' viewBox='0 0 20 20' width='20'><path d='M5 7l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      min-width: max-content;
+      white-space: nowrap;
+    }
+
+    select:hover,
+    .topic-input:hover,
+    button:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 #000;
+    }
+
+    select:active,
+    .topic-input:active,
+    button:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 #000;
+    }
+
+    select:focus,
+    .topic-input:focus {
+      outline: 2px solid #ff00aa;
+    }
+
+    button {
+      font: inherit;
+      font-weight: bold;
+      border: 2px solid #000;
+      background: #00d9ff;
+      color: #000;
+      padding: 8px 12px;
+      box-shadow: 3px 3px 0 #000;
+      cursor: pointer;
+      margin: 0 0 24px;
+    }
+
+    .topic-picker {
+      min-width: 260px;
+    }
+
+    .topic-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .topic-controls button {
+      margin: 0;
+      white-space: nowrap;
+      background: #b6ff00;
+    }
+
+    .topic-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 32px;
+    }
+
+    .topic-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 2px solid #000;
+      background: #fffbe6;
+      color: #000;
+      padding: 3px 7px;
+      font-size: 0.9rem;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .topic-tag button {
+      margin: 0;
+      padding: 0 4px;
+      border: 1px solid #000;
+      box-shadow: none;
+      background: #ff00aa;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .topic-tag button:hover,
+    .topic-tag button:active {
+      transform: none;
+      box-shadow: none;
+    }
+
+    table th:nth-child(1),
+    table td:nth-child(1) {
+      width: 36%;
+    }
+
+    table th:nth-child(2),
+    table td:nth-child(2) {
+      width: 150px;
+      min-width: 150px;
+    }
+
+    table th:nth-child(3),
+    table td:nth-child(3) {
+      width: 120px;
+      min-width: 120px;
+    }
+
+    table th:nth-child(4),
+    table td:nth-child(4) {
+      width: 34%;
+      min-width: 260px;
+    }
+
+    details {
+      border: 1px solid #ccc;
+      padding: 12px 16px;
+      margin-top: 24px;
+      background: #fafafa;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+  
+.topic-input::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+</style>
+</head>
+<body>
+
+  <h1>🎙️ Episode Tracker</h1>
+
+  <h2>Episodes</h2>
+
+  <table id="episodes-table">
+    <thead>
+      <tr>
+        <th>Episode Title</th>
+        <th>Format</th>
+        <th>Total Words</th>
+        <th>Topics</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+
+  <datalist id="topic-options">
+    <option value="sex"></option>
+    <option value="rape"></option>
+    <option value="anatomy"></option>
+    <option value="rape"></option>
+    <option value="reproduction"></option>
+    <option value="marriage"></option>
+    <option value="motherhood"></option>
+    <option value="homosexuality"></option>
+    <option value="mental illness"></option>
+    <option value="clitoris"></option>
+    <option value="male superiority"></option>
+    <option value="female inferiority"></option>
+  </datalist>
+
+  <details>
+    <summary>📌 Notes</summary>
+    <p contenteditable="true">Use this table to track episode drafts, show formats, word counts, and recurring topics.</p>
+  </details>
+
+  <script>
+    const formatOptions = ["broadcast", "guest", "caller", "sponsor"];
+
+    function createSelect(options, selectedValue = options[0]) {
+      const select = document.createElement("select");
+
+      options.forEach(optionValue => {
+        const option = document.createElement("option");
+        option.value = optionValue;
+        option.textContent = optionValue;
+
+        if (optionValue === selectedValue) {
+          option.selected = true;
+        }
+
+        select.appendChild(option);
+      });
+
+      return select;
+    }
+
+    function createTopicPicker(initialTopics = []) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "topic-picker";
+
+      const controls = document.createElement("div");
+      controls.className = "topic-controls";
+
+      const input = document.createElement("input");
+      input.className = "topic-input";
+      input.setAttribute("list", "topic-options");
+      input.placeholder = "Choose or type topic";
+
+      const addButton = document.createElement("button");
+      addButton.type = "button";
+      addButton.textContent = "+ Add";
+
+      const tags = document.createElement("div");
+      tags.className = "topic-tags";
+
+      function addTopic(value) {
+        const topic = value.trim();
+        if (!topic) return;
+
+        const existing = [...tags.querySelectorAll(".topic-tag span")]
+          .map(span => span.textContent.toLowerCase());
+
+        if (existing.includes(topic.toLowerCase())) {
+          input.value = "";
+          return;
+        }
+
+        const tag = document.createElement("span");
+        tag.className = "topic-tag";
+
+        const label = document.createElement("span");
+        label.textContent = topic;
+
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "×";
+        removeButton.title = "Remove topic";
+        removeButton.addEventListener("click", () => tag.remove());
+
+        tag.appendChild(label);
+        tag.appendChild(removeButton);
+        tags.appendChild(tag);
+        input.value = "";
+      }
+
+      addButton.addEventListener("click", () => addTopic(input.value));
+
+      input.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          addTopic(input.value);
+        }
+      });
+
+      controls.appendChild(input);
+      controls.appendChild(addButton);
+      wrapper.appendChild(controls);
+      wrapper.appendChild(tags);
+
+      initialTopics.forEach(addTopic);
+
+      return wrapper;
+    }
+
+    function makeEditableCell(value = "") {
+      const td = document.createElement("td");
+      td.contentEditable = "true";
+      td.textContent = value;
+      return td;
+    }
+
+    function setupExistingRows() {
+      const rows = document.querySelectorAll("#episodes-table tbody tr");
+
+      const defaults = [
+        { format: "broadcast", topics: ["old web", "tech history"] },
+        { format: "caller", topics: ["internet culture", "personal story"] },
+        { format: "sponsor", topics: ["software", "business"] }
+      ];
+
+      rows.forEach((row, index) => {
+        const formatCell = row.children[1];
+        const topicsCell = row.children[3];
+
+        formatCell.appendChild(createSelect(formatOptions, defaults[index]?.format || "broadcast"));
+        topicsCell.appendChild(createTopicPicker(defaults[index]?.topics || []));
+      });
+    }
+
+    function addRow(table) {
+      const tbody = table.querySelector("tbody");
+      const newRow = document.createElement("tr");
+
+      newRow.appendChild(makeEditableCell(""));
+
+      const formatCell = document.createElement("td");
+      formatCell.appendChild(createSelect(formatOptions));
+      newRow.appendChild(formatCell);
+
+      newRow.appendChild(makeEditableCell(""));
+
+      const topicsCell = document.createElement("td");
+      topicsCell.appendChild(createTopicPicker());
+      newRow.appendChild(topicsCell);
+
+      tbody.appendChild(newRow);
+    }
+
+    function addButtonsToTables() {
+      const tables = document.querySelectorAll("table");
+
+      tables.forEach(table => {
+        const button = document.createElement("button");
+        button.textContent = "+ Add row";
+        button.className = "add-row-button";
+
+        button.addEventListener("click", () => addRow(table));
+
+        table.insertAdjacentElement("afterend", button);
+      });
+    }
+
+    setupExistingRows();
+    addButtonsToTables();
+  </script>
+</body>
+</html>

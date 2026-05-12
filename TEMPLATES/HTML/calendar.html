@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Month Calendar</title>
+
+ <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f0;
+    color: #111;
+  }
+
+  .calendar-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    border: 4px solid #111;
+    box-shadow: 10px 10px 0 #111;
+  }
+
+  .calendar-header {
+    padding: 22px;
+    background: #b7ff00;
+    border-bottom: 4px solid #111;
+  }
+
+  .calendar-header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.06em;
+    font-weight: 900;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th {
+    padding: 14px 10px;
+    text-align: left;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: #111;
+    color: #fff;
+    border: 3px solid #111;
+  }
+
+  td {
+    height: 135px;
+    vertical-align: top;
+    padding: 10px;
+    border: 3px solid #111;
+    background: #fff;
+  }
+
+  td.other-month {
+    background: #e7e7df;
+    color: #777;
+  }
+
+  .date {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+    padding: 0 8px;
+    background: #fff;
+    border: 3px solid #111;
+    font-weight: 900;
+    box-shadow: 3px 3px 0 #111;
+  }
+
+  .today {
+    background: #ff4fd8;
+  }
+
+  .today .date {
+    background: #111;
+    color: #fff;
+    box-shadow: 3px 3px 0 #b7ff00;
+  }
+
+  .event {
+    display: block;
+    margin-top: 8px;
+    padding: 7px 9px;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    font-weight: 800;
+    background: #b7ff00;
+    color: #111;
+    border: 3px solid #111;
+    box-shadow: 4px 4px 0 #111;
+  }
+
+  .event:nth-of-type(even) {
+    background: #7ee7ff;
+  }
+  
+  .event {
+  position: relative;
+  padding-right: 34px;
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+
+.event:hover {
+  transform: translate(-2px, -2px);
+}
+
+.delete-event {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 #111;
+}
+
+.delete-event:hover {
+  background: #ff4fd8;
+}
+
+.add-event-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: 3px solid #111;
+  background: #7ee7ff;
+  color: #111;
+  font-weight: 900;
+  font-size: 0.75rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #111;
+  text-transform: uppercase;
+}
+
+.add-event-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #111;
+}
+
+.add-event-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #111;
+}
+
+  @media (max-width: 700px) {
+    body {
+      padding: 12px;
+    }
+
+    .calendar-wrap {
+      box-shadow: 6px 6px 0 #111;
+    }
+
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      border-bottom: 4px solid #111;
+    }
+
+    td {
+      height: auto;
+      min-height: 95px;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+    }
+
+    td::before {
+      content: attr(data-day);
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 4px 8px;
+      background: #111;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    td.other-month {
+      display: none;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <div class="calendar-wrap">
+    <div class="calendar-header">
+      <h1>May 2026</h1>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sunday</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="other-month" data-day="Sunday">
+            <span class="date">26</span>
+          </td>
+          <td class="other-month" data-day="Monday">
+            <span class="date">27</span>
+          </td>
+          <td class="other-month" data-day="Tuesday">
+            <span class="date">28</span>
+          </td>
+          <td class="other-month" data-day="Wednesday">
+            <span class="date">29</span>
+          </td>
+          <td class="other-month" data-day="Thursday">
+            <span class="date">30</span>
+          </td>
+          <td data-day="Friday">
+            <span class="date">1</span>
+            <span class="event">Project planning</span>
+          </td>
+          <td data-day="Saturday">
+            <span class="date">2</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td data-day="Sunday">
+            <span class="date">3</span>
+          </td>
+          <td data-day="Monday">
+            <span class="date">4</span>
+            <span class="event">Design review</span>
+          </td>
+          <td data-day="Tuesday">
+            <span class="date">5</span>
+          </td>
+          <td data-day="Wednesday">
+            <span class="date">6</span>
+            <span class="event">Publish update</span>
+          </td>
+          <td data-day="Thursday">
+            <span class="date">7</span>
+          </td>
+          <td data-day="Friday">
+            <span class="date">8</span>
+          </td>
+          <td data-day="Saturday">
+            <span class="date">9</span>
+            <span class="event">Weekend work session</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td data-day="Sunday">
+            <span class="date">10</span>
+          </td>
+          <td class="today" data-day="Monday">
+            <span class="date">11</span>
+            <span class="event">Calendar build</span>
+          </td>
+          <td data-day="Tuesday">
+            <span class="date">12</span>
+          </td>
+          <td data-day="Wednesday">
+            <span class="date">13</span>
+            <span class="event">Content draft</span>
+          </td>
+          <td data-day="Thursday">
+            <span class="date">14</span>
+          </td>
+          <td data-day="Friday">
+            <span class="date">15</span>
+            <span class="event">Launch prep</span>
+          </td>
+          <td data-day="Saturday">
+            <span class="date">16</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td data-day="Sunday">
+            <span class="date">17</span>
+          </td>
+          <td data-day="Monday">
+            <span class="date">18</span>
+          </td>
+          <td data-day="Tuesday">
+            <span class="date">19</span>
+            <span class="event">Testing day</span>
+          </td>
+          <td data-day="Wednesday">
+            <span class="date">20</span>
+          </td>
+          <td data-day="Thursday">
+            <span class="date">21</span>
+          </td>
+          <td data-day="Friday">
+            <span class="date">22</span>
+            <span class="event">Newsletter</span>
+          </td>
+          <td data-day="Saturday">
+            <span class="date">23</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td data-day="Sunday">
+            <span class="date">24</span>
+          </td>
+          <td data-day="Monday">
+            <span class="date">25</span>
+            <span class="event">Memorial Day</span>
+          </td>
+          <td data-day="Tuesday">
+            <span class="date">26</span>
+          </td>
+          <td data-day="Wednesday">
+            <span class="date">27</span>
+          </td>
+          <td data-day="Thursday">
+            <span class="date">28</span>
+            <span class="event">Final edits</span>
+          </td>
+          <td data-day="Friday">
+            <span class="date">29</span>
+          </td>
+          <td data-day="Saturday">
+            <span class="date">30</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td data-day="Sunday">
+            <span class="date">31</span>
+            <span class="event">Monthly wrap-up</span>
+          </td>
+          <td class="other-month" data-day="Monday">
+            <span class="date">1</span>
+          </td>
+          <td class="other-month" data-day="Tuesday">
+            <span class="date">2</span>
+          </td>
+          <td class="other-month" data-day="Wednesday">
+            <span class="date">3</span>
+          </td>
+          <td class="other-month" data-day="Thursday">
+            <span class="date">4</span>
+          </td>
+          <td class="other-month" data-day="Friday">
+            <span class="date">5</span>
+          </td>
+          <td class="other-month" data-day="Saturday">
+            <span class="date">6</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+<script>
+  function createDeleteButton() {
+    const btn = document.createElement("button");
+    btn.className = "delete-event";
+    btn.type = "button";
+    btn.innerHTML = "&times;";
+    return btn;
+  }
+
+  function updateDay(dayCell) {
+    const addButton = dayCell.querySelector(".add-event-btn");
+    const event = dayCell.querySelector(".event");
+
+    if (addButton) {
+      addButton.hidden = !!event;
+    }
+  }
+
+  document.querySelectorAll("td:not(.other-month)").forEach((dayCell) => {
+    // Add delete buttons to existing events
+    dayCell.querySelectorAll(".event").forEach((event) => {
+      if (!event.querySelector(".delete-event")) {
+        event.appendChild(createDeleteButton());
+      }
+    });
+
+    // Add one + Add Event button per day
+    let addButton = dayCell.querySelector(".add-event-btn");
+
+    if (!addButton) {
+      addButton = document.createElement("button");
+      addButton.className = "add-event-btn";
+      addButton.type = "button";
+      addButton.textContent = "+ Add Event";
+      dayCell.appendChild(addButton);
+    }
+
+    updateDay(dayCell);
+  });
+
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("delete-event")) {
+      const dayCell = e.target.closest("td");
+      e.target.closest(".event").remove();
+      updateDay(dayCell);
+    }
+
+    if (e.target.classList.contains("add-event-btn")) {
+      const dayCell = e.target.closest("td");
+      const eventText = prompt("Enter event name:");
+
+      if (!eventText || !eventText.trim()) return;
+
+      const event = document.createElement("div");
+      event.className = "event";
+
+      event.innerHTML = `
+        <span class="event-text">${eventText.trim()}</span>
+      `;
+
+      event.appendChild(createDeleteButton());
+      dayCell.insertBefore(event, e.target);
+
+      updateDay(dayCell);
+    }
+  });
+</script>
+
+</body>
+</html>
