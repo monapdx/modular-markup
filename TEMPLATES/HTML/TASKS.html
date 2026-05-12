@@ -243,6 +243,25 @@ document.addEventListener('DOMContentLoaded', function () {
     cell.setAttribute('spellcheck', 'false');
     cell.classList.add('editable-cell');
   });
+
+  const addTaskBtn = document.getElementById('add-task-btn');
+  const taskListUl = document.getElementById('task-list-items');
+  if (addTaskBtn && taskListUl) {
+    addTaskBtn.addEventListener('click', function () {
+      const li = document.createElement('li');
+      const label = document.createElement('label');
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      const text = document.createElement('span');
+      text.setAttribute('contenteditable', 'true');
+      text.setAttribute('spellcheck', 'false');
+      label.appendChild(input);
+      label.appendChild(text);
+      li.appendChild(label);
+      taskListUl.appendChild(li);
+      text.focus();
+    });
+  }
 });
 </script>
 <style>
@@ -253,6 +272,47 @@ document.addEventListener('DOMContentLoaded', function () {
   outline: 2px solid #0969da;
   outline-offset: -2px;
   background: #fff8c5;
+}
+
+.add-task-btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #24292f;
+}
+
+.add-task-btn:hover {
+  background: #eaeef2;
+}
+
+.add-task-wrap {
+  margin: 0.5rem 0 0;
+}
+
+.task-list li span[contenteditable="true"] {
+  cursor: text;
+  min-width: 1ch;
+  display: inline-block;
+  outline: none;
+}
+
+.task-list li span[contenteditable="true"]:focus {
+  outline: 2px solid #0969da;
+  outline-offset: 1px;
+  border-radius: 2px;
+  background: #fff8c5;
+}
+
+@media print {
+  .add-task-btn {
+    display: none !important;
+  }
 }
 </style>
 
@@ -267,6 +327,10 @@ document.addEventListener('DOMContentLoaded', function () {
 </ul>
 <hr />
 <h2 id="task-list">📋 Task List</h2>
+<p class="add-task-wrap">
+  <button type="button" id="add-task-btn" class="add-task-btn">+ add task</button>
+</p>
+<ul class="task-list" id="task-list-items"></ul>
 <table>
 <thead>
 <tr>
