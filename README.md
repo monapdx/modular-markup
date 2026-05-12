@@ -61,19 +61,25 @@
 <img src="" width="">
 
 
-Tablular Templates
+## Tablular Templates
 
-- **Project** —
+### Project
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/project.png" width="540">
-- **Progress** —
+
+### Progress
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/progress.png" width="540">
-- **Health** —
+
+### Health
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/health.png" width="540">
-- **Podcast Episodes** —
+
+### Podcast Episodes
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/podcast-episode-tracker.png" width="540">
-- **Log** —
+
+### Log
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/log.png" width="540">
-- **Quote Log** —
+
+### Quote Log
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/quote-log.png" width="540">
-- **Expenses** —
+
+### Expenses
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/expenses.png" width="540">
