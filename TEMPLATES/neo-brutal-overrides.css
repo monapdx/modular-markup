@@ -3,363 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
 
-/* ===== index.html (page-index) ===== */
-
-    /* Neo-brutalist design system — Template Library index */
-    html.page-index{
-      --border-thick: 3px;
-      --outline: #0a0a0a;
-      --bg-page: #f4f0ff;
-      --bg-card: #ffffff;
-      --bg-elevated: #fffef8;
-      --text: #0a0a0a;
-      --text-muted: #1a1a1a;
-      --accent-lime: #c8ff00;
-      --accent-pink: #ff2d95;
-      --accent-aqua: #00d4ff;
-      --card-hover-sky: #9ef0ff;
-      --accent-yellow: #ffe600;
-      --accent-red: #ff3b3b;
-      --shadow: 6px 6px 0 var(--outline);
-      --shadow-sm: 3px 3px 0 var(--outline);
-      --radius: 0;
-      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      --focus-ring: 0 0 0 3px var(--bg-page), 0 0 0 6px var(--accent-pink);
-    }
-
-    html.page-index *, html.page-index *::before, html.page-index *::after{
-      box-sizing: border-box;
-    }
-
-    html.page-index{
-      overflow-x: hidden;
-    }
-
-    html.page-index body{
-      margin: 0 auto;
-      min-height: 100dvh;
-      font-family: var(--font-sans);
-      font-size: 1.0625rem;
-      line-height: 1.55;
-      color: var(--text);
-      background-color: var(--bg-page);
-      background-image:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-      background-size: 24px 24px;
-      max-width: 56rem;
-      padding: clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 3vw, 1.5rem) 3rem;
-    }
-
-    html.page-index h1, html.page-index h2, html.page-index h3{
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin: 0 0 0.5rem;
-      color: var(--text);
-      border: var(--border-thick) solid var(--outline);
-      background: var(--accent-yellow);
-      box-shadow: var(--shadow);
-      padding: 0.65rem 1rem;
-      border-radius: var(--radius);
-    }
-
-    html.page-index h1{
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      display: inline-block;
-    }
-
-    html.page-index p{
-      margin: 1rem 0 0;
-      font-weight: 600;
-      max-width: 42rem;
-      color: var(--text);
-    }
-
-    html.page-index code{
-      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-      font-weight: 800;
-      font-size: 0.95em;
-      background: var(--bg-elevated);
-      border: 2px solid var(--outline);
-      padding: 0.1em 0.35em;
-      box-shadow: 2px 2px 0 var(--outline);
-    }
-
-    html.page-index a:not(.card){
-      color: var(--outline);
-      font-weight: 800;
-      text-decoration-thickness: 3px;
-      text-underline-offset: 4px;
-      text-decoration-color: var(--accent-pink);
-    }
-
-    html.page-index a:not(.card):hover{
-      color: var(--accent-pink);
-      background: var(--accent-yellow);
-      outline: 2px solid var(--outline);
-    }
-
-    html.page-index a:not(.card):focus-visible{
-      outline: var(--border-thick) solid var(--outline);
-      box-shadow: var(--focus-ring);
-    }
-
-    /* Forms & controls (suite-wide primitives) */
-    html.page-index button, html.page-index input, html.page-index select, html.page-index textarea{
-      font: inherit;
-      color: var(--text);
-      border-radius: var(--radius);
-      border: var(--border-thick) solid var(--outline);
-      background: var(--bg-card);
-      box-shadow: var(--shadow-sm);
-      min-height: 2.75rem;
-      padding: 0.5rem 0.85rem;
-    }
-
-    html.page-index button{
-      font-weight: 900;
-      cursor: pointer;
-      background: var(--accent-lime);
-      padding-inline: 1.1rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
-    }
-
-    html.page-index button:hover{
-      transform: translate(2px, 2px);
-      box-shadow: var(--shadow-sm);
-    }
-
-    html.page-index button:active{
-      transform: translate(4px, 4px);
-      box-shadow: none;
-    }
-
-    html.page-index button:focus-visible, html.page-index input:focus-visible, html.page-index select:focus-visible, html.page-index textarea:focus-visible{
-      outline: none;
-      box-shadow: var(--focus-ring), var(--shadow-sm);
-    }
-
-    html.page-index input::placeholder, html.page-index textarea::placeholder{
-      color: var(--text-muted);
-      opacity: 0.75;
-    }
-
-    html.page-index label{
-      font-weight: 800;
-      display: inline-block;
-      margin-bottom: 0.35rem;
-    }
-
-    html.page-index fieldset{
-      border: var(--border-thick) solid var(--outline);
-      padding: 1rem 1.1rem;
-      margin: 1rem 0;
-      background: var(--bg-elevated);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-    }
-
-    html.page-index legend{
-      font-weight: 900;
-      padding: 0 0.35rem;
-      background: var(--accent-aqua);
-      border: var(--border-thick) solid var(--outline);
-    }
-
-    /* Tables */
-    html.page-index table{
-      width: 100%;
-      max-width: 100%;
-      border-collapse: collapse;
-      margin: 1.25rem 0;
-      font-size: 0.95rem;
-      border: var(--border-thick) solid var(--outline);
-      box-shadow: var(--shadow);
-      background: var(--bg-card);
-      table-layout: auto;
-    }
-
-    html.page-index th, html.page-index td{
-      border: 2px solid var(--outline);
-      padding: 0.65rem 0.75rem;
-      text-align: left;
-      word-break: break-word;
-      hyphens: auto;
-    }
-
-    html.page-index th{
-      background: var(--accent-aqua);
-      font-weight: 900;
-    }
-
-    html.page-index tbody tr:nth-child(even){
-      background: var(--bg-elevated);
-    }
-
-    @media(max-width: 36rem){
-      html.page-index table{
-        font-size: 0.875rem;
-      }
-
-      html.page-index th, html.page-index td{
-        padding: 0.5rem 0.55rem;
-      }
-    }
-
-    /* Toolbar / nav strips */
-    html.page-index nav, html.page-index [role="toolbar"], html.page-index .toolbar{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-      padding: 0.65rem 0.75rem;
-      margin: 1rem 0;
-      border: var(--border-thick) solid var(--outline);
-      background: var(--bg-card);
-      box-shadow: var(--shadow-sm);
-      border-radius: var(--radius);
-    }
-
-    /* Modals / dialogs (if added later) */
-    html.page-index dialog{
-      border: var(--border-thick) solid var(--outline);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.25rem;
-      max-width: min(36rem, calc(100vw - 2rem));
-      background: var(--bg-card);
-    }
-
-    html.page-index dialog::backdrop{
-      background: rgba(0, 0, 0, 0.45);
-    }
-
-    /* Dropdowns (native) */
-    html.page-index select{
-      min-width: 10rem;
-      cursor: pointer;
-      background: var(--bg-elevated);
-    }
-
-    /* Card grid */
-    html.page-index .grid{
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-      gap: clamp(0.75rem, 2.5vw, 1.25rem);
-      margin-top: 1.5rem;
-    }
-
-    html.page-index .card{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.35rem;
-      min-height: 5.5rem;
-      padding: 1rem 1.1rem;
-      text-decoration: none;
-      color: inherit;
-      background: var(--bg-card);
-      border: var(--border-thick) solid var(--outline);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
-    }
-
-    html.page-index .card:hover{
-      transform: translate(2px, 2px);
-      box-shadow: var(--shadow-sm);
-      background-color: var(--card-hover-sky);
-    }
-
-    html.page-index .card:active{
-      transform: translate(4px, 4px);
-      box-shadow: none;
-    }
-
-    html.page-index .card:focus-visible{
-      outline: none;
-      box-shadow: var(--focus-ring), var(--shadow-sm);
-    }
-
-    html.page-index .card.blue{
-      background: var(--accent-aqua);
-    }
-
-    html.page-index .card.green{
-      background: var(--accent-lime);
-    }
-
-    html.page-index .card.purple{
-      background: var(--accent-pink);
-      color: #fff;
-    }
-
-    html.page-index .card.purple .desc{
-      color: #0a0a0a;
-    }
-
-    html.page-index .card.orange{
-      background: var(--accent-yellow);
-    }
-
-    html.page-index .card.red{
-      background: var(--accent-red);
-      color: #fff;
-    }
-
-    html.page-index .card.red .desc{
-      color: #0a0a0a;
-    }
-
-    html.page-index .title{
-      font-weight: 900;
-      font-size: 1.05rem;
-      line-height: 1.25;
-      margin: 0;
-    }
-
-    html.page-index .desc{
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin: 0;
-      line-height: 1.4;
-    }
-
-    html.page-index .card.purple .title, html.page-index .card.red .title{
-      color: #fff;
-    }
-
-    /* Sky hover beats solid variant fills (same idea as default cards) */
-    html.page-index .card.blue:hover, html.page-index .card.green:hover, html.page-index .card.orange:hover{
-      background-color: var(--card-hover-sky);
-    }
-
-    html.page-index .card.purple:hover, html.page-index .card.red:hover{
-      background-color: var(--card-hover-sky);
-      color: var(--text);
-    }
-
-    html.page-index .card.purple:hover .title, html.page-index .card.red:hover .title{
-      color: var(--text);
-    }
-
-    html.page-index .card.purple:hover .desc, html.page-index .card.red:hover .desc{
-      color: var(--text-muted);
-    }
-
-    html.page-index h2.folder{
-      margin-top: 2.25rem;
-      margin-bottom: 0.75rem;
-      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
-    }
-
-    html.page-index h2.folder:first-of-type{
-      margin-top: 1.5rem;
-    }
-  
 
 /* ===== kanban.html (page-kanban) ===== */
 
@@ -3222,7 +2865,7 @@ html.page-checklist a:hover{
   }
 
 
-/* ===== neo-dark-doc (TASKS, PROJECT, LOG, QUOTE_LOG, PROGRESS, episode-template, knowledge-map, worksheet, SYMPTOMS, EXPENSES, health) ===== */
+/* ===== neo-dark-doc (index, TASKS, PROJECT, LOG, QUOTE_LOG, PROGRESS, episode-template, knowledge-map, worksheet, SYMPTOMS, EXPENSES, health) ===== */
 /* Load neo-brutalist.css before this file; add class "neo-dark-doc" on <html> alongside page-*. */
 
 html.neo-dark-doc body {
@@ -3734,6 +3377,153 @@ html.neo-dark-doc.page-worksheet .worksheet-tracker-note {
 
 html.neo-dark-doc.page-worksheet .worksheet-site-footer-lead {
   color: var(--paper);
+}
+
+/* ----- Template library index (dark card grid) ----- */
+html.neo-dark-doc.page-index h1 {
+  font-size: clamp(1.85rem, 5.5vw, 3.2rem);
+  margin: 0 0 0.35em;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  text-shadow: 4px 4px 0 #000;
+}
+
+html.neo-dark-doc.page-index p.intro {
+  margin: 0.75rem 0 0;
+  max-width: 42rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+html.neo-dark-doc.page-index code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+  font-weight: 700;
+  padding: 0.12em 0.45em;
+  border-radius: 8px;
+  border: 2px solid #000;
+  background: var(--panel-2);
+  color: var(--electric-lime);
+  box-shadow: 2px 2px 0 #000;
+}
+
+html.neo-dark-doc.page-index .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: clamp(0.75rem, 2.5vw, 1.25rem);
+  margin-top: 1.5rem;
+}
+
+html.neo-dark-doc.page-index a.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 5.5rem;
+  padding: 1rem 1.15rem;
+  text-decoration: none;
+  color: var(--paper);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+html.neo-dark-doc.page-index a.card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+  filter: brightness(1.07);
+}
+
+html.neo-dark-doc.page-index a.card:active {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+html.neo-dark-doc.page-index a.card:focus-visible {
+  outline: 4px solid var(--electric-lime);
+  outline-offset: 3px;
+}
+
+html.neo-dark-doc.page-index a.card.blue {
+  background: linear-gradient(155deg, #b8fbff 0%, var(--sky-blue) 42%, #3ad4f0 100%);
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 28px rgba(110, 231, 255, 0.55);
+}
+
+html.neo-dark-doc.page-index a.card.green {
+  background: linear-gradient(165deg, #eeffaa 0%, var(--electric-lime) 40%, #9fe818 100%);
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 28px rgba(184, 255, 36, 0.55);
+}
+
+html.neo-dark-doc.page-index a.card.orange {
+  background: linear-gradient(125deg, var(--sky-blue) 0%, var(--electric-lime) 100%);
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 26px rgba(110, 231, 255, 0.35), 0 0 22px rgba(184, 255, 36, 0.35);
+}
+
+html.neo-dark-doc.page-index a.card.purple {
+  background: linear-gradient(160deg, #ffa8e8 0%, var(--hot-pink) 45%, #e3127a 100%);
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 30px rgba(255, 69, 189, 0.55);
+}
+
+html.neo-dark-doc.page-index a.card.red {
+  background: linear-gradient(150deg, #ff9ec9 0%, var(--hot-pink) 35%, #ff45bd 70%, #b8046a 100%);
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 28px rgba(255, 69, 189, 0.5);
+}
+
+html.neo-dark-doc.page-index a.card.blue .title,
+html.neo-dark-doc.page-index a.card.green .title,
+html.neo-dark-doc.page-index a.card.orange .title,
+html.neo-dark-doc.page-index a.card.purple .title,
+html.neo-dark-doc.page-index a.card.red .title {
+  color: var(--ink);
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+html.neo-dark-doc.page-index a.card.blue .desc,
+html.neo-dark-doc.page-index a.card.green .desc,
+html.neo-dark-doc.page-index a.card.orange .desc,
+html.neo-dark-doc.page-index a.card.purple .desc,
+html.neo-dark-doc.page-index a.card.red .desc {
+  color: rgba(5, 5, 8, 0.72);
+  font-weight: 700;
+}
+
+html.neo-dark-doc.page-index a.card .title {
+  font-weight: 900;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+html.neo-dark-doc.page-index a.card .desc {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+html.neo-dark-doc.page-index h2.folder {
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-size: clamp(1rem, 3vw, 1.35rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--electric-lime);
+  border-bottom: 3px solid #000;
+  padding-bottom: 0.35rem;
+}
+
+html.neo-dark-doc.page-index h2.folder:first-of-type {
+  margin-top: 1.25rem;
 }
 
 @keyframes marquee {
