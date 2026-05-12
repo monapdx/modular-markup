@@ -1,0 +1,114 @@
+name: URL Pattern Change
+description: Report a change, update, or fix to an existing GitHub URL pattern
+title: "[Pattern] "
+labels:
+  - enhancement
+  - url-pattern
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## URL Pattern Update
+        
+        Use this form to report:
+        - A broken or outdated GitHub URL pattern
+        - A change in GitHub structure
+        - An improvement to an existing pattern
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of change
+      description: What kind of update is this?
+      options:
+        - Existing pattern is broken
+        - Existing pattern has changed
+        - Improvement / clarification
+    validations:
+      required: true
+
+  - type: input
+    id: label
+    attributes:
+      label: Label / Name
+      description: What is the current name of this link in the app?
+      placeholder: "e.g. Traffic, Pulse, Discussions"
+    validations:
+      required: true
+
+  - type: input
+    id: current_pattern
+    attributes:
+      label: Current URL pattern
+      description: The pattern currently used in the app
+      placeholder: "https://github.com/{username}/{repo}/graphs/traffic"
+    validations:
+      required: true
+
+  - type: input
+    id: updated_pattern
+    attributes:
+      label: Updated URL pattern
+      description: The corrected or new version of the pattern
+      placeholder: "https://github.com/{username}/{repo}/insights/traffic"
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example URL
+      description: Provide a working real-world example
+      placeholder: "https://github.com/octocat/Hello-World/graphs/traffic"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What changed?
+      description: Explain what is different or broken
+      placeholder: "GitHub moved this page or changed the route"
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: What happens if this is not updated?
+      placeholder: "Users are sent to a 404 page"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      description: What does this pattern apply to?
+      options:
+        - label: Profile-level URL
+        - label: Repository-level URL
+        - label: Organization-level URL
+
+  - type: checkboxes
+    id: validation
+    attributes:
+      label: Validation
+      description: Confirm before submitting
+      options:
+        - label: I tested this URL and it works
+          required: true
+        - label: This pattern exists in the app
+          required: true
+        - label: The placeholders are correct ({username}, {repo})
+          required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Optional context, screenshots, or edge cases
+      placeholder: "Anything else that might help"

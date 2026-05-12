@@ -1,0 +1,103 @@
+name: Suggest Link Pattern
+description: Suggest a new GitHub URL pattern to include in the app
+title: "[Suggestion] "
+labels:
+  - enhancement
+  - url-pattern
+  - suggestion
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Suggest a New GitHub Link Pattern
+
+        Use this form to propose a new URL pattern that is not currently included in the app.
+
+  - type: input
+    id: label
+    attributes:
+      label: Label / Name
+      description: What should this link be called in the app?
+      placeholder: "e.g. Insights → Traffic, Contributors Graph"
+    validations:
+      required: true
+
+  - type: input
+    id: url_pattern
+    attributes:
+      label: URL pattern
+      description: Use placeholders like {username} and {repo}
+      placeholder: "https://github.com/{username}/{repo}/graphs/traffic"
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example URL
+      description: Provide a working example
+      placeholder: "https://github.com/octocat/Hello-World/graphs/traffic"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Where should this link belong?
+      options:
+        - Profile
+        - Repository
+        - Organization
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What does this link do?
+      description: Explain what this page shows or why it’s useful
+      placeholder: "Displays traffic analytics including views and clones"
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: When would someone use this link?
+      placeholder: "Useful for analyzing repo popularity and engagement"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Applies to
+      options:
+        - label: Any public repo
+        - label: Requires repo ownership or permissions
+        - label: Only visible when feature is enabled
+
+  - type: checkboxes
+    id: validation
+    attributes:
+      label: Validation
+      description: Confirm before submitting
+      options:
+        - label: I tested this URL and it works
+          required: true
+        - label: This pattern is not already in the app
+          required: true
+        - label: The placeholders are correct ({username}, {repo})
+          required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Optional context, screenshots, or edge cases
+      placeholder: "Anything else that might help"

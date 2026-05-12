@@ -1,0 +1,56 @@
+name: 🔎 Question / Discussion
+description: Ask a thoughtful question, raise a tradeoff, or start a conceptual discussion.
+title: "[Discussion]: "
+labels:
+  - discussion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for open-ended questions, conceptual tensions, design tradeoffs, and philosophy discussions.
+
+        Good discussion topics include:
+        - precision vs flexibility
+        - readability vs terseness
+        - explicitness vs convenience
+        - parser simplicity vs human clarity
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question or discussion topic
+      description: What do you want to ask or explore?
+      placeholder: Should re:imagined ever allow shorthand that is less explicit if it is dramatically faster to write?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why does this matter? What led you to this question?
+      placeholder: This came up while comparing readable syntax with real-world authoring speed.
+    validations:
+      required: true
+
+  - type: textarea
+    id: position
+    attributes:
+      label: Your current thinking
+      description: Share your current opinion, even if tentative.
+      placeholder: I lean toward allowing it only when the meaning remains visible and normalization can restore clarity.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: topic_tags
+    attributes:
+      label: Related themes
+      options:
+        - label: Readability
+        - label: Accessibility
+        - label: Explicitness
+        - label: Parsing
+        - label: Error tolerance
+        - label: Syntax design
+        - label: Philosophy
