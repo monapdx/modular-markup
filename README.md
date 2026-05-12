@@ -38,8 +38,6 @@
 
 - **Editable Table Template** — A flexible frontend table system with editable cells, dynamic row generation, dropdown relationships, and reusable structures for data organization projects.
 
-<img src="" width="">
-
 - **Topic Cluster Mindmap** — A lightweight animated mindmapping tool that lets users create branching idea networks around a central concept with draggable visual node layouts.
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/topic-cluster.png" width="539">
@@ -58,7 +56,7 @@
 
 - **Dashboard With Widgets** — A bundled productivity dashboard packed with reusable frontend utilities including a progress bar generator, FAQ builder, HTML list creator, editable tables, localStorage notes, and voice recording tools.
 
-<img src="" width="">
+
 
 
 ## Tablular Templates
