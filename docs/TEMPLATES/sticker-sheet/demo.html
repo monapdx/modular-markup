@@ -286,7 +286,7 @@
     });
     chain
       .then(function () {
-        stickers = newItems;
+        stickers = stickers.concat(newItems);
         renderStickers(stickers);
         saveStickers();
         setStatus("Changes saved locally");
