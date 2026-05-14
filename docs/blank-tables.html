@@ -284,6 +284,29 @@ document.addEventListener("DOMContentLoaded", function () {
     return select;
   }
 
+  function applyColumnValidation(table) {
+    table.querySelectorAll("tbody tr").forEach(function (row) {
+      Array.prototype.forEach.call(row.children, function (cell, index) {
+        var header = table.querySelector("thead th:nth-child(" + (index + 1) + ")");
+        var rules = ((header && header.getAttribute("data-validation")) || "").toLowerCase();
+        var options = header && header.getAttribute("data-options");
+        var inputType = rules.indexOf("date") >= 0 ? "date" : (rules.indexOf("numeric") >= 0 ? "number" : "text");
+        if (options && !cell.querySelector("select")) {
+          cell.removeAttribute("contenteditable");
+          cell.innerHTML = "";
+          cell.appendChild(createSelect(options.split(",").map(function (v) { return v.trim(); }).filter(Boolean)));
+        } else if (inputType !== "text" && !cell.querySelector("input")) {
+          cell.removeAttribute("contenteditable");
+          cell.innerHTML = '<input type="' + inputType + '">';
+        }
+        if (rules.indexOf("required") >= 0) {
+          cell.querySelectorAll("input, select").forEach(function (field) { field.required = true; });
+          cell.setAttribute("data-required", "true");
+        }
+      });
+    });
+  }
+
   function addRow(table, tableIndex) {
     var tbody = table.querySelector("tbody");
     var firstRow = tbody.querySelector("tr");
@@ -305,9 +328,11 @@ document.addEventListener("DOMContentLoaded", function () {
       row.appendChild(td);
     }
     tbody.appendChild(row);
+    applyColumnValidation(table);
   }
 
   document.querySelectorAll("table").forEach(function (table, tableIndex) {
+    applyColumnValidation(table);
     var btn = table.nextElementSibling;
     if (!btn || !btn.classList.contains("add-table-row-btn")) {
       btn = document.createElement("button");
