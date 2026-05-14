@@ -1143,17 +1143,17 @@
   }
 
   html.page-calendar td.has-events {
-    background: #e6f4ff;
+    background: #ddd0ee;
     color: #111;
   }
 
   html.page-calendar td.other-month.has-events {
-    background: #dbeaf6;
-    color: #444;
+    background: #cec0df;
+    color: #333;
   }
 
   html.page-calendar td.today.has-events {
-    background: rgba(255, 69, 189, 0.52);
+    background: #e5bddf;
     color: #111;
   }
 
@@ -1199,7 +1199,8 @@
   }
 
   html.page-calendar .event:nth-of-type(even) {
-    background: rgba(110, 231, 255, 0.92);
+    background: rgba(200, 230, 88, 0.95);
+    color: var(--ink);
   }
 
   html.page-calendar .event:hover {
