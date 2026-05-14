@@ -28,6 +28,8 @@ Close the file and reopen it later — your edits remain intact.
 
 ### Editable Structure
 
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/gif/add-delete-rows.gif" width="576">
+
 Most templates support:
 
 - editable table cells
@@ -89,9 +91,6 @@ A fully editable blank table system for creating your own trackers, logs, databa
 
 A customizable expense and budgeting tracker with editable categories and persistent local saving.
 
-### Health
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/health.png" width="556">
 
 ### Log
 

@@ -1010,49 +1010,114 @@
   
 
 /* ===== calendar.html (page-calendar) ===== */
+/* Same loading model as kanban.html: only this file — tokens + body canvas live here (no neo-brutalist.css). */
 
-  html.page-calendar *{
+  html.page-calendar {
+    --ink: #050508;
+    --void: #0b0b10;
+    --panel: #17171f;
+    --panel-2: #20202a;
+    --panel-3: #111118;
+    --paper: #f7f5ef;
+    --muted: #b9b7c6;
+    --hot-pink: #ff45bd;
+    --electric-lime: #b8ff24;
+    --sky-blue: #6ee7ff;
+    --line: rgba(255, 255, 255, 0.18);
+    --shadow: 10px 10px 0 #000;
+    --shadow-sm: 6px 6px 0 #000;
+    --border: 3px solid #000;
+    --radius: 18px;
+  }
+
+  html.page-calendar * {
     box-sizing: border-box;
   }
 
-  html.page-calendar body{
+  html.page-calendar body {
     margin: 0;
-    padding: 24px;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f0;
-    color: #111;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 3vw, 1.75rem) 3rem;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--paper);
+    background:
+      radial-gradient(circle at 10% 5%, rgba(184, 255, 36, 0.18), transparent 22rem),
+      radial-gradient(circle at 95% 8%, rgba(255, 69, 189, 0.26), transparent 25rem),
+      radial-gradient(circle at 80% 92%, rgba(110, 231, 255, 0.16), transparent 24rem),
+      linear-gradient(135deg, #050508 0%, #11111a 48%, #17101f 100%);
   }
 
-  html.page-calendar .calendar-wrap{
+  html.page-calendar #__mmPersistRoot {
+    max-width: 70rem;
+    margin-inline: auto;
+  }
+
+  html.page-calendar button,
+  html.page-calendar input {
+    font: inherit;
+  }
+
+  html.page-calendar .calendar-wrap {
     max-width: 1100px;
     margin: 0 auto;
     background: #fff;
-    border: 4px solid #111;
-    box-shadow: 10px 10px 0 #111;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    overflow: hidden;
   }
 
-  html.page-calendar .calendar-header{
+  html.page-calendar .calendar-header {
     padding: 22px;
-    background: #b7ff00;
-    border-bottom: 4px solid #111;
+    background: var(--electric-lime);
+    border-bottom: var(--border);
   }
 
-  html.page-calendar .calendar-header h1{
+  html.page-calendar .calendar-header h1 {
     margin: 0;
     font-size: clamp(2rem, 6vw, 4rem);
     line-height: 0.95;
     text-transform: uppercase;
     letter-spacing: -0.06em;
     font-weight: 900;
+    color: var(--ink);
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
   }
 
-  html.page-calendar table{
+  /* Calendar grid: keep normal table layout (no neo-brutalist global table rules on this page). */
+  html.page-calendar .calendar-wrap table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    font-size: inherit;
   }
 
-  html.page-calendar th{
+  html.page-calendar .calendar-wrap tbody {
+    display: table-row-group;
+  }
+
+  html.page-calendar .calendar-wrap thead {
+    display: table-header-group;
+  }
+
+  html.page-calendar .calendar-wrap tr {
+    display: table-row;
+  }
+
+  html.page-calendar .calendar-wrap th,
+  html.page-calendar .calendar-wrap td {
+    display: table-cell;
+  }
+
+  html.page-calendar th {
     padding: 14px 10px;
     text-align: left;
     font-size: 0.85rem;
@@ -1063,20 +1128,36 @@
     border: 3px solid #111;
   }
 
-  html.page-calendar td{
+  html.page-calendar td {
     height: 135px;
     vertical-align: top;
     padding: 10px;
     border: 3px solid #111;
     background: #fff;
+    color: #111;
   }
 
-  html.page-calendar td.other-month{
+  html.page-calendar td.other-month {
     background: #e7e7df;
     color: #777;
   }
 
-  html.page-calendar .date{
+  html.page-calendar td:has(.event) {
+    background: #e6f4ff;
+    color: #111;
+  }
+
+  html.page-calendar td.other-month:has(.event) {
+    background: #dbeaf6;
+    color: #444;
+  }
+
+  html.page-calendar td.today:has(.event) {
+    background: rgba(255, 69, 189, 0.52);
+    color: #111;
+  }
+
+  html.page-calendar .date {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1085,93 +1166,91 @@
     margin-bottom: 8px;
     padding: 0 8px;
     background: #fff;
+    color: #111;
     border: 3px solid #111;
     font-weight: 900;
     box-shadow: 3px 3px 0 #111;
   }
 
-  html.page-calendar .today{
-    background: #ff4fd8;
+  html.page-calendar .today {
+    background: rgba(255, 69, 189, 0.45);
   }
 
-  html.page-calendar .today .date{
-    background: #111;
-    color: #fff;
-    box-shadow: 3px 3px 0 #b7ff00;
+  html.page-calendar .today .date {
+    background: var(--ink);
+    color: var(--electric-lime);
+    box-shadow: 3px 3px 0 var(--electric-lime);
   }
 
-  html.page-calendar .event{
+  html.page-calendar .event {
+    position: relative;
     display: block;
     margin-top: 8px;
-    padding: 7px 9px;
+    padding: 7px 34px 7px 9px;
     font-size: 0.78rem;
     line-height: 1.2;
     font-weight: 800;
-    background: #b7ff00;
-    color: #111;
+    background: rgba(184, 255, 36, 0.92);
+    color: var(--ink);
     border: 3px solid #111;
     box-shadow: 4px 4px 0 #111;
+    cursor: pointer;
+    transition: transform 0.08s ease;
   }
 
-  html.page-calendar .event:nth-of-type(even){
-    background: #7ee7ff;
+  html.page-calendar .event:nth-of-type(even) {
+    background: rgba(110, 231, 255, 0.92);
   }
-  
-  html.page-calendar .event{
-  position: relative;
-  padding-right: 34px;
-  cursor: pointer;
-  transition: transform 0.08s ease;
-}
 
-html.page-calendar .event:hover{
-  transform: translate(-2px, -2px);
-}
+  html.page-calendar .event:hover {
+    transform: translate(-2px, -2px);
+  }
 
-html.page-calendar .delete-event{
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 22px;
-  height: 22px;
-  border: 2px solid #111;
-  background: #fff;
-  color: #111;
-  font-weight: 900;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 2px 2px 0 #111;
-}
+  html.page-calendar .delete-event {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #111;
+    background: #fff;
+    color: #111;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 0 #111;
+  }
 
-html.page-calendar .delete-event:hover{
-  background: #ff4fd8;
-}
+  html.page-calendar .delete-event:hover {
+    background: var(--hot-pink);
+    color: var(--ink);
+  }
 
-html.page-calendar .add-event-btn{
-  margin-top: 10px;
-  width: 100%;
-  padding: 8px;
-  border: 3px solid #111;
-  background: #7ee7ff;
-  color: #111;
-  font-weight: 900;
-  font-size: 0.75rem;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 #111;
-  text-transform: uppercase;
-}
+  html.page-calendar .add-event-btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    border: 3px solid #111;
+    background: var(--sky-blue);
+    color: var(--ink);
+    font-weight: 900;
+    font-size: 0.75rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #111;
+    text-transform: uppercase;
+  }
 
-html.page-calendar .add-event-btn:hover{
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 #111;
-}
+  html.page-calendar .add-event-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #111;
+  }
 
-html.page-calendar .add-event-btn:active{
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 #111;
-}
+  html.page-calendar .add-event-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #111;
+  }
 
   @media(max-width: 700px){
     html.page-calendar body{
@@ -1218,6 +1297,7 @@ html.page-calendar .add-event-btn:active{
       display: none;
     }
   }
+
 
 
 
@@ -2588,7 +2668,6 @@ html.neo-dark-doc .del-table-row-btn {
 
 /* Column headers: double-click to edit; visually distinct from body cells */
 html.neo-dark-doc table thead th.mm-th-editable,
-html.page-calendar table thead th.mm-th-editable,
 html.page-movies table thead th.mm-th-editable {
   cursor: default;
   font-weight: 900;
@@ -2604,10 +2683,12 @@ html.page-movies table thead th.mm-th-editable {
 }
 
 html.page-calendar table thead th.mm-th-editable {
-  background: linear-gradient(180deg, #fff5fb 0%, #f6f8fa 100%);
-  border-bottom-color: #d0a8ff;
-  text-transform: none;
-  letter-spacing: 0.02em;
+  background: #111;
+  color: #fff;
+  border-bottom: 3px solid #111;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: none;
 }
 
 html.neo-dark-doc table thead th.mm-th-editing,
