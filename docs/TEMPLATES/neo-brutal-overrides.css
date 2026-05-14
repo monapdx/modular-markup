@@ -1494,8 +1494,189 @@ html.page-movies .del-table-row-btn:hover{
   }
 }
 
-  
+/* Movies + neo-dark-doc: undo legacy pandoc / GitHub-light rules so layout matches other neo-dark-doc templates */
+html.page-movies.neo-dark-doc {
+  min-height: 100%;
+  color: var(--paper);
+  /* Same stack as neo-brutalist.css `body` so the viewport never shows legacy light grey */
+  background:
+    radial-gradient(circle at 10% 5%, rgba(184, 255, 36, 0.18), transparent 22rem),
+    radial-gradient(circle at 95% 8%, rgba(255, 69, 189, 0.26), transparent 25rem),
+    radial-gradient(circle at 80% 92%, rgba(110, 231, 255, 0.16), transparent 24rem),
+    linear-gradient(135deg, #050508 0%, #11111a 48%, #17101f 100%);
+}
 
+html.page-movies.neo-dark-doc body {
+  color: var(--paper);
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 5%, rgba(184, 255, 36, 0.18), transparent 22rem),
+    radial-gradient(circle at 95% 8%, rgba(255, 69, 189, 0.26), transparent 25rem),
+    radial-gradient(circle at 80% 92%, rgba(110, 231, 255, 0.16), transparent 24rem),
+    linear-gradient(135deg, #050508 0%, #11111a 48%, #17101f 100%);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  max-width: 56rem;
+  margin-inline: auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 3vw, 1.75rem) 3rem;
+}
+
+@media (max-width: 600px) {
+  html.page-movies.neo-dark-doc body {
+    padding: clamp(0.75rem, 3vw, 1rem);
+  }
+}
+
+html.page-movies.neo-dark-doc h1,
+html.page-movies.neo-dark-doc h2,
+html.page-movies.neo-dark-doc h3 {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+html.page-movies.neo-dark-doc hr {
+  border: none;
+  border-top: 3px solid #000;
+  margin: 1.5rem 0;
+  opacity: 0.55;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  height: auto;
+}
+
+html.page-movies.neo-dark-doc a {
+  color: var(--electric-lime);
+  font-weight: 900;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+html.page-movies.neo-dark-doc a:hover {
+  color: var(--ink);
+  background: var(--electric-lime);
+  text-decoration: none;
+}
+
+html.page-movies.neo-dark-doc a:visited {
+  color: var(--electric-lime);
+}
+
+html.page-movies.neo-dark-doc table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.95rem;
+  overflow: visible;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+html.page-movies.neo-dark-doc thead {
+  display: table-header-group;
+}
+
+html.page-movies.neo-dark-doc tbody {
+  display: table-row-group;
+  margin-top: 0;
+  border: none;
+}
+
+html.page-movies.neo-dark-doc tr {
+  display: table-row;
+}
+
+/* Legacy `html.page-movies tr:nth-child(even)` painted rows #f6f8fa; clear <tr> so only <td> zebra applies (neo-dark-doc pattern) */
+html.page-movies.neo-dark-doc thead tr,
+html.page-movies.neo-dark-doc tbody tr {
+  background-color: transparent;
+}
+
+html.page-movies.neo-dark-doc th,
+html.page-movies.neo-dark-doc td {
+  display: table-cell;
+  border: 2px solid #000;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  color: var(--paper);
+}
+
+html.page-movies.neo-dark-doc th {
+  background: var(--panel-2);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+html.page-movies.neo-dark-doc tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html.page-movies.neo-dark-doc .editable-cell {
+  cursor: text;
+  background: transparent;
+}
+
+html.page-movies.neo-dark-doc td[contenteditable="true"]:focus,
+html.page-movies.neo-dark-doc th[contenteditable="true"]:focus,
+html.page-movies.neo-dark-doc .editable-cell:focus {
+  outline: 3px solid var(--electric-lime);
+  outline-offset: 2px;
+  background: rgba(184, 255, 36, 0.12);
+}
+
+html.page-movies.neo-dark-doc .add-table-row-btn,
+html.page-movies.neo-dark-doc .del-table-row-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 10px 16px;
+  margin: 8px 8px 20px 0;
+  font: inherit;
+  font-weight: 900;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 3px solid #000;
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 #000;
+  background: var(--electric-lime);
+  color: var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+html.page-movies.neo-dark-doc .add-table-row-btn:hover,
+html.page-movies.neo-dark-doc .del-table-row-btn:hover {
+  transform: translate(-2px, -2px);
+  background: var(--sky-blue);
+  box-shadow: 7px 7px 0 #000;
+  filter: none;
+}
+
+html.page-movies.neo-dark-doc .del-table-row-btn {
+  background: var(--panel-2);
+  color: var(--paper);
+}
+
+html.page-movies.neo-dark-doc .del-table-row-btn:hover {
+  background: var(--hot-pink);
+  color: var(--ink);
+}
+
+html.page-movies.neo-dark-doc p.hint {
+  color: var(--muted);
+}
+
+html.page-movies.neo-dark-doc .mm-template-toolbar {
+  border-bottom-color: var(--line, #000);
+}
 
 /* ===== table-template.html (page-table-template) ===== */
 
