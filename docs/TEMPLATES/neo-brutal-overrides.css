@@ -3025,6 +3025,58 @@ html.neo-dark-doc.page-worksheet .p3-header {
   color: var(--ink);
 }
 
+html.neo-dark-doc.page-worksheet .worksheet-list-tools {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 12px 0;
+  flex-shrink: 0;
+}
+
+html.neo-dark-doc.page-worksheet .worksheet-list-btn {
+  font: inherit;
+  font-weight: 900;
+  min-width: 2.25rem;
+  padding: 6px 12px;
+  border: 3px solid #000;
+  border-radius: var(--radius, 8px);
+  background: var(--panel-2);
+  color: var(--paper);
+  box-shadow: 3px 3px 0 #000;
+  cursor: pointer;
+}
+
+html.neo-dark-doc.page-worksheet .worksheet-list-btn:hover {
+  transform: translate(-1px, -1px);
+}
+
+html.neo-dark-doc.page-worksheet .card-header.mm-th-editable {
+  cursor: default;
+}
+
+html.neo-dark-doc.page-worksheet .card-header.mm-th-editing {
+  outline: 2px solid var(--electric-lime, #b8ff24);
+  outline-offset: 2px;
+  cursor: text;
+}
+
+html.neo-dark-doc.page-worksheet .task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+html.neo-dark-doc.page-worksheet .task-title {
+  display: block;
+}
+
+html.neo-dark-doc.page-worksheet .task-desc {
+  display: block;
+  color: var(--muted);
+}
+
 html.neo-dark-doc.page-worksheet header h1 {
   font-size: clamp(1.65rem, 4.5vw, 2.65rem);
   line-height: 1.08;
@@ -3048,10 +3100,6 @@ html.neo-dark-doc.page-worksheet .task-list {
 
 html.neo-dark-doc.page-worksheet .task-item:hover {
   background: rgba(255, 255, 255, 0.04);
-}
-
-html.neo-dark-doc.page-worksheet .task-desc {
-  color: var(--muted);
 }
 
 html.neo-dark-doc.page-worksheet .checkbox-brutal {
