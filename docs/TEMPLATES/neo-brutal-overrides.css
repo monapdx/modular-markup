@@ -3329,3 +3329,108 @@ html.neo-dark-doc.page-push-limits td code {
     transform: translateX(-100%);
   }
 }
+
+/* ===== dashboard/*-generator.html (page-dashboard-widget) standalone neo-brutalist tools ===== */
+
+html.page-dashboard-widget.neo-dark-doc body {
+  padding-top: clamp(1rem, 3vw, 2rem);
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget {
+  max-width: 46rem;
+  margin: 0 auto 2.5rem;
+  padding: 1.35rem 1.4rem 1.6rem;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget h3 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  color: var(--electric-lime, #b8ff24);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget > label {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget .dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1rem 0 1.25rem;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-preview {
+  border: var(--border, 3px solid #000);
+  border-radius: var(--radius, 12px);
+  padding: 1rem 1.1rem;
+  min-height: 2.75rem;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm, 4px 4px 0 #000);
+  margin-bottom: 0.35rem;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-preview ul.generated-link-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-preview a {
+  color: var(--electric-lime, #b8ff24);
+  font-weight: 800;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget textarea[readonly] {
+  min-height: 11rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-progress-out {
+  color: var(--paper);
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-progress-label {
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-progress-track {
+  width: 100%;
+  border: 3px solid #000;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.06);
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-progress-fill {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 12px;
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: #050508;
+  text-shadow: none;
+  box-sizing: border-box;
+  transition: width 0.2s ease;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-progress-pct {
+  font-variant-numeric: tabular-nums;
+}

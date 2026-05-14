@@ -1,26 +1,39 @@
-<div id="html-list-generator">
+<!DOCTYPE html>
+<html lang="en" class="page-dashboard-widget neo-dark-doc">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML List Generator</title>
+  <link rel="stylesheet" href="../neo-brutalist.css" />
+  <link rel="stylesheet" href="../neo-brutal-overrides.css" />
+</head>
+<body>
+
+<div id="html-list-generator" class="dashboard-widget panel">
   <h3>HTML List Generator</h3>
 
   <label>
     URL
-    <input type="url" id="list-url" placeholder="https://example.com">
+    <input type="url" id="list-url" placeholder="https://example.com" />
   </label>
 
   <label>
     Anchor text
-    <input type="text" id="list-text" placeholder="Example link">
+    <input type="text" id="list-text" placeholder="Example link" />
   </label>
 
   <label>
     Custom marker image
-    <input type="file" id="marker-upload" accept="image/*">
+    <input type="file" id="marker-upload" accept="image/*" />
   </label>
 
-  <button type="button" id="add-list-item">+ Add List Item</button>
-  <button type="button" id="download-html">Download HTML</button>
+  <div class="dashboard-actions">
+    <button type="button" id="add-list-item">+ Add List Item</button>
+    <button type="button" class="secondary" id="download-html">Download HTML</button>
+  </div>
 
   <h4>Preview</h4>
-  <div id="list-preview"></div>
+  <div id="list-preview" class="dashboard-preview"></div>
 
   <h4>Generated HTML</h4>
   <textarea id="generated-html" rows="10" readonly></textarea>
@@ -67,7 +80,7 @@ ul.generated-link-list li {
       : "";
 
     const listItems = items
-      .map(item => `  <li><a href="${escapeHtml(item.url)}">${escapeHtml(item.text)}</a></li>`)
+      .map((item) => `  <li><a href="${escapeHtml(item.url)}">${escapeHtml(item.text)}</a></li>`)
       .join("\n");
 
     return `${style}<ul class="generated-link-list">
@@ -90,7 +103,7 @@ ${listItems}
     }
 
     const reader = new FileReader();
-    reader.onload = event => {
+    reader.onload = (event) => {
       markerDataUrl = event.target.result;
       render();
     };
@@ -115,9 +128,10 @@ ${listItems}
 
   downloadButton.addEventListener("click", () => {
     const html = `<!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Generated Link List</title>
 </head>
 <body>
@@ -125,14 +139,18 @@ ${generateHtml()}
 </body>
 </html>`;
 
-    const blob = new Blob([html], { type: "text/html" });
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
+    link.href = url;
     link.download = "generated-link-list.html";
     link.click();
-    URL.revokeObjectURL(link.href);
+    setTimeout(() => URL.revokeObjectURL(url), 0);
   });
 
   render();
 })();
 </script>
+
+</body>
+</html>

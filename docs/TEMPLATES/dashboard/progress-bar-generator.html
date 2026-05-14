@@ -1,32 +1,43 @@
-<div id="progress-bar-generator">
+<!DOCTYPE html>
+<html lang="en" class="page-dashboard-widget neo-dark-doc">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress Bar Generator</title>
+  <link rel="stylesheet" href="../neo-brutalist.css" />
+  <link rel="stylesheet" href="../neo-brutal-overrides.css" />
+</head>
+<body>
+
+<div id="progress-bar-generator" class="dashboard-widget panel">
   <h3>Progress Bar Generator</h3>
 
   <label>
     Label
-    <input type="text" id="progress-label" placeholder="Project Completion">
+    <input type="text" id="progress-label" placeholder="Project Completion" />
   </label>
 
   <label>
     Percentage
-    <input type="number" id="progress-percent" min="0" max="100" value="50">
+    <input type="number" id="progress-percent" min="0" max="100" value="50" />
   </label>
 
   <label>
     Fill Color
-    <input type="text" id="progress-color" placeholder="lime">
+    <input type="text" id="progress-color" placeholder="#b8ff24 or lime" />
   </label>
 
   <label>
     Show Percentage Text
-    <input type="checkbox" id="show-percent" checked>
+    <input type="checkbox" id="show-percent" checked />
   </label>
 
-  <button type="button" id="generate-progress">
-    Generate
-  </button>
+  <div class="dashboard-actions">
+    <button type="button" id="generate-progress">Generate</button>
+  </div>
 
   <h4>Preview</h4>
-  <div id="progress-preview"></div>
+  <div id="progress-preview" class="dashboard-preview"></div>
 
   <h4>Generated HTML</h4>
   <textarea id="generated-progress-html" rows="12" readonly></textarea>
@@ -52,27 +63,33 @@
       .replaceAll('"', "&quot;");
   }
 
-  function generateHtml() {
-    const label = escapeHtml(labelInput.value.trim());
-    const percent = Math.max(
-      0,
-      Math.min(100, Number(percentInput.value) || 0)
-    );
+  /** Strip characters that could break inline CSS; keep simple color tokens */
+  function sanitizeCssColor(raw) {
+    const s = String(raw || "").trim().slice(0, 80);
+    if (!s) return "var(--electric-lime, #b8ff24)";
+    if (/[<>"'`;{}\\]/.test(s)) return "var(--electric-lime, #b8ff24)";
+    return s;
+  }
 
-    const color = colorInput.value.trim() || "lime";
+  function generateHtml() {
+    const label = escapeHtml(labelInput.value.trim()) || "Progress";
+    const percent = Math.max(0, Math.min(100, Number(percentInput.value) || 0));
+
+    const color = sanitizeCssColor(colorInput.value.trim() || "#b8ff24");
     const showPercent = showPercentInput.checked;
 
-    return `
-<div>
-  <div>${label}</div>
+    const pctHtml = showPercent
+      ? `<span class="dashboard-progress-pct">${percent}%</span>`
+      : "";
 
-  <div style="width:100%; border:1px solid black;">
-    <div style="width:${percent}%; background:${color};">
-      ${showPercent ? percent + "%" : ""}
+    return `<div class="dashboard-progress-out">
+  <div class="dashboard-progress-label">${label}</div>
+  <div class="dashboard-progress-track">
+    <div class="dashboard-progress-fill" style="width:${percent}%;background:${color};">
+      ${pctHtml}
     </div>
   </div>
-</div>
-`.trim();
+</div>`.trim();
   }
 
   function render() {
@@ -87,3 +104,6 @@
   render();
 })();
 </script>
+
+</body>
+</html>

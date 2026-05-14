@@ -1,9 +1,20 @@
-<div id="faq-generator">
+<!DOCTYPE html>
+<html lang="en" class="page-dashboard-widget neo-dark-doc">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accordion FAQ Generator</title>
+  <link rel="stylesheet" href="../neo-brutalist.css" />
+  <link rel="stylesheet" href="../neo-brutal-overrides.css" />
+</head>
+<body>
+
+<div id="faq-generator" class="dashboard-widget panel">
   <h3>Accordion FAQ Generator</h3>
 
   <label>
     Question
-    <input type="text" id="faq-question" placeholder="What is this?">
+    <input type="text" id="faq-question" placeholder="What is this?" />
   </label>
 
   <label>
@@ -11,11 +22,13 @@
     <textarea id="faq-answer" rows="4" placeholder="This is the answer."></textarea>
   </label>
 
-  <button type="button" id="add-faq">+ Add FAQ Item</button>
-  <button type="button" id="download-faq-html">Download HTML</button>
+  <div class="dashboard-actions">
+    <button type="button" id="add-faq">+ Add FAQ Item</button>
+    <button type="button" class="secondary" id="download-faq-html">Download HTML</button>
+  </div>
 
   <h4>Preview</h4>
-  <div id="faq-preview"></div>
+  <div id="faq-preview" class="dashboard-preview"></div>
 
   <h4>Generated HTML</h4>
   <textarea id="generated-faq-html" rows="12" readonly></textarea>
@@ -41,11 +54,15 @@
   }
 
   function generateHtml() {
-    return items.map(item => `
-<details>
+    return items
+      .map(
+        (item) =>
+          `<details>
   <summary>${escapeHtml(item.question)}</summary>
   <p>${escapeHtml(item.answer)}</p>
-</details>`.trim()).join("\n\n");
+</details>`.trim()
+      )
+      .join("\n\n");
   }
 
   function render() {
@@ -72,9 +89,10 @@
 
   downloadButton.addEventListener("click", () => {
     const html = `<!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Generated FAQ</title>
 </head>
 <body>
@@ -82,14 +100,18 @@ ${generateHtml()}
 </body>
 </html>`;
 
-    const blob = new Blob([html], { type: "text/html" });
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
+    link.href = url;
     link.download = "generated-faq.html";
     link.click();
-    URL.revokeObjectURL(link.href);
+    setTimeout(() => URL.revokeObjectURL(url), 0);
   });
 
   render();
 })();
 </script>
+
+</body>
+</html>
