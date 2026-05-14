@@ -9,20 +9,53 @@
   <title>sandbox</title>
   
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const editableCells = document.querySelectorAll('table td, table th');
-  editableCells.forEach((cell) => {
-    cell.setAttribute('contenteditable', 'true');
-    cell.setAttribute('spellcheck', 'false');
-    cell.classList.add('editable-cell');
-  });
-});
+<script>/* mm-local-persist */
+(function (w) {
+  var timer;
+  w.__mmPersistKey = function () {
+    try {
+      var p = w.location && w.location.pathname ? w.location.pathname : "";
+      var m = p.match(/[^\\/]+$/);
+      return "mm-template-persist:" + (m ? m[0] : "page");
+    } catch (e) {
+      return "mm-template-persist:page";
+    }
+  };
+  w.__mmPersistLoad = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    try {
+      var raw = localStorage.getItem(w.__mmPersistKey());
+      if (raw) root.innerHTML = raw;
+    } catch (e) {}
+  };
+  w.__mmPersistSave = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      try {
+        localStorage.setItem(w.__mmPersistKey(), root.innerHTML);
+      } catch (e2) {}
+    }, 280);
+  };
+  w.__mmPersistHook = function () {
+    document.addEventListener("input", w.__mmPersistSave, true);
+    document.addEventListener("change", w.__mmPersistSave, true);
+    var root = document.getElementById("__mmPersistRoot");
+    if (root && typeof MutationObserver !== "undefined") {
+      new MutationObserver(function () {
+        w.__mmPersistSave();
+      }).observe(root, { subtree: true, childList: true, attributes: true, characterData: true });
+    }
+  };
+})(window);
 </script>
 
 
 </head>
 <body>
+<div id="__mmPersistRoot">
 <hr />
 <h2 id="project-tracker">🧩 Project Tracker</h2>
 <table>
@@ -242,5 +275,17 @@ Expand Rules
 <p>This file is intentionally overbuilt to explore the upper limits of
 GitHub Markdown as a UI system.</p>
 </blockquote>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof __mmPersistLoad === "function") __mmPersistLoad();
+  document.querySelectorAll("table td, table th").forEach(function (cell) {
+    cell.setAttribute("contenteditable", "true");
+    cell.setAttribute("spellcheck", "false");
+    cell.classList.add("editable-cell");
+  });
+  if (typeof __mmPersistHook === "function") __mmPersistHook();
+});
+</script>
 </body>
 </html>

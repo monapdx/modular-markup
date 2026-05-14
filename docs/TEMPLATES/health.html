@@ -7,20 +7,53 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>health</title>
-  
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('table td, table th').forEach(function (cell) {
-    cell.setAttribute('contenteditable', 'true');
-    cell.setAttribute('spellcheck', 'false');
-  });
-});
+<script>/* mm-local-persist */
+(function (w) {
+  var timer;
+  w.__mmPersistKey = function () {
+    try {
+      var p = w.location && w.location.pathname ? w.location.pathname : "";
+      var m = p.match(/[^\\/]+$/);
+      return "mm-template-persist:" + (m ? m[0] : "page");
+    } catch (e) {
+      return "mm-template-persist:page";
+    }
+  };
+  w.__mmPersistLoad = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    try {
+      var raw = localStorage.getItem(w.__mmPersistKey());
+      if (raw) root.innerHTML = raw;
+    } catch (e) {}
+  };
+  w.__mmPersistSave = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      try {
+        localStorage.setItem(w.__mmPersistKey(), root.innerHTML);
+      } catch (e2) {}
+    }, 280);
+  };
+  w.__mmPersistHook = function () {
+    document.addEventListener("input", w.__mmPersistSave, true);
+    document.addEventListener("change", w.__mmPersistSave, true);
+    var root = document.getElementById("__mmPersistRoot");
+    if (root && typeof MutationObserver !== "undefined") {
+      new MutationObserver(function () {
+        w.__mmPersistSave();
+      }).observe(root, { subtree: true, childList: true, attributes: true, characterData: true });
+    }
+  };
+})(window);
 </script>
-
 
 </head>
 <body>
+<div id="__mmPersistRoot">
 <h1 id="health-system">🏥 Health System</h1>
 
 <hr />
@@ -58,18 +91,29 @@ document.addEventListener('DOMContentLoaded', function () {
   <label>Energy: <span>40%</span></label>
   <input type="range" value="40">
 </div>
-
-
+</div>
 
 <script>
-  document.querySelectorAll(".item").forEach(item => {
-    const slider = item.querySelector("input");
-    const label = item.querySelector("span");
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof __mmPersistLoad === "function") __mmPersistLoad();
 
-    slider.addEventListener("input", () => {
-      label.textContent = slider.value + "%";
-    });
+  document.querySelectorAll("table td, table th").forEach(function (cell) {
+    cell.setAttribute("contenteditable", "true");
+    cell.setAttribute("spellcheck", "false");
   });
+
+  document.querySelectorAll(".item").forEach(function (item) {
+    var slider = item.querySelector("input");
+    var label = item.querySelector("span");
+    if (!slider || !label) return;
+    slider.oninput = function () {
+      label.textContent = slider.value + "%";
+    };
+    label.textContent = slider.value + "%";
+  });
+
+  if (typeof __mmPersistHook === "function") __mmPersistHook();
+});
 </script>
 </body>
 </html>

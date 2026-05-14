@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="page-progress neo-dark-doc">
+<html xmlns="http://www.w3.org/1999/xhtml" class="page-movies neo-dark-doc">
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="neo-brutalist.css" />
   <link rel="stylesheet" href="neo-brutal-overrides.css" />
-  <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>PROGRESS</title>
-  
+  <title>Movies</title>
+
 <script>/* mm-local-persist */
 (function (w) {
   var timer;
@@ -54,33 +53,28 @@
 </head>
 <body>
 <div id="__mmPersistRoot">
-<h1 id="progress-tracker">📊 Progress Tracker</h1>
+<h1>🎬 Movies</h1>
+<h2>Watch list</h2>
 <table>
 <thead>
 <tr>
-<th>Item</th>
-<th>Progress</th>
+<th>Title</th>
+<th>Rating</th>
 <th>Status</th>
+<th>Year</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td></td>
-<td>0%</td>
-<td>⛔</td>
-</tr>
-<tr>
 <td></td>
-<td>50%</td>
-<td>🟡</td>
-</tr>
-<tr>
+<td>☐ To watch / ✅ Seen</td>
 <td></td>
-<td>100%</td>
-<td>✅</td>
 </tr>
 </tbody>
 </table>
+<hr />
+<p class="hint">Edits and new rows are saved in this browser (localStorage) for this file name.</p>
 </div>
 
 <script>
@@ -95,9 +89,50 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function addTableRowButtons() {
+    document.querySelectorAll("table").forEach((table) => {
+      let colCount = table.querySelectorAll("thead tr th").length;
+      if (!colCount) {
+        const firstRow = table.querySelector("tbody tr");
+        if (firstRow) {
+          colCount = firstRow.querySelectorAll("td").length;
+        }
+      }
+      if (!colCount) {
+        return;
+      }
+
+      let btn = table.nextElementSibling;
+      if (!btn || !btn.classList || !btn.classList.contains("add-table-row-btn")) {
+        btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "add-table-row-btn";
+        btn.textContent = "+ table row";
+        table.insertAdjacentElement("afterend", btn);
+      }
+
+      btn.onclick = function () {
+        let tbody = table.querySelector("tbody");
+        if (!tbody) {
+          tbody = table.appendChild(document.createElement("tbody"));
+        }
+        const tr = document.createElement("tr");
+        for (let i = 0; i < colCount; i++) {
+          const td = document.createElement("td");
+          td.setAttribute("contenteditable", "true");
+          td.setAttribute("spellcheck", "false");
+          td.classList.add("editable-cell");
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      };
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
     if (typeof __mmPersistLoad === "function") __mmPersistLoad();
     makeTablesEditable();
+    addTableRowButtons();
     if (typeof __mmPersistHook === "function") __mmPersistHook();
   });
 })();

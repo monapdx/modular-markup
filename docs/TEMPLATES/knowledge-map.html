@@ -6,9 +6,53 @@
   <link rel="stylesheet" href="neo-brutal-overrides.css" />
   <title>Knowledge Map</title>
   
+<script>/* mm-local-persist */
+(function (w) {
+  var timer;
+  w.__mmPersistKey = function () {
+    try {
+      var p = w.location && w.location.pathname ? w.location.pathname : "";
+      var m = p.match(/[^\\/]+$/);
+      return "mm-template-persist:" + (m ? m[0] : "page");
+    } catch (e) {
+      return "mm-template-persist:page";
+    }
+  };
+  w.__mmPersistLoad = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    try {
+      var raw = localStorage.getItem(w.__mmPersistKey());
+      if (raw) root.innerHTML = raw;
+    } catch (e) {}
+  };
+  w.__mmPersistSave = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      try {
+        localStorage.setItem(w.__mmPersistKey(), root.innerHTML);
+      } catch (e2) {}
+    }, 280);
+  };
+  w.__mmPersistHook = function () {
+    document.addEventListener("input", w.__mmPersistSave, true);
+    document.addEventListener("change", w.__mmPersistSave, true);
+    var root = document.getElementById("__mmPersistRoot");
+    if (root && typeof MutationObserver !== "undefined") {
+      new MutationObserver(function () {
+        w.__mmPersistSave();
+      }).observe(root, { subtree: true, childList: true, attributes: true, characterData: true });
+    }
+  };
+})(window);
+</script>
+
 </head>
 <body>
 
+<div id="__mmPersistRoot">
   <h1>🧠 Knowledge Map</h1>
 
   <h2>Concepts</h2>
@@ -305,7 +349,11 @@
     <summary>📌 Notes</summary>
     <p contenteditable="true">Explain relationships and logic here.</p>
   </details>
+</div>
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof __mmPersistLoad === "function") __mmPersistLoad();
+
   const typeOptions = ["concept", "entity", "event", "process", "tag", "source"];
   const relationshipOptions = ["causes", "depends_on", "contradicts"];
 
@@ -363,17 +411,21 @@
     const tables = document.querySelectorAll("table");
 
     tables.forEach(table => {
-      const button = document.createElement("button");
-      button.textContent = "+ Add row";
-      button.className = "add-row-button";
-
-      button.addEventListener("click", () => addRow(table));
-
-      table.insertAdjacentElement("afterend", button);
+      let button = table.nextElementSibling;
+      if (!button || !button.classList.contains("add-row-button")) {
+        button = document.createElement("button");
+        button.textContent = "+ Add row";
+        button.className = "add-row-button";
+        table.insertAdjacentElement("afterend", button);
+      }
+      button.onclick = () => addRow(table);
     });
   }
 
   addButtonsToTables();
+
+  if (typeof __mmPersistHook === "function") __mmPersistHook();
+  });
 </script>
 </body>
 </html>

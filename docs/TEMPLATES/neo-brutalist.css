@@ -92,17 +92,24 @@ input[type="color"] { min-height: 48px; padding: 5px; }
 .hidden, [hidden] { display: none !important; }
 .small, .hint, .meta, .chat-sub, .msg-meta, .from, .date, .conv-meta, .kv, .section h4 { color: var(--muted); }
 
-.panel, .card, .conv-header, .msg, .chat, .row, .viewer .head, .att, .drop, .htmlbox, .body pre, .list, #left, #right, .sidebar, .content > div, .toolbar label, #drop, .canvasWrap {
+.panel, .card, .conv-header, .msg, .chat, .row, .viewer .head, .att, .drop, .htmlbox, .body pre, .list, #left, #right, .sidebar, .email-viewer .content > div, .toolbar label, #drop, .canvasWrap {
   border: var(--border);
   border-radius: var(--radius);
   background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
   box-shadow: var(--shadow-sm);
 }
 
-/* Email / MBOX viewer */
-body.email-viewer { overflow: hidden; }
+/* Email / MBOX viewer — body clips page scroll; inner panes scroll via overflow:auto */
+body.email-viewer {
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+}
 .email-viewer .app {
-  min-height: 100vh;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr);
@@ -139,8 +146,8 @@ body.email-viewer { overflow: hidden; }
 .drop { padding: 12px; color: var(--muted); text-align: center; box-shadow: none; border-style: dashed; }
 .progress { height: 16px; border: 3px solid #000; border-radius: 999px; background: #000; overflow: hidden; box-shadow: 4px 4px 0 #000; }
 .progress > div { height: 100%; background: linear-gradient(90deg, var(--hot-pink), var(--electric-lime)); width: 0%; }
-.content { grid-area: content; display: grid; grid-template-columns: minmax(320px, 420px) minmax(0, 1fr); gap: 18px; min-height: 0; }
-.email-viewer .list, .viewer { overflow: auto; min-height: 0; }
+.email-viewer .content { grid-area: content; display: grid; grid-template-columns: minmax(320px, 420px) minmax(0, 1fr); gap: 18px; min-height: 0; overflow: hidden; }
+.email-viewer .list, .email-viewer .viewer { overflow: auto; min-height: 0; max-height: 100%; }
 .row { display: grid; grid-template-columns: minmax(0, 1fr) 120px 140px; gap: 10px; padding: 14px; margin-bottom: 10px; cursor: pointer; }
 .row:hover, .row.active { background: linear-gradient(180deg, var(--panel-2), var(--panel)); }
 .subj { font-weight: 900; color: var(--paper); }
@@ -310,7 +317,7 @@ body.quote-generator { padding: 32px; }
 
 @media (max-width: 960px) {
   body.email-viewer, body.chat-archive { overflow: auto; }
-  .email-viewer .app, #wrap, .content, .quote-generator .shell { grid-template-columns: 1fr; height: auto; }
+  .email-viewer .app, #wrap, .email-viewer .content, .quote-generator .shell { grid-template-columns: 1fr; height: auto; }
   .email-viewer .app { grid-template-areas: "topbar" "sidebar" "content"; }
   .topbar, .chat-archive header { flex-wrap: wrap; }
   .row { grid-template-columns: 1fr; }

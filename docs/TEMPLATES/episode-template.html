@@ -7,9 +7,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Episode Tracker</title>
   
+<script>/* mm-local-persist */
+(function (w) {
+  var timer;
+  w.__mmPersistKey = function () {
+    try {
+      var p = w.location && w.location.pathname ? w.location.pathname : "";
+      var m = p.match(/[^\\/]+$/);
+      return "mm-template-persist:" + (m ? m[0] : "page");
+    } catch (e) {
+      return "mm-template-persist:page";
+    }
+  };
+  w.__mmPersistLoad = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    try {
+      var raw = localStorage.getItem(w.__mmPersistKey());
+      if (raw) root.innerHTML = raw;
+    } catch (e) {}
+  };
+  w.__mmPersistSave = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      try {
+        localStorage.setItem(w.__mmPersistKey(), root.innerHTML);
+      } catch (e2) {}
+    }, 280);
+  };
+  w.__mmPersistHook = function () {
+    document.addEventListener("input", w.__mmPersistSave, true);
+    document.addEventListener("change", w.__mmPersistSave, true);
+    var root = document.getElementById("__mmPersistRoot");
+    if (root && typeof MutationObserver !== "undefined") {
+      new MutationObserver(function () {
+        w.__mmPersistSave();
+      }).observe(root, { subtree: true, childList: true, attributes: true, characterData: true });
+    }
+  };
+})(window);
+</script>
+
 </head>
 <body>
 
+<div id="__mmPersistRoot">
   <h1>🎙️ Episode Tracker</h1>
 
   <h2>Episodes</h2>
@@ -48,7 +92,12 @@
     <p contenteditable="true">Use this table to track episode drafts, show formats, word counts, and recurring topics.</p>
   </details>
 
+</div>
+
   <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof __mmPersistLoad === "function") __mmPersistLoad();
+
     const formatOptions = ["broadcast", "guest", "caller", "sponsor"];
 
     function createSelect(options, selectedValue = options[0]) {
@@ -156,9 +205,14 @@
       rows.forEach((row, index) => {
         const formatCell = row.children[1];
         const topicsCell = row.children[3];
+        if (!formatCell || !topicsCell) return;
 
-        formatCell.appendChild(createSelect(formatOptions, defaults[index]?.format || "broadcast"));
-        topicsCell.appendChild(createTopicPicker(defaults[index]?.topics || []));
+        if (!formatCell.querySelector("select")) {
+          formatCell.appendChild(createSelect(formatOptions, defaults[index]?.format || "broadcast"));
+        }
+        if (!topicsCell.querySelector(".topic-picker")) {
+          topicsCell.appendChild(createTopicPicker(defaults[index]?.topics || []));
+        }
       });
     }
 
@@ -185,18 +239,22 @@
       const tables = document.querySelectorAll("table");
 
       tables.forEach(table => {
-        const button = document.createElement("button");
-        button.textContent = "+ Add row";
-        button.className = "add-row-button";
-
-        button.addEventListener("click", () => addRow(table));
-
-        table.insertAdjacentElement("afterend", button);
+        let button = table.nextElementSibling;
+        if (!button || !button.classList.contains("add-row-button")) {
+          button = document.createElement("button");
+          button.textContent = "+ Add row";
+          button.className = "add-row-button";
+          table.insertAdjacentElement("afterend", button);
+        }
+        button.onclick = () => addRow(table);
       });
     }
 
     setupExistingRows();
     addButtonsToTables();
+
+    if (typeof __mmPersistHook === "function") __mmPersistHook();
+  });
   </script>
 </body>
 </html>

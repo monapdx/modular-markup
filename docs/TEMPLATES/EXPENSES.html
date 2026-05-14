@@ -9,8 +9,53 @@
   <title>EXPENSES</title>
   
 
+<script>/* mm-local-persist */
+(function (w) {
+  var timer;
+  w.__mmPersistKey = function () {
+    try {
+      var p = w.location && w.location.pathname ? w.location.pathname : "";
+      var m = p.match(/[^\\/]+$/);
+      return "mm-template-persist:" + (m ? m[0] : "page");
+    } catch (e) {
+      return "mm-template-persist:page";
+    }
+  };
+  w.__mmPersistLoad = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    try {
+      var raw = localStorage.getItem(w.__mmPersistKey());
+      if (raw) root.innerHTML = raw;
+    } catch (e) {}
+  };
+  w.__mmPersistSave = function () {
+    var root = document.getElementById("__mmPersistRoot");
+    if (!root) return;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      try {
+        localStorage.setItem(w.__mmPersistKey(), root.innerHTML);
+      } catch (e2) {}
+    }, 280);
+  };
+  w.__mmPersistHook = function () {
+    document.addEventListener("input", w.__mmPersistSave, true);
+    document.addEventListener("change", w.__mmPersistSave, true);
+    var root = document.getElementById("__mmPersistRoot");
+    if (root && typeof MutationObserver !== "undefined") {
+      new MutationObserver(function () {
+        w.__mmPersistSave();
+      }).observe(root, { subtree: true, childList: true, attributes: true, characterData: true });
+    }
+  };
+})(window);
+</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  if (typeof __mmPersistLoad === 'function') __mmPersistLoad();
+
   var expenseTable = document.getElementById('expenses-table');
 
   document.querySelectorAll('table td, table th').forEach(function (cell) {
@@ -113,13 +158,16 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'add-table-row-btn';
-    btn.textContent = '+ table row';
-    table.insertAdjacentElement('afterend', btn);
+    var btn = table.nextElementSibling;
+    if (!btn || !btn.classList || !btn.classList.contains('add-table-row-btn')) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'add-table-row-btn';
+      btn.textContent = '+ table row';
+      table.insertAdjacentElement('afterend', btn);
+    }
 
-    btn.addEventListener('click', function () {
+    btn.onclick = function () {
       var tbody = table.querySelector('tbody');
       if (!tbody) {
         tbody = table.appendChild(document.createElement('tbody'));
@@ -135,20 +183,23 @@ document.addEventListener('DOMContentLoaded', function () {
       if (table === expenseTable) {
         updateExpenseSummary();
       }
-    });
+    };
   });
 
   if (expenseTable) {
-    expenseTable.addEventListener('input', updateExpenseSummary);
+    expenseTable.oninput = updateExpenseSummary;
   }
 
   updateExpenseSummary();
+
+  if (typeof __mmPersistHook === 'function') __mmPersistHook();
 });
 </script>
 
 
 </head>
 <body>
+<div id="__mmPersistRoot">
 <h1 id="expenses">💸 Expenses</h1>
 <table id="expenses-table">
 <thead>
@@ -174,5 +225,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>Total: <span id="expense-summary-total">$0.00</span></li>
 <li>Monthly Avg: <span id="expense-summary-monthly">$0.00</span></li>
 </ul>
+</div>
 </body>
 </html>

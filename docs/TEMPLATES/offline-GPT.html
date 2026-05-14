@@ -63,17 +63,61 @@
 
   function humanTime(ts) {
     if (!ts && ts !== 0) return '';
+    if (!Number.isFinite(ts) || ts <= 0) return '—';
     try {
       const d = new Date(ts * 1000);
       return d.toLocaleString();
     } catch { return ''; }
   }
 
+  /** One segment from content.parts (strings or structured objects). */
+  function stringifyPart(p) {
+    if (p == null) return '';
+    if (typeof p === 'string') return p;
+    if (typeof p === 'object') {
+      if (typeof p.text === 'string') return p.text;
+      if (typeof p.content === 'string') return p.content;
+      if (p.type === 'text' && typeof p.text === 'string') return p.text;
+      try {
+        return JSON.stringify(p, null, 2);
+      } catch {
+        return String(p);
+      }
+    }
+    return String(p);
+  }
+
+  /** Plain text body for a mapping node (for display + empty checks). */
+  function getMessageBodyText(n) {
+    const parts = n.message?.content?.parts;
+    if (Array.isArray(parts) && parts.length) {
+      return parts.map(stringifyPart).filter(Boolean).join('\n').trim();
+    }
+    const t = n.message?.content?.text;
+    if (typeof t === 'string') return t.trim();
+    if (t && typeof t === 'object') {
+      try {
+        return JSON.stringify(t, null, 2).trim();
+      } catch {
+        return '';
+      }
+    }
+    return '';
+  }
+
+  function isEmptySystemShell(n) {
+    const role = n.message?.author?.role || 'system';
+    if (role !== 'system') return false;
+    return !getMessageBodyText(n);
+  }
+
   function countMessages(mapping) {
     let n = 0;
     for (const k in mapping) {
-      const m = mapping[k]?.message;
-      if (m && (m.content?.parts?.length || m.content?.text)) n++;
+      const node = mapping[k];
+      if (!node?.message) continue;
+      if (isEmptySystemShell(node)) continue;
+      n++;
     }
     return n;
   }
@@ -179,7 +223,8 @@
         <span>nodes: ${Object.keys(mapping).length}</span>
       </div>
       <div class="toolbar">
-        <label><input type="checkbox" id="toggleSystem" checked> Show system</label>
+        <label><input type="checkbox" id="toggleSystem" checked> Show system (with text)</label>
+        <label><input type="checkbox" id="showEmptySystem"> Show empty system rows</label>
         <label><input type="checkbox" id="compactMode"> Compact spacing</label>
       </div>
     `;
@@ -189,16 +234,19 @@
 
     function renderMessages() {
       const showSystem = header.querySelector('#toggleSystem').checked;
+      const showEmptySystem = header.querySelector('#showEmptySystem').checked;
       const compact = header.querySelector('#compactMode').checked;
       list.style.gap = compact ? '6px' : '10px';
       list.innerHTML = '';
 
       msgs.forEach(n => {
         const role = n.message?.author?.role || 'system';
-        if (!showSystem && role === 'system') return;
+        const text = getMessageBodyText(n);
+        const emptySystem = isEmptySystemShell(n);
 
-        const parts = n.message?.content?.parts || [];
-        const text = Array.isArray(parts) ? parts.join('\n') : (n.message?.content?.text || '');
+        if (!showSystem && role === 'system') return;
+        if (emptySystem && !showEmptySystem) return;
+
         const when = humanTime(nodeTime(n));
 
         const el = document.createElement('div');
@@ -216,6 +264,7 @@
 
     renderMessages();
     header.querySelector('#toggleSystem').addEventListener('change', renderMessages);
+    header.querySelector('#showEmptySystem').addEventListener('change', renderMessages);
     header.querySelector('#compactMode').addEventListener('change', renderMessages);
   }
 
