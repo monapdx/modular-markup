@@ -1142,17 +1142,17 @@
     color: #777;
   }
 
-  html.page-calendar td:has(.event) {
+  html.page-calendar td.has-events {
     background: #e6f4ff;
     color: #111;
   }
 
-  html.page-calendar td.other-month:has(.event) {
+  html.page-calendar td.other-month.has-events {
     background: #dbeaf6;
     color: #444;
   }
 
-  html.page-calendar td.today:has(.event) {
+  html.page-calendar td.today.has-events {
     background: rgba(255, 69, 189, 0.52);
     color: #111;
   }
