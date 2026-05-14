@@ -118,6 +118,9 @@
   function restoreDefault() {
     if (!window.confirm("Restore the original template and clear saved data?")) return;
     try {
+      sessionStorage.setItem("mm-restore-reset", "1");
+    } catch (e0) {}
+    try {
       localStorage.removeItem(persistKey());
       var leg = legacyPersistKey();
       if (leg) localStorage.removeItem(leg);
@@ -160,6 +163,9 @@
   }
 
   function initPersistHook() {
+    try {
+      sessionStorage.removeItem("mm-restore-reset");
+    } catch (e0) {}
     document.addEventListener(
       "input",
       function () {
@@ -188,6 +194,9 @@
       });
     }
     window.addEventListener("beforeunload", function () {
+      try {
+        if (sessionStorage.getItem("mm-restore-reset")) return;
+      } catch (e1) {}
       saveState(true);
     });
   }
@@ -259,6 +268,61 @@ document.addEventListener('DOMContentLoaded', function () {
     cell.setAttribute('contenteditable', 'true');
     cell.setAttribute('spellcheck', 'false');
     cell.classList.add('editable-cell');
+  });
+
+  document.querySelectorAll('table').forEach((table) => {
+    const headerCells = table.querySelectorAll('thead tr th');
+    let colCount = headerCells.length;
+    if (!colCount) {
+      const firstRow = table.querySelector('tbody tr');
+      if (firstRow) {
+        colCount = firstRow.querySelectorAll('td').length;
+      }
+    }
+    if (!colCount) {
+      return;
+    }
+
+    let btn = table.nextElementSibling;
+    if (!btn || !btn.classList || !btn.classList.contains('add-table-row-btn')) {
+      btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'add-table-row-btn';
+      btn.textContent = '+ table row';
+      table.insertAdjacentElement('afterend', btn);
+    }
+
+    btn.onclick = function () {
+      let tbody = table.querySelector('tbody');
+      if (!tbody) {
+        tbody = table.appendChild(document.createElement('tbody'));
+      }
+      const tr = document.createElement('tr');
+      for (let i = 0; i < colCount; i++) {
+        const td = document.createElement('td');
+        td.setAttribute('contenteditable', 'true');
+        td.setAttribute('spellcheck', 'false');
+        td.classList.add('editable-cell');
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    };
+
+    let delBtn = btn.nextElementSibling;
+    if (!delBtn || !delBtn.classList || !delBtn.classList.contains('del-table-row-btn')) {
+      delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'del-table-row-btn';
+      delBtn.textContent = '− table row';
+      btn.insertAdjacentElement('afterend', delBtn);
+    }
+
+    delBtn.onclick = function () {
+      const tbody = table.querySelector('tbody');
+      if (tbody && tbody.rows.length > 0) {
+        tbody.deleteRow(tbody.rows.length - 1);
+      }
+    };
   });
 
   const addTaskBtn = document.getElementById('add-task-btn');

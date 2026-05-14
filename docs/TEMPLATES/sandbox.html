@@ -118,6 +118,9 @@
   function restoreDefault() {
     if (!window.confirm("Restore the original template and clear saved data?")) return;
     try {
+      sessionStorage.setItem("mm-restore-reset", "1");
+    } catch (e0) {}
+    try {
       localStorage.removeItem(persistKey());
       var leg = legacyPersistKey();
       if (leg) localStorage.removeItem(leg);
@@ -160,6 +163,9 @@
   }
 
   function initPersistHook() {
+    try {
+      sessionStorage.removeItem("mm-restore-reset");
+    } catch (e0) {}
     document.addEventListener(
       "input",
       function () {
@@ -188,6 +194,9 @@
       });
     }
     window.addEventListener("beforeunload", function () {
+      try {
+        if (sessionStorage.getItem("mm-restore-reset")) return;
+      } catch (e1) {}
       saveState(true);
     });
   }
