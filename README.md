@@ -77,49 +77,60 @@ Just editable browser tools you can actually use.
 
 ## Included Files
 
-### Blank tables
+### Blank Tables
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/blank-tables.png" width="556">
 
 A fully editable blank table system for creating your own trackers, logs, databases, or custom workflows.
 
-### Symptom tracker
+### Expenses
+
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/expenses.png" width="556">
+
+A customizable expense and budgeting tracker with editable categories and persistent local saving.
+
+### Health
+
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/health.png" width="556">
+
+### Log
+
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/log.png" width="556">
+
+A flexible editable logging system for notes, observations, journaling, tracking, or documentation.
+
+### Podcast Episodes
+
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/podcast-episode-tracker.png" width="556">
+
+Track TV episodes, anime, podcasts, or serialized content with editable progress tracking tables.
+
+### Progress
+
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/progress.png" width="556">
+
+A progress tracking template for goals, habits, projects, milestones, or long-term workflows.
+
+### Project
+
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/project.png" width="556">
+
+A lightweight project management template for organizing tasks, priorities, notes, and development progress.
+
+### Quote Log
+
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/quote-log.png" width="556">
+
+Save and organize quotes, excerpts, ideas, observations, or research snippets.
+
+### Symptom Tracker
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/symptoms.png" width="556">
 
 A customizable symptom and health tracking template for personal logging and pattern observation.
 
+### Task Manager
 
+<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/tasks.png" width="556">
 
-### Project
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/project.png" width="556">
-
-A lightweight project management template for organizing tasks, priorities, notes, and development progress.
-
-### Progress
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/progress.png" width="556">
-
-A progress tracking template for goals, habits, projects, milestones, or long-term w
-
-### Health
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/health.png" width="556">
-
-### Podcast Episodes
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/podcast-episode-tracker.png" width="556">
-
-Track TV episodes, anime, podcasts, or serialized content with editable progress tracking tables.
-
-### Log
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/log.png" width="556">
-
-A flexible editable logging system for notes, observations, journaling, tracking, or documentation.
-
-### Quote Log
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/quote-log.png" width="556">
-
-Save and organize quotes, excerpts, ideas, observations, or research snippets.
-
-### Expenses
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/expenses.png" width="556">
-
-A customizable expense and budgeting tracker with editable categories and persistent local saving.
+A flexible task management tool with editable rows, persistent saving, and customizable categories.
