@@ -126,6 +126,21 @@
         }
         tbody.appendChild(tr);
       };
+
+      let delBtn = btn.nextElementSibling;
+      if (!delBtn || !delBtn.classList || !delBtn.classList.contains("del-table-row-btn")) {
+        delBtn = document.createElement("button");
+        delBtn.type = "button";
+        delBtn.className = "del-table-row-btn";
+        delBtn.textContent = "− table row";
+        btn.insertAdjacentElement("afterend", delBtn);
+      }
+      delBtn.onclick = function () {
+        const tbody = table.querySelector("tbody");
+        if (tbody && tbody.rows.length > 0) {
+          tbody.deleteRow(tbody.rows.length - 1);
+        }
+      };
     });
   }
 

@@ -140,6 +140,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         tbody.appendChild(tr);
       };
+
+      var delBtn = rowBtn.nextElementSibling;
+      if (!delBtn || !delBtn.classList || !delBtn.classList.contains("del-table-row-btn")) {
+        delBtn = document.createElement("button");
+        delBtn.type = "button";
+        delBtn.className = "del-table-row-btn";
+        delBtn.textContent = "− delete row";
+        rowBtn.insertAdjacentElement("afterend", delBtn);
+      }
+      delBtn.onclick = function () {
+        var tbody = projectTable.querySelector("tbody");
+        if (tbody && tbody.rows.length > 0) {
+          tbody.deleteRow(tbody.rows.length - 1);
+        }
+      };
     }
   }
 

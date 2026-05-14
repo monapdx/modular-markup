@@ -414,11 +414,27 @@
       let button = table.nextElementSibling;
       if (!button || !button.classList.contains("add-row-button")) {
         button = document.createElement("button");
+        button.type = "button";
         button.textContent = "+ Add row";
         button.className = "add-row-button";
         table.insertAdjacentElement("afterend", button);
       }
       button.onclick = () => addRow(table);
+
+      let delButton = button.nextElementSibling;
+      if (!delButton || !delButton.classList.contains("del-row-button")) {
+        delButton = document.createElement("button");
+        delButton.type = "button";
+        delButton.textContent = "− Delete row";
+        delButton.className = "del-row-button";
+        button.insertAdjacentElement("afterend", delButton);
+      }
+      delButton.onclick = () => {
+        const tbody = table.querySelector("tbody");
+        if (tbody && tbody.rows.length > 0) {
+          tbody.deleteRow(tbody.rows.length - 1);
+        }
+      };
     });
   }
 

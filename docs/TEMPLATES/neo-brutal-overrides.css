@@ -1466,11 +1466,12 @@ html.page-movies .editable-cell:focus{
   background: #fffef0;
 }
 
-html.page-movies .add-table-row-btn{
+html.page-movies .add-table-row-btn,
+html.page-movies .del-table-row-btn{
   font: inherit;
   font-size: 13px;
   font-weight: 600;
-  margin: 8px 0 20px;
+  margin: 8px 8px 20px 0;
   padding: 6px 12px;
   cursor: pointer;
   border: 1px solid #d0d7de;
@@ -1479,12 +1480,14 @@ html.page-movies .add-table-row-btn{
   color: #24292f;
 }
 
-html.page-movies .add-table-row-btn:hover{
+html.page-movies .add-table-row-btn:hover,
+html.page-movies .del-table-row-btn:hover{
   background: #eaeef2;
 }
 
 @media print{
-  html.page-movies .add-table-row-btn{
+  html.page-movies .add-table-row-btn,
+  html.page-movies .del-table-row-btn{
     display: none !important;
   }
 }
@@ -2387,13 +2390,15 @@ html.neo-dark-doc .add-task-wrap {
     background: #fff !important;
   }
 
-  html.neo-dark-doc .add-table-row-btn {
+  html.neo-dark-doc .add-table-row-btn,
+  html.neo-dark-doc .del-table-row-btn {
     display: none !important;
   }
 }
 
-html.neo-dark-doc .add-table-row-btn {
-  margin: 8px 0 20px;
+html.neo-dark-doc .add-table-row-btn,
+html.neo-dark-doc .del-table-row-btn {
+  margin: 8px 8px 20px 0;
 }
 
 html.neo-dark-doc blockquote {
@@ -2523,8 +2528,10 @@ html.neo-dark-doc .topic-tag button {
   margin: 0;
 }
 
-html.neo-dark-doc .add-row-button {
+html.neo-dark-doc .add-row-button,
+html.neo-dark-doc .del-row-button {
   margin-top: 8px;
+  margin-right: 8px;
 }
 
 html.neo-dark-doc #episodes-table th:nth-child(1),
