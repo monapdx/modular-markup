@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="page-important-documents neo-dark-doc">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="neo-brutalist.css" />
+<link rel="stylesheet" href="neo-brutal-overrides.css" />
+<title>Important Documents</title>
+<style>
+  html.page-important-documents.neo-dark-doc #important-doc-root {
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+  html.page-important-documents.neo-dark-doc .doc-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding: 0.65rem 0.85rem;
+    border: var(--border, 3px solid #000);
+    border-radius: var(--radius, 12px);
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+    box-shadow: var(--shadow-sm, 4px 4px 0 #000);
+  }
+  html.page-important-documents.neo-dark-doc .doc-toolbar span {
+    margin-left: auto;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  html.page-important-documents.neo-dark-doc .doc-section {
+    margin-bottom: 2rem;
+  }
+  html.page-important-documents.neo-dark-doc .doc-section h2 {
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  html.page-important-documents.neo-dark-doc .doc-section h3 {
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--electric-lime, #b8ff24);
+  }
+  html.page-important-documents.neo-dark-doc .doc-checklist {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  html.page-important-documents.neo-dark-doc .doc-item {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem 0.65rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--line, rgba(255,255,255,0.12));
+  }
+  html.page-important-documents.neo-dark-doc .doc-item input[type="checkbox"] {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+  html.page-important-documents.neo-dark-doc .doc-item label {
+    flex: 1 1 12rem;
+    min-width: 0;
+    color: var(--paper);
+    font-weight: 600;
+    line-height: 1.35;
+    cursor: pointer;
+  }
+  html.page-important-documents.neo-dark-doc .doc-attach-btn {
+    flex-shrink: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    line-height: 1;
+    font-weight: 900;
+    font-size: 1.1rem;
+    border: 2px solid #000;
+    border-radius: 6px;
+    background: var(--electric-lime, #b8ff24);
+    color: #000;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #000;
+  }
+  html.page-important-documents.neo-dark-doc .doc-attach-btn:hover {
+    filter: brightness(1.05);
+    transform: translate(-1px, -1px);
+  }
+  html.page-important-documents.neo-dark-doc .doc-file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  html.page-important-documents.neo-dark-doc .doc-attachment-chips {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-left: 1.75rem;
+  }
+  html.page-important-documents.neo-dark-doc .doc-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border: 2px solid #000;
+    border-radius: 6px;
+    background: var(--panel-2, #2a2a35);
+    color: var(--paper);
+    max-width: 100%;
+  }
+  html.page-important-documents.neo-dark-doc .doc-chip-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 14rem;
+  }
+  html.page-important-documents.neo-dark-doc .doc-chip-remove {
+    border: none;
+    background: transparent;
+    color: var(--hot-pink, #ff45bd);
+    font-weight: 900;
+    cursor: pointer;
+    padding: 0 0.15rem;
+    line-height: 1;
+  }
+  html.page-important-documents.neo-dark-doc .lead {
+    color: var(--muted);
+    margin-bottom: 1rem;
+    max-width: 48rem;
+  }
+</style>
+</head>
+<body>
+
+<h1 style="margin-top:0;">Important Documents</h1>
+
+<div class="doc-toolbar" role="region" aria-label="Document checklist">
+  <p class="lead" style="margin:0;flex:1 1 100%;color:var(--muted);font-weight:600;">
+    Check items you have gathered. Use <strong>+</strong> to attach copies (stored only in this browser as base64).
+  </p>
+  <span id="doc-save-status">Changes saved locally</span>
+</div>
+
+<main id="important-doc-root"></main>
+
+<script type="application/json" id="mm-doc-sections">[{"title": "🟦 Identity & Vital Records", "subsections": null, "items": ["Birth certificate (original + certified copies)", "Social Security card", "Passport(s), expired and current", "State ID / driver’s license (old IDs can be useful in some cases)", "Name change documents", "Adoption papers", "Immigration/visa records", "Naturalization certificates", "Tribal enrollment records", "Selective Service documents"]}, {"title": "🟥 Medical Records", "subsections": null, "items": ["Medical history summaries", "Vaccination records", "Allergy documentation", "Surgery reports", "Hospital discharge summaries", "Medication lists", "Advance directives", "Healthcare power of attorney", "HIPAA waivers", "Organ donor documentation", "Insurance medical claims summaries", "Dental records (x-rays, treatment plans)", "Mental health evaluations or records you requested"]}, {"title": "🟧 Legal Documents", "subsections": null, "items": ["Last will & testament", "Living will", "Power of attorney (financial, medical, durable)", "Divorce decree", "Child support/custody orders", "Restraining orders", "Lawsuit paperwork (past or ongoing)", "Bankruptcy filings", "Adoption decrees", "Prenup/postnup agreements", "Settlement agreements", "Certificates of marriage or divorce", "Guardianship papers", "Court judgments and orders", "Legal name changes", "Copyright or trademark registration documents", "Non-disclosure agreement"]}, {"title": "🟩 Financial Documents", "subsections": [{"heading": "Tax", "items": ["Past tax returns (typically last 7 years minimum)", "1099s, W-2s, pay stubs", "Tax-deductible donation receipts", "IRS notices", "Property tax statement"]}, {"heading": "Banking", "items": ["Checkbooks", "Bank account agreements", "Statements (important years or for legal reasons)", "Loan agreements", "Credit card agreements", "Promissory notes"]}, {"heading": "Investments", "items": ["Brokerage account statements", "Retirement account paperwork (IRA, 401k, etc.)", "Stock or bond certificates", "Crypto recovery phrase backups (on paper)"]}], "items": null}, {"title": "🟪 Insurance Documents", "subsections": null, "items": ["Health insurance policies", "Dental/Vision insurance paperwork", "Auto insurance policies", "Home/renters insurance", "Life insurance policies & beneficiaries", "Disability insurance", "Long-term care insurance", "Claims documentation"]}, {"title": "🟫 Property & Housing", "subsections": [{"heading": "Real Estate", "items": ["Deeds", "Mortgage papers", "Refinance documents", "Property surveys", "Inspection reports", "Home repair receipts", "Major appliance warranties", "HOA records", "Lease agreements (current & previous, if relevant)", "Eviction notices (if they ever existed—important historically or legally)"]}, {"heading": "Vehicles", "items": ["Titles (car, motorcycle, boat, trailer)", "Maintenance records", "Purchase agreements/bills of sale", "Registration papers", "Auto loan documents"]}], "items": null}, {"title": "🟨 Employment & Income", "subsections": null, "items": ["Employment contracts", "Offer letters", "Non-compete agreements", "Pay stubs", "Workplace evaluations", "Certification documents", "Training certificates", "Unemployment paperwork", "Workers’ comp filings", "Union membership records", "Freelancer contracts", "Invoices & receipts", "Portfolio pieces (paper copies)"]}, {"title": "🟦 Education Records", "subsections": null, "items": ["High school diploma", "College transcripts", "Degrees/certificates", "Academic awards", "Student loan documents", "Enrollment contracts", "Admissions documents", "Scholarship award letters"]}, {"title": "🟫 Business & Freelance", "subsections": null, "items": ["LLC/corporation documents", "EIN confirmation letter", "DBA filings", "Partnership agreements", "Operating agreements", "Business licenses", "Vendor contracts", "Client contracts", "Accounting records", "Banking resolutions", "Content ownership rights", "Invoices", "Receipts and bookkeeping ledger"]}, {"title": "🟪 Tech & Digital Life", "subsections": null, "items": ["Password recovery codes", "USB-held encrypted drive keys (printed)", "Two-factor authentication backup codes", "Written log of account recovery emails", "Serial numbers for software/hardware", "Warranty documents", "Printed recovery keys for encrypted devices"]}, {"title": "🟫 Pets & Animals", "subsections": null, "items": ["Adoption papers", "Vet records", "Vaccination certificates", "Microchip registration", "Pedigree documents", "Prescription information", "Emergency contacts for pet care"]}, {"title": "🟧 End-of-Life & Legacy", "subsections": null, "items": ["Funeral preferences", "Cremation or burial instructions", "Letters to family/friends (sealed or saved)", "Digital assets will (accounts, instructions)", "Obituary draft", "Instructions for pets", "Safe combinations written down"]}, {"title": "🟩 Creative & Personal Archives", "subsections": null, "items": ["Original manuscripts", "Drafts with annotations", "Artwork", "Journals & notebooks", "Letters (sent or received)", "Published clips (print magazines, zines)", "Contracts for creative work", "Copyright registrations", "Printouts of important emails", "Photos (prints)", "Zines, ephemera, keepsakes"]}, {"title": "🟦 Miscellaneous but Often Crucial", "subsections": null, "items": ["Receipts for major purchases", "Travel documents (old itineraries can matter for legal issues)", "Citizenship or residency applications", "Military discharge papers (DD-214)", "Proof of employment history", "Child welfare agency paperwork", "Safety deposit box keys & inventory", "Loan payoff statements", "Medical debt paperwork", "Utility bills used as proof of address", "Jury duty summons", "Social services paperwork", "Police reports", "Car accident reports", "Insurance claim correspondence"]}, {"title": "🟥 Ultra-Rare But Important Cases", "subsections": null, "items": ["Evidence from a legal case", "Letters from medical board/licensing agencies", "Documents related to addiction recovery programs", "Parole/probation documents", "Immigration deportation/court paperwork", "DNA testing results (non-medical)", "Adoption reunion paperwork", "Documents from shelters or transitional housing", "Historic documents (family tree, ancestors, property)"]}]</script>
+<script>
+(function () {
+  var LS_KEY = "mm-important-documents-v1";
+
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(LS_KEY);
+      if (!raw) return { checks: {}, uploads: {} };
+      var o = JSON.parse(raw);
+      return {
+        checks: o.checks && typeof o.checks === "object" ? o.checks : {},
+        uploads: o.uploads && typeof o.uploads === "object" ? o.uploads : {}
+      };
+    } catch (e) {
+      return { checks: {}, uploads: {} };
+    }
+  }
+
+  function saveState(state) {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+      var el = document.getElementById("doc-save-status");
+      if (el) el.textContent = "Changes saved locally";
+    } catch (e) {
+      var st = document.getElementById("doc-save-status");
+      if (st) st.textContent = "Could not save";
+    }
+  }
+
+  function readFileAsDataURL(file) {
+    return new Promise(function (resolve, reject) {
+      var fr = new FileReader();
+      fr.onload = function () {
+        resolve({ name: file.name, mime: file.type || "application/octet-stream", dataUrl: fr.result });
+      };
+      fr.onerror = function () {
+        reject(fr.error);
+      };
+      fr.readAsDataURL(file);
+    });
+  }
+
+  function renderAttachmentChips(container, docId, state) {
+    container.innerHTML = "";
+    var list = (state.uploads[docId] || []).slice();
+    list.forEach(function (entry, idx) {
+      var chip = document.createElement("span");
+      chip.className = "doc-chip";
+      var nm = document.createElement("span");
+      nm.className = "doc-chip-name";
+      nm.textContent = entry.name;
+      var rm = document.createElement("button");
+      rm.type = "button";
+      rm.className = "doc-chip-remove";
+      rm.setAttribute("aria-label", "Remove " + entry.name);
+      rm.textContent = "×";
+      rm.addEventListener("click", function () {
+        state.uploads[docId].splice(idx, 1);
+        if (!state.uploads[docId].length) delete state.uploads[docId];
+        saveState(state);
+        renderAttachmentChips(container, docId, state);
+      });
+      chip.appendChild(nm);
+      chip.appendChild(rm);
+      container.appendChild(chip);
+    });
+  }
+
+  function wireRow(li, docId, state) {
+    var cb = li.querySelector('input[type="checkbox"]');
+    var input = li.querySelector(".doc-file-input");
+    var btn = li.querySelector(".doc-attach-btn");
+    var chips = li.querySelector(".doc-attachment-chips");
+    if (cb) {
+      cb.checked = !!state.checks[docId];
+      cb.addEventListener("change", function () {
+        state.checks[docId] = cb.checked;
+        saveState(state);
+      });
+    }
+    btn.addEventListener("click", function () {
+      input.click();
+    });
+    input.addEventListener("change", function () {
+      var files = input.files;
+      if (!files || !files.length) return;
+      var st = document.getElementById("doc-save-status");
+      if (st) st.textContent = "Importing files…";
+      var chain = Promise.resolve();
+      if (!state.uploads[docId]) state.uploads[docId] = [];
+      Array.prototype.forEach.call(files, function (file) {
+        chain = chain.then(function () {
+          return readFileAsDataURL(file).then(function (meta) {
+            state.uploads[docId].push(meta);
+          });
+        });
+      });
+      chain
+        .then(function () {
+          saveState(state);
+          renderAttachmentChips(chips, docId, state);
+          if (st) st.textContent = "Changes saved locally";
+        })
+        .catch(function () {
+          if (st) st.textContent = "Could not save";
+        });
+      input.value = "";
+    });
+    renderAttachmentChips(chips, docId, state);
+  }
+
+  function buildPage(sections, state) {
+    var root = document.getElementById("important-doc-root");
+    if (!root) return;
+    root.innerHTML = "";
+    var flat = 0;
+    sections.forEach(function (sec) {
+      var secEl = document.createElement("section");
+      secEl.className = "doc-section";
+      var h2 = document.createElement("h2");
+      h2.textContent = sec.title;
+      secEl.appendChild(h2);
+
+      function addItems(items) {
+        var ul = document.createElement("ul");
+        ul.className = "doc-checklist";
+        items.forEach(function (text) {
+          var docId = "d-" + flat++;
+          var li = document.createElement("li");
+          li.className = "doc-item";
+          li.setAttribute("data-doc-id", docId);
+          var cb = document.createElement("input");
+          cb.type = "checkbox";
+          cb.id = "cb-" + docId;
+          var lab = document.createElement("label");
+          lab.setAttribute("for", "cb-" + docId);
+          lab.textContent = text;
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "doc-attach-btn";
+          btn.setAttribute("aria-label", "Attach files for this item");
+          btn.textContent = "+";
+          var fin = document.createElement("input");
+          fin.type = "file";
+          fin.className = "doc-file-input";
+          fin.multiple = true;
+          fin.setAttribute("aria-label", "Choose files");
+          var chips = document.createElement("div");
+          chips.className = "doc-attachment-chips";
+          li.appendChild(cb);
+          li.appendChild(lab);
+          li.appendChild(btn);
+          li.appendChild(fin);
+          li.appendChild(chips);
+          ul.appendChild(li);
+          wireRow(li, docId, state);
+        });
+        secEl.appendChild(ul);
+      }
+
+      if (sec.subsections && sec.subsections.length) {
+        sec.subsections.forEach(function (sub) {
+          if (sub.heading) {
+            var h3 = document.createElement("h3");
+            h3.textContent = sub.heading;
+            secEl.appendChild(h3);
+          }
+          addItems(sub.items || []);
+        });
+      } else {
+        addItems(sec.items || []);
+      }
+      root.appendChild(secEl);
+    });
+  }
+
+  function init() {
+    var el = document.getElementById("mm-doc-sections");
+    var sections = JSON.parse(el.textContent);
+    el.parentNode.removeChild(el);
+    var state = loadState();
+    buildPage(sections, state);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>

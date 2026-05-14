@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" class="page-knowledge-map neo-dark-doc" data-mm-persist-id="knowledge-map">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="neo-brutalist.css" />
+  <link rel="stylesheet" href="neo-brutal-overrides.css" />
+  <title>Knowledge Map</title>
+  
+<script>/* mm-template-runtime */
+(function (w) {
+  var DEBOUNCE_MS = 280;
+  var saveTimer = null;
+  var mo = null;
+
+  function persistKey() {
+    var id = document.documentElement.getAttribute("data-mm-persist-id");
+    if (id) return "mm-persist:" + id;
+    try {
+      var p = location.pathname || "";
+      var m = p.match(/[^\/]+$/);
+      return "mm-persist:" + (m ? decodeURIComponent(m[0]) : "page");
+    } catch (e) {
+      return "mm-persist:page";
+    }
+  }
+
+  function legacyPersistKey() {
+    try {
+      var p = location.pathname || "";
+      var m = p.match(/[^\/]+$/);
+      if (m && m[0]) return "mm-template-persist:" + m[0];
+    } catch (e) {}
+    return null;
+  }
+
+  function getRoot() {
+    return document.getElementById("__mmPersistRoot");
+  }
+
+  function setStatus(msg) {
+    var el = document.getElementById("mm-tpl-status");
+    if (el) el.textContent = msg || "Changes saved locally";
+  }
+
+  function saveState(sync) {
+    var root = getRoot();
+    if (!root) return;
+    if (saveTimer) {
+      clearTimeout(saveTimer);
+      saveTimer = null;
+    }
+    var run = function () {
+      try {
+        localStorage.setItem(persistKey(), root.innerHTML);
+        setStatus("Changes saved locally");
+      } catch (e) {
+        setStatus("Could not save (storage blocked or full)");
+      }
+    };
+    if (sync) {
+      run();
+    } else {
+      setStatus("Saving…");
+      saveTimer = setTimeout(run, DEBOUNCE_MS);
+    }
+  }
+
+  function loadState() {
+    var root = getRoot();
+    if (!root) return;
+    try {
+      var raw = localStorage.getItem(persistKey());
+      if (!raw) {
+        var leg = legacyPersistKey();
+        if (leg) raw = localStorage.getItem(leg);
+      }
+      if (raw) root.innerHTML = raw;
+    } catch (e) {}
+  }
+
+  function stripToolbar() {
+    document.querySelectorAll(".mm-template-toolbar").forEach(function (n) {
+      if (n.parentNode) n.parentNode.removeChild(n);
+    });
+  }
+
+  function exportThisVersion() {
+    saveState(true);
+    stripToolbar();
+    try {
+      var path = location.pathname || "";
+      var m = path.match(/[^/]+$/);
+      var base = (m && m[0]) ? m[0] : "page.html";
+      base = base.replace(/\.html$/i, "").replace(/\.htm$/i, "");
+      var filename = base + "-export.html";
+      var markup = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      var blob = new Blob([markup], { type: "text/html;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () {
+        URL.revokeObjectURL(url);
+        attachToolbar();
+      }, 0);
+    } catch (e) {
+      attachToolbar();
+      window.alert("Export failed (some browsers block downloads from local files).");
+    }
+  }
+
+  function restoreDefault() {
+    if (!window.confirm("Restore the original template and clear saved data?")) return;
+    try {
+      localStorage.removeItem(persistKey());
+      var leg = legacyPersistKey();
+      if (leg) localStorage.removeItem(leg);
+    } catch (e) {}
+    location.reload();
+  }
+
+  function attachToolbar() {
+    stripToolbar();
+    var bar = document.createElement("div");
+    bar.className = "mm-template-toolbar";
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", "Template tools");
+
+    var bExport = document.createElement("button");
+    bExport.type = "button";
+    bExport.className = "mm-tpl-btn";
+    bExport.textContent = "Export This Version";
+    bExport.onclick = function () {
+      exportThisVersion();
+    };
+
+    var bReset = document.createElement("button");
+    bReset.type = "button";
+    bReset.className = "mm-tpl-btn mm-tpl-btn--muted";
+    bReset.textContent = "Restore Default";
+    bReset.onclick = function () {
+      restoreDefault();
+    };
+
+    var st = document.createElement("span");
+    st.className = "mm-tpl-status";
+    st.id = "mm-tpl-status";
+    st.textContent = "Changes saved locally";
+
+    bar.appendChild(bExport);
+    bar.appendChild(bReset);
+    bar.appendChild(st);
+    document.body.insertBefore(bar, document.body.firstChild);
+  }
+
+  function initPersistHook() {
+    document.addEventListener(
+      "input",
+      function () {
+        saveState(false);
+      },
+      true
+    );
+    document.addEventListener(
+      "change",
+      function () {
+        saveState(false);
+      },
+      true
+    );
+    var root = getRoot();
+    if (root && typeof MutationObserver !== "undefined") {
+      if (mo) mo.disconnect();
+      mo = new MutationObserver(function () {
+        saveState(false);
+      });
+      mo.observe(root, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        characterData: true
+      });
+    }
+    window.addEventListener("beforeunload", function () {
+      saveState(true);
+    });
+  }
+
+  w.mmBindTableHeaderEditing = function () {
+    if (!w.__mmHeaderThSeen) w.__mmHeaderThSeen = new WeakSet();
+    var seen = w.__mmHeaderThSeen;
+    document.querySelectorAll("table thead th").forEach(function (th) {
+      if (seen.has(th)) return;
+      seen.add(th);
+      th.classList.add("mm-th-editable");
+      th.setAttribute("spellcheck", "false");
+      th.removeAttribute("tabindex");
+      th.classList.remove("editable-cell");
+      if (!th.getAttribute("title")) {
+        th.setAttribute(
+          "title",
+          "Column header: double-click to edit. This labels the whole column and is a bit more fixed than the cells below."
+        );
+      }
+      th.contentEditable = "false";
+      th.addEventListener("dblclick", function () {
+        th.contentEditable = "true";
+        th.classList.add("mm-th-editing");
+        th.focus();
+        try {
+          var rng = document.createRange();
+          rng.selectNodeContents(th);
+          var sel = w.getSelection && w.getSelection();
+          if (sel) {
+            sel.removeAllRanges();
+            sel.addRange(rng);
+          }
+        } catch (e) {}
+      });
+      th.addEventListener("blur", function () {
+        th.contentEditable = "false";
+        th.classList.remove("mm-th-editing");
+      });
+      th.addEventListener("keydown", function (ev) {
+        if (ev.key === "Escape") {
+          ev.preventDefault();
+          th.blur();
+        }
+      });
+    });
+  };
+
+  w.loadState = loadState;
+  w.saveState = saveState;
+  w.exportThisVersion = exportThisVersion;
+  w.restoreDefault = restoreDefault;
+  w.attachToolbar = attachToolbar;
+  w.initPersistHook = initPersistHook;
+  w.mmPersistKey = persistKey;
+  w.__mmPersistLoad = loadState;
+  w.__mmPersistSave = function () {
+    saveState(false);
+  };
+  w.__mmPersistHook = initPersistHook;
+})(window);
+</script>
+
+</head>
+<body>
+
+<div id="__mmPersistRoot">
+  <h1>🧠 Knowledge Map</h1>
+
+  <h2>Concepts</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>description</th>
+        <th>type</th>
+        <th>created_at</th>
+        <th>updated_at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Public Domain</td>
+        <td contenteditable="true">Public domain works are creative materials not restricted by copyright, allowing free use, sharing, and modification without permission or royalties. They include expired copyrights, works never under copyright, and U.S. government materials. </td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">Copyright Law</td>
+        <td contenteditable="true">Copyright law protects original works of authorship—including literary, musical, and artistic works—the moment they are fixed in a tangible medium, granting creators exclusive rights to reproduce, distribute, and display their work.</td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">Consumer Protection</td>
+        <td contenteditable="true">Consumer protection laws and agencies (like the FTC and CFPB) safeguard buyers against unfair, deceptive, or fraudulent business practices. These regulations cover product safety, privacy, and financial services, enforcing rights through lawsuits, rule-making, and education.</td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">Federal Trade Commission</td>
+        <td contenteditable="true">The Federal Trade Commission (FTC) is an independent U.S. government agency that protects consumers and promotes competition by preventing unfair, deceptive, or fraudulent business practices.</td>
+        <td>
+          <select>
+            <option selected>concept</option>
+            <option>entity</option>
+            <option>event</option>
+            <option>process</option>
+            <option>tag</option>
+            <option>source</option>
+          </select>
+        </td>
+        <td contenteditable="true">2026-05-06</td>
+        <td contenteditable="true">2026-05-06</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Relationships</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>source_id</th>
+        <th>target_id</th>
+        <th>relationship_type</th>
+        <th>weight</th>
+        <th>direction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option selected>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+      </tr>
+      <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td>
+          <select>
+            <option>causes</option>
+            <option>depends_on</option>
+            <option>contradicts</option>
+          </select>
+        </td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Tags</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Law</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">Intellectual Property</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">Consumers</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Concept Tags</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>concept_id</th>
+        <th>tag_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">1</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">2</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">3</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">2</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Hierarchy</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>parent_id</th>
+        <th>child_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">3</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Sources</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Public domain</td>
+        <td contenteditable="true">https://en.wikipedia.org/wiki/Public_domain</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">What is copyright?</td>
+        <td contenteditable="true">https://www.copyright.gov/what-is-copyright/</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Concept Sources</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>concept_id</th>
+        <th>source_id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">2</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">1</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">1</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <details>
+    <summary>📌 Notes</summary>
+    <p contenteditable="true">Explain relationships and logic here.</p>
+  </details>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof loadState === "function") loadState();
+    if (typeof mmBindTableHeaderEditing === "function") mmBindTableHeaderEditing();
+
+  const typeOptions = ["concept", "entity", "event", "process", "tag", "source"];
+  const relationshipOptions = ["causes", "depends_on", "contradicts"];
+
+  function createSelect(options, selectedValue = options[0]) {
+    const select = document.createElement("select");
+
+    options.forEach(optionValue => {
+      const option = document.createElement("option");
+      option.value = optionValue;
+      option.textContent = optionValue;
+
+      if (optionValue === selectedValue) {
+        option.selected = true;
+      }
+
+      select.appendChild(option);
+    });
+
+    return select;
+  }
+
+  function makeEditableCell(value = "") {
+    const td = document.createElement("td");
+    td.contentEditable = "true";
+    td.textContent = value;
+    return td;
+  }
+
+  function addRow(table) {
+    const tbody = table.querySelector("tbody");
+    const headers = [...table.querySelectorAll("thead th")];
+    const newRow = document.createElement("tr");
+
+    headers.forEach(header => {
+      const columnName = header.textContent.trim();
+
+      const td = document.createElement("td");
+
+      if (columnName === "type") {
+        td.appendChild(createSelect(typeOptions));
+      } else if (columnName === "relationship_type") {
+        td.appendChild(createSelect(relationshipOptions));
+      } else {
+        td.contentEditable = "true";
+        td.textContent = "";
+      }
+
+      newRow.appendChild(td);
+    });
+
+    tbody.appendChild(newRow);
+  }
+
+  function addButtonsToTables() {
+    const tables = document.querySelectorAll("table");
+
+    tables.forEach(table => {
+      let button = table.nextElementSibling;
+      if (!button || !button.classList.contains("add-row-button")) {
+        button = document.createElement("button");
+        button.type = "button";
+        button.textContent = "+ Add row";
+        button.className = "add-row-button";
+        table.insertAdjacentElement("afterend", button);
+      }
+      button.onclick = () => addRow(table);
+
+      let delButton = button.nextElementSibling;
+      if (!delButton || !delButton.classList.contains("del-row-button")) {
+        delButton = document.createElement("button");
+        delButton.type = "button";
+        delButton.textContent = "− Delete row";
+        delButton.className = "del-row-button";
+        button.insertAdjacentElement("afterend", delButton);
+      }
+      delButton.onclick = () => {
+        const tbody = table.querySelector("tbody");
+        if (tbody && tbody.rows.length > 0) {
+          tbody.deleteRow(tbody.rows.length - 1);
+        }
+      };
+    });
+  }
+
+  addButtonsToTables();
+
+  if (typeof initPersistHook === "function") initPersistHook();
+  if (typeof attachToolbar === "function") attachToolbar();
+  });
+</script>
+</body>
+</html>
