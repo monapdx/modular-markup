@@ -1487,7 +1487,9 @@ html.page-movies .del-table-row-btn:hover{
 
 @media print{
   html.page-movies .add-table-row-btn,
-  html.page-movies .del-table-row-btn{
+  html.page-movies .del-table-row-btn,
+  html.page-movies .mm-export-bar,
+  html.page-movies .mm-template-toolbar{
     display: none !important;
   }
 }
@@ -2391,7 +2393,9 @@ html.neo-dark-doc .add-task-wrap {
   }
 
   html.neo-dark-doc .add-table-row-btn,
-  html.neo-dark-doc .del-table-row-btn {
+  html.neo-dark-doc .del-table-row-btn,
+  html.neo-dark-doc .mm-export-bar,
+  html.neo-dark-doc .mm-template-toolbar {
     display: none !important;
   }
 }
@@ -2399,6 +2403,137 @@ html.neo-dark-doc .add-task-wrap {
 html.neo-dark-doc .add-table-row-btn,
 html.neo-dark-doc .del-table-row-btn {
   margin: 8px 8px 20px 0;
+}
+
+/* Column headers: double-click to edit; visually distinct from body cells */
+html.neo-dark-doc table thead th.mm-th-editable,
+html.page-calendar table thead th.mm-th-editable,
+html.page-movies table thead th.mm-th-editable {
+  cursor: default;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 77, 157, 0.14) 0%,
+    var(--panel-2, rgba(42, 42, 53, 0.95)) 100%
+  );
+  border-bottom: 3px solid var(--hot-pink, #ff4d9d);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.page-calendar table thead th.mm-th-editable {
+  background: linear-gradient(180deg, #fff5fb 0%, #f6f8fa 100%);
+  border-bottom-color: #d0a8ff;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+html.neo-dark-doc table thead th.mm-th-editing,
+html.page-calendar table thead th.mm-th-editing,
+html.page-movies table thead th.mm-th-editing {
+  outline: 2px solid var(--electric-lime, #b8ff24);
+  outline-offset: 2px;
+  cursor: text;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 800;
+}
+
+/* Template toolbar: local save status, export, restore (utility) */
+html.neo-dark-doc .mm-template-toolbar,
+html.page-calendar .mm-template-toolbar,
+html.page-movies .mm-template-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  margin: 0 0 1rem;
+  padding: 0 0 0.55rem;
+  border-bottom: 2px solid var(--line, #000);
+  font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+html.neo-dark-doc .mm-tpl-btn,
+html.page-calendar .mm-tpl-btn,
+html.page-movies .mm-tpl-btn {
+  font: inherit;
+  font-weight: 700;
+  padding: 0.32rem 0.6rem;
+  cursor: pointer;
+  border: 2px solid var(--line, #000);
+  border-radius: 4px;
+  background: var(--panel-2, #2a2a35);
+  color: var(--paper, #f4f4f5);
+  box-shadow: 2px 2px 0 #000;
+}
+
+html.neo-dark-doc .mm-tpl-btn--muted,
+html.page-calendar .mm-tpl-btn--muted,
+html.page-movies .mm-tpl-btn--muted {
+  background: var(--panel, #1a1a22);
+  color: var(--muted, #b0b0bc);
+  font-weight: 600;
+}
+
+html.neo-dark-doc .mm-tpl-btn:hover,
+html.page-calendar .mm-tpl-btn:hover,
+html.page-movies .mm-tpl-btn:hover {
+  filter: brightness(1.06);
+}
+
+html.neo-dark-doc .mm-tpl-status,
+html.page-calendar .mm-tpl-status,
+html.page-movies .mm-tpl-status {
+  margin-left: auto;
+  color: var(--muted, #8d8d99);
+  font-weight: 500;
+}
+
+html.page-calendar .mm-template-toolbar {
+  border-bottom-color: #24292f;
+}
+
+html.page-movies .mm-template-toolbar {
+  border-bottom-color: #24292f;
+}
+
+/* Legacy export bar (older snapshots) */
+html.neo-dark-doc .mm-export-bar,
+html.page-calendar .mm-export-bar,
+html.page-movies .mm-export-bar {
+  margin: 0 0 1rem;
+}
+
+html.neo-dark-doc .mm-export-html-btn,
+html.page-calendar .mm-export-html-btn,
+html.page-movies .mm-export-html-btn {
+  font: inherit;
+  font-weight: 800;
+  padding: 8px 14px;
+  cursor: pointer;
+  border: var(--border, 3px solid #000);
+  border-radius: var(--radius, 8px);
+  background: var(--panel-2, #2a2a35);
+  color: var(--paper, #f4f4f5);
+  box-shadow: var(--shadow-sm, 3px 3px 0 #000);
+}
+
+html.neo-dark-doc .mm-export-html-btn:hover,
+html.page-calendar .mm-export-html-btn:hover,
+html.page-movies .mm-export-html-btn:hover {
+  filter: brightness(1.08);
+}
+
+@media print {
+  html.page-calendar .mm-export-bar,
+  html.page-movies .mm-export-bar,
+  html.page-calendar .mm-template-toolbar,
+  html.page-movies .mm-template-toolbar {
+    display: none !important;
+  }
 }
 
 html.neo-dark-doc blockquote {
