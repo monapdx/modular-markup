@@ -133,3 +133,7 @@ A customizable symptom and health tracking template for personal logging and pat
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/tasks.png" width="556">
 
 A flexible task management tool with editable rows, persistent saving, and customizable categories.
+
+### Template Builder
+
+A browser-based generator for creating new starter templates with editable HTML structure, shared CSS hooks, toolbar controls, editable tables, and export/import scaffolding.
