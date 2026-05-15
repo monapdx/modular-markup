@@ -85,31 +85,65 @@
     });
   }
 
+  function downloadFile(filename, content, type) {
+    var blob = new Blob([content], { type: type });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 0);
+  }
+
+  function exportBaseName() {
+    var path = location.pathname || "";
+    var m = path.match(/[^/]+$/);
+    var base = (m && m[0]) ? m[0] : "page.html";
+    return base.replace(/\.html$/i, "").replace(/\.htm$/i, "");
+  }
+
   function exportThisVersion() {
     saveState(true);
     stripToolbar();
     try {
-      var path = location.pathname || "";
-      var m = path.match(/[^/]+$/);
-      var base = (m && m[0]) ? m[0] : "page.html";
-      base = base.replace(/\.html$/i, "").replace(/\.htm$/i, "");
-      var filename = base + "-export.html";
+      var filename = exportBaseName() + "-export.html";
       var markup = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-      var blob = new Blob([markup], { type: "text/html;charset=utf-8" });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function () {
-        URL.revokeObjectURL(url);
-        attachToolbar();
-      }, 0);
+      downloadFile(filename, markup, "text/html;charset=utf-8");
+      attachToolbar();
     } catch (e) {
       attachToolbar();
       window.alert("Export failed (some browsers block downloads from local files).");
+    }
+  }
+
+  function exportJsonData() {
+    saveState(true);
+    try {
+      var tables = [];
+      document.querySelectorAll("#__mmPersistRoot table").forEach(function (table) {
+        var headers = [];
+        table.querySelectorAll("thead th").forEach(function (th) {
+          headers.push(th.textContent.trim());
+        });
+        var rows = [];
+        table.querySelectorAll("tbody tr").forEach(function (tr) {
+          var row = {};
+          tr.querySelectorAll("td").forEach(function (td, index) {
+            var key = headers[index] || "Column " + (index + 1);
+            var field = td.querySelector("input, select, textarea");
+            row[key] = field ? field.value : td.textContent.trim();
+          });
+          rows.push(row);
+        });
+        tables.push({ headers: headers, rows: rows });
+      });
+      downloadFile(exportBaseName() + "-data.json", JSON.stringify({ tables: tables }, null, 2), "application/json;charset=utf-8");
+    } catch (e) {
+      window.alert("JSON export failed (some browsers block downloads from local files).");
     }
   }
 
@@ -154,7 +188,16 @@
     st.id = "mm-tpl-status";
     st.textContent = "Changes saved locally";
 
+    var bJson = document.createElement("button");
+    bJson.type = "button";
+    bJson.className = "mm-tpl-btn";
+    bJson.textContent = "Export JSON";
+    bJson.onclick = function () {
+      exportJsonData();
+    };
+
     bar.appendChild(bExport);
+    bar.appendChild(bJson);
     bar.appendChild(bReset);
     bar.appendChild(st);
     document.body.insertBefore(bar, document.body.firstChild);
@@ -246,6 +289,7 @@
   w.loadState = loadState;
   w.saveState = saveState;
   w.exportThisVersion = exportThisVersion;
+  w.exportJsonData = exportJsonData;
   w.restoreDefault = restoreDefault;
   w.attachToolbar = attachToolbar;
   w.initPersistHook = initPersistHook;
