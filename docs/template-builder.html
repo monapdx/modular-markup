@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" class="page-template-builder neo-dark-doc">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="neo-brutalist.css" />
+  <link rel="stylesheet" href="neo-brutal-overrides.css" />
+  <title>Template Builder</title>
+  <style>
+    .builder-wrap { max-width: 1120px; margin: 0 auto; padding: 42px 20px 72px; }
+    .builder-hero { display: grid; gap: 14px; margin-bottom: 26px; }
+    .builder-grid { display: grid; grid-template-columns: minmax(280px, 420px) minmax(0, 1fr); gap: 22px; align-items: start; }
+    .builder-panel { padding: 20px; }
+    .builder-panel h2 { margin-bottom: 12px; }
+    .builder-form { display: grid; gap: 14px; }
+    .builder-form label { display: grid; gap: 7px; font-weight: 900; color: var(--paper); }
+    .builder-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    .builder-preview { display: grid; gap: 14px; }
+    .preview-frame { min-height: 520px; border: var(--border); border-radius: var(--radius); background: var(--paper); box-shadow: var(--shadow-sm); overflow: hidden; }
+    .preview-frame iframe { width: 100%; height: 620px; border: 0; background: #fff; display: block; }
+    .builder-note { margin: 0; font-size: .95rem; }
+    .check-row { display: flex; align-items: center; gap: 8px; color: var(--paper); font-weight: 800; }
+    @media (max-width: 860px) { .builder-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="builder-wrap">
+    <section class="builder-hero">
+      <h1>Template Builder</h1>
+      <p class="intro">Generate a starter Modular Markup template with editable content, a shared toolbar, local saving, table controls, and export/import hooks.</p>
+    </section>
+
+    <section class="builder-grid">
+      <div class="panel builder-panel">
+        <h2>Starter details</h2>
+        <form class="builder-form" id="builderForm">
+          <label>Template title
+            <input id="tplTitle" value="Research Notes" />
+          </label>
+          <label>Template description
+            <textarea id="tplDescription">A local-first workspace for collecting notes, links, and observations.</textarea>
+          </label>
+          <label>First column
+            <input id="colOne" value="Topic" />
+          </label>
+          <label>Second column
+            <input id="colTwo" value="Notes" />
+          </label>
+          <label>Third column
+            <input id="colThree" value="Status" />
+          </label>
+          <label class="check-row"><input id="includeSampleRows" type="checkbox" checked /> Include sample editable rows</label>
+          <div class="builder-actions">
+            <button type="button" id="refreshPreview">Refresh Preview</button>
+            <button type="button" class="primary" id="downloadTemplate">Download HTML</button>
+            <button type="button" class="secondary" id="copyTemplate">Copy Markup</button>
+          </div>
+          <p class="builder-note" id="builderStatus">Ready to generate a template.</p>
+        </form>
+      </div>
+
+      <div class="builder-preview">
+        <div class="panel builder-panel">
+          <h2>Generated preview</h2>
+          <p class="builder-note">Use the downloaded file as a base, then customize the HTML structure, CSS, toolbar buttons, and import/export behavior.</p>
+        </div>
+        <div class="preview-frame"><iframe id="previewFrame" title="Generated template preview"></iframe></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const esc = (value) => String(value || "").replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+    const slugify = (value) => String(value || "template").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "template";
+
+    function buildTemplate() {
+      const title = document.getElementById("tplTitle").value.trim() || "New Template";
+      const description = document.getElementById("tplDescription").value.trim() || "A local-first editable Modular Markup template.";
+      const columns = ["colOne", "colTwo", "colThree"].map((id) => document.getElementById(id).value.trim() || "Column");
+      const slug = slugify(title);
+      const sampleRows = document.getElementById("includeSampleRows").checked
+        ? `<tr><td contenteditable="true">Example item</td><td contenteditable="true">Replace this with your own structure.</td><td contenteditable="true">Draft</td></tr>\n          <tr><td contenteditable="true">Next step</td><td contenteditable="true">Add fields, controls, or sections as needed.</td><td contenteditable="true">Open</td></tr>`
+        : `<tr><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>`;
+
+      return `<!DOCTYPE html>
+<html lang="en" data-mm-persist-id="${esc(slug)}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>${esc(title)}</title>
+<style>
+  body { margin: 0; min-height: 100vh; font-family: system-ui, sans-serif; background: #101018; color: #f7f5ef; }
+  main { max-width: 980px; margin: 0 auto; padding: 76px 18px 42px; }
+  h1 { margin: 0 0 10px; font-size: clamp(2rem, 7vw, 4rem); }
+  p { color: #c9c6d3; }
+  table { width: 100%; border-collapse: collapse; margin-top: 18px; background: #f7f5ef; color: #101018; }
+  th, td { border: 2px solid #000; padding: 12px; text-align: left; vertical-align: top; }
+  th { background: #b8ff24; }
+  td:focus, th:focus { outline: 3px solid #ff45bd; }
+  .toolbar { position: fixed; top: 0; left: 0; right: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px; background: #050508; border-bottom: 3px solid #000; z-index: 5; }
+  button, label.import-label { border: 2px solid #000; border-radius: 999px; padding: 8px 12px; background: #b8ff24; color: #050508; font-weight: 800; cursor: pointer; }
+  input[type=file] { position: absolute; inline-size: 1px; block-size: 1px; opacity: 0; }
+  .status { color: #c9c6d3; margin-left: auto; }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <button id="addRow" type="button">Add row</button>
+    <button id="exportHtml" type="button">Export HTML</button>
+    <button id="exportJson" type="button">Export JSON</button>
+    <label class="import-label">Import JSON <input id="importJson" type="file" accept="application/json" /></label>
+    <button id="restoreDefault" type="button">Restore Default</button>
+    <span class="status" id="status">Saved locally</span>
+  </div>
+  <main id="persistRoot">
+    <h1 contenteditable="true">${esc(title)}</h1>
+    <p contenteditable="true">${esc(description)}</p>
+    <table>
+      <thead><tr>${columns.map((col) => `<th contenteditable="true">${esc(col)}</th>`).join("")}</tr></thead>
+      <tbody>
+        ${sampleRows}
+      </tbody>
+    </table>
+  </main>
+<script>
+(function () {
+  const root = document.getElementById("persistRoot");
+  const status = document.getElementById("status");
+  const key = "mm-template:${slug}";
+  const setStatus = (msg) => { status.textContent = msg; };
+  function save() { localStorage.setItem(key, root.innerHTML); setStatus("Saved locally"); }
+  function load() { const saved = localStorage.getItem(key); if (saved) root.innerHTML = saved; }
+  function download(name, body, type) {
+    const blob = new Blob([body], { type });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+  }
+  load();
+  document.addEventListener("input", save, true);
+  document.getElementById("addRow").addEventListener("click", () => {
+    const tbody = root.querySelector("tbody");
+    const count = root.querySelectorAll("thead th").length || 1;
+    const tr = document.createElement("tr");
+    for (let i = 0; i < count; i++) tr.appendChild(Object.assign(document.createElement("td"), { contentEditable: "true", textContent: "" }));
+    tbody.appendChild(tr); save();
+  });
+  document.getElementById("exportHtml").addEventListener("click", () => download("${slug}-export.html", "<!DOCTYPE html>\\n" + document.documentElement.outerHTML, "text/html;charset=utf-8"));
+  document.getElementById("exportJson").addEventListener("click", () => download("${slug}.json", JSON.stringify({ html: root.innerHTML }, null, 2), "application/json"));
+  document.getElementById("importJson").addEventListener("change", (event) => {
+    const file = event.target.files[0]; if (!file) return;
+    file.text().then((text) => { const data = JSON.parse(text); if (data.html) { root.innerHTML = data.html; save(); } });
+  });
+  document.getElementById("restoreDefault").addEventListener("click", () => { if (confirm("Clear local changes and reload?")) { localStorage.removeItem(key); location.reload(); } });
+})();
+<\/script>
+</body>
+</html>`;
+    }
+
+    function refreshPreview() {
+      document.getElementById("previewFrame").srcdoc = buildTemplate();
+      document.getElementById("builderStatus").textContent = "Preview refreshed.";
+    }
+
+    function downloadGenerated() {
+      const title = document.getElementById("tplTitle").value.trim() || "template";
+      const html = buildTemplate();
+      const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = slugify(title) + ".html";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 0);
+      document.getElementById("builderStatus").textContent = "Template downloaded.";
+    }
+
+    async function copyGenerated() {
+      try {
+        await navigator.clipboard.writeText(buildTemplate());
+        document.getElementById("builderStatus").textContent = "Markup copied to clipboard.";
+      } catch (error) {
+        document.getElementById("builderStatus").textContent = "Copy failed; use Download HTML instead.";
+      }
+    }
+
+    document.getElementById("refreshPreview").addEventListener("click", refreshPreview);
+    document.getElementById("downloadTemplate").addEventListener("click", downloadGenerated);
+    document.getElementById("copyTemplate").addEventListener("click", copyGenerated);
+    document.getElementById("builderForm").addEventListener("input", refreshPreview);
+    refreshPreview();
+  </script>
+</body>
+</html>
