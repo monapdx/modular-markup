@@ -284,6 +284,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return select;
   }
 
+  function focusFirstEditableCell(row) {
+    var target = row.querySelector("td[contenteditable='true'], select, td");
+    if (target) target.focus();
+  }
+
   function addRow(table, tableIndex) {
     var tbody = table.querySelector("tbody");
     var firstRow = tbody.querySelector("tr");
@@ -305,6 +310,45 @@ document.addEventListener("DOMContentLoaded", function () {
       row.appendChild(td);
     }
     tbody.appendChild(row);
+    return row;
+  }
+
+  function deleteRow(table, row) {
+    var tbody = table.querySelector("tbody");
+    if (!tbody || !tbody.rows.length) return;
+    var targetRow = row && row.parentNode === tbody ? row : tbody.rows[tbody.rows.length - 1];
+    if (tbody.rows.length === 1) {
+      Array.prototype.forEach.call(targetRow.cells, function (cell) {
+        if (cell.querySelector("select")) return;
+        cell.textContent = "";
+      });
+      focusFirstEditableCell(targetRow);
+      return;
+    }
+    var nextRow = targetRow.nextElementSibling || targetRow.previousElementSibling;
+    tbody.removeChild(targetRow);
+    if (nextRow) focusFirstEditableCell(nextRow);
+  }
+
+  function tableIndexFor(table) {
+    return Array.prototype.indexOf.call(document.querySelectorAll("table"), table);
+  }
+
+  function activeCell() {
+    var el = document.activeElement;
+    if (el && el.tagName === "SELECT") el = el.closest("td");
+    return el && el.closest ? el.closest("td") : null;
+  }
+
+  function focusCell(table, rowIndex, cellIndex) {
+    var rows = table.querySelectorAll("tbody tr");
+    if (!rows.length) return;
+    rowIndex = Math.max(0, Math.min(rowIndex, rows.length - 1));
+    var cells = rows[rowIndex].children;
+    if (!cells.length) return;
+    cellIndex = Math.max(0, Math.min(cellIndex, cells.length - 1));
+    var target = cells[cellIndex].querySelector("select") || cells[cellIndex];
+    target.focus();
   }
 
   document.querySelectorAll("table").forEach(function (table, tableIndex) {
@@ -318,7 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     btn.onclick = function () {
-      addRow(table, tableIndex);
+      focusFirstEditableCell(addRow(table, tableIndex));
     };
 
     var delBtn = btn.nextElementSibling;
@@ -331,11 +375,50 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     delBtn.onclick = function () {
-      var tbody = table.querySelector("tbody");
-      if (tbody && tbody.rows.length > 0) {
-        tbody.deleteRow(tbody.rows.length - 1);
-      }
+      deleteRow(table);
     };
+  });
+
+  document.addEventListener("keydown", function (ev) {
+    var cell = activeCell();
+    var table = cell && cell.closest("table");
+    var key = ev.key;
+
+    if ((ev.ctrlKey || ev.metaKey) && key.toLowerCase() === "s") {
+      ev.preventDefault();
+      if (typeof exportThisVersion === "function") exportThisVersion();
+      return;
+    }
+
+    if ((ev.ctrlKey || ev.metaKey) && key.toLowerCase() === "n") {
+      ev.preventDefault();
+      table = table || document.querySelector("table");
+      if (table) focusFirstEditableCell(addRow(table, tableIndexFor(table)));
+      return;
+    }
+
+    if (!table || ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) return;
+
+    if (key === "Delete") {
+      ev.preventDefault();
+      deleteRow(table, cell.closest("tr"));
+      return;
+    }
+
+    var moves = {
+      ArrowUp: [-1, 0],
+      ArrowDown: [1, 0],
+      ArrowLeft: [0, -1],
+      ArrowRight: [0, 1]
+    };
+    if (!moves[key]) return;
+
+    ev.preventDefault();
+    var row = cell.parentNode;
+    var rows = Array.prototype.slice.call(table.querySelectorAll("tbody tr"));
+    var rowIndex = rows.indexOf(row);
+    var cellIndex = Array.prototype.indexOf.call(row.children, cell);
+    focusCell(table, rowIndex + moves[key][0], cellIndex + moves[key][1]);
   });
 
   if (typeof initPersistHook === "function") initPersistHook();
