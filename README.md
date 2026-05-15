@@ -47,7 +47,7 @@ Every template includes:
 - Export This Version
 - Restore Default
 
-Export allows you to download your modified version as a standalone HTML file with your edits preserved.
+Export allows you to download your modified version as a standalone HTML file with your edits preserved. Shared template behavior lives in `docs/mm-template-runtime.js` so storage, export/reset, toolbar status, and editable table headers can be reused across templates instead of copied into each file.
 
 ### Offline-Friendly
 
