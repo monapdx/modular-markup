@@ -328,3 +328,180 @@ body.quote-generator { padding: 32px; }
   .topbar, .panel, .card, .conv-header, .msg, .chat, .row, .viewer .head, .att, .sidebar, #left, #right { border-radius: 14px; box-shadow: 4px 4px 0 #000; }
   h1 { font-size: clamp(2rem, 13vw, 3rem); }
 }
+
+/* Printable / PDF-friendly mode */
+.print-only { display: none !important; }
+
+@page {
+  margin: 0.6in;
+}
+
+@media print {
+  :root {
+    --ink: #111;
+    --void: #fff;
+    --panel: #fff;
+    --panel-2: #fff;
+    --panel-3: #fff;
+    --paper: #111;
+    --muted: #444;
+    --line: #b8b8b8;
+    --shadow: none;
+    --shadow-sm: none;
+    --border: 1px solid #bbb;
+  }
+
+  html,
+  body {
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt;
+  }
+
+  body,
+  body.quiz-builder,
+  body.generated-quiz,
+  body.quote-generator {
+    padding: 0 !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  a {
+    color: #111 !important;
+    text-decoration: underline;
+  }
+
+  p,
+  .small,
+  .hint,
+  .meta,
+  .chat-sub,
+  .msg-meta,
+  .from,
+  .date,
+  .conv-meta,
+  .kv,
+  .section h4 {
+    color: #333 !important;
+  }
+
+  .mm-template-toolbar,
+  .toolbar,
+  .topbar,
+  .sidebar,
+  .search,
+  .search-row,
+  .controls,
+  .btnRow,
+  button,
+  .btn,
+  label.btn,
+  input[type="file"],
+  .file,
+  .sr,
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .panel,
+  .card,
+  .conv-header,
+  .msg,
+  .chat,
+  .row,
+  .viewer .head,
+  .att,
+  .drop,
+  .htmlbox,
+  .body pre,
+  .list,
+  #left,
+  #right,
+  .email-viewer .content > div,
+  .canvasWrap {
+    background: #fff !important;
+    border: 1px solid #bbb !important;
+    border-radius: 0 !important;
+  }
+
+  .email-viewer .app,
+  .email-viewer .content,
+  #wrap,
+  .quote-generator .shell {
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .email-viewer .list,
+  .email-viewer .viewer,
+  #left,
+  #right,
+  .body .htmlbox,
+  .body pre {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  thead,
+  tr,
+  .panel,
+  .card,
+  .msg,
+  .chat,
+  .row,
+  .conv-header,
+  .viewer .head,
+  .att,
+  .section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th,
+  td {
+    border: 1px solid #999 !important;
+  }
+
+  th,
+  .pill,
+  .badge,
+  .tag,
+  .label-pill,
+  .role,
+  .chip {
+    background: #eee !important;
+    color: #111 !important;
+  }
+}
