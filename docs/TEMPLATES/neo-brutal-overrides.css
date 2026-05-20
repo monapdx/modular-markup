@@ -3564,3 +3564,64 @@ html.page-dashboard-widget.neo-dark-doc .dashboard-progress-fill {
 html.page-dashboard-widget.neo-dark-doc .dashboard-progress-pct {
   font-variant-numeric: tabular-nums;
 }
+
+/* ===== thank-you.html (page-thank-you) — Builder Pack post-purchase ===== */
+
+html.page-thank-you.neo-dark-doc section.panel {
+  padding: clamp(1.1rem, 2.5vw, 1.5rem);
+  margin-bottom: 1.5rem;
+}
+
+html.page-thank-you.neo-dark-doc section.panel h2 {
+  margin-top: 0;
+}
+
+html.page-thank-you.neo-dark-doc .hero-lead {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--paper);
+  max-width: 40rem;
+}
+
+html.page-thank-you.neo-dark-doc ul,
+html.page-thank-you.neo-dark-doc ol {
+  margin: 1rem 0;
+  padding-left: 1.35rem;
+  color: var(--paper);
+}
+
+html.page-thank-you.neo-dark-doc li {
+  margin: 0.35rem 0;
+}
+
+html.page-thank-you.neo-dark-doc .download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+html.page-thank-you.neo-dark-doc a.btn {
+  text-decoration: none;
+}
+
+html.page-thank-you.neo-dark-doc a.btn.primary {
+  background: var(--hot-pink);
+}
+
+html.page-thank-you.neo-dark-doc .file-meta {
+  margin-top: 0.75rem;
+}
+
+html.page-thank-you.neo-dark-doc code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+  font-weight: 700;
+  padding: 0.12em 0.45em;
+  border-radius: 8px;
+  border: 2px solid #000;
+  background: var(--panel-2);
+  color: var(--electric-lime);
+  box-shadow: 2px 2px 0 #000;
+}
