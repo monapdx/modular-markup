@@ -2,6 +2,8 @@
 
 A collection of editable, offline-friendly HTML browser tools designed for experimentation, organization, tracking, and personal workflows.
 
+[![Download](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20Download-111111?style=for-the-badge)](https://ashpdx.gumroad.com/l/tmuklu)
+
 These are not static mockups or screenshots.
 
 Each template functions like a lightweight browser app:
