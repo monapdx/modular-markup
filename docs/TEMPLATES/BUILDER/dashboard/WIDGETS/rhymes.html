@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="page-dashboard-widget neo-dark-doc">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rhyme Finder</title>
+  <link rel="stylesheet" href="../../neo-brutalist.css" />
+  <link rel="stylesheet" href="../../neo-brutal-overrides.css" />
+</head>
+<body>
+
+<div id="rhyme-finder" class="dashboard-widget panel dashboard-widget--wide">
+  <h3>Rhyme Finder</h3>
+  <p class="dashboard-lead">Search perfect and near rhymes via the Datamuse API. Click a result to search again.</p>
+
+  <div class="dashboard-field-row" style="align-items: end;">
+    <label>
+      Enter a word
+      <input id="word" type="text" placeholder="e.g., time" autocomplete="off" />
+    </label>
+    <div class="dashboard-actions" style="margin: 0;">
+      <button type="button" id="go">Search</button>
+    </div>
+  </div>
+
+  <div class="dashboard-field-row-3">
+    <label>
+      Rhyme type
+      <select id="rhymeType">
+        <option value="rel_rhy" selected>Perfect rhymes</option>
+        <option value="rel_nry">Near / slant rhymes</option>
+      </select>
+    </label>
+    <label>
+      Min score (0–300)
+      <input id="minScore" type="number" value="100" min="0" max="300" step="10" />
+    </label>
+    <label>
+      Max results
+      <input id="maxRes" type="number" value="100" min="5" max="1000" step="5" />
+    </label>
+    <label>
+      Filter by syllables (optional)
+      <input id="syllables" type="number" min="1" max="10" placeholder="Any" />
+    </label>
+  </div>
+
+  <div class="dashboard-actions">
+    <button type="button" class="secondary" id="copyAll">Copy list</button>
+    <button type="button" class="secondary" id="clearBtn">Clear</button>
+  </div>
+
+  <p class="dashboard-status" id="status" aria-live="polite"></p>
+  <div id="results" class="dashboard-rhyme-results"></div>
+</div>
+
+<script>
+  const el = (id) => document.getElementById(id);
+  const word = el('word');
+  const go = el('go');
+  const results = el('results');
+  const statusEl = el('status');
+
+  async function fetchRhymes() {
+    const q = word.value.trim();
+    const rhymeType = el('rhymeType').value;
+    const minScore = Number(el('minScore').value || 0);
+    const maxRes = Math.min(Math.max(Number(el('maxRes').value || 100), 1), 1000);
+    const syllables = Number(el('syllables').value || 0);
+    if (!q) { word.focus(); return; }
+
+    results.innerHTML = '';
+    setStatus(`Searching rhymes for “${q}”…`);
+    go.disabled = true;
+
+    const url = new URL('https://api.datamuse.com/words');
+    url.searchParams.set(rhymeType, q);
+    url.searchParams.set('md', 's');
+    url.searchParams.set('max', String(maxRes));
+
+    try {
+      const res = await fetch(url.toString());
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      let data = await res.json();
+
+      data = data.filter(x => (x.score ?? 0) >= minScore && (!syllables || (x.numSyllables === syllables)));
+      data.sort((a, b) => (b.score || 0) - (a.score || 0) || a.word.localeCompare(b.word));
+
+      if (!data.length) {
+        setStatus(`No results for “${q}”. Try lowering min score or switching rhyme type.`);
+        return;
+      }
+
+      const groups = groupBy(data, x => x.numSyllables ?? '—');
+      const ordered = Object.keys(groups).sort((a, b) => Number(a) - Number(b));
+      for (const k of ordered) {
+        const group = groups[k];
+        const div = document.createElement('div');
+        div.className = 'dashboard-rhyme-group';
+        const title = document.createElement('h4');
+        title.textContent = `${k} syllable${Number(k) === 1 ? '' : 's'} (${group.length})`;
+        div.appendChild(title);
+        const chips = document.createElement('div');
+        chips.className = 'dashboard-rhyme-chips';
+        group.forEach(item => {
+          const c = document.createElement('button');
+          c.type = 'button';
+          c.className = 'dashboard-rhyme-chip';
+          c.title = `score: ${item.score ?? '—'}`;
+          c.textContent = item.word;
+          c.addEventListener('click', () => { word.value = item.word; fetchRhymes(); });
+          chips.appendChild(c);
+        });
+        div.appendChild(chips);
+        results.appendChild(div);
+      }
+      setStatus(`Showing ${data.length} result(s) grouped by syllables.`);
+    } catch (err) {
+      console.error(err);
+      setStatus('Error: ' + err.message + '. Are you online?');
+    } finally {
+      go.disabled = false;
+    }
+  }
+
+  function groupBy(arr, fn) {
+    return arr.reduce((acc, x) => {
+      const k = String(fn(x));
+      (acc[k] ||= []).push(x);
+      return acc;
+    }, {});
+  }
+
+  function setStatus(msg) { statusEl.textContent = msg; }
+
+  go.addEventListener('click', fetchRhymes);
+  word.addEventListener('keydown', e => { if (e.key === 'Enter') fetchRhymes(); });
+  el('clearBtn').addEventListener('click', () => {
+    word.value = '';
+    results.innerHTML = '';
+    setStatus('');
+    word.focus();
+  });
+  el('copyAll').addEventListener('click', async () => {
+    const list = Array.from(document.querySelectorAll('.dashboard-rhyme-chip')).map(x => x.textContent).join(', ');
+    try {
+      await navigator.clipboard.writeText(list || '');
+      setStatus(list ? `Copied ${list.split(', ').length} word(s).` : 'Nothing to copy.');
+    } catch {
+      setStatus('Clipboard not available.');
+    }
+  });
+</script>
+
+</body>
+</html>

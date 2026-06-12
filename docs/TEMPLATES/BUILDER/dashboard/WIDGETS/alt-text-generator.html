@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="page-dashboard-widget neo-dark-doc">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alt Text Generator</title>
+  <link rel="stylesheet" href="../../neo-brutalist.css" />
+  <link rel="stylesheet" href="../../neo-brutal-overrides.css" />
+</head>
+<body>
+
+<div id="alt-text-generator" class="dashboard-widget panel dashboard-widget--wide">
+  <h3>Alt Text Generator</h3>
+  <p class="dashboard-lead">Upload an image, select what matters, and generate several alt-text styles. Works offline with predictable structured output.</p>
+
+  <div class="dashboard-split">
+    <div>
+      <h4>Inputs</h4>
+      <label>
+        Image upload
+        <input id="alt-image" type="file" accept="image/*" />
+      </label>
+      <div class="dashboard-field-row">
+        <label>
+          Main subject
+          <input id="alt-subject" type="text" placeholder="Example: small brown dog" />
+        </label>
+        <label>
+          Setting / location
+          <input id="alt-setting" type="text" placeholder="Example: standing in a grassy park" />
+        </label>
+      </div>
+      <div class="dashboard-field-row">
+        <label>
+          Action
+          <input id="alt-action" type="text" placeholder="Example: looking up at the camera" />
+        </label>
+        <label>
+          Mood / emotion
+          <input id="alt-mood" type="text" placeholder="Example: playful and alert" />
+        </label>
+      </div>
+      <label>
+        Important extra details
+        <textarea id="alt-extra" rows="4" placeholder="Colors, visible text, composition, accessibility-critical details."></textarea>
+      </label>
+      <label>What should the alt text prioritize?</label>
+      <div class="dashboard-checklist">
+        <label class="dashboard-check"><input type="checkbox" value="subject" checked /> Subject</label>
+        <label class="dashboard-check"><input type="checkbox" value="setting" checked /> Setting</label>
+        <label class="dashboard-check"><input type="checkbox" value="action" checked /> Action</label>
+        <label class="dashboard-check"><input type="checkbox" value="mood" /> Emotion</label>
+        <label class="dashboard-check"><input type="checkbox" value="extra" checked /> Important details</label>
+        <label class="dashboard-check"><input type="checkbox" value="text" /> Visible text</label>
+      </div>
+      <div class="dashboard-field-row">
+        <label>
+          Verbosity
+          <select id="alt-verbosity">
+            <option value="brief">Brief</option>
+            <option value="balanced" selected>Balanced</option>
+            <option value="detailed">Detailed</option>
+          </select>
+        </label>
+        <label>
+          Tone
+          <select id="alt-tone">
+            <option value="neutral" selected>Neutral</option>
+            <option value="descriptive">Descriptive</option>
+            <option value="ecommerce">Product-style</option>
+          </select>
+        </label>
+      </div>
+      <div class="dashboard-actions">
+        <button type="button" id="generate-alt-btn">Generate alt text</button>
+        <button type="button" class="secondary" id="copy-alt-btn">Copy output</button>
+        <button type="button" class="secondary" id="sample-alt-btn">Load sample</button>
+      </div>
+    </div>
+    <div class="dashboard-stack">
+      <div>
+        <h4>Image preview</h4>
+        <div class="dashboard-preview dashboard-preview-box">
+          <img id="alt-image-preview" class="dashboard-preview-img" alt="Uploaded preview" hidden />
+          <p id="alt-image-empty" class="dashboard-hint" style="margin:0;">No image uploaded yet. You can still use text-only fields.</p>
+        </div>
+      </div>
+      <div>
+        <h4>Generated output</h4>
+        <pre id="alt-output" class="dashboard-output">Your generated alt-text variations will appear here.</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Copied to clipboard.');
+  }).catch(() => {
+    alert('Could not copy automatically.');
+  });
+}
+
+function titleCase(str) {
+  return str.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+
+const altImageInput = $('#alt-image');
+altImageInput.addEventListener('change', (event) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = $('#alt-image-preview');
+    img.src = reader.result;
+    img.hidden = false;
+    $('#alt-image-empty').hidden = true;
+  };
+  reader.readAsDataURL(file);
+});
+
+function buildAltSentence(parts, tone = 'neutral') {
+  const clean = parts.filter(Boolean);
+  if (!clean.length) return 'No descriptive details were provided.';
+  let text = clean.join(', ');
+  if (tone === 'descriptive') text = titleCase(text.charAt(0).toUpperCase() + text.slice(1)) + '.';
+  else if (tone === 'ecommerce') text = text.replace(/^/, 'Product image of ');
+  else text = text.charAt(0).toUpperCase() + text.slice(1) + '.';
+  return text;
+}
+
+function generateAltText() {
+  const subject = $('#alt-subject').value.trim();
+  const setting = $('#alt-setting').value.trim();
+  const action = $('#alt-action').value.trim();
+  const mood = $('#alt-mood').value.trim();
+  const extra = $('#alt-extra').value.trim();
+  const verbosity = $('#alt-verbosity').value;
+  const tone = $('#alt-tone').value;
+  const priorities = $$('#alt-text-generator .dashboard-check input:checked').map((el) => el.value);
+
+  const chosen = [];
+  if (priorities.includes('subject') && subject) chosen.push(subject);
+  if (priorities.includes('setting') && setting) chosen.push(setting);
+  if (priorities.includes('action') && action) chosen.push(action);
+  if (priorities.includes('mood') && mood) chosen.push(mood);
+  if (priorities.includes('extra') && extra) chosen.push(extra);
+
+  const brief = buildAltSentence([subject, action || setting], tone);
+  const balanced = buildAltSentence(chosen.length ? chosen : [subject, setting, action, extra], tone);
+  const detailedParts = [subject, setting, action, mood, extra].filter(Boolean);
+  const detailed = buildAltSentence(detailedParts, tone);
+
+  let recommendation = balanced;
+  if (verbosity === 'brief') recommendation = brief;
+  if (verbosity === 'detailed') recommendation = detailed;
+
+  const output = [
+    'Recommended alt text:',
+    recommendation,
+    '',
+    'Variation 1 — Brief:',
+    brief,
+    '',
+    'Variation 2 — Balanced:',
+    balanced,
+    '',
+    'Variation 3 — Detailed:',
+    detailed,
+    '',
+    'Accessibility notes:',
+    '- Lead with the most important visible subject.',
+    '- Include text only if it matters to understanding the image.',
+    '- Avoid phrases like "image of" unless the context truly needs it.'
+  ].join('\n');
+
+  $('#alt-output').textContent = output;
+}
+
+$('#generate-alt-btn').addEventListener('click', generateAltText);
+$('#copy-alt-btn').addEventListener('click', () => copyText($('#alt-output').textContent));
+$('#sample-alt-btn').addEventListener('click', () => {
+  $('#alt-subject').value = 'small brown dog with upright ears';
+  $('#alt-setting').value = 'standing on green grass in a city park';
+  $('#alt-action').value = 'looking directly at the camera';
+  $('#alt-mood').value = 'alert and curious';
+  $('#alt-extra').value = 'A red leash is visible, and the background is softly blurred.';
+  $('#alt-verbosity').value = 'balanced';
+  $('#alt-tone').value = 'neutral';
+  generateAltText();
+});
+</script>
+
+</body>
+</html>
