@@ -81,61 +81,81 @@ Just editable browser tools you can actually use.
 
 ## Included Files
 
-### Blank Tables
+Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clickable links.
+
+### Starter Pack (free) — `docs/TEMPLATES/STARTER/`
+
+| File | Description |
+|------|-------------|
+| `blank-tables.html` | Blank editable tables for custom trackers |
+| `tasks.html` | Checkbox task list and notes table |
+| `project.html` | Project hub with tasks, table, and progress slider |
+| `progress.html` | Multi-item progress tracker |
+| `expenses.html` | Expense log with totals |
+| `log.html` | Script or tool log |
+| `symptoms.html` | Symptom tracker with history |
+| `quote-log.html` | Quote collection |
+| `knowledge-map.html` | Tabular knowledge graph |
+| `episode-template.html` | Podcast / show episode tracker |
+| `important-documents.html` | Vital-records checklist with local attachments |
+| `topic-cluster.html` | Simple radial mind map |
+| `activity-tracker/activity-tracker.html` | Daily activity counter with export |
+
+See also: [`docs/TEMPLATES/STARTER/README.md`](docs/TEMPLATES/STARTER/README.md)
+
+#### Screenshots (selected Starter templates)
+
+**Blank Tables** — editable table scaffold
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/blank-tables.png" width="556">
 
-A fully editable blank table system for creating your own trackers, logs, databases, or custom workflows.
-
-### Expenses
+**Expenses** — budget tracker with local saving
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/expenses.png" width="556">
 
-A customizable expense and budgeting tracker with editable categories and persistent local saving.
-
-
-### Log
+**Log** — flexible logging table
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/log.png" width="556">
 
-A flexible editable logging system for notes, observations, journaling, tracking, or documentation.
-
-### Podcast Episodes
+**Episode tracker** — podcasts and serialized content
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/podcast-episode-tracker.png" width="556">
 
-Track TV episodes, anime, podcasts, or serialized content with editable progress tracking tables.
-
-### Progress
+**Progress** — goals and milestones
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/progress.png" width="556">
 
-A progress tracking template for goals, habits, projects, milestones, or long-term workflows.
-
-### Project
+**Project** — lightweight project management
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/project.png" width="556">
 
-A lightweight project management template for organizing tasks, priorities, notes, and development progress.
-
-### Quote Log
+**Quote Log** — quotes and research snippets
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/quote-log.png" width="556">
 
-Save and organize quotes, excerpts, ideas, observations, or research snippets.
-
-### Symptom Tracker
+**Symptoms** — health logging
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/symptoms.png" width="556">
 
-A customizable symptom and health tracking template for personal logging and pattern observation.
-
-### Task Manager
+**Tasks** — task manager
 
 <img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/tasks.png" width="556">
 
-A flexible task management tool with editable rows, persistent saving, and customizable categories.
+### Builder Pack (paid) — `docs/TEMPLATES/BUILDER/`
 
-### Template Builder
+| File / folder | Description |
+|---------------|-------------|
+| `calendar.html` | Editable month calendar |
+| `kanban.html` | Drag-and-drop Kanban board |
+| `worksheet.html` | Printable worksheet and workshop tracker |
+| `masonry-gallery.html` | Masonry gallery builder with export |
+| `mindmap.html` | Pan/zoom mind map |
+| `offline-GPT.html` | Offline chat archive viewer |
+| `email-viewer.html` | Single-file MBOX viewer |
+| `activity-tracker/` | Premium activity tracker copy |
+| `dashboard/` | Dashboard shells and widget collection |
+| `dashboard/widgets/` | Generators: FAQ, CSV→SQL, fake data, regex explainer, quiz builder, quote images, scratch-off cards, pixel art, table generator, and more |
+| `sticker-sheet/` | GIF/PNG sticker grids with export |
+| `mbox-viewer/` | Multi-file MBOX viewer |
 
-A browser-based generator for creating new starter templates with editable HTML structure, shared CSS hooks, toolbar controls, editable tables, and export/import scaffolding.
+[Get the Builder Pack](https://ashpdx.gumroad.com/l/modular-markup)
