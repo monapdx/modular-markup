@@ -1,0 +1,46 @@
+name: Widget Request
+description: Request a new widget for Modular Markup.
+title: "[Widget]: "
+labels:
+  - widget
+body:
+  - type: input
+    id: widget-title
+    attributes:
+      label: Widget Title
+      description: What should this widget be called?
+      placeholder: e.g. JSON Formatter, Timeline Generator, Color Palette Viewer
+    validations:
+      required: true
+
+  - type: dropdown
+    id: widget-type
+    attributes:
+      label: Widget Type
+      description: What category best describes this widget?
+      options:
+        - Generator
+        - Converter
+        - Images
+        - Layout
+        - Viewer/Parser
+        - Visualization
+        - Tracker
+        - Utility
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: widget-functionality
+    attributes:
+      label: Widget Functionality
+      description: Describe what the widget should do, how it should work, and any important features or behaviors.
+      placeholder: |
+        Example:
+        - Accepts CSV input
+        - Generates an interactive timeline
+        - Allows drag-and-drop editing
+        - Exports as PNG, SVG, and HTML
+    validations:
+      required: true
