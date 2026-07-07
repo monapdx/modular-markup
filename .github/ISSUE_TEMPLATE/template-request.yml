@@ -1,0 +1,44 @@
+name: Template Request
+description: Request a new template for Modular Markup.
+title: "[Template]: "
+labels:
+  - template
+body:
+  - type: input
+    id: template-name
+    attributes:
+      label: Template Name
+      description: What should this template be called?
+      placeholder: e.g. Reading List, Habit Tracker, Family Tree
+    validations:
+      required: true
+
+  - type: dropdown
+    id: template-type
+    attributes:
+      label: Type
+      description: What category best describes this template?
+      options:
+        - Tracking
+        - Table
+        - Visualization
+        - Generator
+        - Layout
+        - Database
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: functionalities
+    attributes:
+      label: Functionalities
+      description: Describe what the template should do and any important features or behaviors.
+      placeholder: |
+        Example:
+        - Allow adding/removing rows
+        - Include summary statistics
+        - Support filtering
+        - Mobile-friendly layout
+    validations:
+      required: true
