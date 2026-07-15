@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" class="page-animated-notes">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b10">
+  <title>Animated Notes</title>
+  <link rel="stylesheet" href="neo-brutalist.css">
+  <link rel="stylesheet" href="neo-brutal-overrides.css">
+  <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+  <div class="notes-app">
+    <header class="notes-header">
+      <div>
+        <p class="eyebrow">Your thoughts, locally stored</p>
+        <h1>Animated<br><span>Notes</span></h1>
+      </div>
+      <div class="header-actions">
+        <button id="new-note" class="primary" type="button">＋ New note</button>
+        <button id="export-notes" class="secondary" type="button">Export</button>
+        <label class="btn secondary" for="import-file">Import</label>
+        <input id="import-file" class="file" type="file" accept="application/json,.json">
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="notes-sidebar" aria-label="Saved notes">
+        <div class="sidebar-head">
+          <div>
+            <span class="section-label">Notebook</span>
+            <strong id="note-count" class="count">0 notes</strong>
+          </div>
+          <button id="mobile-new-note" class="icon-button" type="button" aria-label="Create note">＋</button>
+        </div>
+        <label class="search-label" for="search-notes">Search notes</label>
+        <input id="search-notes" type="search" placeholder="Type to filter…" autocomplete="off">
+        <div id="notes-list" class="notes-list"></div>
+        <div id="no-results" class="no-results" hidden>No matching notes.</div>
+      </aside>
+
+      <section class="editor-panel">
+        <div id="empty-state" class="empty-state">
+          <div class="empty-spark">✦</div>
+          <p class="eyebrow">Nothing selected</p>
+          <h2>Catch the thought<br>before it escapes.</h2>
+          <button id="empty-new-note" class="primary" type="button">Create a note</button>
+        </div>
+
+        <form id="note-editor" class="note-editor" hidden>
+          <div class="editor-toolbar">
+            <span id="save-status" class="save-status" role="status">Saved locally</span>
+            <button id="delete-note" class="danger" type="button">Delete</button>
+          </div>
+
+          <label for="note-title">Note title</label>
+          <input id="note-title" class="title-input" type="text" maxlength="160" placeholder="Untitled note" autocomplete="off">
+
+          <fieldset class="icon-fieldset">
+            <legend>Choose an icon</legend>
+            <div id="icon-picker" class="icon-picker"></div>
+            <p id="icon-help" class="icon-help">Add icon filenames to <code>icons/icons.js</code>.</p>
+          </fieldset>
+
+          <label for="note-content">Note content</label>
+          <textarea id="note-content" placeholder="Start writing…" spellcheck="true"></textarea>
+
+          <footer class="editor-footer">
+            <span id="word-count">0 words</span>
+            <span id="updated-time">Not yet updated</span>
+          </footer>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="icons/icons.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
