@@ -88,7 +88,6 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 | File | Description |
 |------|-------------|
 | `blank-tables.html` | Blank editable tables for custom trackers |
-| `email-viewer.html` | Single-file MBOX email viewer |
 | `tasks.html` | Checkbox task list and notes table |
 | `project.html` | Project hub with tasks, table, and progress slider |
 | `progress.html` | Multi-item progress tracker |
@@ -152,11 +151,11 @@ See also: [`docs/TEMPLATES/STARTER/README.md`](docs/TEMPLATES/STARTER/README.md)
 | `masonry-gallery.html` | Masonry gallery builder with export |
 | `mindmap.html` | Pan/zoom mind map |
 | `offline-GPT.html` | Offline chat archive viewer |
-| `newsletter-builder.html` | Table-based newsletter layouts for Gmail paste |
+| `email-viewer.html` | Single-file MBOX viewer |
 | `activity-tracker/` | Premium activity tracker copy |
 | `dashboard/` | Dashboard shells and widget collection |
 | `dashboard/widgets/` | Generators: FAQ, CSV→SQL, fake data, regex explainer, quiz builder, quote images, scratch-off cards, pixel art, table generator, and more |
 | `sticker-sheet/` | GIF/PNG sticker grids with export |
-| `mbox-viewer/` | Premium multi-file MBOX viewer |
+| `mbox-viewer/` | Multi-file MBOX viewer |
 
 [Get the Builder Pack](https://ashpdx.gumroad.com/l/modular-markup)
