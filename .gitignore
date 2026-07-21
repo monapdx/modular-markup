@@ -1,2 +1,5 @@
 # Premium templates / assets (local-only)
 docs/TEMPLATES/BUILDER/
+
+# Build output (release packages + manifest)
+dist/

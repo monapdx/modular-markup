@@ -1,0 +1,105 @@
+# Modular Markup — Template Catalog metadata
+#
+# The FOLDER STRUCTURE under docs/TEMPLATES/ is the single source of truth for
+# WHAT exists. This file only supplies nicer human-facing metadata (titles,
+# descriptions) and per-pack settings. It never lists files that must exist;
+# scripts/catalog.py discovers those automatically.
+#
+# Regenerate everything with:  python scripts/catalog.py generate
+#
+# Resolution order for a template's display text:
+#   1. this file (templates:/folders: entries)
+#   2. the HTML <meta name="description"> tag (description only)
+#   3. filename fallback  ("Nice Name" / "Nice Name template.")
+#
+# All paths below are POSIX paths relative to docs/TEMPLATES/.
+
+# ---------------------------------------------------------------------------
+# Packs = the top-level directories inside docs/TEMPLATES/.
+# `public: false` packs are treated as paid/premium: they are excluded from the
+# public library index and are only ever packaged as private build artifacts.
+# ---------------------------------------------------------------------------
+packs:
+  STARTER:
+    title: Starter Pack
+    public: true
+  BUILDER:
+    title: Builder Pack
+    public: false
+
+# ---------------------------------------------------------------------------
+# Per-folder metadata.
+#   title       -> the card shown for this folder in its PARENT index / README
+#   description -> the card description
+#   index_title -> the <h1>/<title> used on this folder's own generated index
+# ---------------------------------------------------------------------------
+folders:
+  BUILDER:
+    title: Builder Pack
+    index_title: Builder Pack
+    description: Premium pack of advanced builders and generators.
+  BUILDER/activity-tracker:
+    description: Daily habit counter with export.
+  BUILDER/dashboard:
+    description: Dashboard shells and widget tools.
+  BUILDER/mbox-viewer:
+    description: Premium multi-file MBOX viewer (HTML + CSS + JS).
+  BUILDER/sticker-sheet:
+    description: GIF/PNG sticker grids with export.
+  STARTER:
+    title: Starter Pack
+    description: Free, editable, offline-friendly HTML templates.
+  STARTER/activity-tracker:
+    description: Daily activity counter with export.
+
+# ---------------------------------------------------------------------------
+# Per-template metadata. `title` is optional and only needed when the prettified
+# filename is not good enough (e.g. acronyms). `description` is the card text.
+# ---------------------------------------------------------------------------
+templates:
+  # --- Starter Pack ---
+  STARTER/blank-tables.html:
+    description: Blank editable tables for custom trackers.
+  STARTER/tasks.html:
+    description: Checkbox task list and notes table.
+  STARTER/project.html:
+    description: Project hub with tasks, table, and progress slider.
+  STARTER/progress.html:
+    description: Multi-item progress tracker.
+  STARTER/expenses.html:
+    description: Expense log with totals.
+  STARTER/log.html:
+    description: Script or tool log.
+  STARTER/symptoms.html:
+    description: Symptom tracker with history.
+  STARTER/quote-log.html:
+    description: Quote collection.
+  STARTER/knowledge-map.html:
+    description: Tabular knowledge graph.
+  STARTER/episode-template.html:
+    description: Podcast / show episode tracker.
+  STARTER/important-documents.html:
+    description: Vital-records checklist with local attachments.
+  STARTER/topic-cluster.html:
+    description: Simple radial mind map.
+  STARTER/writing-tracker.html:
+    description: Writing progress tracker.
+  STARTER/activity-tracker/activity-tracker.html:
+    description: Daily activity counter with export.
+
+  # --- Builder Pack ---
+  BUILDER/calendar.html:
+    description: Editable month calendar with local save.
+  BUILDER/kanban.html:
+    description: Drag-and-drop project board.
+  BUILDER/mindmap.html:
+    description: Pan/zoom mind map with nested nodes.
+  BUILDER/newsletter-builder.html:
+    description: Table-based email layouts for Gmail paste.
+  BUILDER/offline-GPT.html:
+    title: Offline GPT
+    description: Browse exported chat JSON archives.
+  BUILDER/worksheet.html:
+    description: Printable checklist and workshop tracker.
+  BUILDER/activity-tracker/activity-tracker.html:
+    description: Daily habit counter with export.

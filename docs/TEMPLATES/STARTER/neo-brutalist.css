@@ -99,6 +99,21 @@ input[type="color"] { min-height: 48px; padding: 5px; }
   box-shadow: var(--shadow-sm);
 }
 
+.card.purple {
+  background: linear-gradient(180deg, #5b21b6 0%, #312e81 100%);
+  color: #f7f5ef;
+}
+
+.card.blue {
+  background: linear-gradient(180deg, #0ea5e9 0%, #0369a1 100%);
+  color: #f7f5ef;
+}
+
+.card.lime {
+  background: linear-gradient(180deg, #b8ff24 0%, #7cb518 100%);
+  color: #050508;
+}
+
 /* Email / MBOX viewer — body clips page scroll; inner panes scroll via overflow:auto */
 body.email-viewer {
   overflow: hidden;

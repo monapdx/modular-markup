@@ -85,21 +85,26 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 
 ### Starter Pack (free) — `docs/TEMPLATES/STARTER/`
 
+<!-- TEMPLATE-CATALOG:STARTER:START -->
 | File | Description |
 |------|-------------|
-| `blank-tables.html` | Blank editable tables for custom trackers |
-| `tasks.html` | Checkbox task list and notes table |
-| `project.html` | Project hub with tasks, table, and progress slider |
-| `progress.html` | Multi-item progress tracker |
-| `expenses.html` | Expense log with totals |
-| `log.html` | Script or tool log |
-| `symptoms.html` | Symptom tracker with history |
-| `quote-log.html` | Quote collection |
-| `knowledge-map.html` | Tabular knowledge graph |
-| `episode-template.html` | Podcast / show episode tracker |
-| `important-documents.html` | Vital-records checklist with local attachments |
-| `topic-cluster.html` | Simple radial mind map |
-| `activity-tracker/activity-tracker.html` | Daily activity counter with export |
+| `blank-tables.html` | Blank editable tables for custom trackers. |
+| `episode-template.html` | Podcast / show episode tracker. |
+| `expenses.html` | Expense log with totals. |
+| `important-documents.html` | Vital-records checklist with local attachments. |
+| `knowledge-map.html` | Tabular knowledge graph. |
+| `log.html` | Script or tool log. |
+| `progress.html` | Multi-item progress tracker. |
+| `project.html` | Project hub with tasks, table, and progress slider. |
+| `quote-log.html` | Quote collection. |
+| `README.html` | Readme template. |
+| `symptoms.html` | Symptom tracker with history. |
+| `tasks.html` | Checkbox task list and notes table. |
+| `topic-cluster.html` | Simple radial mind map. |
+| `writing-tracker.html` | Writing progress tracker. |
+| `activity-tracker/` | Daily activity counter with export. |
+| `widgets/` | Widgets folder. |
+<!-- TEMPLATE-CATALOG:STARTER:END -->
 
 See also: [`docs/TEMPLATES/STARTER/README.md`](docs/TEMPLATES/STARTER/README.md)
 
@@ -143,19 +148,19 @@ See also: [`docs/TEMPLATES/STARTER/README.md`](docs/TEMPLATES/STARTER/README.md)
 
 ### Builder Pack (paid) — `docs/TEMPLATES/BUILDER/`
 
-| File / folder | Description |
-|---------------|-------------|
-| `calendar.html` | Editable month calendar |
-| `kanban.html` | Drag-and-drop Kanban board |
-| `worksheet.html` | Printable worksheet and workshop tracker |
-| `masonry-gallery.html` | Masonry gallery builder with export |
-| `mindmap.html` | Pan/zoom mind map |
-| `offline-GPT.html` | Offline chat archive viewer |
-| `email-viewer.html` | Single-file MBOX viewer |
-| `activity-tracker/` | Premium activity tracker copy |
-| `dashboard/` | Dashboard shells and widget collection |
-| `dashboard/widgets/` | Generators: FAQ, CSV→SQL, fake data, regex explainer, quiz builder, quote images, scratch-off cards, pixel art, table generator, and more |
-| `sticker-sheet/` | GIF/PNG sticker grids with export |
-| `mbox-viewer/` | Multi-file MBOX viewer |
+<!-- TEMPLATE-CATALOG:BUILDER:START -->
+| File | Description |
+|------|-------------|
+| `calendar.html` | Editable month calendar with local save. |
+| `kanban.html` | Drag-and-drop project board. |
+| `mindmap.html` | Pan/zoom mind map with nested nodes. |
+| `newsletter-builder.html` | Table-based email layouts for Gmail paste. |
+| `offline-GPT.html` | Browse exported chat JSON archives. |
+| `worksheet.html` | Printable checklist and workshop tracker. |
+| `activity-tracker/` | Daily habit counter with export. |
+| `dashboard/` | Dashboard shells and widget tools. |
+| `mbox-viewer/` | Premium multi-file MBOX viewer (HTML + CSS + JS). |
+| `sticker-sheet/` | GIF/PNG sticker grids with export. |
+<!-- TEMPLATE-CATALOG:BUILDER:END -->
 
 [Get the Builder Pack](https://ashpdx.gumroad.com/l/modular-markup)

@@ -1,0 +1,65 @@
+name: Release
+
+# Triggered by version tags like v1.2.0. Regenerates + validates the catalog,
+# packages each pack, then publishes a GitHub Release. Public packs (e.g. the
+# Starter Pack) are attached to the release; non-public packs (e.g. the paid
+# Builder Pack) are uploaded only as private workflow artifacts.
+#
+# All packaging logic lives in scripts/catalog.py, which writes dist/manifest.json
+# describing which ZIPs are public.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Regenerate and validate catalog
+        run: python scripts/catalog.py generate
+
+      - name: Package all present packs
+        run: python scripts/catalog.py package --out dist --version "${{ github.ref_name }}"
+
+      - name: Split public vs. private assets
+        id: split
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, pathlib
+          manifest = json.loads(pathlib.Path("dist/manifest.json").read_text())
+          public = [f"dist/{p['zip']}" for p in manifest["packs"] if p["public"]]
+          private = [f"dist/{p['zip']}" for p in manifest["packs"] if not p["public"]]
+          print("public_assets=" + " ".join(public))
+          print("private_assets=" + " ".join(private))
+          PY
+
+      - name: Upload private packs as artifacts
+        if: steps.split.outputs.private_assets != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-packs
+          path: ${{ steps.split.outputs.private_assets }}
+          if-no-files-found: ignore
+
+      - name: Create GitHub Release with public packs
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.split.outputs.public_assets }}
+          generate_release_notes: true

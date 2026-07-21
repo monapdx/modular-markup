@@ -1,0 +1,54 @@
+name: Build Catalog
+
+# Regenerate every derived file (indexes, shared CSS, README tables) whenever the
+# template library changes, then commit the result back. All logic lives in
+# scripts/catalog.py; this workflow only orchestrates running it.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/TEMPLATES/**"
+      - "template-catalog.yml"
+      - "scripts/catalog.py"
+      - "README.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalog-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Prevent an infinite loop: never react to our own generated commit.
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Generate catalog (indexes, CSS, README) and validate
+        run: python scripts/catalog.py generate
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "chore(catalog): regenerate catalog [skip ci]"
+            git push
+          else
+            echo "No changes to commit."
+          fi
