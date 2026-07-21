@@ -25,13 +25,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare site root
+        # Catalog lives in docs/TEMPLATES/ (index.html, packs, CSS). Publish that
+        # as the Pages root so / resolves. Also copy root marketing pages that
+        # are linked at the site root (e.g. /sales.html).
+        run: |
+          mkdir -p _site
+          cp -a docs/TEMPLATES/. _site/
+          for f in sales.html jvzoo.html; do
+            if [ -f "$f" ]; then
+              cp "$f" _site/
+            fi
+          done
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs
+          path: ./_site
 
       - name: Deploy to GitHub Pages
         id: deployment
