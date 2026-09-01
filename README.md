@@ -89,23 +89,25 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 | File | Description |
 |------|-------------|
 | `blank-tables.html` | Blank editable tables for custom trackers. |
+| `calendar.html` | Calendar template. |
 | `episode-template.html` | Podcast / show episode tracker. |
 | `expenses.html` | Expense log with totals. |
 | `important-documents.html` | Vital-records checklist with local attachments. |
+| `kanban.html` | Kanban template. |
 | `knowledge-map.html` | Tabular knowledge graph. |
 | `log.html` | Script or tool log. |
-| `offline-GPT.html` | Offline Gpt template. |
+| `mindmap.html` | Mindmap template. |
+| `newsletter-builder.html` | Newsletter Builder template. |
 | `progress.html` | Multi-item progress tracker. |
 | `project.html` | Project hub with tasks, table, and progress slider. |
 | `quote-log.html` | Quote collection. |
 | `README.html` | Readme template. |
-| `sticker-sheet.html` | Sticker Sheet template. |
 | `symptoms.html` | Symptom tracker with history. |
 | `tasks.html` | Checkbox task list and notes table. |
 | `topic-cluster.html` | Simple radial mind map. |
+| `worksheet.html` | Worksheet template. |
 | `writing-tracker.html` | Writing progress tracker. |
 | `activity-tracker/` | Daily activity counter with export. |
-| `mbox/` | Mbox folder. |
 | `widgets/` | Widgets folder. |
 <!-- TEMPLATE-CATALOG:STARTER:END -->
 
