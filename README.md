@@ -94,6 +94,7 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 | `important-documents.html` | Vital-records checklist with local attachments. |
 | `knowledge-map.html` | Tabular knowledge graph. |
 | `log.html` | Script or tool log. |
+| `offline-GPT.html` | Offline Gpt template. |
 | `progress.html` | Multi-item progress tracker. |
 | `project.html` | Project hub with tasks, table, and progress slider. |
 | `quote-log.html` | Quote collection. |
