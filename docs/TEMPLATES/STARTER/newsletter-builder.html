@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en" class="page-newsletter-builder neo-dark-doc">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Newsletter Builder</title>
+  <link rel="stylesheet" href="neo-brutalist.css" />
+  <link rel="stylesheet" href="neo-brutal-overrides.css" />
+  <style>
+    html.page-newsletter-builder .nb-app {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 3rem;
+    }
+    html.page-newsletter-builder .nb-lead {
+      color: var(--muted);
+      max-width: 52rem;
+      margin: 0 0 1.25rem;
+    }
+    html.page-newsletter-builder .nb-layout {
+      display: grid;
+      grid-template-columns: minmax(240px, 300px) 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      html.page-newsletter-builder .nb-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    html.page-newsletter-builder .nb-sidebar,
+    html.page-newsletter-builder .nb-canvas-wrap {
+      background: var(--panel);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    html.page-newsletter-builder .nb-sidebar h2,
+    html.page-newsletter-builder .nb-canvas-wrap h2 {
+      font-size: 1.05rem;
+      margin: 0 0 0.75rem;
+    }
+    html.page-newsletter-builder .nb-sidebar label {
+      display: block;
+      margin: 0.65rem 0 0.25rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-weight: 800;
+    }
+    html.page-newsletter-builder .nb-sidebar input[type="text"],
+    html.page-newsletter-builder .nb-sidebar input[type="url"],
+    html.page-newsletter-builder .nb-sidebar input[type="color"],
+    html.page-newsletter-builder .nb-sidebar select {
+      width: 100%;
+      margin-bottom: 0.35rem;
+    }
+    html.page-newsletter-builder .nb-sidebar .row-2 {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      align-items: end;
+    }
+    html.page-newsletter-builder .nb-sidebar .row-2 input[type="color"] {
+      width: 3rem;
+      height: 2.6rem;
+      padding: 0.15rem;
+      cursor: pointer;
+    }
+    html.page-newsletter-builder .nb-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+    html.page-newsletter-builder .nb-actions button,
+    html.page-newsletter-builder .nb-toolbar button,
+    html.page-newsletter-builder .nb-toolbar label.btn {
+      font-size: 0.78rem;
+    }
+    html.page-newsletter-builder .nb-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 2px solid var(--line);
+    }
+    html.page-newsletter-builder .nb-toolbar button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 3px 3px 0 #000;
+    }
+    html.page-newsletter-builder .nb-actions button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 3px 3px 0 #000;
+    }
+    html.page-newsletter-builder .nb-toolbar input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      overflow: hidden;
+    }
+    html.page-newsletter-builder .nb-status {
+      margin-left: auto;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--electric-lime);
+      align-self: center;
+    }
+    html.page-newsletter-builder .nb-hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: 0.5rem 0 0;
+    }
+    html.page-newsletter-builder .nb-section-title {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 2px solid var(--line);
+      font-size: 0.85rem;
+    }
+    html.page-newsletter-builder .nb-fold {
+      margin-top: 0.65rem;
+      border-top: 2px solid var(--line);
+      padding-top: 0.35rem;
+    }
+    html.page-newsletter-builder .nb-fold > summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.55rem 0;
+      color: var(--paper);
+      user-select: none;
+    }
+    html.page-newsletter-builder .nb-fold > summary::-webkit-details-marker {
+      display: none;
+    }
+    html.page-newsletter-builder .nb-fold > summary::before {
+      content: "+";
+      display: inline-block;
+      width: 1.1rem;
+      color: var(--electric-lime);
+      font-weight: 900;
+    }
+    html.page-newsletter-builder .nb-fold[open] > summary::before {
+      content: "−";
+    }
+    html.page-newsletter-builder .nb-fold-body {
+      padding: 0 0 0.5rem;
+    }
+    html.page-newsletter-builder .nb-fold .nb-actions {
+      margin-top: 0.4rem;
+    }
+    html.page-newsletter-builder .nb-canvas-stage {
+      position: relative;
+      overflow: auto;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          #12121a 0 10px,
+          #16161f 10px 20px
+        );
+      border: 3px solid #000;
+      border-radius: 12px;
+      padding: 1.25rem;
+      min-height: 420px;
+    }
+    html.page-newsletter-builder #email-root {
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    html.page-newsletter-builder #email-root td.nb-cell {
+      outline: 2px dashed transparent;
+      outline-offset: -2px;
+      cursor: text;
+      min-height: 28px;
+      vertical-align: top;
+    }
+    html.page-newsletter-builder #email-root td.nb-cell:hover {
+      outline-color: rgba(184, 255, 36, 0.45);
+    }
+    html.page-newsletter-builder #email-root td.nb-cell.is-selected {
+      outline-color: var(--electric-lime);
+      outline-style: solid;
+    }
+    html.page-newsletter-builder #email-root .nb-email-btn a {
+      text-decoration: none !important;
+    }
+    html.page-newsletter-builder #email-root img.nb-img {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    html.page-newsletter-builder #email-root img.nb-img.is-img-selected {
+      outline: 2px solid var(--electric-lime);
+      outline-offset: 3px;
+    }
+    html.page-newsletter-builder #nb-img-handle {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      margin: 0;
+      padding: 0;
+      background: var(--electric-lime);
+      border: 2px solid #000;
+      border-radius: 2px;
+      box-shadow: 2px 2px 0 #000;
+      cursor: nwse-resize;
+      z-index: 6;
+      display: none;
+      touch-action: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="nb-app">
+    <h1>Email Newsletter Builder</h1>
+    <p class="nb-lead">
+      Build a table-based newsletter with email-safe fonts and inline styles.
+      Click a cell to edit, then use <strong>Copy for Gmail</strong> and paste into Gmail’s compose window to keep the layout.
+    </p>
+
+    <div class="nb-layout">
+      <aside class="nb-sidebar" aria-label="Cell and layout controls">
+        <h2>Selected cell</h2>
+        <p class="nb-hint" id="selection-hint">Click any cell in the preview to select it.</p>
+
+        <label for="cell-bg-hex">Background color</label>
+        <div class="row-2">
+          <input id="cell-bg-hex" type="text" value="#ffffff" spellcheck="false" />
+          <input id="cell-bg-color" type="color" value="#ffffff" aria-label="Pick background color" />
+        </div>
+
+        <details class="nb-fold">
+          <summary>Typography &amp; spacing</summary>
+          <div class="nb-fold-body">
+            <label for="cell-font">Email-safe font</label>
+            <select id="cell-font">
+              <option value="Arial, Helvetica, sans-serif">Arial</option>
+              <option value="Helvetica, Arial, sans-serif">Helvetica</option>
+              <option value="Verdana, Geneva, sans-serif">Verdana</option>
+              <option value="Tahoma, Geneva, sans-serif">Tahoma</option>
+              <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS</option>
+              <option value="Georgia, 'Times New Roman', serif">Georgia</option>
+              <option value="'Times New Roman', Times, serif">Times New Roman</option>
+              <option value="'Courier New', Courier, monospace">Courier New</option>
+            </select>
+
+            <label for="cell-font-size">Font size (px)</label>
+            <select id="cell-font-size">
+              <option value="12">12</option>
+              <option value="14" selected>14</option>
+              <option value="16">16</option>
+              <option value="18">18</option>
+              <option value="20">20</option>
+              <option value="24">24</option>
+              <option value="28">28</option>
+              <option value="32">32</option>
+            </select>
+
+            <label for="cell-text-color">Text color</label>
+            <div class="row-2">
+              <input id="cell-text-hex" type="text" value="#222222" spellcheck="false" />
+              <input id="cell-text-color" type="color" value="#222222" aria-label="Pick text color" />
+            </div>
+
+            <label for="cell-align">Text align</label>
+            <select id="cell-align">
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+            </select>
+
+            <label for="cell-valign">Vertical align</label>
+            <select id="cell-valign">
+              <option value="top" selected>Top</option>
+              <option value="middle">Middle</option>
+              <option value="bottom">Bottom</option>
+            </select>
+
+            <label for="cell-padding">Cell padding (px)</label>
+            <select id="cell-padding">
+              <option value="8">8</option>
+              <option value="12">12</option>
+              <option value="16" selected>16</option>
+              <option value="20">20</option>
+              <option value="24">24</option>
+              <option value="32">32</option>
+            </select>
+          </div>
+        </details>
+
+        <details class="nb-fold">
+          <summary>Insert into cell</summary>
+          <div class="nb-fold-body">
+            <div class="nb-actions">
+              <button type="button" id="btn-add-image">Upload image</button>
+              <input id="image-input" type="file" accept="image/*" />
+              <button type="button" class="secondary" id="btn-add-button">Add link button</button>
+              <button type="button" class="secondary" id="btn-add-nested">Add nested table</button>
+            </div>
+
+            <label for="btn-label">Button label</label>
+            <input id="btn-label" type="text" value="Read more" />
+            <label for="btn-url">Button URL</label>
+            <input id="btn-url" type="url" placeholder="https://example.com" value="https://example.com" />
+            <label for="btn-bg">Button color</label>
+            <div class="row-2">
+              <input id="btn-bg-hex" type="text" value="#111111" spellcheck="false" />
+              <input id="btn-bg-color" type="color" value="#111111" aria-label="Button background" />
+            </div>
+          </div>
+        </details>
+
+        <details class="nb-fold">
+          <summary>Structure</summary>
+          <div class="nb-fold-body">
+            <p class="nb-hint">Select a cell, then split it into columns or merge with the cell on its right. Other rows keep full width via colspan.</p>
+            <div class="nb-actions">
+              <button type="button" id="btn-split-2" disabled>Split into 2 columns</button>
+              <button type="button" id="btn-split-3" disabled>Split into 3 columns</button>
+              <button type="button" class="secondary" id="btn-merge-right" disabled>Merge right</button>
+            </div>
+          </div>
+        </details>
+
+        <details class="nb-fold">
+          <summary>Page</summary>
+          <div class="nb-fold-body">
+            <label for="outer-bg-hex">Outer background</label>
+            <div class="row-2">
+              <input id="outer-bg-hex" type="text" value="#f0f0f0" spellcheck="false" />
+              <input id="outer-bg-color" type="color" value="#f0f0f0" aria-label="Outer background" />
+            </div>
+            <label for="email-width">Content width (px)</label>
+            <select id="email-width">
+              <option value="560">560</option>
+              <option value="600" selected>600</option>
+              <option value="640">640</option>
+            </select>
+          </div>
+        </details>
+      </aside>
+
+      <section class="nb-canvas-wrap">
+        <div class="nb-toolbar" role="toolbar" aria-label="Editor and export tools">
+          <button type="button" class="secondary" id="btn-undo" title="Undo (Ctrl+Z)" disabled>Undo</button>
+          <button type="button" class="secondary" id="btn-redo" title="Redo (Ctrl+Y)" disabled>Redo</button>
+          <button type="button" id="btn-copy">Copy for Gmail</button>
+          <button type="button" class="secondary" id="btn-download">Download HTML</button>
+          <button type="button" class="primary" id="btn-reset" title="Reset all changes to the starter layout">Reset</button>
+          <span class="nb-status" id="status" aria-live="polite"></span>
+        </div>
+
+        <h2>Live preview</h2>
+        <p class="nb-hint">Click inside a cell to type. Click an image, then drag the corner handle to resize. Use <strong>Copy for Gmail</strong> to copy the rendered layout, then paste into Gmail’s compose window.</p>
+        <div class="nb-canvas-stage" id="nb-canvas-stage">
+          <div id="email-root"></div>
+          <button type="button" id="nb-img-handle" aria-label="Resize image" tabindex="-1"></button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var SAFE_FONTS = {
+      "Arial, Helvetica, sans-serif": true,
+      "Helvetica, Arial, sans-serif": true,
+      "Verdana, Geneva, sans-serif": true,
+      "Tahoma, Geneva, sans-serif": true,
+      "'Trebuchet MS', Helvetica, sans-serif": true,
+      "Georgia, 'Times New Roman', serif": true,
+      "'Times New Roman', Times, serif": true,
+      "'Courier New', Courier, monospace": true
+    };
+
+    var selectedCell = null;
+    var selectedImg = null;
+    var emailRoot = document.getElementById("email-root");
+    var canvasStage = document.getElementById("nb-canvas-stage");
+    var imgHandle = document.getElementById("nb-img-handle");
+    var statusEl = document.getElementById("status");
+    var selectionHint = document.getElementById("selection-hint");
+    var btnUndo = document.getElementById("btn-undo");
+    var btnRedo = document.getElementById("btn-redo");
+    var imgResizeState = null;
+
+    var HISTORY_MAX = 60;
+    var historyStack = [];
+    var historyIndex = -1;
+    var historySuspended = false;
+    var historyTimer = null;
+    var HISTORY_DEBOUNCE_MS = 400;
+
+    function setStatus(msg) {
+      statusEl.textContent = msg || "";
+    }
+
+    function updateHistoryButtons() {
+      btnUndo.disabled = historyIndex <= 0;
+      btnRedo.disabled = historyIndex < 0 || historyIndex >= historyStack.length - 1;
+    }
+
+    function captureSnapshot() {
+      var marked = emailRoot.querySelectorAll("td.nb-cell.is-selected");
+      var markedImgs = emailRoot.querySelectorAll("img.is-img-selected");
+      for (var i = 0; i < marked.length; i++) marked[i].classList.remove("is-selected");
+      for (var k = 0; k < markedImgs.length; k++) markedImgs[k].classList.remove("is-img-selected");
+      var snap = emailRoot.innerHTML;
+      for (var j = 0; j < marked.length; j++) marked[j].classList.add("is-selected");
+      for (var m = 0; m < markedImgs.length; m++) markedImgs[m].classList.add("is-img-selected");
+      return snap;
+    }
+
+    function pushHistory() {
+      if (historySuspended) return;
+      var snap = captureSnapshot();
+      if (historyIndex >= 0 && historyStack[historyIndex] === snap) {
+        updateHistoryButtons();
+        return;
+      }
+      historyStack = historyStack.slice(0, historyIndex + 1);
+      historyStack.push(snap);
+      if (historyStack.length > HISTORY_MAX) {
+        historyStack.shift();
+      } else {
+        historyIndex++;
+      }
+      updateHistoryButtons();
+    }
+
+    function scheduleHistoryPush() {
+      if (historySuspended) return;
+      clearTimeout(historyTimer);
+      historyTimer = setTimeout(function () {
+        historyTimer = null;
+        pushHistory();
+      }, HISTORY_DEBOUNCE_MS);
+    }
+
+    function pushHistoryNow() {
+      if (historySuspended) return;
+      clearTimeout(historyTimer);
+      historyTimer = null;
+      pushHistory();
+    }
+
+    function syncPageControlsFromDom() {
+      var outer = getOuterTable();
+      if (outer) {
+        var bg = normalizeHex(outer.getAttribute("bgcolor") || outer.style.backgroundColor, "#f0f0f0");
+        if (bg.charAt(0) !== "#") bg = "#f0f0f0";
+        document.getElementById("outer-bg-hex").value = bg;
+        document.getElementById("outer-bg-color").value = bg;
+      }
+      var inner = getInnerTable();
+      if (inner) {
+        var w = String(inner.getAttribute("width") || parseInt(inner.style.width, 10) || 600);
+        var widthSelect = document.getElementById("email-width");
+        if ([].some.call(widthSelect.options, function (o) { return o.value === w; })) {
+          widthSelect.value = w;
+        }
+      }
+    }
+
+    function restoreSnapshot(snap) {
+      historySuspended = true;
+      clearImageSelection();
+      var prevSection = selectedCell ? selectedCell.getAttribute("data-section") : null;
+      selectedCell = null;
+      emailRoot.innerHTML = snap;
+      makeEditableCells(emailRoot);
+      prepareImages(emailRoot);
+      syncPageControlsFromDom();
+      var cell =
+        (prevSection && emailRoot.querySelector('td.nb-cell[data-section="' + prevSection + '"]')) ||
+        emailRoot.querySelector("td.nb-cell");
+      if (cell) selectCell(cell);
+      historySuspended = false;
+      updateHistoryButtons();
+    }
+
+    function flushPendingHistory() {
+      if (historySuspended) return;
+      clearTimeout(historyTimer);
+      historyTimer = null;
+      pushHistory();
+    }
+
+    function undo() {
+      flushPendingHistory();
+      if (historyIndex <= 0) return;
+      historyIndex--;
+      restoreSnapshot(historyStack[historyIndex]);
+      setStatus("Undone");
+    }
+
+    function redo() {
+      flushPendingHistory();
+      if (historyIndex >= historyStack.length - 1) return;
+      historyIndex++;
+      restoreSnapshot(historyStack[historyIndex]);
+      setStatus("Redone");
+    }
+
+    function resetHistoryFromCurrent() {
+      clearTimeout(historyTimer);
+      historyTimer = null;
+      historyStack = [captureSnapshot()];
+      historyIndex = 0;
+      updateHistoryButtons();
+    }
+
+    function normalizeHex(value, fallback) {
+      var v = String(value || "").trim();
+      if (/^#([0-9a-fA-F]{3})$/.test(v)) {
+        var s = v.slice(1);
+        return ("#" + s[0] + s[0] + s[1] + s[1] + s[2] + s[2]).toLowerCase();
+      }
+      if (/^#([0-9a-fA-F]{6})$/.test(v)) return v.toLowerCase();
+      return fallback;
+    }
+
+    function syncColorPair(hexInput, colorInput, fallback) {
+      var hex = normalizeHex(hexInput.value, fallback);
+      hexInput.value = hex;
+      colorInput.value = hex;
+      return hex;
+    }
+
+    function bindColorPair(hexId, colorId, onChange, fallback) {
+      var hexInput = document.getElementById(hexId);
+      var colorInput = document.getElementById(colorId);
+      hexInput.addEventListener("change", function () {
+        var hex = syncColorPair(hexInput, colorInput, fallback);
+        if (onChange) onChange(hex);
+      });
+      hexInput.addEventListener("blur", function () {
+        var hex = syncColorPair(hexInput, colorInput, fallback);
+        if (onChange) onChange(hex);
+      });
+      colorInput.addEventListener("input", function () {
+        hexInput.value = colorInput.value;
+        if (onChange) onChange(colorInput.value);
+      });
+    }
+
+    function defaultStarterHtml(width) {
+      width = width || 600;
+      return (
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f0f0f0" id="nb-outer" style="background-color:#f0f0f0;margin:0;padding:0;width:100%;">' +
+        '<tr><td align="center" style="padding:24px 12px;">' +
+        '<table role="presentation" width="' + width + '" cellpadding="0" cellspacing="0" border="0" id="nb-inner" style="width:' + width + 'px;max-width:100%;background-color:#ffffff;">' +
+        '<tr><td class="nb-cell" data-section="header" bgcolor="#111111" style="background-color:#111111;color:#ffffff;font-family:Arial, Helvetica, sans-serif;font-size:24px;line-height:1.4;padding:24px;text-align:center;">' +
+        '<strong>Your Newsletter</strong><br><span style="font-size:14px;font-weight:normal;">A short subtitle goes here</span>' +
+        "</td></tr>" +
+        '<tr><td class="nb-cell" data-section="body" bgcolor="#ffffff" style="background-color:#ffffff;color:#222222;font-family:Arial, Helvetica, sans-serif;font-size:16px;line-height:1.55;padding:28px 24px;text-align:left;min-height:180px;">' +
+        "<p style=\"margin:0 0 12px 0;\">Click this body cell and replace this copy with your story, update, or offer.</p>" +
+        "<p style=\"margin:0;\">Use the sidebar to change colors, insert an image, add a link button, or nest a multi-column table here.</p>" +
+        "</td></tr>" +
+        '<tr id="nb-footer-row"><td class="nb-cell" data-section="footer" bgcolor="#eeeeee" style="background-color:#eeeeee;color:#555555;font-family:Arial, Helvetica, sans-serif;font-size:12px;line-height:1.5;padding:20px 16px;text-align:center;">' +
+        "Company name · Unsubscribe · <a href=\"https://example.com\" style=\"color:#555555;\">Website</a>" +
+        "</td></tr>" +
+        "</table></td></tr></table>"
+      );
+    }
+
+    function getInnerTable() {
+      return emailRoot.querySelector("#nb-inner");
+    }
+
+    function getOuterTable() {
+      return emailRoot.querySelector("#nb-outer");
+    }
+
+    function selectCell(td) {
+      if (!td || !td.classList.contains("nb-cell")) return;
+      if (selectedCell) selectedCell.classList.remove("is-selected");
+      selectedCell = td;
+      selectedCell.classList.add("is-selected");
+      selectionHint.textContent = "Editing " + (td.getAttribute("data-section") || "cell") + " cell.";
+
+      var bg = normalizeHex(td.getAttribute("bgcolor") || td.style.backgroundColor, "#ffffff");
+      if (bg.charAt(0) !== "#") bg = "#ffffff";
+      document.getElementById("cell-bg-hex").value = bg;
+      document.getElementById("cell-bg-color").value = bg;
+
+      var font = td.style.fontFamily || "Arial, Helvetica, sans-serif";
+      var fontSelect = document.getElementById("cell-font");
+      if (!SAFE_FONTS[font]) font = "Arial, Helvetica, sans-serif";
+      fontSelect.value = font;
+
+      var size = parseInt(td.style.fontSize, 10) || 14;
+      document.getElementById("cell-font-size").value = String(size);
+
+      var color = normalizeHex(td.style.color, "#222222");
+      document.getElementById("cell-text-hex").value = color;
+      document.getElementById("cell-text-color").value = color;
+
+      document.getElementById("cell-align").value = td.style.textAlign || "left";
+      var valign = (td.style.verticalAlign || td.getAttribute("valign") || "top").toLowerCase();
+      if (valign !== "top" && valign !== "middle" && valign !== "bottom") valign = "top";
+      document.getElementById("cell-valign").value = valign;
+      var pad = parseInt(td.style.padding, 10) || 16;
+      document.getElementById("cell-padding").value = String(pad);
+      updateStructureButtons();
+    }
+
+    function applyCellStyles() {
+      if (!selectedCell) return;
+      var bg = syncColorPair(
+        document.getElementById("cell-bg-hex"),
+        document.getElementById("cell-bg-color"),
+        "#ffffff"
+      );
+      var text = syncColorPair(
+        document.getElementById("cell-text-hex"),
+        document.getElementById("cell-text-color"),
+        "#222222"
+      );
+      var font = document.getElementById("cell-font").value;
+      if (!SAFE_FONTS[font]) font = "Arial, Helvetica, sans-serif";
+      var size = document.getElementById("cell-font-size").value;
+      var align = document.getElementById("cell-align").value;
+      var valign = document.getElementById("cell-valign").value;
+      var padding = document.getElementById("cell-padding").value;
+
+      selectedCell.setAttribute("bgcolor", bg);
+      selectedCell.setAttribute("valign", valign);
+      selectedCell.style.backgroundColor = bg;
+      selectedCell.style.color = text;
+      selectedCell.style.fontFamily = font;
+      selectedCell.style.fontSize = size + "px";
+      selectedCell.style.lineHeight = "1.5";
+      selectedCell.style.textAlign = align;
+      selectedCell.style.verticalAlign = valign;
+      selectedCell.style.padding = padding + "px";
+      scheduleHistoryPush();
+    }
+
+    function makeEditableCells(root) {
+      root.querySelectorAll("td.nb-cell").forEach(function (td) {
+        td.setAttribute("contenteditable", "true");
+        td.setAttribute("spellcheck", "true");
+      });
+    }
+
+    function prepareImages(root) {
+      root.querySelectorAll("img").forEach(function (img) {
+        img.classList.add("nb-img");
+        img.draggable = false;
+        img.setAttribute("draggable", "false");
+      });
+    }
+
+    function scrubImgEditorClasses(root) {
+      root.querySelectorAll("img.is-img-selected").forEach(function (el) {
+        el.classList.remove("is-img-selected");
+      });
+      root.querySelectorAll("img.nb-img").forEach(function (el) {
+        el.classList.remove("nb-img");
+        if (!el.className) el.removeAttribute("class");
+      });
+    }
+
+    function clearImageSelection() {
+      imgResizeState = null;
+      if (selectedImg) {
+        selectedImg.classList.remove("is-img-selected");
+        selectedImg = null;
+      }
+      imgHandle.style.display = "none";
+    }
+
+    function applyImgWidth(img, widthPx) {
+      widthPx = Math.max(40, Math.round(widthPx));
+      img.setAttribute("width", String(widthPx));
+      img.width = widthPx;
+      img.removeAttribute("height");
+      img.style.width = widthPx + "px";
+      img.style.height = "auto";
+      img.style.maxWidth = "100%";
+      img.style.display = "block";
+    }
+
+    function positionImgHandle() {
+      if (!selectedImg || !selectedImg.isConnected) {
+        imgHandle.style.display = "none";
+        return;
+      }
+      var stageRect = canvasStage.getBoundingClientRect();
+      var imgRect = selectedImg.getBoundingClientRect();
+      var left = imgRect.right - stageRect.left + canvasStage.scrollLeft - 7;
+      var top = imgRect.bottom - stageRect.top + canvasStage.scrollTop - 7;
+      imgHandle.style.left = left + "px";
+      imgHandle.style.top = top + "px";
+      imgHandle.style.display = "block";
+    }
+
+    function selectImage(img) {
+      if (!img || !emailRoot.contains(img)) return;
+      if (selectedImg && selectedImg !== img) {
+        selectedImg.classList.remove("is-img-selected");
+      }
+      selectedImg = img;
+      img.classList.add("nb-img", "is-img-selected");
+      img.draggable = false;
+
+      var td = img.closest("td.nb-cell");
+      if (td) selectCell(td);
+      positionImgHandle();
+      selectionHint.textContent = "Image selected — drag the corner handle to resize.";
+      setStatus("Drag the corner handle to resize");
+    }
+
+    function wireCanvas() {
+      emailRoot.addEventListener("click", function (e) {
+        var img = e.target.closest("img");
+        if (img && emailRoot.contains(img)) {
+          e.preventDefault();
+          e.stopPropagation();
+          selectImage(img);
+          return;
+        }
+        clearImageSelection();
+        var td = e.target.closest("td.nb-cell");
+        if (td && emailRoot.contains(td)) selectCell(td);
+      });
+
+      emailRoot.addEventListener("mousedown", function (e) {
+        if (e.target.tagName === "IMG" && emailRoot.contains(e.target)) {
+          e.preventDefault();
+        }
+      });
+
+      emailRoot.addEventListener("dragstart", function (e) {
+        if (e.target.tagName === "IMG") e.preventDefault();
+      });
+
+      emailRoot.addEventListener("input", function () {
+        scheduleHistoryPush();
+      });
+
+      canvasStage.addEventListener("scroll", positionImgHandle);
+
+      imgHandle.addEventListener("pointerdown", function (e) {
+        if (!selectedImg) return;
+        e.preventDefault();
+        e.stopPropagation();
+        imgHandle.setPointerCapture(e.pointerId);
+        var cell = selectedImg.closest("td");
+        var maxW = cell ? cell.clientWidth : 600;
+        var startW = selectedImg.getBoundingClientRect().width;
+        applyImgWidth(selectedImg, startW);
+        imgResizeState = {
+          img: selectedImg,
+          startX: e.clientX,
+          startW: startW,
+          maxW: Math.max(40, maxW)
+        };
+        positionImgHandle();
+      });
+
+      imgHandle.addEventListener("pointermove", function (e) {
+        if (!imgResizeState) return;
+        var dx = e.clientX - imgResizeState.startX;
+        var next = Math.min(imgResizeState.maxW, Math.max(40, imgResizeState.startW + dx));
+        applyImgWidth(imgResizeState.img, next);
+        positionImgHandle();
+      });
+
+      function endImgResize(e) {
+        if (!imgResizeState) return;
+        imgResizeState = null;
+        try {
+          imgHandle.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+        pushHistoryNow();
+        positionImgHandle();
+        setStatus("Image resized");
+      }
+
+      imgHandle.addEventListener("pointerup", endImgResize);
+      imgHandle.addEventListener("pointercancel", endImgResize);
+
+      window.addEventListener("resize", positionImgHandle);
+    }
+
+    function buildExportHtml() {
+      var clone = emailRoot.cloneNode(true);
+      clone.querySelectorAll(".is-selected").forEach(function (el) {
+        el.classList.remove("is-selected");
+      });
+      clone.querySelectorAll("[contenteditable]").forEach(function (el) {
+        el.removeAttribute("contenteditable");
+        el.removeAttribute("spellcheck");
+      });
+      scrubImgEditorClasses(clone);
+      clone.querySelectorAll(".nb-cell").forEach(function (el) {
+        el.classList.remove("nb-cell");
+        if (!el.className) el.removeAttribute("class");
+      });
+
+      var inner = clone.innerHTML.trim();
+      return (
+        "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n" +
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+        "<title>Newsletter</title>\n</head>\n<body style=\"margin:0;padding:0;\">\n" +
+        inner +
+        "\n</body>\n</html>\n"
+      );
+    }
+
+    function ensureSelection() {
+      if (!selectedCell || !emailRoot.contains(selectedCell)) {
+        var first = emailRoot.querySelector("td.nb-cell");
+        if (first) selectCell(first);
+      }
+      return !!selectedCell;
+    }
+
+    function insertImage(dataUrl, fileName) {
+      if (!ensureSelection()) return;
+      var img = document.createElement("img");
+      img.className = "nb-img";
+      img.src = dataUrl;
+      img.alt = fileName || "Newsletter image";
+      img.setAttribute("border", "0");
+      img.draggable = false;
+      img.setAttribute("draggable", "false");
+      img.style.cssText =
+        "display:block;max-width:100%;height:auto;border:0;outline:none;text-decoration:none;margin:8px 0;";
+      applyImgWidth(img, 520);
+      selectedCell.appendChild(document.createElement("br"));
+      selectedCell.appendChild(img);
+      selectImage(img);
+      pushHistoryNow();
+      setStatus("Image inserted — drag the corner to resize");
+    }
+
+    function insertButton() {
+      if (!ensureSelection()) return;
+      var label = document.getElementById("btn-label").value.trim() || "Read more";
+      var url = document.getElementById("btn-url").value.trim() || "https://example.com";
+      var bg = syncColorPair(
+        document.getElementById("btn-bg-hex"),
+        document.getElementById("btn-bg-color"),
+        "#111111"
+      );
+
+      var wrap = document.createElement("table");
+      wrap.setAttribute("role", "presentation");
+      wrap.setAttribute("cellpadding", "0");
+      wrap.setAttribute("cellspacing", "0");
+      wrap.setAttribute("border", "0");
+      wrap.className = "nb-email-btn";
+      wrap.style.cssText = "margin:16px 0;";
+      wrap.innerHTML =
+        '<tr><td bgcolor="' +
+        bg +
+        '" style="background-color:' +
+        bg +
+        ';border-radius:4px;text-align:center;">' +
+        '<a href="' +
+        url.replace(/"/g, "&quot;") +
+        '" target="_blank" style="display:inline-block;padding:12px 22px;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:bold;color:#ffffff;text-decoration:none;">' +
+        label.replace(/</g, "&lt;").replace(/>/g, "&gt;") +
+        "</a></td></tr>";
+
+      selectedCell.appendChild(wrap);
+      pushHistoryNow();
+      setStatus("Button added");
+    }
+
+    function insertNestedTable() {
+      if (!ensureSelection()) return;
+      var nested = document.createElement("table");
+      nested.setAttribute("role", "presentation");
+      nested.setAttribute("width", "100%");
+      nested.setAttribute("cellpadding", "0");
+      nested.setAttribute("cellspacing", "0");
+      nested.setAttribute("border", "0");
+      nested.style.cssText = "width:100%;margin:12px 0;";
+      nested.innerHTML =
+        '<tr>' +
+        '<td class="nb-cell" width="50%" bgcolor="#f7f7f7" style="width:50%;background-color:#f7f7f7;color:#222222;font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:1.5;padding:12px;text-align:left;vertical-align:top;">Column 1 — click to edit</td>' +
+        '<td class="nb-cell" width="50%" bgcolor="#f7f7f7" style="width:50%;background-color:#f7f7f7;color:#222222;font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:1.5;padding:12px;text-align:left;vertical-align:top;">Column 2 — click to edit</td>' +
+        "</tr>";
+      selectedCell.appendChild(nested);
+      makeEditableCells(selectedCell);
+      pushHistoryNow();
+      setStatus("Nested 2-column table added");
+    }
+
+    function getCellColspan(td) {
+      return parseInt(td.getAttribute("colspan"), 10) || 1;
+    }
+
+    function setCellColspan(td, span) {
+      span = Math.max(1, span);
+      if (span === 1) {
+        td.removeAttribute("colspan");
+      } else {
+        td.setAttribute("colspan", String(span));
+      }
+    }
+
+    function setCellWidthPct(td, pct) {
+      pct = Math.max(1, Math.round(pct));
+      td.setAttribute("width", pct + "%");
+      td.style.width = pct + "%";
+    }
+
+    function rowColCount(tr) {
+      var total = 0;
+      for (var i = 0; i < tr.cells.length; i++) {
+        total += getCellColspan(tr.cells[i]);
+      }
+      return total;
+    }
+
+    function getContentTable(td) {
+      var table = td && td.closest("table");
+      if (!table || table.id === "nb-outer") return null;
+      return table;
+    }
+
+    function tableColumnCount(table) {
+      var max = 1;
+      var rows = table.rows;
+      for (var i = 0; i < rows.length; i++) {
+        max = Math.max(max, rowColCount(rows[i]));
+      }
+      return max;
+    }
+
+    function createCellLike(source, contentHtml) {
+      var td = document.createElement("td");
+      td.className = "nb-cell";
+      var section = source.getAttribute("data-section");
+      if (section) td.setAttribute("data-section", section);
+      var bg = source.getAttribute("bgcolor") || normalizeHex(source.style.backgroundColor, "#ffffff");
+      td.setAttribute("bgcolor", bg);
+      td.style.cssText = source.style.cssText;
+      var valign = source.getAttribute("valign");
+      if (valign) td.setAttribute("valign", valign);
+      td.innerHTML = contentHtml;
+      return td;
+    }
+
+    function syncTableColspans(table) {
+      var rows = table.rows;
+      var max = 1;
+      var i;
+      for (i = 0; i < rows.length; i++) {
+        max = Math.max(max, rowColCount(rows[i]));
+      }
+
+      for (i = 0; i < rows.length; i++) {
+        var tr = rows[i];
+        var current = rowColCount(tr);
+        if (current < max && tr.cells.length > 0) {
+          var last = tr.cells[tr.cells.length - 1];
+          setCellColspan(last, getCellColspan(last) + (max - current));
+        }
+      }
+
+      max = tableColumnCount(table);
+
+      var allSingle = rows.length > 0;
+      for (i = 0; i < rows.length; i++) {
+        if (rows[i].cells.length !== 1) {
+          allSingle = false;
+          break;
+        }
+      }
+      if (allSingle) {
+        for (i = 0; i < rows.length; i++) {
+          var only = rows[i].cells[0];
+          setCellColspan(only, 1);
+          only.removeAttribute("width");
+          only.style.width = "";
+        }
+        return;
+      }
+
+      for (i = 0; i < rows.length; i++) {
+        var tr2 = rows[i];
+        if (tr2.cells.length === 1) {
+          setCellColspan(tr2.cells[0], max);
+          setCellWidthPct(tr2.cells[0], 100);
+        }
+      }
+    }
+
+    function canMergeRight(td) {
+      return !!(td && td.nextElementSibling && td.nextElementSibling.tagName === "TD");
+    }
+
+    function updateStructureButtons() {
+      var hasCell = !!(selectedCell && emailRoot.contains(selectedCell));
+      document.getElementById("btn-split-2").disabled = !hasCell;
+      document.getElementById("btn-split-3").disabled = !hasCell;
+      document.getElementById("btn-merge-right").disabled = !hasCell || !canMergeRight(selectedCell);
+    }
+
+    function splitCellIntoColumns(count) {
+      if (!ensureSelection()) return;
+      count = count === 3 ? 3 : 2;
+      var td = selectedCell;
+      var tr = td.parentNode;
+      var table = getContentTable(td);
+      if (!tr || !table) return;
+
+      var oldSpan = getCellColspan(td);
+      var originalHtml = td.innerHTML;
+      var baseWidth = parseInt(td.getAttribute("width"), 10);
+      if (!baseWidth || isNaN(baseWidth)) {
+        baseWidth = tr.cells.length === 1 ? 100 : Math.floor(100 / Math.max(1, tr.cells.length));
+      }
+
+      var spanBase = Math.floor(oldSpan / count);
+      var spanRem = oldSpan % count;
+      var spans = [];
+      var s;
+      for (s = 0; s < count; s++) {
+        spans.push(Math.max(1, spanBase + (s < spanRem ? 1 : 0)));
+      }
+
+      var widths = [];
+      var used = 0;
+      var pieceWidth = Math.floor(baseWidth / count);
+      var w;
+      for (w = 0; w < count; w++) {
+        if (w === count - 1) widths.push(Math.max(1, baseWidth - used));
+        else {
+          widths.push(pieceWidth);
+          used += pieceWidth;
+        }
+      }
+
+      var cells = [];
+      var i;
+      for (i = 0; i < count; i++) {
+        var cell = createCellLike(
+          td,
+          i === 0 ? originalHtml : "Column " + (i + 1) + " — click to edit"
+        );
+        setCellColspan(cell, spans[i]);
+        setCellWidthPct(cell, widths[i]);
+        tr.insertBefore(cell, td);
+        cells.push(cell);
+      }
+      tr.removeChild(td);
+
+      syncTableColspans(table);
+      makeEditableCells(tr);
+      selectCell(cells[0]);
+      pushHistoryNow();
+      setStatus("Split into " + count + " columns");
+    }
+
+    function mergeCellRight() {
+      if (!ensureSelection() || !canMergeRight(selectedCell)) return;
+      var td = selectedCell;
+      var next = td.nextElementSibling;
+      var table = getContentTable(td);
+      if (!table) return;
+
+      var span = getCellColspan(td) + getCellColspan(next);
+      var w1 = parseInt(td.getAttribute("width"), 10) || 0;
+      var w2 = parseInt(next.getAttribute("width"), 10) || 0;
+      var nextHtml = next.innerHTML.trim();
+      if (nextHtml) {
+        if (td.innerHTML.trim()) td.appendChild(document.createElement("br"));
+        while (next.firstChild) td.appendChild(next.firstChild);
+      }
+      next.parentNode.removeChild(next);
+      setCellColspan(td, span);
+      if (w1 || w2) {
+        setCellWidthPct(td, (w1 || 0) + (w2 || 0) || 100);
+      } else if (td.parentNode.cells.length === 1) {
+        setCellWidthPct(td, 100);
+      }
+
+      syncTableColspans(table);
+      makeEditableCells(td.parentNode);
+      selectCell(td);
+      pushHistoryNow();
+      setStatus("Merged with cell to the right");
+    }
+
+    function applyOuterBg(hex) {
+      var outer = getOuterTable();
+      if (!outer) return;
+      outer.setAttribute("bgcolor", hex);
+      outer.style.backgroundColor = hex;
+      scheduleHistoryPush();
+    }
+
+    function applyEmailWidth(width) {
+      var inner = getInnerTable();
+      if (!inner) return;
+      inner.setAttribute("width", width);
+      inner.style.width = width + "px";
+      pushHistoryNow();
+    }
+
+    function resetLayout() {
+      if (!confirm("Reset the newsletter to the starter layout? All changes will be lost.")) return;
+      clearImageSelection();
+      selectedCell = null;
+      emailRoot.innerHTML = defaultStarterHtml(document.getElementById("email-width").value);
+      makeEditableCells(emailRoot);
+      prepareImages(emailRoot);
+      syncPageControlsFromDom();
+      selectCell(emailRoot.querySelector('td[data-section="body"]'));
+      resetHistoryFromCurrent();
+      setStatus("Reset to starter layout");
+    }
+
+    function getPreviewTable() {
+      return emailRoot.querySelector("#nb-outer") || emailRoot.firstElementChild || emailRoot;
+    }
+
+    function getCleanPreviewHtml() {
+      var cloneRoot = emailRoot.cloneNode(true);
+      cloneRoot.querySelectorAll(".is-selected").forEach(function (el) {
+        el.classList.remove("is-selected");
+      });
+      cloneRoot.querySelectorAll("[contenteditable]").forEach(function (el) {
+        el.removeAttribute("contenteditable");
+        el.removeAttribute("spellcheck");
+      });
+      scrubImgEditorClasses(cloneRoot);
+      cloneRoot.querySelectorAll(".nb-cell").forEach(function (el) {
+        el.classList.remove("nb-cell");
+        if (!el.className) el.removeAttribute("class");
+      });
+      var table = cloneRoot.querySelector("#nb-outer") || cloneRoot.firstElementChild;
+      return table ? table.outerHTML : cloneRoot.innerHTML;
+    }
+
+    function copyHtml(fromButton) {
+      var btn = fromButton && fromButton.nodeType === 1 ? fromButton : null;
+      var source = getPreviewTable();
+      var hadSelectionClass = false;
+      var hadImgSelection = false;
+
+      function flashButton(ok) {
+        if (!btn) return;
+        var prev = btn.textContent;
+        btn.textContent = ok ? "Copied!" : "Failed";
+        setTimeout(function () {
+          btn.textContent = prev;
+        }, 1400);
+      }
+
+      function done(ok, msg) {
+        setStatus(msg || (ok ? "Layout copied — paste into Gmail" : "Copy failed"));
+        flashButton(ok);
+      }
+
+      function restoreEditorChrome() {
+        if (hadSelectionClass && selectedCell) selectedCell.classList.add("is-selected");
+        if (hadImgSelection && selectedImg) {
+          selectedImg.classList.add("is-img-selected");
+          positionImgHandle();
+        }
+        makeEditableCells(emailRoot);
+        prepareImages(emailRoot);
+      }
+
+      function copyViaSelection() {
+        if (selectedCell && selectedCell.classList.contains("is-selected")) {
+          selectedCell.classList.remove("is-selected");
+          hadSelectionClass = true;
+        }
+        if (selectedImg && selectedImg.classList.contains("is-img-selected")) {
+          selectedImg.classList.remove("is-img-selected");
+          hadImgSelection = true;
+          imgHandle.style.display = "none";
+        }
+        emailRoot.querySelectorAll("[contenteditable]").forEach(function (el) {
+          el.removeAttribute("contenteditable");
+        });
+
+        var range = document.createRange();
+        range.selectNode(source);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        var ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch (e) {
+          ok = false;
+        }
+        sel.removeAllRanges();
+        restoreEditorChrome();
+        return ok;
+      }
+
+      function copyViaClipboardApi() {
+        if (!navigator.clipboard || !window.ClipboardItem) {
+          return Promise.resolve(false);
+        }
+        var html = getCleanPreviewHtml();
+        var plain = source.innerText || "";
+        try {
+          return navigator.clipboard
+            .write([
+              new ClipboardItem({
+                "text/html": new Blob([html], { type: "text/html" }),
+                "text/plain": new Blob([plain], { type: "text/plain" })
+              })
+            ])
+            .then(function () {
+              return true;
+            })
+            .catch(function () {
+              return false;
+            });
+        } catch (e) {
+          return Promise.resolve(false);
+        }
+      }
+
+      copyViaClipboardApi().then(function (apiOk) {
+        if (apiOk) {
+          done(true);
+          return;
+        }
+        var selOk = copyViaSelection();
+        done(selOk, selOk ? "Layout copied — paste into Gmail" : "Copy failed — select the preview and copy manually");
+      });
+    }
+
+    function downloadHtml() {
+      var blob = new Blob([buildExportHtml()], { type: "text/html;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "newsletter-email.html";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setStatus("Downloaded newsletter-email.html");
+    }
+
+    // Init
+    emailRoot.innerHTML = defaultStarterHtml(600);
+    makeEditableCells(emailRoot);
+    prepareImages(emailRoot);
+    wireCanvas();
+
+    document.querySelectorAll(".nb-sidebar details.nb-fold").forEach(function (fold) {
+      fold.addEventListener("toggle", function () {
+        if (!fold.open) return;
+        document.querySelectorAll(".nb-sidebar details.nb-fold").forEach(function (other) {
+          if (other !== fold) other.open = false;
+        });
+      });
+    });
+
+    [
+      "cell-font",
+      "cell-font-size",
+      "cell-align",
+      "cell-valign",
+      "cell-padding"
+    ].forEach(function (id) {
+      document.getElementById(id).addEventListener("change", applyCellStyles);
+    });
+
+    bindColorPair("cell-bg-hex", "cell-bg-color", function () {
+      applyCellStyles();
+    }, "#ffffff");
+    bindColorPair("cell-text-hex", "cell-text-color", function () {
+      applyCellStyles();
+    }, "#222222");
+    bindColorPair("btn-bg-hex", "btn-bg-color", null, "#111111");
+    bindColorPair("outer-bg-hex", "outer-bg-color", applyOuterBg, "#f0f0f0");
+
+    document.getElementById("email-width").addEventListener("change", function () {
+      applyEmailWidth(this.value);
+    });
+
+    document.getElementById("btn-add-image").addEventListener("click", function () {
+      document.getElementById("image-input").click();
+    });
+    document.getElementById("image-input").addEventListener("change", function () {
+      var file = this.files && this.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        insertImage(reader.result, file.name);
+      };
+      reader.readAsDataURL(file);
+      this.value = "";
+    });
+
+    document.getElementById("btn-add-button").addEventListener("click", insertButton);
+    document.getElementById("btn-add-nested").addEventListener("click", insertNestedTable);
+    document.getElementById("btn-split-2").addEventListener("click", function () {
+      splitCellIntoColumns(2);
+    });
+    document.getElementById("btn-split-3").addEventListener("click", function () {
+      splitCellIntoColumns(3);
+    });
+    document.getElementById("btn-merge-right").addEventListener("click", mergeCellRight);
+    document.getElementById("btn-copy").addEventListener("click", function () {
+      copyHtml();
+    });
+    document.getElementById("btn-download").addEventListener("click", downloadHtml);
+    document.getElementById("btn-reset").addEventListener("click", resetLayout);
+    btnUndo.addEventListener("click", undo);
+    btnRedo.addEventListener("click", redo);
+
+    document.addEventListener("keydown", function (e) {
+      var mod = e.ctrlKey || e.metaKey;
+      if (!mod) return;
+      var tag = e.target && e.target.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      var key = e.key.toLowerCase();
+      if (key === "z" && !e.shiftKey) {
+        e.preventDefault();
+        undo();
+      } else if (key === "y" || (key === "z" && e.shiftKey)) {
+        e.preventDefault();
+        redo();
+      }
+    });
+
+    selectCell(emailRoot.querySelector('td[data-section="body"]'));
+    resetHistoryFromCurrent();
+  })();
+  </script>
+</body>
+</html>
