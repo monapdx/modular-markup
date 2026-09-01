@@ -107,7 +107,6 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 | `topic-cluster.html` | Simple radial mind map. |
 | `worksheet.html` | Worksheet template. |
 | `writing-tracker.html` | Writing progress tracker. |
-| `activity-tracker/` | Daily activity counter with export. |
 | `widgets/` | Widgets folder. |
 <!-- TEMPLATE-CATALOG:STARTER:END -->
 
