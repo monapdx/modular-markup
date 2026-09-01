@@ -88,6 +88,23 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 <!-- TEMPLATE-CATALOG:STARTER:START -->
 | File | Description |
 |------|-------------|
+| `blank-tables.html` | Blank editable tables for custom trackers. |
+| `episode-template.html` | Podcast / show episode tracker. |
+| `expenses.html` | Expense log with totals. |
+| `important-documents.html` | Vital-records checklist with local attachments. |
+| `knowledge-map.html` | Tabular knowledge graph. |
+| `log.html` | Script or tool log. |
+| `progress.html` | Multi-item progress tracker. |
+| `project.html` | Project hub with tasks, table, and progress slider. |
+| `quote-log.html` | Quote collection. |
+| `README.html` | Readme template. |
+| `sticker-sheet.html` | Sticker Sheet template. |
+| `symptoms.html` | Symptom tracker with history. |
+| `tasks.html` | Checkbox task list and notes table. |
+| `topic-cluster.html` | Simple radial mind map. |
+| `writing-tracker.html` | Writing progress tracker. |
+| `activity-tracker/` | Daily activity counter with export. |
+| `widgets/` | Widgets folder. |
 <!-- TEMPLATE-CATALOG:STARTER:END -->
 
 See also: [`docs/TEMPLATES/STARTER/README.md`](docs/TEMPLATES/STARTER/README.md)
