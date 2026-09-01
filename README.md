@@ -102,6 +102,7 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 | `symptoms.html` | Symptom tracker with history. |
 | `tasks.html` | Checkbox task list and notes table. |
 | `topic-cluster.html` | Simple radial mind map. |
+| `with-widgets(4).html` | With Widgets(4) template. |
 | `writing-tracker.html` | Writing progress tracker. |
 | `activity-tracker/` | Daily activity counter with export. |
 | `mbox/` | Mbox folder. |
