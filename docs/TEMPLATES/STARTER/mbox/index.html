@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html class="nb-skin" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>MBOX Viewer — Gmail-style</title>
+  <link href="styles.css" rel="stylesheet"/>
+</head>
+<body class="email-viewer">
+  <div class="app">
+    <div class="topbar">
+      <div class="brand">📥 <b>MBOX</b> Viewer</div>
+      <label class="btn" title="Open .mbox file">
+        <input accept=".mbox,.mbx,text/plain" class="file" id="file" type="file"/>
+        Open .mbox
+      </label>
+      <div class="pill" id="dropzone">Drag &amp; drop .mbox here</div>
+      <div class="search">
+        🔎 <input id="q" placeholder="Search subject, from, to, labels — press Enter" type="text"/>
+        <label class="search-options" title="Only searches already-opened message bodies (cached)">
+          <input id="searchBodies" type="checkbox"/>
+          Search bodies
+        </label>
+      </div>
+      <div class="pill small" id="status">No file loaded</div>
+    </div>
+
+    <aside class="sidebar panel-surface">
+      <div class="section">
+        <h4>Mailboxes</h4>
+        <div class="nav" id="navBoxes"></div>
+      </div>
+      <div class="section">
+        <h4>Labels</h4>
+        <div class="labels" id="labelChips"></div>
+        <div class="drop small panel-surface">Gmail exports often include <code>X-Gmail-Labels</code> — we use those here.</div>
+      </div>
+      <div class="section">
+        <h4>Load Progress</h4>
+        <div class="progress" title="Indexing progress"><div id="bar"></div></div>
+        <div class="small" id="meta"></div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="list" id="list"></div>
+      <div class="viewer panel-surface" id="viewer">
+        <div class="head">
+          <div class="loading-banner hidden" id="vBanner"></div>
+          <h2 id="vSubject">Open an email</h2>
+          <div class="kv small">
+            <div>From</div><div id="vFrom"><b>—</b></div>
+            <div>To</div><div id="vTo">—</div>
+            <div>Date</div><div id="vDate">—</div>
+            <div>Message-ID</div><div id="vMsgId">—</div>
+          </div>
+          <div class="chips" id="vLabels"></div>
+        </div>
+        <div class="body" id="vBody">
+          <div class="htmlbox hidden" id="htmlBox"><iframe id="htmlFrame" sandbox="allow-same-origin allow-popups" title="Email HTML body"></iframe></div>
+          <pre class="hidden" id="textBox"></pre>
+        </div>
+        <div class="attachments" id="vAtts"></div>
+      </div>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
