@@ -98,6 +98,7 @@ Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clicka
 | `project.html` | Project hub with tasks, table, and progress slider. |
 | `quote-log.html` | Quote collection. |
 | `README.html` | Readme template. |
+| `sticker-sheet.html` | Sticker Sheet template. |
 | `symptoms.html` | Symptom tracker with history. |
 | `tasks.html` | Checkbox task list and notes table. |
 | `topic-cluster.html` | Simple radial mind map. |
