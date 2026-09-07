@@ -81,90 +81,106 @@ Just editable browser tools you can actually use.
 
 ## Included Files
 
-Templates live under `docs/TEMPLATES/`. Open each pack's `index.html` for clickable links.
+The download is organized as a **Builder pack** with the **Starter pack included inside it as `STARTER.zip`**. Each pack has its own `index.html` for browsing the included tools.
 
-### Starter Pack (free) — `docs/TEMPLATES/STARTER/`
+### Builder Pack — `BUILDER/`
 
-<!-- TEMPLATE-CATALOG:STARTER:START -->
-| File | Description |
-|------|-------------|
+| File / Folder | Description |
+|---|---|
+| `index.html` | Builder Pack landing page / template index. |
+| `calendar.html` | Editable calendar template. |
+| `kanban.html` | Kanban project board. |
+| `mindmap.html` | Interactive mind map. |
+| `newsletter-builder.html` | Newsletter / email layout builder. |
+| `offline-GPT.html` | Local viewer for exported ChatGPT conversation data. |
+| `worksheet.html` | Editable worksheet / checklist template. |
+| `activity-tracker/` | Daily activity and habit tracker with bundled animated icons. |
+| `dashboard/` | Customizable dashboard system with optional widgets. |
+| `mbox-viewer/` | Multi-file MBOX email viewer (`index.html`, `app.js`, `styles.css`). |
+| `sticker-sheet/` | GIF/PNG sticker-sheet generator and demo files. |
+| `STARTER.zip` | Complete Starter Pack bundled with the Builder Pack. |
+| `neo-brutalist.css` | Shared neo-brutalist stylesheet. |
+| `neo-brutal-overrides.css` | Shared style overrides. |
+| `build-index.py` | Utility for rebuilding the pack index. |
+| `_patch_export_snapshot.py` | Utility used to patch/export self-contained template snapshots. |
+
+#### Builder Dashboard Widgets — `BUILDER/dashboard/widgets/`
+
+The Builder dashboard includes the full widget collection below:
+
+| Widget | File |
+|---|---|
+| Alt Text Generator | `alt-text-generator.html` |
+| Animated Notes | `animated-notes/` |
+| Card Sorting | `card-sorting.html` |
+| Comic Panels Generator | `comic-panels-generator.html` |
+| CSV to SQL | `csv-to-sql.html` |
+| Fake Data Generator | `fake-data-generator.html` |
+| FAQ Generator | `faq-generator.html` |
+| File Naming Generator | `file-naming-generator.html` |
+| HTML List Generator | `html-list-generator.html` |
+| JSON Schema to TypeScript | `json-schema-to-typescript.html` |
+| Masonry Gallery | `masonry-gallery.html` |
+| Pixel Art Draw | `pixel-art-draw.html` |
+| Progress Bar Generator | `progress-bar-generator.html` |
+| Quiz Builder | `quiz-builder.html` |
+| Quote Image Generator | `quote-image-generator.html` |
+| Regex Explainer | `regex-explainer.html` |
+| Rhymes | `rhymes.html` |
+| Scratch-It Generator | `scratch-it-generator.html` |
+| Swatch | `swatch.html` |
+| Table Generator | `table-generator.html` |
+
+The dashboard folder also includes `dashboard.html`, `with-widgets.html`, `dashboard.css`, `script.js`, its own `index.html`, and supporting build/style files.
+
+### Starter Pack — bundled as `BUILDER/STARTER.zip`
+
+When extracted, the Starter Pack contains:
+
+| File / Folder | Description |
+|---|---|
+| `index.html` | Starter Pack landing page / template index. |
 | `blank-tables.html` | Blank editable tables for custom trackers. |
-| `calendar.html` | Calendar template. |
 | `episode-template.html` | Podcast / show episode tracker. |
 | `expenses.html` | Expense log with totals. |
-| `important-documents.html` | Vital-records checklist with local attachments. |
-| `kanban.html` | Kanban template. |
-| `knowledge-map.html` | Tabular knowledge graph. |
-| `log.html` | Script or tool log. |
-| `mindmap.html` | Mindmap template. |
-| `newsletter-builder.html` | Newsletter Builder template. |
+| `important-documents.html` | Important-document / vital-record tracker. |
+| `knowledge-map.html` | Tabular knowledge-map template. |
+| `log.html` | Flexible log template. |
 | `progress.html` | Multi-item progress tracker. |
-| `project.html` | Project hub with tasks, table, and progress slider. |
-| `quote-log.html` | Quote collection. |
-| `README.html` | Readme template. |
-| `symptoms.html` | Symptom tracker with history. |
-| `tasks.html` | Checkbox task list and notes table. |
-| `topic-cluster.html` | Simple radial mind map. |
-| `worksheet.html` | Worksheet template. |
+| `project.html` | Project hub with tasks, table, and progress tracking. |
+| `quote-log.html` | Quote and research-snippet collection. |
+| `README.html` | Editable README template. |
+| `README.md` | Starter Pack documentation. |
+| `symptoms.html` | Symptom tracker. |
+| `tasks.html` | Task list and notes template. |
+| `topic-cluster.html` | Topic-cluster / radial mapping template. |
 | `writing-tracker.html` | Writing progress tracker. |
-| `widgets/` | Widgets folder. |
-<!-- TEMPLATE-CATALOG:STARTER:END -->
+| `activity-tracker/` | Daily activity and habit tracker with bundled animated icons. |
+| `widgets/` | Starter widget collection. |
+| `neo-brutalist.css` | Shared neo-brutalist stylesheet. |
+| `neo-brutal-overrides.css` | Shared style overrides. |
+| `build-index.py` | Utility for rebuilding the Starter Pack index. |
+| `_patch_export_snapshot.py` | Utility used to patch/export self-contained template snapshots. |
 
-See also: [`docs/TEMPLATES/STARTER/README.md`](docs/TEMPLATES/STARTER/README.md)
+#### Starter Widgets — `STARTER/widgets/`
 
-#### Screenshots (selected Starter templates)
+| Widget | File |
+|---|---|
+| Alt Text Generator | `alt-text-generator.html` |
+| Animated Notes | `animated-notes/` |
+| CSV to SQL | `csv-to-sql.html` |
+| Fake Data Generator | `fake-data-generator.html` |
+| FAQ Generator | `faq-generator.html` |
+| File Naming Generator | `file-naming-generator.html` |
+| HTML List Generator | `html-list-generator.html` |
+| JSON Schema to TypeScript | `json-schema-to-typescript.html` |
+| Pixel Art Draw | `pixel-art-draw.html` |
+| Progress Bar Generator | `progress-bar-generator.html` |
+| Regex Explainer | `regex-explainer.html` |
+| Swatch | `swatch.html` |
+| Table Generator | `table-generator.html` |
 
-**Blank Tables** — editable table scaffold
+### Builder-Only Additions
 
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/blank-tables.png" width="556">
+Compared with the bundled Starter Pack, the Builder Pack adds the main interactive templates `calendar.html`, `kanban.html`, `mindmap.html`, `newsletter-builder.html`, `offline-GPT.html`, and `worksheet.html`, plus the full `dashboard/`, `mbox-viewer/`, and `sticker-sheet/` tools. Its dashboard widget collection also adds Card Sorting, Comic Panels Generator, Masonry Gallery, Quiz Builder, Quote Image Generator, Rhymes, and Scratch-It Generator.
 
-**Expenses** — budget tracker with local saving
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/expenses.png" width="556">
-
-**Log** — flexible logging table
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/log.png" width="556">
-
-**Episode tracker** — podcasts and serialized content
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/podcast-episode-tracker.png" width="556">
-
-**Progress** — goals and milestones
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/progress.png" width="556">
-
-**Project** — lightweight project management
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/project.png" width="556">
-
-**Quote Log** — quotes and research snippets
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/quote-log.png" width="556">
-
-**Symptoms** — health logging
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/symptoms.png" width="556">
-
-**Tasks** — task manager
-
-<img src="https://raw.githubusercontent.com/monapdx/modular-markup/refs/heads/main/assets/tasks.png" width="556">
-
-### Builder Pack (paid) — `docs/TEMPLATES/BUILDER/`
-
-<!-- TEMPLATE-CATALOG:BUILDER:START -->
-| File | Description |
-|------|-------------|
-| `calendar.html` | Editable month calendar with local save. |
-| `kanban.html` | Drag-and-drop project board. |
-| `mindmap.html` | Pan/zoom mind map with nested nodes. |
-| `newsletter-builder.html` | Table-based email layouts for Gmail paste. |
-| `offline-GPT.html` | Browse exported chat JSON archives. |
-| `worksheet.html` | Printable checklist and workshop tracker. |
-| `activity-tracker/` | Daily habit counter with export. |
-| `dashboard/` | Dashboard shells and widget tools. |
-| `mbox-viewer/` | Premium multi-file MBOX viewer (HTML + CSS + JS). |
-| `sticker-sheet/` | GIF/PNG sticker grids with export. |
-<!-- TEMPLATE-CATALOG:BUILDER:END -->
-
-[Get the Builder Pack](https://ashpdx.gumroad.com/l/modular-markup)
