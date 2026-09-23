@@ -1010,7 +1010,7 @@
   
 
 /* ===== calendar.html (page-calendar) ===== */
-/* Same loading model as kanban.html: only this file — tokens + body canvas live here (no neo-brutalist.css). */
+/* Same loading model as kanban.html: only this file â€” tokens + body canvas live here (no neo-brutalist.css). */
 
   html.page-calendar {
     --ink: #050508;
@@ -2873,7 +2873,7 @@ html.neo-dark-doc .project-progress-slider input[type="range"]::-moz-range-thumb
   box-shadow: 2px 2px 0 #000;
 }
 
-/* Episode template — topic picker (buttons inherit neo-brutalist; tighten embeds) */
+/* Episode template â€” topic picker (buttons inherit neo-brutalist; tighten embeds) */
 html.neo-dark-doc .topic-picker {
   min-width: 260px;
 }
@@ -2960,7 +2960,7 @@ html.neo-dark-doc .topic-input::placeholder {
   opacity: 1;
 }
 
-/* Knowledge map — wide tables + selects inside cells */
+/* Knowledge map â€” wide tables + selects inside cells */
 html.neo-dark-doc.page-knowledge-map body {
   max-width: 1100px;
 }
@@ -2975,7 +2975,7 @@ html.neo-dark-doc.page-knowledge-map td select {
   min-width: 8rem;
 }
 
-/* Worksheet — dark neo-brutalist layout */
+/* Worksheet â€” dark neo-brutalist layout */
 html.neo-dark-doc.page-worksheet .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -3323,10 +3323,24 @@ html.neo-dark-doc.page-index a.card.red {
   box-shadow: 6px 6px 0 #000, 0 0 28px rgba(255, 69, 189, 0.5);
 }
 
+html.neo-dark-doc.page-index a.card.lavender {
+  background: #e69dfc;
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 28px rgba(230, 157, 252, 0.55);
+}
+
+html.neo-dark-doc.page-index a.card.cyan {
+  background: #00e5ff;
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 28px rgba(0, 229, 255, 0.55);
+}
+
 html.neo-dark-doc.page-index a.card.blue .title,
 html.neo-dark-doc.page-index a.card.green .title,
 html.neo-dark-doc.page-index a.card.orange .title,
 html.neo-dark-doc.page-index a.card.purple .title,
+html.neo-dark-doc.page-index a.card.lavender .title,
+html.neo-dark-doc.page-index a.card.cyan .title,
 html.neo-dark-doc.page-index a.card.red .title {
   color: var(--ink);
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
@@ -3336,6 +3350,8 @@ html.neo-dark-doc.page-index a.card.blue .desc,
 html.neo-dark-doc.page-index a.card.green .desc,
 html.neo-dark-doc.page-index a.card.orange .desc,
 html.neo-dark-doc.page-index a.card.purple .desc,
+html.neo-dark-doc.page-index a.card.lavender .desc,
+html.neo-dark-doc.page-index a.card.cyan .desc,
 html.neo-dark-doc.page-index a.card.red .desc {
   color: rgba(5, 5, 8, 0.72);
   font-weight: 700;
@@ -3810,7 +3826,7 @@ html.neo-dark-doc .dashboard-widget input[type="file"]::-webkit-file-upload-butt
   background: var(--sky-blue, #6ee7ff);
 }
 
-/* ===== thank-you.html (page-thank-you) — Builder Pack post-purchase ===== */
+/* ===== thank-you.html (page-thank-you) â€” Builder Pack post-purchase ===== */
 
 html.page-thank-you.neo-dark-doc section.panel {
   padding: clamp(1.1rem, 2.5vw, 1.5rem);
