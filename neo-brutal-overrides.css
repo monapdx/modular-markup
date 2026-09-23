@@ -1010,7 +1010,7 @@
   
 
 /* ===== calendar.html (page-calendar) ===== */
-/* Same loading model as kanban.html: only this file — tokens + body canvas live here (no neo-brutalist.css). */
+/* Same loading model as kanban.html: only this file â€” tokens + body canvas live here (no neo-brutalist.css). */
 
   html.page-calendar {
     --ink: #050508;
@@ -2873,7 +2873,7 @@ html.neo-dark-doc .project-progress-slider input[type="range"]::-moz-range-thumb
   box-shadow: 2px 2px 0 #000;
 }
 
-/* Episode template — topic picker (buttons inherit neo-brutalist; tighten embeds) */
+/* Episode template â€” topic picker (buttons inherit neo-brutalist; tighten embeds) */
 html.neo-dark-doc .topic-picker {
   min-width: 260px;
 }
@@ -2960,7 +2960,7 @@ html.neo-dark-doc .topic-input::placeholder {
   opacity: 1;
 }
 
-/* Knowledge map — wide tables + selects inside cells */
+/* Knowledge map â€” wide tables + selects inside cells */
 html.neo-dark-doc.page-knowledge-map body {
   max-width: 1100px;
 }
@@ -2975,7 +2975,7 @@ html.neo-dark-doc.page-knowledge-map td select {
   min-width: 8rem;
 }
 
-/* Worksheet — dark neo-brutalist layout */
+/* Worksheet â€” dark neo-brutalist layout */
 html.neo-dark-doc.page-worksheet .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -3323,10 +3323,24 @@ html.neo-dark-doc.page-index a.card.red {
   box-shadow: 6px 6px 0 #000, 0 0 28px rgba(255, 69, 189, 0.5);
 }
 
+html.neo-dark-doc.page-index a.card.lavender {
+  background: #e69dfc;
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 28px rgba(230, 157, 252, 0.55);
+}
+
+html.neo-dark-doc.page-index a.card.cyan {
+  background: #00e5ff;
+  color: var(--ink);
+  box-shadow: 6px 6px 0 #000, 0 0 28px rgba(0, 229, 255, 0.55);
+}
+
 html.neo-dark-doc.page-index a.card.blue .title,
 html.neo-dark-doc.page-index a.card.green .title,
 html.neo-dark-doc.page-index a.card.orange .title,
 html.neo-dark-doc.page-index a.card.purple .title,
+html.neo-dark-doc.page-index a.card.lavender .title,
+html.neo-dark-doc.page-index a.card.cyan .title,
 html.neo-dark-doc.page-index a.card.red .title {
   color: var(--ink);
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
@@ -3336,6 +3350,8 @@ html.neo-dark-doc.page-index a.card.blue .desc,
 html.neo-dark-doc.page-index a.card.green .desc,
 html.neo-dark-doc.page-index a.card.orange .desc,
 html.neo-dark-doc.page-index a.card.purple .desc,
+html.neo-dark-doc.page-index a.card.lavender .desc,
+html.neo-dark-doc.page-index a.card.cyan .desc,
 html.neo-dark-doc.page-index a.card.red .desc {
   color: rgba(5, 5, 8, 0.72);
   font-weight: 700;
@@ -3485,7 +3501,7 @@ html.page-dashboard-widget.neo-dark-doc .dashboard-widget h4 {
   letter-spacing: 0.04em;
 }
 
-html.page-dashboard-widget.neo-dark-doc .dashboard-widget > label {
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget label:not(.dashboard-check) {
   display: block;
   margin-bottom: 1rem;
   color: var(--muted);
@@ -3746,11 +3762,71 @@ html.page-dashboard-widget.neo-dark-doc button.copied {
   color: var(--ink, #050508);
 }
 
-html.page-dashboard-widget.neo-dark-doc .dashboard-widget input[type="file"] {
-  padding: 0.65rem;
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget input[type="file"],
+html.neo-dark-doc .dashboard-widget input[type="file"] {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 10px 12px;
+  border: var(--border, 3px solid #000);
+  border-radius: 12px;
+  background: var(--paper, #f7f5ef);
+  color: var(--ink, #050508);
+  font: 500 0.9rem/1.45 "IBM Plex Mono", ui-monospace, monospace;
+  box-shadow: 5px 5px 0 #000;
+  cursor: pointer;
 }
 
-/* ===== thank-you.html (page-thank-you) — Builder Pack post-purchase ===== */
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget input[type="file"]:focus,
+html.neo-dark-doc .dashboard-widget input[type="file"]:focus {
+  outline: 4px solid var(--electric-lime, #b8ff24);
+  outline-offset: 3px;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget input[type="file"]::file-selector-button,
+html.neo-dark-doc .dashboard-widget input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  border: 3px solid #000;
+  border-radius: 999px;
+  background: var(--electric-lime, #b8ff24);
+  color: var(--ink, #050508);
+  font: 900 0.82rem/1 "Inter", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 3px 3px 0 #000;
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget input[type="file"]::file-selector-button:hover,
+html.neo-dark-doc .dashboard-widget input[type="file"]::file-selector-button:hover {
+  background: var(--sky-blue, #6ee7ff);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget input[type="file"]::-webkit-file-upload-button,
+html.neo-dark-doc .dashboard-widget input[type="file"]::-webkit-file-upload-button {
+  margin-right: 12px;
+  padding: 8px 14px;
+  border: 3px solid #000;
+  border-radius: 999px;
+  background: var(--electric-lime, #b8ff24);
+  color: var(--ink, #050508);
+  font: 900 0.82rem/1 "Inter", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 3px 3px 0 #000;
+  cursor: pointer;
+}
+
+html.page-dashboard-widget.neo-dark-doc .dashboard-widget input[type="file"]::-webkit-file-upload-button:hover,
+html.neo-dark-doc .dashboard-widget input[type="file"]::-webkit-file-upload-button:hover {
+  background: var(--sky-blue, #6ee7ff);
+}
+
+/* ===== thank-you.html (page-thank-you) â€” Builder Pack post-purchase ===== */
 
 html.page-thank-you.neo-dark-doc section.panel {
   padding: clamp(1.1rem, 2.5vw, 1.5rem);
@@ -3809,4 +3885,314 @@ html.page-thank-you.neo-dark-doc code {
   background: var(--panel-2);
   color: var(--electric-lime);
   box-shadow: 2px 2px 0 #000;
+}
+
+/* ===== writing-tracker.html (page-writing-tracker) ===== */
+
+html.page-writing-tracker.neo-dark-doc body {
+  max-width: min(72rem, 100%);
+}
+
+html.page-writing-tracker.neo-dark-doc header {
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: 1.25rem;
+}
+
+html.page-writing-tracker.neo-dark-doc header h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.85rem, 5.5vw, 3.5rem);
+  text-shadow: 4px 4px 0 #000;
+}
+
+html.page-writing-tracker.neo-dark-doc .subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  max-width: 52ch;
+}
+
+html.page-writing-tracker.neo-dark-doc .dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 1.25rem;
+}
+
+html.page-writing-tracker.neo-dark-doc .stat {
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+}
+
+html.page-writing-tracker.neo-dark-doc .stat-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+html.page-writing-tracker.neo-dark-doc .stat-value {
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  font-weight: 900;
+  margin-top: 6px;
+  color: var(--electric-lime);
+  letter-spacing: -0.04em;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-panel,
+html.page-writing-tracker.neo-dark-doc .section {
+  border: var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-3) 100%);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(1rem, 2.5vw, 1.25rem);
+  margin-bottom: 1.25rem;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-panel h2,
+html.page-writing-tracker.neo-dark-doc .section h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  border-bottom: 3px solid #000;
+  padding-bottom: 0.5rem;
+}
+
+html.page-writing-tracker.neo-dark-doc .section h3 {
+  margin: 1.25rem 0 0.75rem;
+  font-size: 0.95rem;
+  color: var(--sky-blue);
+  letter-spacing: 0.06em;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-grid {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(15.5rem, 1.4fr) auto;
+  gap: 10px;
+  align-items: end;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-status-field {
+  min-width: 15.5rem;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select {
+  position: relative;
+  width: 100%;
+  min-width: 15.5rem;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-trigger,
+html.page-writing-tracker.neo-dark-doc .status-select-option {
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 44px 12px 16px;
+  border: 4px solid #000;
+  border-radius: 14px;
+  appearance: none;
+  cursor: pointer;
+  font: 700 0.95rem/1.45 "IBM Plex Mono", ui-monospace, monospace;
+  text-align: left;
+  background-color: #fff;
+  color: var(--ink);
+  box-shadow: 7px 7px 0 #000;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background-color 120ms ease;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-trigger::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22%23050508%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20width%3D%2220%22%3E%3Cpath%20d%3D%22M5%207l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-trigger:hover,
+html.page-writing-tracker.neo-dark-doc .status-select-option:hover {
+  transform: translate(-3px, -3px);
+  border-color: var(--electric-lime);
+  background-color: #fff;
+  box-shadow: 8px 8px 0 var(--electric-lime), 10px 10px 0 #000;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-trigger:active,
+html.page-writing-tracker.neo-dark-doc .status-select-option:active {
+  transform: translate(2px, 2px);
+  border-color: var(--electric-lime);
+  box-shadow: 3px 3px 0 var(--electric-lime), 4px 4px 0 #000;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-trigger:focus-visible,
+html.page-writing-tracker.neo-dark-doc .status-select-option:focus-visible {
+  outline: 4px solid var(--electric-lime);
+  outline-offset: 3px;
+  border-color: var(--electric-lime);
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select.is-open .status-select-trigger {
+  transform: translate(-3px, -3px);
+  border-color: var(--electric-lime);
+  box-shadow: 8px 8px 0 var(--electric-lime), 10px 10px 0 #000;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 4px solid #000;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 8px 8px 0 var(--electric-lime), 10px 10px 0 #000;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-list[hidden] {
+  display: none;
+}
+
+html.page-writing-tracker.neo-dark-doc .status-select-option.is-selected {
+  border-color: var(--electric-lime);
+  background: linear-gradient(180deg, #fff 0%, rgba(184, 255, 36, 0.18) 100%);
+  box-shadow: 5px 5px 0 #000;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-bulk-field {
+  grid-column: 1 / -1;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-bulk-field textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+  margin: 0;
+}
+
+html.page-writing-tracker.neo-dark-doc .reset-tracker {
+  width: auto;
+  margin-top: 10px;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-grid label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+html.page-writing-tracker.neo-dark-doc .add-grid button {
+  width: 100%;
+}
+
+html.page-writing-tracker.neo-dark-doc .columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+html.page-writing-tracker.neo-dark-doc .entry {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 5px 8px;
+  margin-bottom: 4px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 2px 2px 0 #000;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+html.page-writing-tracker.neo-dark-doc .entry:nth-child(even) {
+  background: rgba(223, 115, 255, 0.14);
+  border-color: #7a45b8;
+}
+
+html.page-writing-tracker.neo-dark-doc .entry:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 #000;
+  background: rgba(223, 115, 255, 0.1);
+  border-color: #9b59d4;
+}
+
+html.page-writing-tracker.neo-dark-doc .entry:nth-child(even):hover {
+  background: rgba(223, 115, 255, 0.22);
+  border-color: #6a3aa8;
+  box-shadow: 3px 3px 0 #4a2878;
+}
+
+html.page-writing-tracker.neo-dark-doc .entry-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  color: var(--paper);
+}
+
+html.page-writing-tracker.neo-dark-doc .entry-words {
+  flex-shrink: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--electric-lime);
+}
+
+html.page-writing-tracker.neo-dark-doc .empty {
+  color: var(--muted);
+  font-style: italic;
+  font-weight: 600;
+  border: 3px dashed var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+html.page-writing-tracker.neo-dark-doc .export-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+html.page-writing-tracker.neo-dark-doc .export-row button {
+  width: auto;
+}
+
+@media (max-width: 900px) {
+  html.page-writing-tracker.neo-dark-doc .dashboard,
+  html.page-writing-tracker.neo-dark-doc .columns,
+  html.page-writing-tracker.neo-dark-doc .add-grid {
+    grid-template-columns: 1fr;
+  }
 }
